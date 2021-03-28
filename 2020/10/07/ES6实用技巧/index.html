@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="ES6实用技巧命名规范123456789101112131415&#x2F;&#x2F;js变量命名：小驼峰，前缀应当是名词，例如 maxCount、tableTitle&#x2F;&#x2F;js常量：全大写，单词以_分割&#x2F;&#x2F;js函数命名：小驼峰，前缀应当是动词，例如 setCount、getTitle&#x2F;&#x2F;常见动词：can has is get set l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6实用技巧">
+<meta property="og:url" content="http://yoursite.com/2020/10/07/ES6%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:description" content="ES6实用技巧命名规范123456789101112131415&#x2F;&#x2F;js变量命名：小驼峰，前缀应当是名词，例如 maxCount、tableTitle&#x2F;&#x2F;js常量：全大写，单词以_分割&#x2F;&#x2F;js函数命名：小驼峰，前缀应当是动词，例如 setCount、getTitle&#x2F;&#x2F;常见动词：can has is get set l">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-07T00:41:28.000Z">
+<meta property="article:modified_time" content="2020-10-07T14:42:44.251Z">
+<meta property="article:author" content="Foolish-Max">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/10/07/ES6%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ES6实用技巧 | Foolish-Max</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Foolish-Max</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/07/ES6%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ES6实用技巧
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-07 08:41:28 / 修改时间：22:42:44" itemprop="dateCreated datePublished" datetime="2020-10-07T08:41:28+08:00">2020-10-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="ES6实用技巧"><a href="#ES6实用技巧" class="headerlink" title="ES6实用技巧"></a>ES6实用技巧</h2><h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;js变量命名：小驼峰，前缀应当是名词，例如 maxCount、tableTitle</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;js常量：全大写，单词以_分割</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;js函数命名：小驼峰，前缀应当是动词，例如 setCount、getTitle</span><br><span class="line">&#x2F;&#x2F;常见动词：can has is get set load</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;类 &amp; 构造函数：大驼峰，首字母大写</span><br><span class="line">&#x2F;&#x2F; class Person &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;类的成员</span><br><span class="line">&#x2F;&#x2F;公共属性和方法：跟变量和函数的命名一样</span><br><span class="line">&#x2F;&#x2F;私有属性和方法，前缀为_(下划线)，同上</span><br><span class="line">&#x2F;&#x2F;private _name: string;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="let-amp-const"><a href="#let-amp-const" class="headerlink" title="let &amp; const"></a>let &amp; const</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ES6新增了let和const两个命令，let用来定义变量，const用于定义常量，let和const都是块级作用域。</span><br><span class="line">const对于对象类型使用的是指针式引用，常量只是指向了对象的指针，对象本身的内容却依然可以被修改。</span><br><span class="line">在使用中，建议使用let和const完全代替var命令</span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const foo &#x3D; &#96;this is a $&#123;example&#125;&#96;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数值扩展"><a href="#数值扩展" class="headerlink" title="数值扩展"></a>数值扩展</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">转换</span><br><span class="line">Number.parseInt —— 将字符串或数字转换为整数</span><br><span class="line">Number.parseFloat —— 将字符串或数字转换为浮点数</span><br><span class="line"></span><br><span class="line">上述两个方法与parseInt和parseFloat功能一致，在ES6中推荐使用Number.的方法调用，目的是为了减少全局性方法，使语言逐步模块化。</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组扩展"><a href="#数组扩展" class="headerlink" title="数组扩展"></a>数组扩展</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;合并数组</span><br><span class="line">let a &#x3D; [1,2]</span><br><span class="line">let b &#x3D; [3]</span><br><span class="line">let c &#x3D; [...a, ...b]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Array.from() 将伪数组对象或可遍历对象转换为真数组</span><br><span class="line">&#x2F;&#x2F;典型的伪数组有：函数的arguments对象，以及大多数DOM元素，还有字符串</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;快速转换为数组</span><br><span class="line">Array.of(3, 4, 5)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;判断对象是否为数组</span><br><span class="line">if(Array.isArray(obj))&#123;...&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;检索数据中是否有5</span><br><span class="line">[1, 2, 3].includes(5) &#x2F;&#x2F;false</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;找出第一个匹配表达式的结果，只要匹配到一项，函数就返回</span><br><span class="line">let a &#x3D;[1, 3, 4, -89].find((value, index, arr) &#x3D;&gt; &#123;</span><br><span class="line">    return value &lt; 0;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(a); &#x2F;&#x2F;-89</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;找出第一个匹配表达式的结果的下标</span><br><span class="line">let a &#x3D; [1, 2, 3, -2].findIndex((value, index, arr) &#x3D;&gt; &#123;</span><br><span class="line">    return value &lt; 0;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(a); &#x2F;&#x2F;3</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;内容过滤</span><br><span class="line">let a &#x3D; [1, 2, 3, -4].filter((item) &#x3D;&gt; &#123;</span><br><span class="line">    return item &gt; 0;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(a); &#x2F;&#x2F;[1, 2, 3]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;内容实例</span><br><span class="line">.keys() —— 获得数组中所有元素的键名(索引下标)</span><br><span class="line">.values() —— 获得数组中所有元素的数据</span><br><span class="line">.entries() —— 获得数组中所有数据的键名和数据</span><br><span class="line">类似Object中的同名函数</span><br></pre></td></tr></table></figure>
+
+<h3 id="对象扩展"><a href="#对象扩展" class="headerlink" title="对象扩展"></a>对象扩展</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 对象内容合并</span><br><span class="line">let a &#x3D; &#123;a:1,b:2&#125;, &#x2F;&#x2F;&#123;a: 1, b: 4&#125;</span><br><span class="line">    b &#x3D; &#123;b:3&#125;,</span><br><span class="line">    c &#x3D; &#123;b:4,c:5&#125;</span><br><span class="line">let d &#x3D; Object.assign(a, b, c) &#x2F;&#x2F;&#123;a: 1, b: 4, c: 5&#125;</span><br><span class="line">&#x2F;&#x2F; 合并的同时更新a对象的内容</span><br><span class="line">&#x2F;&#x2F; a自身没有的属性不会被添加，只会更新</span><br><span class="line">&#x2F;&#x2F; 只会影响a第一个，不会影响后面的b、c</span><br><span class="line">&#x2F;&#x2F; 推荐使用下面这种</span><br><span class="line">let d &#x3D; Object.assign(&#123;&#125;, a, b, c)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;对象内容</span><br><span class="line">Object.keys() —— 获取所有键名，以数组形式返回</span><br><span class="line">Object.values() —— 获取所有值内容，以数组形式返回</span><br><span class="line">Object.entries() —— 获取所有键名和值内容，以数组形式返回，成员内容也是数组形式 例如：[[&#39;a&#39;, 1],[&#39;b&#39;, 2]]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;判断对象是否为数组对象</span><br><span class="line">if(Object.isArray(obj))&#123;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;判断对象是否为空对象</span><br><span class="line">if(obj &amp;&amp; Object.keys(obj).length)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Destructuring解构赋值"><a href="#Destructuring解构赋值" class="headerlink" title="Destructuring解构赋值"></a>Destructuring解构赋值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">let [a, b, c] &#x3D; [1, 2, 3] &#x2F;&#x2F;如果个数不匹配，没有对应上的为undefined</span><br><span class="line"></span><br><span class="line">let [a, b, c &#x3D; &#39;default&#39;] &#x3D; [12, 23] &#x2F;&#x2F;指定默认值</span><br><span class="line"></span><br><span class="line">let [a, ...b] &#x3D; [1, 2, 3] &#x2F;&#x2F;b的值为[2, 3]</span><br><span class="line"></span><br><span class="line">let [a, b, c] &#x3D; &#39;yes&#39; &#x2F;&#x2F;a的值为y，b的值为e，c的值为s</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;如果名称是字符串的自带属性，则会获得属性的值</span><br><span class="line">let &#123; length &#125; &#x3D; &#39;yes&#39; &#x2F;&#x2F;length 为3</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;解构赋值使用实例，作为函数传参，使用默认值</span><br><span class="line">let obj &#x3D; &#123;a: 1, b: 2&#125;</span><br><span class="line">function test(&#123;a &#x3D; 10, b&#125;) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">test(obj)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 对象结构解构赋值</span><br><span class="line">let obj &#x3D; &#123;a: 1, b: 2&#125;;</span><br><span class="line">let &#123; a, b &#125; &#x3D; obj; &#x2F;&#x2F;a &#x3D; 1,b &#x3D; 2,需要严格匹配名称，数组的模式是严格匹配下标。</span><br><span class="line"></span><br><span class="line">let obj &#x3D; &#123;a: 1, b: 2&#125;;</span><br><span class="line">let &#123; a &#x3D; 0, b &#x3D; 3 &#125; &#x3D; obj; &#x2F;&#x2F;赋值并给定默认值</span><br><span class="line"></span><br><span class="line">let obj &#x3D; &#123; a: 1, b: 2&#125;;</span><br><span class="line">let &#123;a: A, b&#125; &#x3D; obj; &#x2F;&#x2F;获得内容后，将变量会从新命名</span><br><span class="line"></span><br><span class="line">let a &#x3D; 0;</span><br><span class="line">(&#123;a, b&#125; &#x3D; obj);&#x2F;&#x2F;对已存在的a进行修改值，并生成新的变量b</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;解构的同时使用重命名和设置默认值的语法</span><br><span class="line">const person &#x3D; &#123;name: &quot;zhangsan&quot;,sex: &quot;male&quot;&#125;;</span><br><span class="line">const &#123;name: middleName &#x3D; &quot;zhangxiaosan&quot;&#125; &#x3D; person;</span><br><span class="line">console.log(middleName); &#x2F;&#x2F;&quot;zhangsan&quot;</span><br><span class="line">&#x2F;&#x2F; 首先声明middleName这个变量，查询person的middle属性，如果存在则赋值给middleNmae，如果不存在使用默认值&quot;zhangxiaosan&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;多层解构赋值</span><br><span class="line">let obj &#x3D; &#123;</span><br><span class="line">    arr: [&#39;aaa&#39;, &#123;a: 1&#125;]</span><br><span class="line">&#125;</span><br><span class="line">let &#123;arr: [b, &#123;a&#125;]&#125; &#x3D; obj; &#x2F;&#x2F;b为&#39;aaa&#39;,a为1，注意结构要对应。</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;数组转化为对象</span><br><span class="line">const points &#x3D; [</span><br><span class="line">    [1,2],</span><br><span class="line">    [3,4]</span><br><span class="line">];</span><br><span class="line">let newPoints &#x3D; points.map(item &#x3D;&gt; &#123;</span><br><span class="line">    const [x,y] &#x3D; item;</span><br><span class="line">    return &#123;x, y&#125;;</span><br><span class="line">&#125;)</span><br><span class="line">or</span><br><span class="line">let newPoints &#x3D; points.map(([x, y]) &#x3D;&gt; &#123;</span><br><span class="line">    return &#123;x, y&#125;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(newPoints);</span><br><span class="line">&#x2F;&#x2F;[</span><br><span class="line">&#x2F;&#x2F;  &#123;x:1,y:2&#125;,</span><br><span class="line">&#x2F;&#x2F;  &#123;x:3,y:4&#125;</span><br><span class="line">&#x2F;&#x2F;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如果箭头函数直接返回一个对象，必须在对象外面加上括号，否则会报错</span><br><span class="line">&#x2F;&#x2F;报错，会报SyntaxError</span><br><span class="line">let count &#x3D; num &#x3D;&gt; &#123;base: 50&#125;;</span><br><span class="line">&#x2F;&#x2F;正确返回方式</span><br><span class="line">let count &#x3D; num &#x3D;&gt; (&#123;base: 50&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;特点：更简洁的函数和封闭上下文的this指向。</span><br></pre></td></tr></table></figure>
+
+<h3 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;基本用法</span><br><span class="line">let name &#x3D; Symbol(&quot;name&quot;);</span><br><span class="line">console.log(name); &#x2F;&#x2F;Symbol(name)</span><br><span class="line">console.log(typeof name); &#x2F;&#x2F;&quot;symbol&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Symbol 函数不能用new命令，因为Symbol是原始数据类型，不是对象</span><br><span class="line">&#x2F;&#x2F; Symbol表示独一无二的值，因此带有相同参数的两个Symbol值也不相等</span><br><span class="line">let name1 &#x3D; Symbol();</span><br><span class="line">let name2 &#x3D; Symbol();</span><br><span class="line">name1 &#x3D;&#x3D;&#x3D; name2;&#x2F;&#x2F; false</span><br><span class="line">let name1 &#x3D; Symbol(&quot;name&quot;);</span><br><span class="line">let name2 &#x3D; Symbol(&quot;name&quot;);</span><br><span class="line">name1 &#x3D;&#x3D;&#x3D; name2; &#x2F;&#x2F; false</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Symbol不能进行隐式类型转换</span><br><span class="line">let name &#x3D; Symbol(&#39;foo&#39;);</span><br><span class="line">console.log(&quot;nihao&quot; + name);</span><br><span class="line">&#x2F;&#x2F;浏览器报错：Uncaught TypeError:Cannot convert a Symbol value to a string.</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Symbol值可以显示转换为字符串</span><br><span class="line">let name &#x3D; Symbol(&#39;foo&#39;);</span><br><span class="line">String(name); &#x2F;&#x2F;&quot;Symbol(foo)&quot;</span><br><span class="line">name.toString(); &#x2F;&#x2F;&quot;Symbol(foo)&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Symbol值不能转换为数字</span><br><span class="line">let name &#x3D; Symbol(&#39;foo&#39;);</span><br><span class="line">Number(name);</span><br><span class="line">&#x2F;&#x2F;浏览器报错：Uncaught TypeError:Cannot convert a Symbol value to a number.</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Symbol值可以转换为布尔值</span><br><span class="line">let name &#x3D; Symbol(&#39;foo&#39;);</span><br><span class="line">Boolean(name); &#x2F;&#x2F;true</span><br><span class="line">!name &#x2F;&#x2F;false</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Symbol变量不能作为webStorage的键使用</span><br><span class="line">let name &#x3D; Symbol();</span><br><span class="line">localStorage.setItem(name,&quot;aaaa&quot;);</span><br><span class="line">&#x2F;&#x2F;浏览器报错：Uncaught TypeError:Cannot convert a Symbol value to a string.</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用场景</span><br><span class="line">&#x2F;&#x2F;作为对象属性名</span><br><span class="line">&#x2F;&#x2F;不能用.只能用[]</span><br><span class="line">let name &#x3D; Symbol();</span><br><span class="line">let obj &#x3D; &#123;&#125;;</span><br><span class="line">obj[name] &#x3D; &quot;zhangsan&quot;;</span><br><span class="line">console.log(obj); &#x2F;&#x2F;&#123;Symbol():&quot;zhangsan&quot;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Symbol作为属性名时，该属性时公有属性不是私有属性，可以在类的外部访问，但是不会出现在for...in,for...of的循环中，也不会被Object.keys()、Object.getOwnPropertyNames()返回。</span><br><span class="line">&#x2F;&#x2F;可以通过Object.getOwnPropertySymbols()和Reflect.ownKeys()取到。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;定义常量，保证唯一性</span><br><span class="line">const COLOR_RED &#x3D; Symbol(&quot;red&quot;);</span><br><span class="line">const MY_RED &#x3D; Symbol(&quot;red&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Symbol.for() </span><br><span class="line">&#x2F;&#x2F;作用：用于将描述相同的Symbol变量指向同一个Symbol值</span><br><span class="line">&#x2F;&#x2F;Symbol()定义的值每次都是新建的，即使描述相同值也不同</span><br><span class="line">&#x2F;&#x2F;Symbol.for() 会先检查给定的描述是否存在，不存在才会新建一个值，并将这个值登记在全局环境中供搜索。</span><br><span class="line">let a1 &#x3D; Symbol.for(&#39;a&#39;);</span><br><span class="line">let a2 &#x3D; Symbol.for(&#39;a&#39;);</span><br><span class="line">a1 &#x3D;&#x3D;&#x3D; a2 &#x2F;&#x2F;true</span><br><span class="line">typeof a1 &#x2F;&#x2F;&quot;symbol&quot;</span><br><span class="line">typeof a2 &#x2F;&#x2F;&quot;symbol&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Symbol.keyFor()</span><br><span class="line">&#x2F;&#x2F;检测Symbol值是否被登记过，返回一个已登记的Symbol类型值的key</span><br><span class="line">let a1 &#x3D; Symbol.for(&#39;a&#39;);</span><br><span class="line">Symbol.keyFor(a1); &#x2F;&#x2F;&quot;a&quot;</span><br><span class="line"></span><br><span class="line">let a2 &#x3D; Symbol(&#39;a&#39;);</span><br><span class="line">Symbol.keyFor(a2); &#x2F;&#x2F;undefined</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Symbol的属性</span><br><span class="line">&#x2F;&#x2F;Symbol.peorotype.description 用于返回Symbol数据的描述</span><br><span class="line">let a &#x3D; Symbol(&quot;accc&quot;);</span><br><span class="line">a.description &#x2F;&#x2F;&quot;accc&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="排除Object中不需要的键值"><a href="#排除Object中不需要的键值" class="headerlink" title="排除Object中不需要的键值"></a>排除Object中不需要的键值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const obj &#x3D; &#123;a:1,b:2,c:3&#125;;</span><br><span class="line"></span><br><span class="line">const &#123;a,...rest&#125; &#x3D; obj; &#x2F;&#x2F;获取除了a之外的所有属性</span><br></pre></td></tr></table></figure>
+
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;使用reduce对象数组的某一个属性求和</span><br><span class="line">const obj &#x3D; [</span><br><span class="line">    &#123;name: &quot;lilei&quot;,score: 98&#125;,</span><br><span class="line">    &#123;name: &quot;hanmeimei&quot;,score: 90&#125;</span><br><span class="line">]</span><br><span class="line">const scoreTotal &#x3D; objs.reduce((total, obj) &#x3D;&gt; &#123;</span><br><span class="line">    return total + obj.score;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用reduce同时做到map和filter的作用</span><br><span class="line">const number &#x3D; [10,20,30,40];</span><br><span class="line">const doubledOver50 &#x3D; number.reduce((finalList, num) &#x3D;&gt; &#123;</span><br><span class="line">    num &#x3D; num * 2;</span><br><span class="line"></span><br><span class="line">    if(num &gt; 50) &#123;</span><br><span class="line">        finalList.push(num);</span><br><span class="line">    &#125;</span><br><span class="line">    return finalList;</span><br><span class="line">&#125;,[]);</span><br><span class="line">doubledOver50; &#x2F;&#x2F;[60, 80]</span><br></pre></td></tr></table></figure>
+
+<h3 id="import-动态加载"><a href="#import-动态加载" class="headerlink" title="import() 动态加载"></a>import() 动态加载</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;把import作为一个函数可以实现动态加载模块</span><br><span class="line">if(true) &#123;</span><br><span class="line">    import(&#39;.&#x2F;module.js).then(res &#x3D;&gt; &#123;</span><br><span class="line">        console.log(res);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/05/Jquery%E5%AD%A6%E4%B9%A0/" rel="prev" title="jQuery学习">
+      <i class="fa fa-chevron-left"></i> jQuery学习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/07/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3ES6%E5%90%97%EF%BC%9F/" rel="next" title="你真的了解ES6吗？">
+      你真的了解ES6吗？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-number">1.</span> <span class="nav-text">ES6实用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="nav-number">1.1.</span> <span class="nav-text">命名规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#let-amp-const"><span class="nav-number">1.2.</span> <span class="nav-text">let &amp; const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.3.</span> <span class="nav-text">字符串模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E6%89%A9%E5%B1%95"><span class="nav-number">1.4.</span> <span class="nav-text">数值扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%89%A9%E5%B1%95"><span class="nav-number">1.5.</span> <span class="nav-text">数组扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E6%89%A9%E5%B1%95"><span class="nav-number">1.6.</span> <span class="nav-text">对象扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Destructuring%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC"><span class="nav-number">1.7.</span> <span class="nav-text">Destructuring解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-number">1.8.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol"><span class="nav-number">1.9.</span> <span class="nav-text">Symbol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%99%A4Object%E4%B8%AD%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E9%94%AE%E5%80%BC"><span class="nav-number">1.10.</span> <span class="nav-text">排除Object中不需要的键值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce"><span class="nav-number">1.11.</span> <span class="nav-text">reduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#import-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD"><span class="nav-number">1.12.</span> <span class="nav-text">import() 动态加载</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Foolish-Max</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">184k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:48</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

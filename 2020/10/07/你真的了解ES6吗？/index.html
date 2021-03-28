@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="你真的了解ES6吗？下面的代码输出什么？1234567891011121314151617181920212223let promise &#x3D; new Promise((resolve, reject) &#x3D;&gt; &amp;#123;    console.log(1)    setTimeout(() &#x3D;&gt; &amp;#123;       resolve(2)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你真的了解ES6吗？">
+<meta property="og:url" content="http://yoursite.com/2020/10/07/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3ES6%E5%90%97%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:description" content="你真的了解ES6吗？下面的代码输出什么？1234567891011121314151617181920212223let promise &#x3D; new Promise((resolve, reject) &#x3D;&gt; &amp;#123;    console.log(1)    setTimeout(() &#x3D;&gt; &amp;#123;       resolve(2)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-07T10:22:44.000Z">
+<meta property="article:modified_time" content="2020-10-07T14:03:10.940Z">
+<meta property="article:author" content="Foolish-Max">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/10/07/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3ES6%E5%90%97%EF%BC%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>你真的了解ES6吗？ | Foolish-Max</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Foolish-Max</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/07/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3ES6%E5%90%97%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          你真的了解ES6吗？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-07 18:22:44 / 修改时间：22:03:10" itemprop="dateCreated datePublished" datetime="2020-10-07T18:22:44+08:00">2020-10-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="你真的了解ES6吗？"><a href="#你真的了解ES6吗？" class="headerlink" title="你真的了解ES6吗？"></a>你真的了解ES6吗？</h2><h3 id="下面的代码输出什么？"><a href="#下面的代码输出什么？" class="headerlink" title="下面的代码输出什么？"></a>下面的代码输出什么？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">let promise &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(1)</span><br><span class="line"></span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">       resolve(2)</span><br><span class="line">       console.log(3)</span><br><span class="line">    &#125;, 2000);</span><br><span class="line">    reject(&#39;error&#39;)</span><br><span class="line">&#125;)</span><br><span class="line">promise</span><br><span class="line">.then(res &#x3D;&gt; &#123;</span><br><span class="line">    console.log(5)</span><br><span class="line">&#125;)</span><br><span class="line">.catch(err &#x3D;&gt; &#123;</span><br><span class="line">    console.log(err)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 1 error 3</span><br><span class="line">&#x2F;&#x2F;要点分析：</span><br><span class="line">&#x2F;&#x2F; + promise 创建之后会立即执行</span><br><span class="line">&#x2F;&#x2F; + 状态一旦改变就不会在变，也就是reject与resolve只会执行其中一个</span><br><span class="line">&#x2F;&#x2F; + 异步队列的执行顺序</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="下面的代码输出什么？-1"><a href="#下面的代码输出什么？-1" class="headerlink" title="下面的代码输出什么？"></a>下面的代码输出什么？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const first &#x3D; () &#x3D;&gt; (new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(1);</span><br><span class="line">    let p &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">        console.log(2);</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">            console.log(3);</span><br><span class="line">            resolve(4);</span><br><span class="line">        &#125;, 0)</span><br><span class="line">        resolve(5);</span><br><span class="line">    &#125;);</span><br><span class="line">    resolve(6);</span><br><span class="line">    p.then((arg) &#x3D;&gt; &#123;</span><br><span class="line">        console.log(arg);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;));</span><br><span class="line">first().then((arg) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(arg);</span><br><span class="line">&#125;);</span><br><span class="line">console.log(7);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 1 2 7 5 6 3</span><br><span class="line">&#x2F;&#x2F;要点解析：</span><br><span class="line">&#x2F;&#x2F; + promise创建立即执行，依次输出1 2</span><br><span class="line">&#x2F;&#x2F; + 执行同步任务，输出 7</span><br><span class="line">&#x2F;&#x2F; + 在执行上一步的时候已经将p.then 以及 first.then 加入到微任务执行队列，所以依次输出 5 6</span><br><span class="line">&#x2F;&#x2F; + 最后执行宏任务 setTimeout，输出 3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="下面的代码输出什么？-2"><a href="#下面的代码输出什么？-2" class="headerlink" title="下面的代码输出什么？"></a>下面的代码输出什么？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Promise.resolve(1)</span><br><span class="line">.then(2)</span><br><span class="line">.then(Promise.resolve(3))</span><br><span class="line">.then(console.log)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 答案： 1</span><br><span class="line">&#x2F;&#x2F; + 如果参数是一个原始值，或者是一个不具有then方法的对象，则Promise.resolve方法返回一个新的Promise对象，状态为resolved。</span><br><span class="line">&#x2F;&#x2F; + then方法接收的参数是函数！！！，而如果传递的并非是一个函数就会导致前一个Promise的结果穿透到下面。</span><br></pre></td></tr></table></figure>
+
+<h3 id="const-和-Object-freeze-有什么区别？"><a href="#const-和-Object-freeze-有什么区别？" class="headerlink" title="const 和 Object.freeze 有什么区别？"></a>const 和 Object.freeze 有什么区别？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;const 声明一个常量，一旦声明，常量的值就不能改变，对于复杂的数据类型，比如对象是可以修改其属性的。const实际保证的不是变量的值，而是变量指向的内存地址所指向的数据不能改变</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Object.freeze适用于对象值，使得对象不可变，即不能改变对象属性，但是如果对象的属性值仍是复杂数据类型，那么是可以修改成功的。</span><br></pre></td></tr></table></figure>
+
+<h3 id="for…in和for…of"><a href="#for…in和for…of" class="headerlink" title="for…in和for…of"></a>for…in和for…of</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;对于纯对象的遍历，for...in更合适</span><br><span class="line">const obj &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: [],</span><br><span class="line">    c: function()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">for( let key in obj) &#123;</span><br><span class="line">    console.log(key);&#x2F;&#x2F; a b c</span><br><span class="line">    console.log(obj[key]); &#x2F;&#x2F;1 [] function()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;对于数组遍历，如果不需要知道索引，for...of迭代更合适，还可以中断</span><br><span class="line">const arr &#x3D; [3, 5, 7];</span><br><span class="line">for(let i of arr)&#123;</span><br><span class="line">    console.log(i);&#x2F;&#x2F;3 5 7</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;数组遍历如果需要知道索引forEach()更合适</span><br><span class="line">arr.forEach((value, index) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(value);&#x2F;&#x2F;3 5 7</span><br><span class="line">    console.log(index);&#x2F;&#x2F;0 1 2</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;for...in对于数组遍历，会遍历得到索引值，可以通过数组索引取得对应得值，但是，for...in不仅可以枚举数组自身，还会枚举数组的原型(可通过arr.hasOwnProperty(i)去除)以及数组对象本身属性值。</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;for...of可以迭代字符串</span><br><span class="line">let str &#x3D; &#39;foo&#39;</span><br><span class="line">for(let value of str) &#123;</span><br><span class="line">    console.log(value); &#x2F;&#x2F; &quot;f&quot; &quot;o&quot; &quot;o&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;for...of可以直接迭代arguments类数组对象</span><br><span class="line">(function()&#123;</span><br><span class="line">    for(let arg of arguments) &#123;</span><br><span class="line">        console.log(arg);&#x2F;&#x2F;1 2 3</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)(1, 2, 3);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;for...of 还可以迭代NodeList这类DOM集合</span><br><span class="line">let elements &#x3D; document.querySelectorAll(&#39;body&#39;);</span><br><span class="line">for(let element of elements) &#123;</span><br><span class="line">    console.log(element.tagName); &#x2F;&#x2F;&quot;BODY&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;for...of迭代Map</span><br><span class="line">let mapData &#x3D; new Map([[&#39;a&#39;,1],[&#39;b&#39;,2]]);</span><br><span class="line">for(let [key, value] of mapData) &#123;</span><br><span class="line">    console.log(value); &#x2F;&#x2F;1 2 3</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;for...of迭代Set</span><br><span class="line">let setData &#x3D; new Set([1, 2, 3, 2, 1]);</span><br><span class="line">for(let value of setData) &#123;</span><br><span class="line">    console.log(value);&#x2F;&#x2F;1 2 3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/07/ES6%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" rel="prev" title="ES6实用技巧">
+      <i class="fa fa-chevron-left"></i> ES6实用技巧
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/28/%E7%94%B5%E8%84%91%E8%BD%AC%E7%A7%BB%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" rel="next" title="电脑转移测试文章">
+      电脑转移测试文章 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3ES6%E5%90%97%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">你真的了解ES6吗？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E7%9A%84%E4%BB%A3%E7%A0%81%E8%BE%93%E5%87%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">下面的代码输出什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E7%9A%84%E4%BB%A3%E7%A0%81%E8%BE%93%E5%87%BA%E4%BB%80%E4%B9%88%EF%BC%9F-1"><span class="nav-number">1.2.</span> <span class="nav-text">下面的代码输出什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E7%9A%84%E4%BB%A3%E7%A0%81%E8%BE%93%E5%87%BA%E4%BB%80%E4%B9%88%EF%BC%9F-2"><span class="nav-number">1.3.</span> <span class="nav-text">下面的代码输出什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const-%E5%92%8C-Object-freeze-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.4.</span> <span class="nav-text">const 和 Object.freeze 有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for%E2%80%A6in%E5%92%8Cfor%E2%80%A6of"><span class="nav-number">1.5.</span> <span class="nav-text">for…in和for…of</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Foolish-Max</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">184k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:48</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

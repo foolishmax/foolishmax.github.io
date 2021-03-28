@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="React的基本认识 Fecebook开源的一个js库 一个用来动态构建用户界面的js库 React的特点： 声明式编程 组件化编程 高效 单向数据流 支持客户端与服务端渲染   React高效的原因 虚拟DOM，不直接操作DOM(批量更新，减少更新的次数) 高效的DOM Diff算法，最小化页面重绘(减小页面更新的区域)    React中的生命周期函数生命周期函数是指组件在某一时刻自动执行的函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React">
+<meta property="og:url" content="http://yoursite.com/2019/07/01/React/index.html">
+<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:description" content="React的基本认识 Fecebook开源的一个js库 一个用来动态构建用户界面的js库 React的特点： 声明式编程 组件化编程 高效 单向数据流 支持客户端与服务端渲染   React高效的原因 虚拟DOM，不直接操作DOM(批量更新，减少更新的次数) 高效的DOM Diff算法，最小化页面重绘(减小页面更新的区域)    React中的生命周期函数生命周期函数是指组件在某一时刻自动执行的函">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/foolishmax/static/master/images/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0.png">
+<meta property="article:published_time" content="2019-07-01T08:37:51.000Z">
+<meta property="article:modified_time" content="2020-10-08T14:46:09.149Z">
+<meta property="article:author" content="Foolish-Max">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/foolishmax/static/master/images/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/07/01/React/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>React | Foolish-Max</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Foolish-Max</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/React/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-01 16:37:51" itemprop="dateCreated datePublished" datetime="2019-07-01T16:37:51+08:00">2019-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-08 22:46:09" itemprop="dateModified" datetime="2020-10-08T22:46:09+08:00">2020-10-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="React的基本认识"><a href="#React的基本认识" class="headerlink" title="React的基本认识"></a>React的基本认识</h2><ul>
+<li>Fecebook开源的一个js库</li>
+<li>一个用来动态构建用户界面的js库</li>
+<li>React的特点：<ul>
+<li>声明式编程</li>
+<li>组件化编程</li>
+<li>高效</li>
+<li>单向数据流</li>
+<li>支持客户端与服务端渲染</li>
+</ul>
+</li>
+<li>React高效的原因<ul>
+<li>虚拟DOM，不直接操作DOM(批量更新，减少更新的次数)</li>
+<li>高效的DOM Diff算法，最小化页面重绘(减小页面更新的区域)</li>
+</ul>
+</li>
+</ul>
+<h2 id="React中的生命周期函数"><a href="#React中的生命周期函数" class="headerlink" title="React中的生命周期函数"></a>React中的生命周期函数</h2><p>生命周期函数是指组件在某一时刻自动执行的函数</p>
+<span id="more"></span>
+<img src="https://raw.githubusercontent.com/foolishmax/static/master/images/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0.png"/>
+
+<h3 id="初始化过程（Initialization）"><a href="#初始化过程（Initialization）" class="headerlink" title="初始化过程（Initialization）"></a>初始化过程（Initialization）</h3><ul>
+<li>在constructor()里面初始化Props和State属性。</li>
+<li>getDefaultProps()可以设置组件的默认属性值。</li>
+</ul>
+<h3 id="挂载过程（Mounting）"><a href="#挂载过程（Mounting）" class="headerlink" title="挂载过程（Mounting）"></a>挂载过程（Mounting）</h3><ul>
+<li>componentWillMount(): 在组件即将被挂载到页面的时刻自动执行。</li>
+<li>render(): 将组件挂载到页面。</li>
+<li>componentDidMount(): 组件被挂载到页面之后立即执行。</li>
+</ul>
+<h3 id="更新过程（Updation）"><a href="#更新过程（Updation）" class="headerlink" title="更新过程（Updation）"></a>更新过程（Updation）</h3><ul>
+<li>componentWillReceiveProps()（在16.4版本中废弃，不推荐使用）：<br>  一个组件从父组件接受参数，如果这个组件第一次存在父组件中不会执行，已经存在才会执行，<br>  如果没有Props属性则直接跳过。</li>
+<li>shouldComponentUpdate():<br>  组件更新前检查是否需要更新组件，返回布尔类型。此生命周期函数可以强制关闭不需要更新的子组件<br>  来提高渲染性能。</li>
+<li>componentWillUpdate():<br>  组件更新之前自动执行。前提是shouldComponentUpdate()执行并返回true</li>
+<li>render():<br>   将组件更新到页面</li>
+<li>componentDidUpdate():<br>   组件更新完成之后立即执行。</li>
+</ul>
+<h3 id="移除过程（Unmounting）"><a href="#移除过程（Unmounting）" class="headerlink" title="移除过程（Unmounting）"></a>移除过程（Unmounting）</h3><ul>
+<li>componentWillUnmount():<br>  当组件即将从页面中移除时执行。</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>React中的render() 也是生命周期函数，而constructor()并不是生命周期函数。</li>
+<li>所有的组件都有生命周期函数。</li>
+<li>除了render()函数，其他函数都可以不写，因为除了render()函数其他函数都是继承自<br>  React中内置的。</li>
+<li>AJAX请求一般都是放在componentDidMount()里面。</li>
+</ul>
+<h2 id="React状态提升"><a href="#React状态提升" class="headerlink" title="React状态提升"></a>React状态提升</h2><ul>
+<li><p>所谓状态提升，就是将  各个子组件的公共state提升到它们的父组件进行统一存储、处理<br>(单一数据源)，然后将父组件处理后的数据或者函数props到各个子组件中。</p>
+</li>
+<li><p>如果子组件要修改父组件中state该怎么办？</p>
+<ul>
+<li>做法就是将父组件中负责setState的函数，以props的形式传给子组件，然后子组件<br>需要改变state时调用即可。</li>
+</ul>
+</li>
+</ul>
+<h2 id="React-Router"><a href="#React-Router" class="headerlink" title="React Router"></a>React Router</h2><ul>
+<li>React Router包装了BrowserRouter和HashRouter两个组件。<ul>
+<li>BrowserRouter使用HTML5的history API(pushState、replaceState等)实现<br>UI和URL的同步</li>
+<li>HashRouter使用URL的hash实现应用的UI和URL同步</li>
+</ul>
+</li>
+</ul>
+<h2 id="React-Hooks"><a href="#React-Hooks" class="headerlink" title="React Hooks"></a>React Hooks</h2><ul>
+<li><p>useState</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;用法：</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;useState唯一的参数就是初始state</span><br><span class="line">&#x2F;&#x2F;返回一个数组，第一项state，第二项更新state的函数</span><br><span class="line">const [number, setNumber] &#x3D; useState(0);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;函数式更新</span><br><span class="line">&#x2F;&#x2F;如果新的state需要通过使用以前的state计算得出，可以将函数传递给setState。</span><br><span class="line">&#x2F;&#x2F;例如：</span><br><span class="line">setCount((count) &#x3D;&gt; &#123;</span><br><span class="line">    return count + 1</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;惰性初始化state，对复杂初始数据，initialState可以是一个函数</span><br><span class="line">&#x2F;&#x2F;函数或initialState参数只会在组件的初始渲染中起作用</span><br><span class="line">function Counter() &#123;</span><br><span class="line">    const [&#123;name, number&#125;,setValue] &#x3D; useState(() &#x3D;&gt; &#123;</span><br><span class="line">        return &#123;name:&#39;计数器&#39;,number:0&#125;;</span><br><span class="line">    &#125;)</span><br><span class="line">    return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;p&gt;&#123;name&#125;:&#123;number&#125;&lt;&#x2F;p&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; setValue(&#123;number: number + 1&#125;)&#125;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line">--------------</span><br><span class="line">&#x2F;&#x2F;官网例子</span><br><span class="line">const [state, setState] &#x3D; useState(() &#x3D;&gt; &#123;</span><br><span class="line">    const initialState &#x3D; someExpensiveComputation(props);</span><br><span class="line">    return initialState;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;useState的初始值，只在第一次有效</span><br><span class="line">&#x2F;&#x2F;按照有序的方式使用useState不得在循环判断等条件语句中使用</span><br><span class="line">&#x2F;&#x2F;useState不会自动合并更新对象，需使用扩展符&#123;...obj,name:&#39;lisi&#39;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>useEffect</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;基本使用</span><br><span class="line">&#x2F;&#x2F;useEffect有两个参数：function(执行项)，array(依赖项)</span><br><span class="line">useEffect(() &#x3D;&gt; &#123;&#125;,[name]);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;如果依赖项为空数组，只会在第一次挂载后执行，类似componentDidMount</span><br><span class="line">useEffect(() &#x3D;&gt; &#123;&#125;,[]);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;清除副作用，模拟componentUnMount</span><br><span class="line">&#x2F;&#x2F;通过返回一个函数来指定如何清除副作用，防止内存泄漏，函数会在组件卸载前执行</span><br><span class="line">useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">    let timer &#x3D; setInterVal(() &#x3D;&gt; &#123;</span><br><span class="line">        console.log(&quot;定时器&quot;);</span><br><span class="line">    &#125;,1000)</span><br><span class="line">    return () &#x3D;&gt; &#123;</span><br><span class="line">        clearInterval(timer)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,[name])</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;注意：可以在组件中多次使用useEffect</span><br><span class="line">&#x2F;&#x2F;Hook 允许我们按照代码的用途分离他们，react将按照effect声明的顺序依次调用组件中的每一个effect</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>useContext</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;父组件创建上下文</span><br><span class="line">const Context &#x3D; createContext();</span><br><span class="line">&#x2F;&#x2F;并将数据传递给子组件</span><br><span class="line">const [num, setNum] &#x3D; useState(0);</span><br><span class="line">&lt;Context.Provider value&#x3D;&#123;&#123;num, setNum&#125;&#125;&gt;</span><br><span class="line">    &lt;Children &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;Context.Provider&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子组件接收</span><br><span class="line">const &#123;num, setNum&#125; &#x3D; useContext(Context);</span><br><span class="line">useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">    setNum(num + 1);</span><br><span class="line">&#125;,[])</span><br><span class="line">&lt;p&gt;&#123;num&#125;&lt;&#x2F;p&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>useReducer</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;基础使用</span><br><span class="line">const initialState &#x3D; &#123; count: 0 &#125;;</span><br><span class="line"></span><br><span class="line">function reducer(state, action)&#123;</span><br><span class="line">    switch(action.type) &#123;</span><br><span class="line">        case &#39;increment&#39;:</span><br><span class="line">            return &#123;count:state.count + 1&#125;;</span><br><span class="line">        case &#39;decrement&#39;:</span><br><span class="line">            return &#123;count:state.count - 1&#125;;</span><br><span class="line">        default:</span><br><span class="line">            throw new Error();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function MyUseReducer() &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, initialState);</span><br><span class="line">    return (</span><br><span class="line">        &lt;&gt;</span><br><span class="line">            count: &#123;state.count&#125;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123;type:&#39;decrement&#39;&#125;)&#125;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123;type:&#39;increment&#39;&#125;)&#125;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;惰性初始化</span><br><span class="line">&#x2F;&#x2F;稍加改造</span><br><span class="line">const initialCount &#x3D; 0;</span><br><span class="line"></span><br><span class="line">function init(initialCount) &#123;</span><br><span class="line">  return &#123;count: initialCount&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case &#39;increment&#39;:</span><br><span class="line">      return &#123;count: state.count + 1&#125;;</span><br><span class="line">    case &#39;decrement&#39;:</span><br><span class="line">      return &#123;count: state.count - 1&#125;;</span><br><span class="line">    case &#39;reset&#39;:</span><br><span class="line">      return init(action.payload);</span><br><span class="line">    default:</span><br><span class="line">      throw new Error();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function MyUseReducer() &#123;</span><br><span class="line">  const [state, dispatch] &#x3D; useReducer(reducer, initialCount , init);</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      Count: &#123;state.count&#125;</span><br><span class="line">      &lt;button</span><br><span class="line">        onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123;type: &#39;reset&#39;, payload: initialCount&#125;)&#125;&gt;</span><br><span class="line">        Reset</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123;type: &#39;decrement&#39;&#125;)&#125;&gt;-&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123;type: &#39;increment&#39;&#125;)&#125;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;&gt;》》</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/" rel="prev" title="比较Vue和React？">
+      <i class="fa fa-chevron-left"></i> 比较Vue和React？
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/06/%E4%BB%80%E4%B9%88%E6%98%AFDOCTYPE%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%EF%BC%9F/" rel="next" title="什么是DOCTYPE及其作用？">
+      什么是DOCTYPE及其作用？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">React的基本认识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React%E4%B8%AD%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">React中的生命周期函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B%EF%BC%88Initialization%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">初始化过程（Initialization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD%E8%BF%87%E7%A8%8B%EF%BC%88Mounting%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">挂载过程（Mounting）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B%EF%BC%88Updation%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">更新过程（Updation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E8%BF%87%E7%A8%8B%EF%BC%88Unmounting%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">移除过程（Unmounting）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.5.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React%E7%8A%B6%E6%80%81%E6%8F%90%E5%8D%87"><span class="nav-number">3.</span> <span class="nav-text">React状态提升</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Router"><span class="nav-number">4.</span> <span class="nav-text">React Router</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Hooks"><span class="nav-number">5.</span> <span class="nav-text">React Hooks</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Foolish-Max</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">184k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:48</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

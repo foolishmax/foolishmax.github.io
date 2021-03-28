@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="DOM基本操作 获取Dom节点  document代表整个文档 document.getElementById() document.getElementByTagName() document.getElementByName() &#x2F;&#x2F;只有部分标签name可生效，表单之类的 document.getElementByClassName() querySelector() &#x2F;&#x2F;静态的，不是实时的，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM基本操作">
+<meta property="og:url" content="http://yoursite.com/2019/08/11/DOM%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:description" content="DOM基本操作 获取Dom节点  document代表整个文档 document.getElementById() document.getElementByTagName() document.getElementByName() &#x2F;&#x2F;只有部分标签name可生效，表单之类的 document.getElementByClassName() querySelector() &#x2F;&#x2F;静态的，不是实时的，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-11T03:00:49.000Z">
+<meta property="article:modified_time" content="2019-08-18T14:13:42.724Z">
+<meta property="article:author" content="Foolish-Max">
+<meta property="article:tag" content="DOM">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/08/11/DOM%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>DOM基本操作 | Foolish-Max</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Foolish-Max</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/DOM%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DOM基本操作
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-11 11:00:49" itemprop="dateCreated datePublished" datetime="2019-08-11T11:00:49+08:00">2019-08-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-18 22:13:42" itemprop="dateModified" datetime="2019-08-18T22:13:42+08:00">2019-08-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DOM/" itemprop="url" rel="index"><span itemprop="name">DOM</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="DOM基本操作"><a href="#DOM基本操作" class="headerlink" title="DOM基本操作"></a>DOM基本操作</h2><ul>
+<li><p>获取Dom节点</p>
+<ul>
+<li>document代表整个文档</li>
+<li>document.getElementById()</li>
+<li>document.getElementByTagName()</li>
+<li>document.getElementByName() //只有部分标签name可生效，表单之类的</li>
+<li>document.getElementByClassName()</li>
+<li>querySelector() //静态的，不是实时的，保存的是当时的状态，是一个副本</li>
+<li>querySelectorAll() //即使以后元素发生了改变，该值也不会改变</li>
+</ul>
+</li>
+<li><p>遍历节点树</p>
+<ul>
+<li>parentNode -&gt; 父节点（最顶端parentNode为#document）</li>
+<li>childNodes -&gt; 子节点们</li>
+<li>firstChild -&gt; 第一个子节点</li>
+<li>lastChild  -&gt; 最后一个子节点</li>
+<li>nextSibling -&gt; 后一个兄弟节点</li>
+<li>previousSibling -&gt;前一个兄弟节点</li>
+</ul>
+</li>
+<li><p>遍历元素节点树</p>
+<ul>
+<li>parentElement -&gt; 返回当前元素的父元素节点（IE9以下不兼容）</li>
+<li>children -&gt; 返回当前元素的元素子节点</li>
+<li>node.childElementCount === node.children.length 返回当前元素的子元素节点个数（IE9以下不兼容）</li>
+<li>firstElementChild -&gt; 返回第一个元素节点（IE9以下不兼容）</li>
+<li>lastElementChild -&gt; 返回最后一个元素节点（IE9以下不兼容）</li>
+<li>nextElementSibling -&gt; 返回后一个元素节点（IE9以下不兼容）</li>
+<li>previousElementSibling -&gt; 返回前一个元素节点（IE9以下不兼容）</li>
+</ul>
+</li>
+<li><p>节点的类型</p>
+<ul>
+<li>元素节点 —— 1</li>
+<li>属性节点 —— 2</li>
+<li>文本节点 —— 3</li>
+<li>注释节点（Comment）—— 8</li>
+<li>document —— 9</li>
+<li>DocumentFragment —— 11</li>
+<li>获取节点类型 nodeType</li>
+</ul>
+</li>
+<li><p>节点的四个属性</p>
+<ul>
+<li>nodeName <ul>
+<li>元素的标签名，以大写形式表示，只读</li>
+</ul>
+</li>
+<li>nodeValue<ul>
+<li>Text节点或Comment节点的文本内容，可读写</li>
+</ul>
+</li>
+<li>nodeType<ul>
+<li>该节点的类型，只读</li>
+</ul>
+</li>
+<li>attributes<ul>
+<li>Element节点的属性集合</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>节点的一个方法</p>
+<ul>
+<li>Node.hasChildNodes()<ul>
+<li>所有节点都有hasChildNodes()方法，判断有无子节点，有一个或多个返回true</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Dom基本操作——增</p>
+<ul>
+<li>document.createElement()</li>
+<li>document.createTextNode()</li>
+<li>document.createComment()</li>
+<li>document.createDocumentFragment()</li>
+</ul>
+</li>
+<li><p>Dom基本操作——插</p>
+<ul>
+<li>parentNode.appendChild()</li>
+<li>parentNode.insertBefore(a, b)</li>
+</ul>
+</li>
+<li><p>Dom基本操作——删</p>
+<ul>
+<li>parent.removeChild()</li>
+<li>child.remove()</li>
+</ul>
+</li>
+<li><p>Dom基本操作-替换</p>
+<ul>
+<li>parent.replaceChild(new, origin)</li>
+</ul>
+</li>
+<li><p>Element节点的一些属性</p>
+<ul>
+<li>innerHTML</li>
+<li>innerText(火狐不兼容)/textContent(老版本IE不兼容)</li>
+</ul>
+</li>
+<li><p>Element节点的一些方法</p>
+<ul>
+<li>ele.setAttribute()</li>
+<li>ele.getAttribute()</li>
+</ul>
+</li>
+<li><p>查看元素的几何尺寸</p>
+<ul>
+<li>domEle.getBoundingClientRect() </li>
+<li>兼容性很好</li>
+<li>返回一个对象，里面有left、top、right、bottom、width、height。</li>
+</ul>
+<p>  left和top代表元素左上角的X和Y坐标，right和bottom代表元素右下角的X和Y坐标</p>
+<ul>
+<li>height和width属性老版本IE未实现</li>
+<li>返回的结果不是“实时的”</li>
+</ul>
+</li>
+<li><p>查看元素的宽高尺寸<br>  dom.offsetWidth</p>
+<p>  dom.offsetHeight</p>
+</li>
+<li><p>查看元素的位置<br>  dom.offsetLeft</p>
+<p>  dom.offsetTop</p>
+<p>  对于无定位父级的元素，返回相对文档的坐标。</p>
+<p>  对于有定位的父级元素，返回相对最近的有定位的父级的坐标，无论距离是怎么产生的</p>
+</li>
+<li><p>dom.offsetParent<br>  返回最近的有定位的父级，若无，返回body，body.offsetParent返回nul</p>
+</li>
+<li><p>让滚动条滚动</p>
+<ul>
+<li>window上的三个方法：scroll()==scrollTo()、scrollBy()</li>
+<li>scroll()和scrollTo()将x、y坐标传入，让滚动条滚动到当前位置</li>
+<li>scrollBy() 会在之前的数据基础上累加，可以利用scrollBy()实现快速阅读的功能</li>
+</ul>
+</li>
+<li><p>查询计算样式</p>
+<ul>
+<li>window.getComputedStyle(ele, null)[style]</li>
+<li>第二个参数null，放的是伪元素，可以获取伪元素的属性</li>
+<li>计算样式只读</li>
+<li>返回的计算样式都是绝对值，没有相对单位</li>
+<li>IE8及以下不兼容（ele.currentStyle[style]）</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>封装函数，返回元素的第n层祖先元素节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function retParent(elem, n) &#123;</span><br><span class="line">    while(elem &amp;&amp; n) &#123;</span><br><span class="line">        elem &#x3D; elem.parentElement</span><br><span class="line">        n--</span><br><span class="line">    &#125;</span><br><span class="line">    return elem</span><br><span class="line">&#125;</span><br><span class="line">var i &#x3D; document.getElementByTagName(&#39;i&#39;)[0]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>原型上封装函数myChildren获取子元素，解决一千浏览器的兼容性问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Element.prototype.myChildren &#x3D; function () &#123;</span><br><span class="line">    var child &#x3D; this.childNodes</span><br><span class="line">    var len &#x3D; child.length</span><br><span class="line">    for (var i &#x3D; 0;i &lt; len; i++) &#123;</span><br><span class="line">        if(child[i].nodeType &#x3D;&#x3D; 1) &#123;</span><br><span class="line">            arr.push(child[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var div &#x3D; document.getElementByTagName(&#39;div&#39;)[0]</span><br></pre></td></tr></table></figure></li>
+<li><p>自己封装hasChildren()方法，不可用children属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Element.prototype.hasChildren &#x3D; function () &#123;</span><br><span class="line">    var child &#x3D; this.childNodes</span><br><span class="line">    var len &#x3D; child.length</span><br><span class="line">    for (var i &#x3D; 0;i &lt; len; i++) &#123;</span><br><span class="line">        if(child[i].nodeType &#x3D;&#x3D; 1) &#123;</span><br><span class="line">           return true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var div &#x3D; document.getElementByTagName(&#39;div&#39;)[0]</span><br></pre></td></tr></table></figure></li>
+<li><p>封装函数，返回元素e的第n个兄弟元素节点，n为正，返回后面的兄弟元素节点，n为负，返回前面的，n为0，返回自己</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function retSibling(e, n) &#123;</span><br><span class="line">    while(e &amp;&amp; n) &#123;</span><br><span class="line">        if(n &gt; 0) &#123;</span><br><span class="line">            if(e.nextElementSibling) &#123;</span><br><span class="line">                e.nextElementSibling</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                for(e &#x3D; e.nextSibling; e &amp;&amp; e.nodeType !&#x3D; 1; e &#x3D; e.nextSibling)</span><br><span class="line">            &#125;</span><br><span class="line">            n--</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            if(e.previousElementSibling) &#123;</span><br><span class="line">                e &#x3D; e.previousElementSibling</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                for(e &#x3D; e.previousSibling; e &amp;&amp; e.nodeType !&#x3D; 1; e &#x3D; e.previousSibling)</span><br><span class="line">            &#125;</span><br><span class="line">            n++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>封装insertAfter(),功能类似与insertBefore(new, origin),直接在Element.prototype上编程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Element.prototype.insertAfter &#x3D; function(new, origin) &#123;</span><br><span class="line">    var beforeNode &#x3D; origin.nextElementSibling</span><br><span class="line">    if (beforeNode &#x3D;&#x3D; null) &#123;</span><br><span class="line">        this.appendChild(new)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        this.insertBefore(new, beforeNode)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>封装滚动条的x轴、y轴的距离函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function getScrollOffset() &#123;</span><br><span class="line">    if (window.pageXOffset) &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            x: window.pageXOffset,</span><br><span class="line">            y: window.pageYOffset</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            x: document.body.scrollLeft + document.documentElement.scrollLeft,</span><br><span class="line">            y: document.body.scrollTop + document.documentElement.scrollTop</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>封装可视区窗口大小的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function getViewportOffset() &#123;</span><br><span class="line">    if (window.innerWidth) &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            w: window.innerWidth,</span><br><span class="line">            h: window.innerHeight</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if (document.compatMode &#x3D;&#x3D;&#x3D; &#39;BackCompat&#39;) &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                w: document.body.clientWidth,</span><br><span class="line">                h: document.body.clientHeight</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                w: document.documentElement.clientWidth,</span><br><span class="line">                h: document.documentElement.clientHeight</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>封装样式获取的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function getStyle(elem, prop) &#123;</span><br><span class="line">    if(window.getComputedStyle) &#123;</span><br><span class="line">        return window.getComputedStyle(elem, null)[prop]</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return elem.currentStyle[prop]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DOM/" rel="tag"># DOM</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/08/08/cookie%E5%B0%81%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%85%83%E7%B4%A0%E6%8B%96%E6%8B%BD%E8%AE%B0%E5%BD%95%E4%BD%8D%E7%BD%AE/" rel="prev" title="cookie封装以及元素拖拽记录位置">
+      <i class="fa fa-chevron-left"></i> cookie封装以及元素拖拽记录位置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/08/12/Promise/" rel="next" title="Promise">
+      Promise <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">DOM基本操作</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Foolish-Max</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">184k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:48</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="链表 什么是链表？  链表的元素在内存中不必是连续的空间，链表的每个元素由一个存储元素本身的节点和一个指向下一个元素的引用组成。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表">
+<meta property="og:url" content="http://yoursite.com/2019/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:description" content="链表 什么是链表？  链表的元素在内存中不必是连续的空间，链表的每个元素由一个存储元素本身的节点和一个指向下一个元素的引用组成。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://vamknight.com/%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.png">
+<meta property="article:published_time" content="2019-06-21T11:53:24.000Z">
+<meta property="article:modified_time" content="2019-08-05T07:22:35.738Z">
+<meta property="article:author" content="Foolish-Max">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://vamknight.com/%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E9%93%BE%E8%A1%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>链表 | Foolish-Max</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Foolish-Max</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          链表
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-21 19:53:24" itemprop="dateCreated datePublished" datetime="2019-06-21T19:53:24+08:00">2019-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-05 15:22:35" itemprop="dateModified" datetime="2019-08-05T15:22:35+08:00">2019-08-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><ul>
+<li><p>什么是链表？</p>
+<ul>
+<li>链表的元素在内存中不必是连续的空间，链表的每个元素由一个存储元素本身的节点和一个指向下一个元素的引用组成。<span id="more"></span></li>
+</ul>
+</li>
+<li><p>相对于数组，链表都有哪些优势？</p>
+<ul>
+<li>内存空间不是比是连续的. 可以充分利用计算机的内存. 实现灵活的内存动态管理。</li>
+<li>链表不必在创建时就确定大小, 并且大小可以无限的延伸下去。</li>
+<li>链表在插入和删除数据时, 时间复杂度可以达到O(1). 相对数组效率高很多。</li>
+</ul>
+</li>
+<li><p>相对于数组，链表都有哪些缺点？</p>
+<ul>
+<li>链表访问任何一个位置的元素时, 都需要从头开始访问.(无法跳过第一个元素访问任何一个元素)。</li>
+<li>无法通过下标直接访问元素, 需要从头一个个访问, 直到找到对应的问题。<!--more--></li>
+</ul>
+</li>
+<li><p>链表的数据结构：</p>
+<img src="http://vamknight.com/%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.png"></li>
+<li><p>链表有哪些常见操作？</p>
+<ul>
+<li>append(element)：向列表尾部添加一个新的项</li>
+<li>insert(position, element)：向列表的特定位置插入一个新的项。</li>
+<li>update(position, element): 修改某一个位置上的元素。</li>
+<li>remove(element)：从列表中移除一项。</li>
+<li>indexOf(element)：返回元素在列表中的索引。如果列表中没有该元素则返回-1。</li>
+</ul>
+<p>  // 链表中的属性<br>  this.length = 0<br>  this.head = null</p>
+<p>  // 链表尾部追加元素方法<br>  LinkedList.prototype.append = function (element) {</p>
+<pre><code>  // 1.根据新元素创建节点
+  var newNode = new Node(element)
+
+  // 2.判断原来链表是否为空
+  if (this.head === null) &#123; /
+</code></pre>
+<ul>
+<li><p>removeAt(position)：从列表的特定位置移除一项。<br>this.next = null<br>}<br>/ 链表尾空</p>
+<pre><code>  this.head = newNode
+</code></pre>
+<p>  } else { // 链表不为空</p>
+<pre><code>  // 2.1.定义变量, 保存当前找到的节点
+  var current = this.head
+  while (current.next) &#123;
+      current = current.next
+  &#125;
+
+  // 2.2.找到最后一项, 将其next赋值为node
+  current.next = newNode
+</code></pre>
+<p>  }</p>
+<p>  // 3.链表长度增加1<br>  this.length++<br>}</p>
+</li>
+</ul>
+<p>  // 链表的toString方法<br>  LinkedList.prototype.toString = function () {</p>
+<pre><code>  // 1.定义两个变量
+  var current = this.head
+  var listString = &quot;&quot;
+
+  // 2.循环获取链表中所有的元素
+  while (current) &#123;
+      listString += &quot;,&quot; + current.element
+      current = current.next
+  &#125;
+
+  // 3.返回最终结果
+  return listString.slice(1)
+</code></pre>
+<p>  }</p>
+<p>  // 根据下标删除元素<br>  LinkedList.prototype.insert = function (position, element) {</p>
+<pre><code>  // 1.检测越界问题: 越界插入失败
+  if (position &lt; 0 || position &gt; this.length) return false
+
+  // 2.定义变量, 保存信息
+  var newNode = new Node(element)
+  var current = this.head
+  var previous = null
+  index = 0
+
+  // 3.判断是否列表是否在第一个位置插入
+  if (position == 0) &#123;
+      newNode.next = current
+      this.head = newNode
+  &#125; else &#123;
+      while (index++ &lt; position) &#123;
+          previous = current
+          current = current.next
+      &#125;
+
+      newNode.next = current
+      previous.next = newNode
+  &#125;
+
+  // 4.length+1
+  this.length++
+
+  return true
+</code></pre>
+<p>  }</p>
+<p>  //update方法<br>  LinkedList.prototype.update = function (position, newData) {</p>
+<pre><code>  if (position &lt; 0 || position &gt;= this.length) return  null
+  
+  var current = this.head
+  var index = 0
+  while (index++ &lt; position) &#123;
+      current = current.next
+  &#125;
+  current.data = newData
+  return true
+</code></pre>
+<p>  }</p>
+<p>  // 根据位置移除节点<br>  LinkedList.prototype.removeAt = function (position) {</p>
+<pre><code>  // 1.检测越界问题: 越界移除失败, 返回null
+  if (position &lt; 0 || position &gt;= this.length) return null
+
+  // 2.定义变量, 保存信息
+  var current = this.head
+  var previous = null
+  var index = 0
+
+  // 3.判断是否是移除第一项
+  if (position === 0) &#123;
+      this.head = current.next
+  &#125; else &#123;
+      while (index++ &lt; position) &#123;
+          previous = current
+          current = current.next
+      &#125;
+
+      previous.next = current.next
+  &#125;
+
+  // 4.length-1
+  this.length--
+
+  // 5.返回移除的数据
+  return current.element
+</code></pre>
+<p>  }</p>
+<p>  // 根据元素获取链表中的位置<br>  LinkedList.prototype.indexOf = function (element) {</p>
+<pre><code>  // 1.定义变量, 保存信息
+  var current = this.head
+  index = 0
+
+  // 2.找到元素所在的位置
+  while (current) &#123;
+      if (current.element === element) &#123;
+          return index
+      &#125;
+      index++
+      current = current.next
+  &#125;
+
+  // 3.来到这个位置, 说明没有找到, 则返回-1
+  return -1
+</code></pre>
+<p>  }</p>
+<p>  // 根据元素删除信息<br>  LinkedList.prototype.remove = function (element) {</p>
+<pre><code>  var index = this.indexOf(element)
+  return this.removeAt(index)
+</code></pre>
+<p>  }</p>
+<p>  // 判断链表是否为空<br>  LinkedList.prototype.isEmpty = function () {</p>
+<pre><code>  return this.length == 0
+</code></pre>
+<p>  }</p>
+<p>  // 获取链表的长度<br>  LinkedList.prototype.size = function () {</p>
+<pre><code>  return this.length
+</code></pre>
+<p>  }</p>
+<p>  // 获取第一个节点<br>  LinkedList.prototype.getFirst = function () {</p>
+<pre><code>  return this.head.element
+</code></pre>
+<p>  }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">- 以上操作的都是单向链表，下面来认识一下双向链表。</span><br><span class="line">- 单向链表的缺点：</span><br><span class="line">    + 只能从头遍历到尾，也就是链表的相连的过程是单向的，实现的原理是上一个链表中有一个指向下一个的引用。</span><br><span class="line">    + 我们可以轻松的到达下一个节点，但是回到上一个节点是很难的，只能从头遍历。</span><br><span class="line">    + 但是，实际开发中，经常会遇到回到上一个节点的情况。</span><br><span class="line">- 双向链表：</span><br><span class="line">    + 既可以从头遍历到尾，又可以从尾遍历到头。</span><br><span class="line">    + 也就是链表相连的过程是双向的。</span><br><span class="line">    + 实现的原理就是既有先前连接的引用，也有一个向后连接的引用。</span><br><span class="line">    + 双向链表可以有效的解决单向链表的问题。</span><br><span class="line">- 双向链表的一些缺点：</span><br><span class="line">    + 每次在插入或删除某一个节点时，需要处理四个引用，实现起来比较复杂。</span><br><span class="line">    + 相对于单向链表占用的内存更大一些。</span><br><span class="line">    </span><br><span class="line">- 双向链表的结构图：</span><br><span class="line">&lt;img src&#x3D;&quot;http:&#x2F;&#x2F;vamknight.com&#x2F;%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8.png&quot;&gt;</span><br><span class="line"></span><br><span class="line">- 双向链表的特点：</span><br><span class="line">    + 可以使用一个head和一个tail分别指向头部和尾部的节点。</span><br><span class="line">    + 每个节点都是由三部分组成：前一个节点的指针（prev）、保存的元素（item）、后一个节点的指针（next）。</span><br><span class="line">    + 双向链表的第一个节点的prev是null。</span><br><span class="line">    + 双向链表的最后一个节点的next是null。</span><br><span class="line"></span><br><span class="line">- 双向链表都有哪些常见操作？</span><br><span class="line">    + append(element)：向列表尾部添加一个新的项</span><br><span class="line">    </span><br><span class="line">    + insert(position, element)：向列表的特定位置插入一个新的项。</span><br><span class="line">    </span><br><span class="line">    + update(position, element): 修改某一个位置上的元素。</span><br><span class="line">    </span><br><span class="line">    + get(position): 获取对应位置的元素。</span><br><span class="line">    </span><br><span class="line">    + remove(element)：从列表中移除一项。</span><br><span class="line">    </span><br><span class="line">    + indexOf(element)：返回元素在列表中的索引。如果列表中没有该元素则返回-1。</span><br><span class="line">    </span><br><span class="line">    + removeAt(position)：从列表的特定位置移除一项。</span><br><span class="line">    </span><br><span class="line">    + isEmpty()：如果链表中不包含任何元素，返回true，如果链表长度大于0则返回false。</span><br><span class="line">    </span><br><span class="line">    + size()：返回链表包含的元素个数。与数组的length属性类似。</span><br><span class="line">    </span><br><span class="line">    + toString()：由于列表项使用了Node类，就需要重写继承自JavaScript对象默认的toString方法，让其只输出元素的值。</span><br><span class="line">    </span><br><span class="line">    + forwardString(): 返回正向遍历的节点字符串形式。</span><br><span class="line">    </span><br><span class="line">    + backwardString(): 返回反向遍历的节点字符串形式。</span><br><span class="line"></span><br><span class="line">- 双向链表常见方法的封装：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>// 创建双向链表的构造函数<br>function DoublyLinkedList() {<br>  // 创建节点构造函数<br>  function Node(element) {</p>
+<pre><code>  this.element = element
+  this.next = null
+  this.prev = null // 新添加的
+</code></pre>
+<p>  }</p>
+<p>  // 定义属性<br>  this.length = 0<br>  this.head = null<br>  this.tail = null // 新添加的</p>
+<p>  // 定义相关操作方法<br>  // 在尾部追加数据<br>  DoublyLinkedList.prototype.append = function (element) {</p>
+<pre><code>  // 1.根据元素创建节点
+  var newNode = new Node(element)
+
+  // 2.判断列表是否为空列表
+  if (this.head == null) &#123;
+      this.head = newNode
+      this.tail = newNode
+  &#125; else &#123;
+      this.tail.next = newNode
+      newNode.prev = this.tail
+      this.tail = newNode
+  &#125;
+
+  // 3.length+1
+  this.length++
+</code></pre>
+<p>  }</p>
+<p>  // 在任意位置插入数据<br>  DoublyLinkedList.prototype.insert = function (position, element) {</p>
+<pre><code>  // 1.判断越界的问题
+  if (position &lt; 0 || position &gt; this.length) return false
+
+  // 2.创建新的节点
+  var newNode = new Node(element)
+
+  // 3.判断插入的位置
+  if (position === 0) &#123; // 在第一个位置插入数据
+      // 判断链表是否为空
+      if (this.head == null) &#123;
+          this.head = newNode
+          this.tail = newNode
+      &#125; else &#123;
+          this.head.prev = newNode
+          newNode.next = this.head
+          this.head = newNode
+      &#125;
+  &#125; else if (position === this.length) &#123; // 插入到最后的情况
+      // 思考: 这种情况是否需要判断链表为空的情况呢? 答案是不需要, 为什么?
+      this.tail.next = newNode
+      newNode.prev = this.tail
+      this.tail = newNode
+  &#125; else &#123; // 在中间位置插入数据
+      // 定义属性
+      var index = 0
+      var current = this.head
+      var previous = null
+
+      // 查找正确的位置
+      while (index++ &lt; position) &#123;
+          previous = current
+          current = current.next
+      &#125;
+
+      // 交换节点的指向顺序
+      newNode.next = current
+      newNode.prev = previous
+      current.prev = newNode
+      previous.next = newNode
+  &#125;
+
+  // 4.length+1
+  this.length++
+
+  return true
+</code></pre>
+<p>  }</p>
+<p>  // 根据位置删除对应的元素<br>  DoublyLinkedList.prototype.removeAt = function (position) {</p>
+<pre><code>  // 1.判断越界的问题
+  if (position &lt; 0 || position &gt;= this.length) return null
+
+  // 2.判断移除的位置
+  var current = this.head
+  if (position === 0) &#123;
+      if (this.length == 1) &#123;
+          this.head = null
+          this.tail = null
+      &#125; else &#123;
+          this.head = this.head.next
+          this.head.prev = null
+      &#125;
+  &#125; else if (position === this.length -1) &#123;
+      current = this.tail
+      this.tail = this.tail.prev
+      this.tail.next = null
+  &#125; else &#123;
+      var index = 0
+      var previous = null
+
+      while (index++ &lt; position) &#123;
+          previous = current
+          current = current.next
+      &#125;
+
+      previous.next = current.next
+      current.next.prev = previous
+  &#125;
+
+  // 3.length-1
+  this.length--
+
+  return current.element
+</code></pre>
+<p>  }</p>
+<p>  // 根据元素获取在链表中的位置<br>  DoublyLinkedList.prototype.indexOf = function (element) {</p>
+<pre><code>  // 1.定义变量保存信息
+  var current = this.head
+  var index = 0
+
+  // 2.查找正确的信息
+  while (current) &#123;
+      if (current.element === element) &#123;
+          return index
+      &#125;
+      index++
+      current = current.next
+  &#125;
+
+  // 3.来到这个位置, 说明没有找到, 则返回-1
+  return -1
+</code></pre>
+<p>  }</p>
+<p>  // 根据元素删除<br>  DoublyLinkedList.prototype.remove = function (element) {</p>
+<pre><code>  var index = this.indexOf(element)
+  return this.removeAt(index)
+</code></pre>
+<p>  }</p>
+<p>  // 判断是否为空<br>  DoublyLinkedList.prototype.isEmpty = function () {</p>
+<pre><code>  return this.length === 0
+</code></pre>
+<p>  }</p>
+<p>  // 获取链表长度<br>  DoublyLinkedList.prototype.size = function () {</p>
+<pre><code>  return this.length
+</code></pre>
+<p>  }</p>
+<p>  // 获取第一个元素<br>  DoublyLinkedList.prototype.getHead = function () {</p>
+<pre><code>  return this.head.element
+</code></pre>
+<p>  }</p>
+<p>  // 获取最后一个元素<br>  DoublyLinkedList.prototype.getTail = function () {</p>
+<pre><code>  return this.tail.element
+</code></pre>
+<p>  }</p>
+<p>  // 遍历方法的实现<br>  // 正向遍历的方法<br>  DoublyLinkedList.prototype.forwardString = function () {</p>
+<pre><code>  var current = this.head
+  var forwardStr = &quot;&quot;
+
+  while (current) &#123;
+      forwardStr += &quot;,&quot; + current.element
+      current = current.next
+  &#125;
+
+  return forwardStr.slice(1)
+</code></pre>
+<p>  }</p>
+<p>  // 反向遍历的方法<br>  DoublyLinkedList.prototype.reverseString = function () {</p>
+<pre><code>  var current = this.tail
+  var reverseStr = &quot;&quot;
+
+  while (current) &#123;
+      reverseStr += &quot;,&quot; + current.element
+      current = current.prev
+  &#125;
+
+  return reverseStr.slice(1)
+</code></pre>
+<p>  }</p>
+<p>  // 实现toString方法<br>  DoublyLinkedList.prototype.toString = function () {</p>
+<pre><code>  return this.forwardString()
+</code></pre>
+<p>  }<br>}<br>~~~</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E9%98%9F%E5%88%97%EF%BC%88Queue%EF%BC%89/" rel="prev" title="队列（Queue）">
+      <i class="fa fa-chevron-left"></i> 队列（Queue）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/06/21/%E9%9D%A2%E8%AF%95%E9%A2%98%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="next" title="面试题分享——作用域">
+      面试题分享——作用域 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">链表</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Foolish-Max</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">184k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:48</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

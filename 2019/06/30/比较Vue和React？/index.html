@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="比较Vue和React的相同点和不同点？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="比较Vue和React？">
+<meta property="og:url" content="http://yoursite.com/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:description" content="比较Vue和React的相同点和不同点？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-06-30T07:55:01.000Z">
+<meta property="article:modified_time" content="2019-10-24T12:34:01.123Z">
+<meta property="article:author" content="Foolish-Max">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>比较Vue和React？ | Foolish-Max</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Foolish-Max</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          比较Vue和React？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-30 15:55:01" itemprop="dateCreated datePublished" datetime="2019-06-30T15:55:01+08:00">2019-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-24 20:34:01" itemprop="dateModified" datetime="2019-10-24T20:34:01+08:00">2019-10-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue%E3%80%81React/" itemprop="url" rel="index"><span itemprop="name">Vue、React</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="比较Vue和React的相同点和不同点？"><a href="#比较Vue和React的相同点和不同点？" class="headerlink" title="比较Vue和React的相同点和不同点？"></a>比较Vue和React的相同点和不同点？</h2><span id="more"></span>
+<ul>
+<li>相同点<ul>
+<li>都有组件化开发和Virtual DOM</li>
+<li>都支持props进行父子组件间的数据通信</li>
+<li>都支持数据驱动视图，不直接操作真实DOM，状态数据更新页面则自动更新</li>
+<li>都支持服务端渲染</li>
+<li>都支持原生应用的开发方案，React有React Native，Vue有Weex<!--more--></li>
+</ul>
+</li>
+<li>不同点<ul>
+<li>数据绑定： Vue实现了数据的双向绑定，React数据流动是单向的</li>
+<li>React推荐的组件写法为JSX，也就是把HTML和CSS全部写进Javascript中，即“all in js”<br>Vue推荐的组件写法是webpack+vue-loader的单文件组件格式，即html、css、js写在同一个<br>文件</li>
+<li>state对象在react应用中不可变，需要使用setState方法更新状态；在vue中state对象不是<br>必须的，数据由data属性在vue对象中管理</li>
+<li>virtual DOM不一样，vue会跟踪每一个组件的依赖关系，不需要重新渲染整个组件树，<br>而对于React而言，每当应用的状态被改变时，全部组件都会重新渲染，所以react会需要<br>shouldComponentUpdate这个生命周期函数方法进行控制。</li>
+<li>React严格上只针对MVC的view层，Vue则是MVVM模式。</li>
+</ul>
+</li>
+</ul>
+<h2 id="前端框架使用Vue还是React？清晰比较两者差异"><a href="#前端框架使用Vue还是React？清晰比较两者差异" class="headerlink" title="前端框架使用Vue还是React？清晰比较两者差异"></a>前端框架使用Vue还是React？清晰比较两者差异</h2><h4 id="诞生"><a href="#诞生" class="headerlink" title="诞生"></a>诞生</h4><ul>
+<li>vue<ul>
+<li>vue由尤雨溪开发，独立团队维护，大部分子项目交给团队成员打理，Vue核心库依然<br>主要由尤雨溪亲自维护。</li>
+</ul>
+</li>
+<li>react<ul>
+<li>React起源于Facebook的内部项目，在建设instagram(图片分享)的时候，为了处理<br>数据流且考虑性能方面的问题，因该公司对市场上所有框架都不满意，就决定自己写一套，<br>用来架构Instagram的网站。并在2013年5月开源。</li>
+</ul>
+</li>
+</ul>
+<h4 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h4><ul>
+<li>vue<ul>
+<li>vue是一款渐进式框架，采用自底向上增量开发的设计。在声明式渲染(视图模板引擎)<br>的基础上，通过添加组件系统(component)、客户端路由(vue-router)、状态管理(vuex)<br>来构建一个完整的框架。</li>
+</ul>
+</li>
+<li>react<ul>
+<li>react主张函数式编程，所以推崇纯组件，数据不可变，单向数据流，</li>
+</ul>
+</li>
+</ul>
+<h4 id="编写语法"><a href="#编写语法" class="headerlink" title="编写语法"></a>编写语法</h4><ul>
+<li>vue<ul>
+<li>vue推荐的做法是webpack + vue-loader的单文件格式，vue保留了html、css、js<br>分离的写法，数据绑定使用mustache风格，样式直接使用css，在<code>&lt;style&gt;</code>标签提供<br>了一个可选的scoped属性，用开控制css仅对当前组件生效还是全局生效。</li>
+</ul>
+</li>
+<li>react<ul>
+<li>react推荐的做法是JSX + inline style，也就是把HTML和CSS全都写进JavaScript<br>中，即“all in js”，react没有模板，直接就是一个渲染函数，返回一个虚拟DOM树，<br>在render()编写的JSX语法最终会被编译成原生JavaScript。</li>
+</ul>
+</li>
+</ul>
+<h4 id="构建工具"><a href="#构建工具" class="headerlink" title="构建工具"></a>构建工具</h4><ul>
+<li>vue<ul>
+<li>vue提供了CLI脚手架，可以帮助我们非常容易地构建项目，全局安装后用vue create<br>命令创建新项目，可以让用户自定义选择需要安装的模板。</li>
+</ul>
+</li>
+<li>react<ul>
+<li>react提供了create-react-app，但只提供一个构建单页面应用的默认选项。</li>
+</ul>
+</li>
+</ul>
+<h4 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h4><ul>
+<li>vue<ul>
+<li>vue实现双向数据绑定，view的变化能实时让model改变，而model的变化也能实时<br>更新到view</li>
+<li>vue采用数据劫持 + 发布-订阅模式，通过Object.defineProperty对数据进行操作，<br>为数据动态添加getter和setter方法，当获取数据的时候会触发对应的getter方法，<br>当设置数据的时候会触发对应的setter方法，从而进一步触发vm的watcher方法，然后<br>对数据进行更改，vm则进一步触发视图更新操作。</li>
+</ul>
+</li>
+<li>react<ul>
+<li>react是单向数据流，react中属性是不允许更改的，状态是允许更改的。react中组件<br>不允许通过this.state这种方法直接更改组件的状态。自身设置的状态，可以通过setState<br>进行更改。</li>
+<li>setState是异步的，导致获取dom可能拿到的还是之前的内容，所以需要在setState<br>第二个参数(回调函数)中获取更新后的内容。</li>
+</ul>
+</li>
+</ul>
+<h4 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h4><ul>
+<li>vue<ul>
+<li>vue中每个组件内部自动实现了shouldComponentUpdate的优化，在vue中里面由于<br>依赖追踪系统的存在，当任意数据变动的时候，Vue的每一个组件都能精确的知道自己是<br>否需要重绘。而在react中需要我们手动去优化其性能，但s是当数据特别多的时候vue中<br>的watcher也会特别多，从而造成页面卡顿，所以一般大西瓜项目会倾向于react。</li>
+</ul>
+</li>
+<li>react<ul>
+<li>当props或state发生改变的时候会触发shouldComponentUpdate生命周期函数，它<br>是用来控制组件是否被重新渲染的，如果它返回true，则执行render函数，更新组件；<br>如果它返回false，则不会触发重新渲染的过程。</li>
+<li>如果希望更新之前和之前的状态进行一个对比，这个时候需要重写shouldCompnentUpdate<br>来避免不必要的dom操作，对比当前的props或state和更新后的nextProps或nextState，<br>返回true时，组件更新；返回false，不更新，节省性能。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/29/%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5%E7%BD%91%E7%AB%99%E6%9C%80%E7%BB%88%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E5%AE%8C%E6%88%90%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B%E8%A7%A3%E6%9E%90/" rel="prev" title="从浏览器输入网站最终页面渲染完成的全过程解析">
+      <i class="fa fa-chevron-left"></i> 从浏览器输入网站最终页面渲染完成的全过程解析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/01/React/" rel="next" title="React">
+      React <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%E7%9A%84%E7%9B%B8%E5%90%8C%E7%82%B9%E5%92%8C%E4%B8%8D%E5%90%8C%E7%82%B9%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">比较Vue和React的相同点和不同点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8Vue%E8%BF%98%E6%98%AFReact%EF%BC%9F%E6%B8%85%E6%99%B0%E6%AF%94%E8%BE%83%E4%B8%A4%E8%80%85%E5%B7%AE%E5%BC%82"><span class="nav-number">2.</span> <span class="nav-text">前端框架使用Vue还是React？清晰比较两者差异</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%9E%E7%94%9F"><span class="nav-number">2.0.1.</span> <span class="nav-text">诞生</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3"><span class="nav-number">2.0.2.</span> <span class="nav-text">设计思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E8%AF%AD%E6%B3%95"><span class="nav-number">2.0.3.</span> <span class="nav-text">编写语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7"><span class="nav-number">2.0.4.</span> <span class="nav-text">构建工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A"><span class="nav-number">2.0.5.</span> <span class="nav-text">数据绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">2.0.6.</span> <span class="nav-text">性能优化</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Foolish-Max</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">184k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:48</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

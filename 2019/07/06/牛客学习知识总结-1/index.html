@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="牛客学习知识总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛客学习知识总结-1">
+<meta property="og:url" content="http://yoursite.com/2019/07/06/%E7%89%9B%E5%AE%A2%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93-1/index.html">
+<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:description" content="牛客学习知识总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-06T12:13:17.000Z">
+<meta property="article:modified_time" content="2019-09-26T10:15:39.320Z">
+<meta property="article:author" content="Foolish-Max">
+<meta property="article:tag" content="牛客">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/07/06/%E7%89%9B%E5%AE%A2%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>牛客学习知识总结-1 | Foolish-Max</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Foolish-Max</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/%E7%89%9B%E5%AE%A2%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          牛客学习知识总结-1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-06 20:13:17" itemprop="dateCreated datePublished" datetime="2019-07-06T20:13:17+08:00">2019-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-26 18:15:39" itemprop="dateModified" datetime="2019-09-26T18:15:39+08:00">2019-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%89%9B%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">牛客</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="牛客学习知识总结"><a href="#牛客学习知识总结" class="headerlink" title="牛客学习知识总结"></a>牛客学习知识总结</h2><span id="more"></span>
+<ul>
+<li><p>超链接</p>
+<ul>
+<li>a标签的href的属性值是url，里面必须包含协议，没有协议就会解析成相对路径。</li>
+</ul>
+</li>
+<li><p>HTTP状态码分类：</p>
+<ul>
+<li>1** 信息，服务器收到请求，需要请求者继续执行操作</li>
+<li>2** 成功，操作被成功接受并处理。<ul>
+<li>200 服务端成功处理了请求并返回内容</li>
+</ul>
+</li>
+<li>3** 重定向，需要进一步的操作以完成请求<ul>
+<li>301 永久重定向</li>
+<li>302 临时重定向</li>
+<li>304 资源未被修改，返回一个304状态吗然后从本地缓存中加载请求的资源</li>
+</ul>
+</li>
+<li>4** 客户端错误，请求包含语法错误或无法完成请求。<ul>
+<li>404 （页面丢失）未找到资源</li>
+<li>403 服务器拒绝请求</li>
+<li>408 （请求超时） 服务器等候请求时发生超时</li>
+</ul>
+</li>
+<li>5** 服务器错误，服务器在处理请求的过程中发生错误<ul>
+<li>503 服务器暂时不可用</li>
+<li>504 服务器内部错误<!--more--></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>HTTP协议的特征：</p>
+<ul>
+<li>C/S(客户端/服务器)模式：只要客户端和服务器知道如何处理数据内容，任何类型的数据<br>都可以通过HTTP来发送，客户端和服务器指定合适的MIME-type内容类型。</li>
+<li>简单快速</li>
+<li>灵活</li>
+<li>无连接：限制每次连接只处理一个请求，收到客户的应答后即断开连接，可以节省传输时间。</li>
+<li>无状态：对于事物处理没有记忆能力，意味着如果后续处理需要前面的信息，则必须重传，<br>这样就会导致每次连接传送的数据量增大，另一方面，在服务器不需要先前信息时它的应答就会很快。</li>
+</ul>
+</li>
+<li><p>get 和 post的请求区别？</p>
+<ul>
+<li>区别一：<ul>
+<li>get重点是从服务器上获取资源</li>
+<li>post重点是向服务器发送数据</li>
+</ul>
+</li>
+<li>区别二：<ul>
+<li>get传输数据通过url请求，以field（字段）=value的形式放在url后，用“？”连接，<br>多个请求数据间用“&amp;”连接，过程用户可见。</li>
+<li>post传输数据放在请求体（request body）中发送给服务器，用户不可见。</li>
+</ul>
+</li>
+<li>区别三：<ul>
+<li>get传输数据大小有限制，但效率较高</li>
+<li>post可以传输大量数据，所以上传文件用post方式</li>
+</ul>
+</li>
+<li>区别四：<ul>
+<li>get请求不安全，因为参数直接暴露在url上，不能用来传递敏感信息。</li>
+<li>post较get安全性较高。</li>
+</ul>
+</li>
+<li>区别五：<ul>
+<li>get方式只能支持ASCII字符，向服务传的中文字符可能会乱码。</li>
+<li>post支持标准字符集，可以正确传递中文字符。</li>
+</ul>
+</li>
+<li>区别六：<ul>
+<li>get在浏览器回退是无害的，而post会再次提交请求。</li>
+</ul>
+</li>
+<li>区别七<ul>
+<li>get请求会被浏览器主动cache（缓存），而post不会除非手动设置。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>iframe有哪些缺点？</p>
+<ul>
+<li>iframe会阻塞主页面的onload事件</li>
+<li>通过oIframe.contentWindow寻找子window对象</li>
+<li>通过window.parent寻找父级窗体</li>
+<li>通过window.top寻找顶级窗体</li>
+<li>window.location.hash 解决父页面向子页面传值</li>
+<li>window.name 解决子页面向父页面传值</li>
+<li>不利于SEO，搜索引擎的检索程序无法解读这种页面（百度spider不收录，浏览器对iframe框架的兼容问题）</li>
+<li>iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载</li>
+<li>如果需要使用iframe，最好通过javascript动态给iframe添加src属性值。</li>
+</ul>
+</li>
+<li><p>xhtml和html有什么区别？</p>
+<ul>
+<li>性能方面 <ul>
+<li>XHTML兼容性好，兼容各大浏览器、手机以及PDA，使浏览器可以快速正确编译网页</li>
+</ul>
+</li>
+<li>书写习惯方面<ul>
+<li>HTML标签不区分大小写，XHTML所有标签必须小写</li>
+<li>XHTML必须成双成对</li>
+<li>HTML对标签顺序要求不严格，XHTML标签顺序必须正确</li>
+<li>等等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>html和xml的区别？</p>
+<ul>
+<li>xml被设计用来传输和存储数据，其焦点是数据的内容</li>
+<li>html被设计用来显示数据，其焦点是数据的外观</li>
+<li>html旨在显示信息，而xml旨在传输信息</li>
+<li>xml在定义标记时区分大小写，而html不区分大小写</li>
+</ul>
+</li>
+<li><p>link和@import的区别：</p>
+</li>
+</ul>
+<p><strong>两者都是外部引用CSS的方式，但有一定的区别</strong></p>
+<pre><code>+ link是XHTML标签，除了加载CSS外，还可以加载其他文件；@import只能加载CSS。
+
++ 解析到link时，页面会同步加载Css；@import在页面加载完后加载Css。
+
++ link是XHTML标签，无兼容问题；@import是在**CSS2.1**之后提出的，只有再IE5以上才能识别。
+
++ link可以js动态引入，@import不行
+
++ @import的最佳写法： @import url(style.css),其他写法：@import &#39;style.css&#39;、
+@import &quot;style.css&quot;、@import url(&#39;style.css&#39;)、@import url(&quot;style.css&quot;)
+</code></pre>
+<ul>
+<li>viewport</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width,initial-scale&#x3D;1.0,minimum-scale&#x3D;1.0,maximum-scale&#x3D;1.0,user-scalable&#x3D;no&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; width            设置viewport宽度，为一个正整数，或字符串‘device-width’</span><br><span class="line">  &#x2F;&#x2F; device-width     设备宽度</span><br><span class="line">  &#x2F;&#x2F; height           设置viewport高度，一般设置了宽度，会自动解析出高度，可以不用设置</span><br><span class="line">  &#x2F;&#x2F; initial-scale    默认缩放比例（初始缩放比例），为一个数字，可以带小数</span><br><span class="line">  &#x2F;&#x2F; minimum-scale    允许用户最小缩放比例，为一个数字，可以带小数</span><br><span class="line">  &#x2F;&#x2F; maximum-scale    允许用户最大缩放比例，为一个数字，可以带小数</span><br><span class="line">  &#x2F;&#x2F; user-scalable    是否允许手动缩放</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>单行文本溢出省略号</p>
+<p>  overflow: hidden;</p>
+<p>  text-overflow:ellipsis;</p>
+<p>  white-space: nowrap;</p>
+</li>
+<li><p>多行文本溢出省略号</p>
+<p>  display: -webkit-box;</p>
+<p>  -webkit-box-orient: vertical;</p>
+<p>  -webkit-line-clamp: 3;</p>
+<p>  overflow: hidden;</p>
+</li>
+<li><p>换行标签</p>
+<p>  word-wrap: break-word</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%89%9B%E5%AE%A2/" rel="tag"># 牛客</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/07/06/%E4%BB%80%E4%B9%88%E6%98%AFDOCTYPE%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%EF%BC%9F/" rel="prev" title="什么是DOCTYPE及其作用？">
+      <i class="fa fa-chevron-left"></i> 什么是DOCTYPE及其作用？
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/07/CSS-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" rel="next" title="CSS-清除浮动">
+      CSS-清除浮动 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%9B%E5%AE%A2%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">牛客学习知识总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Foolish-Max</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">184k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:48</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
