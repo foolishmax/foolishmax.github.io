@@ -4601,12 +4601,6 @@ dt.getDay()     //星期几（0-6）
       </tags>
   </entry>
   <entry>
-    <title>电脑转移测试文章</title>
-    <url>/2021/03/28/%E7%94%B5%E8%84%91%E8%BD%AC%E7%A7%BB%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<h3 id="电脑转移测试文章"><a href="#电脑转移测试文章" class="headerlink" title="电脑转移测试文章"></a>电脑转移测试文章</h3><p>测试成功</p>
-]]></content>
-  </entry>
-  <entry>
     <title>简书面经笔记（一）</title>
     <url>/2019/07/28/%E7%AE%80%E4%B9%A6%E9%9D%A2%E7%BB%8F%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="前端面经笔记-一"><a href="#前端面经笔记-一" class="headerlink" title="前端面经笔记(一)"></a>前端面经笔记(一)</h2><span id="more"></span>
@@ -5197,5 +5191,11 @@ shuffle(arr)
       <tags>
         <tag>面试题</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>电脑转移测试文章</title>
+    <url>/2021/03/28/%E5%87%A1%E4%BA%8B%E9%A2%84%E5%88%99%E7%AB%8B%EF%BC%8C%E4%B8%8D%E9%A2%84%E5%88%99%E5%BA%9F/</url>
+    <content><![CDATA[<h3 id="凡事预则立，不预则废"><a href="#凡事预则立，不预则废" class="headerlink" title="凡事预则立，不预则废"></a>凡事预则立，不预则废</h3><p>凡事预则立，不预则废</p>
+]]></content>
   </entry>
 </search>
