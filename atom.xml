@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-05-23T14:21:49.948Z</updated>
+  <updated>2021-05-24T14:22:30.982Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浏览器关闭清除token</title>
+    <link href="http://yoursite.com/2021/05/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%B3%E9%97%AD%E6%B8%85%E9%99%A4token/"/>
+    <id>http://yoursite.com/2021/05/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%B3%E9%97%AD%E6%B8%85%E9%99%A4token/</id>
+    <published>2021-05-24T14:03:02.000Z</published>
+    <updated>2021-05-24T14:22:30.982Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul><li>浏览器关闭会出发 <strong>beforeunload</strong> ，<strong>unload</strong> 这两个事件。</li><li>浏览器刷新也会触发，还会触发<strong>load</strong>事件</li></ul><h2 id="如何清除token"><a href="#如何清除token" class="headerlink" title="如何清除token"></a>如何清除token</h2><ul><li>方案一<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.onbeforeunload &#x3D; function () &#123;</span><br><span class="line">    localStorage.removeItem(&quot;token&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>缺点： 刷新也会清空token</li><li>方案二  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">window.onunload &#x3D; function() &#123;</span><br><span class="line">    localStorage.setItem(&quot;lastTime&quot;,new Date().getTime())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">window.onload &#x3D; function() &#123;</span><br><span class="line">    let lastTime &#x3D; localStorage.getItem(&quot;lastTime&quot;);</span><br><span class="line">    const interval &#x3D; 3 * 1000;</span><br><span class="line">    &#x2F;&#x2F; 如果时间间隔大于3s，则清除token</span><br><span class="line">    if (!lastTime || new Date().getTime() - lastTime &gt; interval) &#123;</span><br><span class="line">        localStorage.remove(&quot;token&quot;);</span><br><span class="line">        console.log(&quot;remove token&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log(&quot;time is less than not remove token&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;浏览器关闭会出发 &lt;strong&gt;beforeunload&lt;/strong&gt; ，&lt;strong&gt;unload&lt;/stro</summary>
+      
+    
+    
+    
+    <category term="token" scheme="http://yoursite.com/categories/token/"/>
+    
+    
+    <category term="token" scheme="http://yoursite.com/tags/token/"/>
+    
+  </entry>
   
   <entry>
     <title>凡事预则立，不预则废</title>
@@ -464,27 +489,6 @@
     
     
     <category term="框架" scheme="http://yoursite.com/tags/%E6%A1%86%E6%9E%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>掘金面经笔记</title>
-    <link href="http://yoursite.com/2019/09/13/%E6%8E%98%E9%87%91%E9%9D%A2%E7%BB%8F%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2019/09/13/%E6%8E%98%E9%87%91%E9%9D%A2%E7%BB%8F%E7%AC%94%E8%AE%B0/</id>
-    <published>2019-09-12T16:19:19.000Z</published>
-    <updated>2019-10-19T06:25:12.703Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="如何监听未处理的异常"><a href="#如何监听未处理的异常" class="headerlink" title="如何监听未处理的异常"></a>如何监听未处理的异常</h3><span id="more"></span><ul><li>try…catch<ul><li>无法捕捉到语法错误，只能捕捉运行时错误</li><li>可以拿到出错的信息(出错的文件，行号，列号)</li></ul></li><li>window.onerror<ul><li>由于try…catch只能捕获块里面的错误，全局的一些错误可以用window.onerror来捕获</li></ul></li></ul><h3 id="http和https的区别"><a href="#http和https的区别" class="headerlink" title="http和https的区别"></a>http和https的区别</h3><ul><li>http是一种一种广泛使用的网络协议，是一个客户端和服务器请求和应答的标准。</li><li>http工作在TCP协议的80端口，https工作在TCP协议的443端口</li><li>http协议运行在TCP协议之上，所有的传输内容都是明文，https运行在SSL/TLS之上，<br>SSL/TLS运行在TCP之上，所有的传输内容都是经过加密的。</li><li>https是以安全为目标的http通道，是http的安全版。是http加上SSL层对传输的信息和url做了一些加密处理，更加安全</li></ul><h3 id="为什么https不会被截取信息"><a href="#为什么https不会被截取信息" class="headerlink" title="为什么https不会被截取信息"></a>为什么https不会被截取信息</h3><ul><li>完成TCP三次同步握手</li><li>客户端验证服务器数字证书，通过，进入步骤3 </li><li>DH算法协商对称加密算法的密钥、hash算法的密钥</li><li>SSL安全加密隧道协商完成</li><li>网页以加密的方式传输，用协商的对称加密算法和密钥加密，保证数据机密性；<br>用协商的hash算法进行数据完整性保护，保证数据不被篡改</li></ul><h3 id="浏览器如何缓存"><a href="#浏览器如何缓存" class="headerlink" title="浏览器如何缓存"></a>浏览器如何缓存</h3><ul><li>html meta标签控制缓存<ul><li><code>&lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cahce&quot;&gt;</code> //告诉浏览器当前页面不被缓存</li></ul></li><li>http头信息控制缓存<ul><li>Expires ——&gt; 过期时间</li><li>Cache-Control 响应头信息(no-cache、no-store、max-age、public)</li></ul></li></ul><h3 id="TCP协议如何保证传输的可靠性"><a href="#TCP协议如何保证传输的可靠性" class="headerlink" title="TCP协议如何保证传输的可靠性"></a>TCP协议如何保证传输的可靠性</h3><ul><li>校验和</li><li>确认应答 + 序列号</li><li>超时重传</li><li>流浪控制</li><li>拥塞控制</li><li>TCP的连接管理</li><li>滑动窗口</li></ul><h3 id="UDP-amp-TCP-的区别"><a href="#UDP-amp-TCP-的区别" class="headerlink" title="UDP &amp; TCP 的区别"></a>UDP &amp; TCP 的区别</h3><ul><li><p>相同点：</p><ul><li>UDP协议 和 TCP协议 都是运输层协议</li></ul></li><li><p>不同点：</p><ul><li>UDP特点：<ul><li>无连接 —— 知道对端的IP和端口号就直接进行传输，不需要建立连接</li><li>不可靠 —— 没有确认机制，没有重传机制，即使因为网络故障无法发送到<br>对方，UDP协议也不会给应用层返回任何错误信息</li><li>面向数据报</li><li>传输速 度块</li></ul></li><li>TCP特点：<ul><li>面向连接，在客户端和服务器进行交换数据前，必须先在双方之间建立一个<br>TCP连接</li><li>可靠传输，具有确认应答机制、超时重传机制、拥塞控制、流量控制、<br>滑动窗口机制、延迟应答等。</li><li>面向字节流</li></ul></li></ul></li><li><p>UDP的响应速度优于TCP，安全性和数据可靠性不如TCP</p></li><li><p>UDP一般用在网络负担非常重，但对响应速度要求高，数据类型都是短消息的情况下</p></li></ul><h3 id="样式导入方式及优先级？"><a href="#样式导入方式及优先级？" class="headerlink" title="样式导入方式及优先级？"></a>样式导入方式及优先级？</h3><ul><li>引入方式<ul><li>行内样式</li><li>内联式</li><li>外链式</li><li>导入式: @import url(reset.css)</li></ul></li><li>各种方式的优先级<ul><li>行内样式 &gt; 外链式 &gt; 内联式 &gt; @import导入式</li></ul></li></ul><h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><p>BFC(block formatting context)翻译为“块级格式化上下文”，它会生成独立的渲染区域<br>(不影响外面的元素，同时也不受外部元素的影响)，它有一下规则：</p><ul><li>内部的box会在垂直方向上一个接一个的放置。</li><li>内部box在垂直方向上的距离由margin决定，同属一个BFC内的相邻box会发生margin重叠。</li><li>BFC的区域不会与float box发生重叠。</li><li>计算BFC的高度时，浮动元素也参与计算(清除浮动)</li></ul><p>触发BFC的条件：</p><ul><li>float属性不为none</li><li>position为absolute或者fixed</li><li>display为inline-block、table-cell、table-caption、flex、inline-flex</li><li>overflow不为visible</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;如何监听未处理的异常&quot;&gt;&lt;a href=&quot;#如何监听未处理的异常&quot; class=&quot;headerlink&quot; title=&quot;如何监听未处理的异常&quot;&gt;&lt;/a&gt;如何监听未处理的异常&lt;/h3&gt;</summary>
-    
-    
-    
-    <category term="面经" scheme="http://yoursite.com/categories/%E9%9D%A2%E7%BB%8F/"/>
-    
-    
-    <category term="面经" scheme="http://yoursite.com/tags/%E9%9D%A2%E7%BB%8F/"/>
     
   </entry>
   
