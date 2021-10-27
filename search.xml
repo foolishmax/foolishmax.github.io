@@ -5601,4 +5601,24 @@ shuffle(arr)
         <tag>React</tag>
       </tags>
   </entry>
+  <entry>
+    <title>webpack配置工程师</title>
+    <url>/2021/10/27/webpack%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B%E5%B8%88/</url>
+    <content><![CDATA[<p>构建webpack知识体系分为下面三个层级：<br>1.基础–会配置<br>2.进阶–能优化<br>3.深入–懂原理</p>
+<h2 id="一、基础篇"><a href="#一、基础篇" class="headerlink" title="一、基础篇"></a>一、基础篇</h2><h3 id="1-简单配置"><a href="#1-简单配置" class="headerlink" title="1.简单配置"></a>1.简单配置</h3><p>  该部分需掌握：<br>  1.Webpack常规配置项有哪些？<br>  2.常用loader有哪些？如何配置？<br>  3.常用插件plugin有哪些？如何配置？<br>  4.Babel如何配置？Babel插件如何使用？</p>
+<h4 id="1-1-安装依赖"><a href="#1-1-安装依赖" class="headerlink" title="1.1 安装依赖"></a>1.1 安装依赖</h4><p>需要现在本地安装<strong>webpack</strong>及<strong>webpack-cli</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm install webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-开始工作"><a href="#1-2-开始工作" class="headerlink" title="1.2 开始工作"></a>1.2 开始工作</h4><p>webpack在4以后就支持0配置打包，我们可以测试一下<br>1.新建webpack-work项目，新建 <code>./src/index.js</code>文件，写一段简单的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const a = &#x27;hello foolishmax&#x27;;</span><br><span class="line">console.log(a);</span><br><span class="line">module.exports = a;</span><br></pre></td></tr></table></figure>
+
+<p>2.直接运行<code>npx webpack</code>，启动打包<br><img src="/public/images/webpack-mode-error.png" alt="webpack-mode-error">)</p>
+]]></content>
+      <categories>
+        <category>Webpack</category>
+      </categories>
+      <tags>
+        <tag>Webpack</tag>
+      </tags>
+  </entry>
 </search>

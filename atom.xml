@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-10-07T08:24:17.145Z</updated>
+  <updated>2021-10-27T03:17:33.199Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>webpack配置工程师</title>
+    <link href="http://yoursite.com/2021/10/27/webpack%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    <id>http://yoursite.com/2021/10/27/webpack%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B%E5%B8%88/</id>
+    <published>2021-10-27T02:48:00.000Z</published>
+    <updated>2021-10-27T03:17:33.199Z</updated>
+    
+    <content type="html"><![CDATA[<p>构建webpack知识体系分为下面三个层级：<br>1.基础–会配置<br>2.进阶–能优化<br>3.深入–懂原理</p><h2 id="一、基础篇"><a href="#一、基础篇" class="headerlink" title="一、基础篇"></a>一、基础篇</h2><h3 id="1-简单配置"><a href="#1-简单配置" class="headerlink" title="1.简单配置"></a>1.简单配置</h3><p>  该部分需掌握：<br>  1.Webpack常规配置项有哪些？<br>  2.常用loader有哪些？如何配置？<br>  3.常用插件plugin有哪些？如何配置？<br>  4.Babel如何配置？Babel插件如何使用？</p><h4 id="1-1-安装依赖"><a href="#1-1-安装依赖" class="headerlink" title="1.1 安装依赖"></a>1.1 安装依赖</h4><p>需要现在本地安装<strong>webpack</strong>及<strong>webpack-cli</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install webpack webpack-cli -D</span><br></pre></td></tr></table></figure><h4 id="1-2-开始工作"><a href="#1-2-开始工作" class="headerlink" title="1.2 开始工作"></a>1.2 开始工作</h4><p>webpack在4以后就支持0配置打包，我们可以测试一下<br>1.新建webpack-work项目，新建 <code>./src/index.js</code>文件，写一段简单的代码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = &#x27;hello foolishmax&#x27;;</span><br><span class="line">console.log(a);</span><br><span class="line">module.exports = a;</span><br></pre></td></tr></table></figure><p>2.直接运行<code>npx webpack</code>，启动打包<br><img src="/public/images/webpack-mode-error.png" alt="webpack-mode-error">)</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;构建webpack知识体系分为下面三个层级：&lt;br&gt;1.基础–会配置&lt;br&gt;2.进阶–能优化&lt;br&gt;3.深入–懂原理&lt;/p&gt;
+&lt;h2 id=&quot;一、基础篇&quot;&gt;&lt;a href=&quot;#一、基础篇&quot; class=&quot;headerlink&quot; title=&quot;一、基础篇&quot;&gt;&lt;/a&gt;一、基础篇</summary>
+      
+    
+    
+    
+    <category term="Webpack" scheme="http://yoursite.com/categories/Webpack/"/>
+    
+    
+    <category term="Webpack" scheme="http://yoursite.com/tags/Webpack/"/>
+    
+  </entry>
   
   <entry>
     <title>React深入浅出知识链路</title>
@@ -469,35 +494,6 @@
     
     
     <category term="本地存储" scheme="http://yoursite.com/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常见设计模式</title>
-    <link href="http://yoursite.com/2019/09/27/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2019/09/27/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
-    <published>2019-09-27T14:29:40.000Z</published>
-    <updated>2019-09-27T14:31:11.267Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="常见的设计模式"><a href="#常见的设计模式" class="headerlink" title="常见的设计模式"></a>常见的设计模式</h3><ul><li><p>单例模式</p></li><li><p>构造函数模式</p></li><li><p>建造者模式</p></li><li><p>工厂模式</p></li><li><p>代理模式</p></li><li><p>命令模式</p></li><li><p>观察者模式</p></li><li><p>适配器模式</p></li><li><p>职责链模式</p></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;常见的设计模式&quot;&gt;&lt;a href=&quot;#常见的设计模式&quot; class=&quot;headerlink&quot; title=&quot;常见的设计模式&quot;&gt;&lt;/a&gt;常见的设计模式&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;单例模式&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;构造函数模式&lt;/p&gt;
-&lt;/li&gt;
-&lt;l</summary>
-      
-    
-    
-    
-    <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
