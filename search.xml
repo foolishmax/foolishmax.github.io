@@ -2705,22 +2705,6 @@ console.clear()  //用于清除当前控制台的所有输出，将光标回置�
       </tags>
   </entry>
   <entry>
-    <title>webpack</title>
-    <url>/2019/11/17/webpack/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h4 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h4><pre><code>npm install --global webpack
-</code></pre>
-<h4 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h4><pre><code>npm init -y
-npm install webpack webpack-cli -D
-</code></pre>
-]]></content>
-      <categories>
-        <category>webpack</category>
-      </categories>
-      <tags>
-        <tag>webpack</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>什么是DOCTYPE及其作用？</title>
     <url>/2019/07/06/%E4%BB%80%E4%B9%88%E6%98%AFDOCTYPE%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%EF%BC%9F/</url>
     <content><![CDATA[<h2 id="什么是DOCTYPE及其作用？"><a href="#什么是DOCTYPE及其作用？" class="headerlink" title="什么是DOCTYPE及其作用？"></a>什么是DOCTYPE及其作用？</h2><ul>
