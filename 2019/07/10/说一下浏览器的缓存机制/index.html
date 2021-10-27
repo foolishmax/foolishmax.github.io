@@ -1,16 +1,476 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template with context %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block class %}post posts-expand{% endblock %}
 
-{% block content %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  {{ partial('_macro/post.swig', {post: page}) }}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-{% endblock %}
+  <meta name="description" content="前言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="说一下浏览器的缓存机制">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:description" content="前言">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-10T04:58:58.000Z">
+<meta property="article:modified_time" content="2019-08-05T07:22:35.105Z">
+<meta property="article:author" content="Foolish-Max">
+<meta property="article:tag" content="浏览器">
+<meta name="twitter:card" content="summary">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+<link rel="canonical" href="http://yoursite.com/2019/07/10/%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>说一下浏览器的缓存机制 | Foolish-Max</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Foolish-Max</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          说一下浏览器的缓存机制
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-10 12:58:58" itemprop="dateCreated datePublished" datetime="2019-07-10T12:58:58+08:00">2019-07-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-05 15:22:35" itemprop="dateModified" datetime="2019-08-05T15:22:35+08:00">2019-08-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">浏览器</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><span id="more"></span>
+<pre><code>缓存可以简单高效的提高性能优化，对于一个数据请求来说，分为网络请求、后端处理、浏览器
+响应三个步骤，浏览器缓存可以优化网络请求和响应部分。比如：直接换用缓存而不发起请求，
+或者发起请求但后端存储的数据和前端一致，就没有必要将数据回传，这样就减少的响应数据，
+使得缓存文件可以重复利用，减少带宽，减低网络负荷。
+</code></pre>
+<h2 id="缓存位置"><a href="#缓存位置" class="headerlink" title="缓存位置"></a>缓存位置</h2><pre><code>网络请求会先从缓存位置上面查找缓存，如果都没有命中，才会去请求网络资源，从缓存位置
+分为四种，并且各自有优先级：
+- Service Worker
+- Memory Cache
+- Disk Cache
+- Push Cache
+</code></pre>
+<h4 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;Service Worker 是运行在浏览器背后的独立线程，一般可以用<br>来实现缓存功能。使用 Service Worker的话，传输协议必须为 HTTPS。因为<br>Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。<br>Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、<br>如何匹配缓存、如何读取缓存，并且缓存是持续性的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Service Worker 实现缓存功能一般分为三个步骤：首先需要先注册<br> Service Worker，然后监听到 install 事件以后就可以缓存需要的文件，那么在下次用户访问<br> 的时候就可以通过拦截请求的方式查询是否存在缓存，存在缓存的话就可以直接读取缓存文件，<br> 否则就去请求数据。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;当 Service Worker 没有命中缓存的时候，我们需要去调用 fetch 函数<br> 获取数据。也就是说，如果我们没有在 Service Worker 命中缓存的话，会根据缓存查找优先级<br> 去查找数据。但是不管我们是从 Memory Cache 中还是从网络请求中获取的数据，浏览器都会显<br> 示我们是从 Service Worker 中获取的内容。</p>
+<h4 id="Memory-Cache"><a href="#Memory-Cache" class="headerlink" title="Memory Cache"></a>Memory Cache</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;Memory Cache 也就是内存中的缓存，主要包含的是当前中页面中已经抓取到的资源,例如页面<br>上已经下载的样式、脚本、图片等。读取内存中的数据肯定比磁盘快,内存缓存虽然读取高效，<br>可是缓存持续性很短，会随着进程的释放而释放。 一旦我们关闭 Tab 页面，内存中的缓存也就<br>被释放了。</p>
+<h4 id="Disk-Cache"><a href="#Disk-Cache" class="headerlink" title="Disk Cache"></a>Disk Cache</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;Disk Cache 也就是存储在硬盘中的缓存，读取速度慢点，但是什么都能存储到磁盘中，比之<br> Memory Cache 胜在容量和存储时效性上。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;在所有浏览器缓存中，Disk Cache 覆盖面基本是最大的。它会<br>根据 HTTP Herder 中的字段判断哪些资源需要缓存，哪些资源可以不请求直接使用，哪些资源<br>已经过期需要重新请求。并且即使在跨站点的情况下，相同地址的资源一旦被硬盘缓存下来，就不<br>会再次去请求数据。</p>
+<h4 id="Push-Cache"><a href="#Push-Cache" class="headerlink" title="Push Cache"></a>Push Cache</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;Push Cache（推送缓存）是 HTTP/2 中的内容，当以上三种<br>缓存都没有命中时，它才会被使用。它只在会话（Session）中存在，一旦会话结束就被释放，<br>并且缓存时间也很短暂，在Chrome浏览器中只有5分钟左右，同时它也并非严格执行HTTP头中<br>的缓存指令。</p>
+<p><code>如果以上四种缓存都没有命中的话，只能发起网络请求来获取资源了。 为了性能上的考虑，大部分接口都应该选择好缓存策略， 浏览器缓存策略分为两种：强缓存和协商缓存，并且缓存策略都是通过设置HTTP Header来实现的。</code></p>
+<h2 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h2><pre><code>强缓存：不会向服务器发送请求，直接从缓存中读取资源，可以通过HTTP Header实现：Expires
+和Cache-Control。
++ Expires：缓存过期时间，用来指定资源到期的时间，是服务端的具体的时间点，结合Last-modified
+使用，Expires是HTTP/1的产物，受限于本地时间，如果修改了本地时间，可能会造成缓存失效。
+
++ Cache-Control：和多个指令配合使用，实现资源缓存。
+
++ Expires和Cache-Control同时存在，Cache-Control优先级高于Expires。
+</code></pre>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><pre><code>协商缓存就是强缓存失效后，浏览器携带缓存表示向服务器发起请求，由服务器根据缓存表示决定
+是否使用缓存的过程，主要有以下两种情况：
++ 协商缓存生效，返回304和Not Modified
+
++ 协商缓存失效，返回200和请求结果。
+
++ 协商缓存可以通过设置两种HTTP Header实现：Last-Modified和ETag。
+
++ ETag是服务器响应请求时，返回当前资源文件的一个唯一标识（有服务器生成），只要资源有变化
+，ETag就会重新生成。
+</code></pre>
+<h2 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h2><pre><code>强制缓存优先于协商缓存进行，若强制缓存(Expires和Cache-Control)生效则直接使用
+缓存，若不生效则进行协商缓存(Last-Modified / If-Modified-Since和
+Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若协商缓存失效，
+那么代表该请求的缓存失效，返回200，重新返回资源和缓存标识，再存入浏览器缓存中；
+生效则返回304，继续使用缓存
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag"># 浏览器</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/07/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84reflow%E5%92%8Crepaint/" rel="prev" title="浏览器的reflow和repaint">
+      <i class="fa fa-chevron-left"></i> 浏览器的reflow和repaint
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/16/%E7%AE%80%E5%8D%95%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%8E%9F%E5%9E%8B%E9%93%BE/" rel="next" title="简单说一下原型链">
+      简单说一下原型链 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">缓存位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Service-Worker"><span class="nav-number">2.0.1.</span> <span class="nav-text">Service Worker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory-Cache"><span class="nav-number">2.0.2.</span> <span class="nav-text">Memory Cache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Disk-Cache"><span class="nav-number">2.0.3.</span> <span class="nav-text">Disk Cache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Push-Cache"><span class="nav-number">2.0.4.</span> <span class="nav-text">Push Cache</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="nav-number">3.</span> <span class="nav-text">强缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="nav-number">4.</span> <span class="nav-text">协商缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">缓存机制</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Foolish-Max</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">219k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:19</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

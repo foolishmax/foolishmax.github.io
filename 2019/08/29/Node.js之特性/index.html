@@ -1,16 +1,515 @@
-{% extends '_layout.swig' %}
-{% import '_macro/sidebar.swig' as sidebar_template with context %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block class %}post posts-expand{% endblock %}
 
-{% block content %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  {{ partial('_macro/post.swig', {post: page}) }}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-{% endblock %}
+  <meta name="description" content="Node.js是什么? Node.js是一个JavaScript运行时环境，可以解析和执行js代码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js之特性">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/Node.js%E4%B9%8B%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:description" content="Node.js是什么? Node.js是一个JavaScript运行时环境，可以解析和执行js代码。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-29T08:04:36.000Z">
+<meta property="article:modified_time" content="2019-09-21T03:49:57.163Z">
+<meta property="article:author" content="Foolish-Max">
+<meta property="article:tag" content="Node.js">
+<meta name="twitter:card" content="summary">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+<link rel="canonical" href="http://yoursite.com/2019/08/29/Node.js%E4%B9%8B%E7%89%B9%E6%80%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Node.js之特性 | Foolish-Max</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Foolish-Max</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/Node.js%E4%B9%8B%E7%89%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Node.js之特性
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-29 16:04:36" itemprop="dateCreated datePublished" datetime="2019-08-29T16:04:36+08:00">2019-08-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-21 11:49:57" itemprop="dateModified" datetime="2019-09-21T11:49:57+08:00">2019-09-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="Node-js是什么"><a href="#Node-js是什么" class="headerlink" title="Node.js是什么?"></a>Node.js是什么?</h3><ul>
+<li><p>Node.js是一个JavaScript运行时环境，可以解析和执行js代码。</p>
+<span id="more"></span></li>
+<li><p>构建于 Chrome 的V8引擎之上</p>
+</li>
+<li><p>没有BOM、DOM，有EcmaScript语法。</p>
+</li>
+<li><p>node中有很多具名的核心模块</p>
+<ul>
+<li>fs 文件操作模块</li>
+<li>http 服务器构建模块</li>
+<li>path 路径模块</li>
+<li>os 操作系统信息模块</li>
+</ul>
+</li>
+<li><p>在核心模块中提供了一些服务器级别的操作API</p>
+<ul>
+<li>文件读写</li>
+<li>网络服务的构建</li>
+<li>网络通信</li>
+<li>http服务器<!--more-->
+<h3 id="node都有哪些特性？"><a href="#node都有哪些特性？" class="headerlink" title="node都有哪些特性？"></a>node都有哪些特性？</h3></li>
+</ul>
+</li>
+<li><p>单线程</p>
+<ul>
+<li>不会为每个用户连接创建一个新的线程，仅仅使用一个线程，减少了操作系统的线程创建<br>和销毁的时间开销。缺点就是一个用户造成线程的崩溃会导致整个服务的崩溃。</li>
+<li>减少内存的开销</li>
+</ul>
+</li>
+<li><p>事件驱动 event-driven</p>
+<ul>
+<li>node中一个时刻只能执行一个事件回调函数，但是执行过程中，可以转而处理<br>其他事件，然后返回继续执行原事件的回调函数，这种处理机制，称为“事件环”机制。</li>
+</ul>
+</li>
+<li><p>非阻塞I/O</p>
+<ul>
+<li>I/O数据传输操作会阻塞代码的执行，极大降低了程序的执行效率,因为一个线程只能处理<br>一项任务，要想提高吞吐量必须通过多线程。非阻塞I/O机制，可以将异步操作的处理<br>代码放在回调函数中，从而提高了程序的执行效率。</li>
+</ul>
+</li>
+</ul>
+<h3 id="浏览器的进程和线程"><a href="#浏览器的进程和线程" class="headerlink" title="浏览器的进程和线程"></a>浏览器的进程和线程</h3><ul>
+<li>一个程序可以有多个进程</li>
+<li>一个进程可以有多个线程</li>
+<li>进程在执行u欧城中拥有独立的内存单元，而多个线程共享内存。</li>
+<li>多个线程之间可以相互通信</li>
+<li>每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口</li>
+<li>线程不能独立执行，必须依存在应用程序中</li>
+</ul>
+<h3 id="Node-js适合开发什么？"><a href="#Node-js适合开发什么？" class="headerlink" title="Node.js适合开发什么？"></a>Node.js适合开发什么？</h3><ul>
+<li>善于I/O,不善于计算，因为Node.js最擅长的就是任务调度，不适合于利用CPU进行过多的运算的程序。</li>
+<li>当应用程序需要处理大量并发的I/O,而在向客户端发出响应之前，应用程序内部不需要<br>进行非常复杂处理的时候，Node.js非常合适。</li>
+<li>Node.js也非常适合与web socket配合，开发长连接的实时交互应用程序。<ul>
+<li>用户表单</li>
+<li>考试系统</li>
+<li>聊天室</li>
+<li>图文直播</li>
+</ul>
+</li>
+</ul>
+<h3 id="nodejs能做什么？"><a href="#nodejs能做什么？" class="headerlink" title="nodejs能做什么？"></a>nodejs能做什么？</h3><ul>
+<li>Node.js可以生成动态页面内容</li>
+<li>Node.js可以创建，打开，读取，写入，删除和关闭服务器上的文件</li>
+<li>Node.js可以收集表单数据</li>
+<li>Node.js可以添加，删除，修改数据库中的数据</li>
+</ul>
+<h3 id="服务端渲染和客户端渲染的区别"><a href="#服务端渲染和客户端渲染的区别" class="headerlink" title="服务端渲染和客户端渲染的区别"></a>服务端渲染和客户端渲染的区别</h3><ul>
+<li>客户端渲染不利于SEO搜索引擎优化</li>
+<li>服务器渲染可以被爬虫抓取</li>
+<li>例如：京东商品列表是服务端渲染，用户评论是客户端渲染（提高用户体验）</li>
+</ul>
+<h4 id="小补充：使用cnpm"><a href="#小补充：使用cnpm" class="headerlink" title="小补充：使用cnpm"></a>小补充：使用cnpm</h4><ul>
+<li>方法一 安装cnpm<ul>
+<li><code>npm install --global cnpm</code></li>
+</ul>
+</li>
+<li>方法二 改变registry<ul>
+<li><code>npm install jquery --registry=https://registry.npm.taobao.org</code></li>
+</ul>
+</li>
+<li>方法三 加入配置选项<ul>
+<li><code>npm config set registry https://registry.npm.taobao.org</code></li>
+<li><code>npm config list</code></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E5%93%88%E5%B8%8C%E8%A1%A8/" rel="prev" title="数据结构与算法之哈希表">
+      <i class="fa fa-chevron-left"></i> 数据结构与算法之哈希表
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/08/29/Node.js%E4%B9%8B%E5%AE%9E%E7%8E%B0%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="next" title="Node.js之实现读写文件操作">
+      Node.js之实现读写文件操作 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">Node.js是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">node都有哪些特性？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">浏览器的进程和线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js%E9%80%82%E5%90%88%E5%BC%80%E5%8F%91%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">Node.js适合开发什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nodejs%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">nodejs能做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">6.</span> <span class="nav-text">服务端渲染和客户端渲染的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E8%A1%A5%E5%85%85%EF%BC%9A%E4%BD%BF%E7%94%A8cnpm"><span class="nav-number">6.1.</span> <span class="nav-text">小补充：使用cnpm</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Foolish-Max</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">219k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:19</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
