@@ -147,6 +147,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/18/13%E4%B8%AA%E8%B6%85%E5%AE%9E%E7%94%A8%E7%9A%84JavaScript%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/18/13%E4%B8%AA%E8%B6%85%E5%AE%9E%E7%94%A8%E7%9A%84JavaScript%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">13个超实用的JavaScript数组操作技巧</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-18 23:26:33" itemprop="dateCreated datePublished" datetime="2020-07-18T23:26:33+08:00">2020-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 09:30:36" itemprop="dateModified" datetime="2020-07-19T09:30:36+08:00">2020-07-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="13个超实用的JavaScript数组操作技巧"><a href="#13个超实用的JavaScript数组操作技巧" class="headerlink" title="13个超实用的JavaScript数组操作技巧"></a>13个超实用的JavaScript数组操作技巧</h2><h3 id="1-数组去重"><a href="#1-数组去重" class="headerlink" title="1.数组去重"></a>1.数组去重</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let fruits = [&quot;banana&quot;,&quot;apple&quot;,&quot;orange&quot;&quot;watermelon&quot;,&quot;apple&quot;,&quot;orrage&quot;]</span><br><span class="line">//第一种方法</span><br><span class="line">let uniqueFruits = Array.from(new Set(fruits))</span><br><span class="line">//第二种方法</span><br><span class="line">let uniqueFruits2 = [...new Set(fruits)]</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-替换数组中的特定值"><a href="#2-替换数组中的特定值" class="headerlink" title="2.替换数组中的特定值"></a>2.替换数组中的特定值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 使用.splice(start,value to remove,valueToAdd),返回删除对象，并修改原数组</span><br><span class="line">let fruits = [&quot;banana&quot;,&quot;apple&quot;,&quot;orange&quot;,&quot;watermelon&quot;,&quot;apple&quot;,&quot;orrage&quot;]</span><br><span class="line">fruits.splice(0,2,&quot;potato&quot;,&quot;tomato&quot;)</span><br><span class="line">console.log(fruits)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-不使用-map-映射数组"><a href="#3-不使用-map-映射数组" class="headerlink" title="3.不使用.map()映射数组"></a>3.不使用.map()映射数组</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let friends = [</span><br><span class="line">    &#123; name: &#x27;John&#x27;, age: 22 &#125;,</span><br><span class="line">    &#123; name: &#x27;Peter&#x27;, age: 23 &#125;,</span><br><span class="line">    &#123; name: &#x27;Mark&#x27;, age: 24 &#125;,</span><br><span class="line">    &#123; name: &#x27;Maria&#x27;, age: 22 &#125;,</span><br><span class="line">    &#123; name: &#x27;Monica&#x27;, age: 21 &#125;,</span><br><span class="line">    &#123; name: &#x27;Martha&#x27;, age: 19 &#125;,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">let friendsNames = Array.from(friends, (&#123;name&#125;) =&gt; name)</span><br><span class="line"></span><br><span class="line">console.log(friendsNames)//returns [&quot;John&quot;, &quot;Peter&quot;, &quot;Mark&quot;, &quot;Maria&quot;, &quot;Monica&quot;, &quot;Martha&quot;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-清空数组"><a href="#4-清空数组" class="headerlink" title="4.清空数组"></a>4.清空数组</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let fruits = [&quot;banana&quot;, &quot;apple&quot;, &quot;orange&quot;, &quot;watermelon&quot;, &quot;apple&quot;, &quot;orange&quot;, &quot;grape&quot;, &quot;apple&quot;];</span><br><span class="line">//要清空数组，仅需要将数组的长度设置为0</span><br><span class="line">fruits.length = 0;</span><br><span class="line">console.log(fruits); // returns []</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-数组转对象"><a href="#5-数组转对象" class="headerlink" title="5.数组转对象"></a>5.数组转对象</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let fruits = [&quot;banana&quot;, &quot;apple&quot;, &quot;orange&quot;, &quot;watermelon&quot;];</span><br><span class="line"></span><br><span class="line">let fruitsObj = &#123;...fruits&#125;;</span><br><span class="line"></span><br><span class="line">console.log(fruitsObj) // returns &#123;0: &quot;banana&quot;, 1: &quot;apple&quot;, 2: &quot;orange&quot;, 3: &quot;watermelon&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-用数据填充数组"><a href="#6-用数据填充数组" class="headerlink" title="6.用数据填充数组"></a>6.用数据填充数组</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let newArray = new Array(10).fill(&quot;1&quot;)</span><br><span class="line"></span><br><span class="line">console.log(newArray)</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-合并数组"><a href="#7-合并数组" class="headerlink" title="7.合并数组"></a>7.合并数组</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;];</span><br><span class="line">var meat = [&quot;poultry&quot;, &quot;beef&quot;, &quot;fish&quot;];</span><br><span class="line">var vegetables = [&quot;potato&quot;, &quot;tomato&quot;, &quot;cucumber&quot;];</span><br><span class="line">//使用扩展运算符...</span><br><span class="line">var food = […fruits, …meat, …vegetables];</span><br><span class="line">console.log(food); </span><br></pre></td></tr></table></figure>
+
+<h3 id="8-求数组的交集"><a href="#8-求数组的交集" class="headerlink" title="8.求数组的交集"></a>8.求数组的交集</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr1 = [0,2,3,5,6,8,6]</span><br><span class="line">var arr2 = [1,2,3,4,5,6,4]</span><br><span class="line">var duplicatedValues = [...new Set(arr1)].filter(item=&gt;arr2.includes(item))</span><br><span class="line">console.log(duplicatedValues)</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-从数组中删除虚值"><a href="#9-从数组中删除虚值" class="headerlink" title="9.从数组中删除虚值"></a>9.从数组中删除虚值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//虚值有：false、0、null、NaN、undefined、&quot;&quot;.</span><br><span class="line">var mixedArr = [0,&quot;blue&quot;,&quot;&quot;,NaN,9,true,undefined,&quot;white&quot;,false]</span><br><span class="line">var trueArr = mixedArr.filter(Boolean)</span><br><span class="line">console.log(trueArr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-从数组中获取随机值"><a href="#10-从数组中获取随机值" class="headerlink" title="10.从数组中获取随机值"></a>10.从数组中获取随机值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var colors = [&quot;blue&quot;, &quot;white&quot;, &quot;green&quot;, &quot;navy&quot;, &quot;pink&quot;, &quot;purple&quot;, &quot;orange&quot;, &quot;yellow&quot;, &quot;black&quot;, &quot;brown&quot;];</span><br><span class="line"></span><br><span class="line">var randomColor = colors[(Math.floor(Math.random() * (color.length)))]</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-反转数组"><a href="#11-反转数组" class="headerlink" title="11.反转数组"></a>11.反转数组</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var colors = [“blue”, “white”, “green”, “navy”, “pink”, “purple”, “orange”, “yellow”, “black”, “brown”];</span><br><span class="line">var reversedColors = colors.reverse();</span><br><span class="line">console.log(reversedColors); </span><br></pre></td></tr></table></figure>
+
+<h3 id="12-lastIndexOf-方法"><a href="#12-lastIndexOf-方法" class="headerlink" title="12.lastIndexOf()方法"></a>12.lastIndexOf()方法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 查找给定元素的最后依次出现的索引</span><br><span class="line">var nums = [1, 5, 2, 6, 3, 5, 2, 3, 6, 5, 2, 7];</span><br><span class="line">var lastIndex = nums.lastIndexOf(5);</span><br><span class="line">console.log(lastIndex); // returns 9</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-对数组中所有值求和"><a href="#13-对数组中所有值求和" class="headerlink" title="13.对数组中所有值求和"></a>13.对数组中所有值求和</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var nums = [1,5,4,3]</span><br><span class="line">var sum = nums.reduce((x,y)=&gt;x+y)</span><br><span class="line">console.log(sum)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/javascript%E5%B8%B8%E7%94%A8api%E5%90%88%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1052,107 +1163,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/27/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">常见设计模式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-09-27 22:29:40 / 修改时间：22:31:11" itemprop="dateCreated datePublished" datetime="2019-09-27T22:29:40+08:00">2019-09-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>49</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="常见的设计模式"><a href="#常见的设计模式" class="headerlink" title="常见的设计模式"></a>常见的设计模式</h3><ul>
-<li><p>单例模式</p>
-</li>
-<li><p>构造函数模式</p>
-</li>
-<li><p>建造者模式</p>
-</li>
-<li><p>工厂模式</p>
-</li>
-<li><p>代理模式</p>
-</li>
-<li><p>命令模式</p>
-</li>
-<li><p>观察者模式</p>
-</li>
-<li><p>适配器模式</p>
-</li>
-<li><p>职责链模式</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1222,18 +1232,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-10-27T07:27:38.625Z</updated>
+  <updated>2021-11-02T02:06:13.346Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>lerna开发</title>
+    <link href="http://yoursite.com/2021/11/01/lerna%E5%BC%80%E5%8F%91/"/>
+    <id>http://yoursite.com/2021/11/01/lerna%E5%BC%80%E5%8F%91/</id>
+    <published>2021-11-01T10:19:30.000Z</published>
+    <updated>2021-11-02T02:06:13.346Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="创建-npm-私服"><a href="#创建-npm-私服" class="headerlink" title="创建 npm 私服"></a>创建 npm 私服</h2><ul><li>verdaccio 是一个简单、零配置的本地私有化 npm 仓库</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cnpm install verdaccio -g</span><br><span class="line"></span><br><span class="line">verdaccio</span><br><span class="line">http://localhost:4873</span><br><span class="line">npm adduser --registry http://localhost:4873/</span><br><span class="line">npm publish --registry http://localhost: 4873/</span><br></pre></td></tr></table></figure><h2 id="lerna-常用命令"><a href="#lerna-常用命令" class="headerlink" title="lerna 常用命令"></a>lerna 常用命令</h2><p>项目初始化<br>| 命令 | 说明 |<br>| — | — |<br>| lerna init | 初始化项目 |</p><p>创建包<br>| 命令 | 说明 |<br>| — | — |<br>| lerna create | 创建 package |<br>| lerna add | 安装依赖 |<br>| lerna link | 链接依赖 |</p><p>开发和测试<br>| 命令 | 说明 |<br>| — | — |<br>| lerna exec | 执行 shell 脚本 |</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;创建-npm-私服&quot;&gt;&lt;a href=&quot;#创建-npm-私服&quot; class=&quot;headerlink&quot; title=&quot;创建 npm 私服&quot;&gt;&lt;/a&gt;创建 npm 私服&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;verdaccio 是一个简单、零配置的本地私有化 npm 仓库&lt;/li</summary>
+      
+    
+    
+    
+    <category term="lerna" scheme="http://yoursite.com/categories/lerna/"/>
+    
+    
+    <category term="lerna" scheme="http://yoursite.com/tags/lerna/"/>
+    
+  </entry>
   
   <entry>
     <title>webpack配置工程师</title>
@@ -470,35 +495,6 @@
     
     
     <category term="本地存储" scheme="http://yoursite.com/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常见设计模式</title>
-    <link href="http://yoursite.com/2019/09/27/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2019/09/27/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
-    <published>2019-09-27T14:29:40.000Z</published>
-    <updated>2019-09-27T14:31:11.267Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="常见的设计模式"><a href="#常见的设计模式" class="headerlink" title="常见的设计模式"></a>常见的设计模式</h3><ul><li><p>单例模式</p></li><li><p>构造函数模式</p></li><li><p>建造者模式</p></li><li><p>工厂模式</p></li><li><p>代理模式</p></li><li><p>命令模式</p></li><li><p>观察者模式</p></li><li><p>适配器模式</p></li><li><p>职责链模式</p></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;常见的设计模式&quot;&gt;&lt;a href=&quot;#常见的设计模式&quot; class=&quot;headerlink&quot; title=&quot;常见的设计模式&quot;&gt;&lt;/a&gt;常见的设计模式&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;单例模式&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;构造函数模式&lt;/p&gt;
-&lt;/li&gt;
-&lt;l</summary>
-      
-    
-    
-    
-    <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
