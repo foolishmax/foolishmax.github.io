@@ -5692,7 +5692,7 @@ shuffle(arr)
 
 <h2 id="lerna-常用命令"><a href="#lerna-常用命令" class="headerlink" title="lerna 常用命令"></a>lerna 常用命令</h2><p>项目初始化<br>| 命令 | 说明 |<br>| — | — |<br>| lerna init | 初始化项目 |</p>
 <p>创建包<br>| 命令 | 说明 |<br>| — | — |<br>| lerna create | 创建 package |<br>| lerna add | 安装依赖 |<br>| lerna link | 链接依赖 |</p>
-<p>开发和测试<br>| 命令 | 说明 |<br>| — | — |<br>| lerna exec | 执行 shell 脚本 |</p>
+<p>开发和测试<br>| 命令 | 说明 |<br>| — | — |<br>| lerna exec | 执行 shell 脚本 |<br>| lerna run | 执行 npm 命令 |<br>| lerna clean | 清空依赖|<br>| lerna bootstrap | 重新安装依赖 |</p>
 ]]></content>
       <categories>
         <category>lerna</category>
