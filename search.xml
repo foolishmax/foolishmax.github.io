@@ -2569,7 +2569,7 @@ console.clear()  //用于清除当前控制台的所有输出，将光标回置�
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;useWorkspaces&quot;: true, // 使用 workspaces 配置。此项为 true 的话，将使用 package.json 的 &quot;workspaces&quot;，下面的 &quot;packages&quot; 字段将不生效</span><br><span class="line">    &quot;version&quot;: &quot;0.1.0&quot;, // 所有包版本号，独立模式-&quot;independent&quot;</span><br><span class="line">    &quot;npmClient&quot;: &quot;cnpm&quot;, // npm client，可设置为 cnpm、yarn 等</span><br><span class="line">    &quot;packages&quot;: [ // 包所在目录，可指定多个</span><br><span class="line">        &quot;packages/*&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;command&quot;: &#123; // lerna 命令相关配置</span><br><span class="line">        &quot;publish&quot;: &#123; // 发布相关</span><br><span class="line">            &quot;ignoreChanges&quot;: [ // 指定文件或目录的变更，不触发 publish</span><br><span class="line">                &quot;.gitignore&quot;,</span><br><span class="line">                &quot;*.log&quot;,</span><br><span class="line">                &quot;*.md&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;bootstrap&quot;: &#123; // bootstrap 相关</span><br><span class="line">            &quot;ignore&quot;: &quot;npm-*&quot;,  // 不受 bootstrap 影响的包</span><br><span class="line">            &quot;npmClientArgs&quot;: [ // bootstr 执行参数</span><br><span class="line">                &quot;--no-package-lock&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="CRA-lerna-react-typescript-项目搭建"><a href="#CRA-lerna-react-typescript-项目搭建" class="headerlink" title="CRA + lerna + react + typescript 项目搭建"></a>CRA + lerna + react + typescript 项目搭建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.create-react-app demo --template typescript</span><br><span class="line"></span><br><span class="line">2.cd demo</span><br><span class="line"></span><br><span class="line">3.npm run eject</span><br><span class="line"></span><br><span class="line">4.lerna init</span><br><span class="line"></span><br><span class="line">5.lerna create builder-script</span><br><span class="line"></span><br><span class="line">6.自定义builder-scripts脚本命令</span><br><span class="line"></span><br><span class="line">7.自定义 eslintrc、tsconfig、webpack等配置项</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="CRA-lerna-react-typescript-项目搭建"><a href="#CRA-lerna-react-typescript-项目搭建" class="headerlink" title="CRA + lerna + react + typescript 项目搭建"></a>CRA + lerna + react + typescript 项目搭建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.create-react-app demo --template typescript</span><br><span class="line"></span><br><span class="line">2.cd demo</span><br><span class="line"></span><br><span class="line">3.npm run eject</span><br><span class="line"></span><br><span class="line">4.lerna init</span><br><span class="line"></span><br><span class="line">5.lerna create builder-script</span><br><span class="line"></span><br><span class="line">6.自定义builder-scripts脚本命令</span><br><span class="line"></span><br><span class="line">7.自定义 eslintrc、tsconfig、webpack等配置项</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>lerna</category>
@@ -5718,6 +5718,33 @@ shuffle(arr)
       </categories>
       <tags>
         <tag>面经</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue3源码调试</title>
+    <url>/2022/01/02/vue3%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<h2 id="vue3-源码调试步骤"><a href="#vue3-源码调试步骤" class="headerlink" title="vue3 源码调试步骤"></a>vue3 源码调试步骤</h2><h3 id="clone-项目"><a href="#clone-项目" class="headerlink" title="clone 项目"></a>clone 项目</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/vuejs/vue-next.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yarn --ignore-scripts</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改<strong>package.json</strong>中的 scripts 下 dev 的配置，后面添加 <em>–sourcemap</em></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;dev&quot;: &quot;node scripts/dev.js&quot;</span><br><span class="line">// ⬇</span><br><span class="line">&quot;dev&quot;: &quot;node scripts/dev.js --sourcemap&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yarn run dev</span><br></pre></td></tr></table></figure>
+
+<p>当终端出现<strong>waiting for changes…<strong>表示编译成功，可以</strong>ctrl+c</strong>结束进程查看源码了</p>
+<p>打包完成之后，examples 下面的文件会引用 dist 文件下的文件（dist 文件是我们刚才编译后生成的文件）<br><img src="../images/vue3-dist.jpg" alt="vue3-dist"></p>
+<h3 id="debugger"><a href="#debugger" class="headerlink" title="debugger"></a>debugger</h3><p>我们直接在<strong>package/vue/examples</strong>目录下添加<strong>demo/test.html</strong>文件，并引用**../../dist/vue.global.js**文件就可以使用 vue3 了，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;script src=&quot;../../dist/vue.global.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;template id=&quot;foo&quot;&gt;</span><br><span class="line">      &lt;h2&gt;&#123;&#123;name&#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      const App = &#123;</span><br><span class="line">        template: &#x27;#foo&#x27;,</span><br><span class="line">        data: function () &#123;</span><br><span class="line">          return &#123;</span><br><span class="line">            name: &#x27;foolishmax&#x27;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      Vue.createApp(App).mount(&#x27;#app&#x27;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>接下来在浏览器中打开就可以进行 vue3 的代码调试了。</p>
+<p><img src="../images/vue3-debugger.jpg" alt="vue3-debugger"></p>
+]]></content>
+      <categories>
+        <category>vue3</category>
+      </categories>
+      <tags>
+        <tag>vue3</tag>
       </tags>
   </entry>
 </search>
