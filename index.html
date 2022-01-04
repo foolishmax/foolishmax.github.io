@@ -147,6 +147,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foolish-Max">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolish-Max">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">获取唯一id的三种方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-04 11:19:53 / 修改时间：11:22:21" itemprop="dateCreated datePublished" datetime="2022-01-04T11:19:53+08:00">2022-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>623</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="uuid"><a href="#uuid" class="headerlink" title="uuid"></a>uuid</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const UUID = (len = 32) =&gt; &#123;</span><br><span class="line">  return &quot;xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx&quot;</span><br><span class="line">    .replace(/[xy]/g, function replace(c) &#123;</span><br><span class="line">      /* eslint-disable no-bitwise */</span><br><span class="line">      const r = (Math.random() * 16) | 0;</span><br><span class="line">      const v = c === &quot;x&quot; ? r : (r &amp; 0x3) | 0x8;</span><br><span class="line"></span><br><span class="line">      return v.toString(16);</span><br><span class="line">    &#125;)</span><br><span class="line">    .substring(0, len);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="nanoid"><a href="#nanoid" class="headerlink" title="nanoid"></a>nanoid</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const nanoid = (t = 21) =&gt; &#123;</span><br><span class="line">  let e = &quot;&quot;,</span><br><span class="line">    r = crypto.getRandomValues(new Uint8Array(t));</span><br><span class="line">  for (; t--; ) &#123;</span><br><span class="line">    let n = 63 &amp; r[t];</span><br><span class="line">    e +=</span><br><span class="line">      n &lt; 36</span><br><span class="line">        ? n.toString(36)</span><br><span class="line">        : n &lt; 62</span><br><span class="line">        ? (n - 26).toString(36).toUpperCase()</span><br><span class="line">        : n &lt; 63</span><br><span class="line">        ? &quot;_&quot;</span><br><span class="line">        : &quot;-&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  return e;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="原生方法"><a href="#原生方法" class="headerlink" title="原生方法"></a>原生方法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const id = URL.createObjectURL(new Blob()).substr(-36)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/02/vue3%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1078,109 +1164,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/07/ES6%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/07/ES6%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">ES6实用技巧</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-10-07 08:41:28 / 修改时间：22:42:44" itemprop="dateCreated datePublished" datetime="2020-10-07T08:41:28+08:00">2020-10-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>6.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="ES6实用技巧"><a href="#ES6实用技巧" class="headerlink" title="ES6实用技巧"></a>ES6实用技巧</h2><h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//js变量命名：小驼峰，前缀应当是名词，例如 maxCount、tableTitle</span><br><span class="line"></span><br><span class="line">//js常量：全大写，单词以_分割</span><br><span class="line"></span><br><span class="line">//js函数命名：小驼峰，前缀应当是动词，例如 setCount、getTitle</span><br><span class="line">//常见动词：can has is get set load</span><br><span class="line"></span><br><span class="line">//类 &amp; 构造函数：大驼峰，首字母大写</span><br><span class="line">// class Person &#123;&#125;</span><br><span class="line"></span><br><span class="line">//类的成员</span><br><span class="line">//公共属性和方法：跟变量和函数的命名一样</span><br><span class="line">//私有属性和方法，前缀为_(下划线)，同上</span><br><span class="line">//private _name: string;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="let-amp-const"><a href="#let-amp-const" class="headerlink" title="let &amp; const"></a>let &amp; const</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ES6新增了let和const两个命令，let用来定义变量，const用于定义常量，let和const都是块级作用域。</span><br><span class="line">const对于对象类型使用的是指针式引用，常量只是指向了对象的指针，对象本身的内容却依然可以被修改。</span><br><span class="line">在使用中，建议使用let和const完全代替var命令</span><br></pre></td></tr></table></figure>
-
-<h3 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const foo = `this is a $&#123;example&#125;`;</span><br></pre></td></tr></table></figure>
-
-<h3 id="数值扩展"><a href="#数值扩展" class="headerlink" title="数值扩展"></a>数值扩展</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">转换</span><br><span class="line">Number.parseInt —— 将字符串或数字转换为整数</span><br><span class="line">Number.parseFloat —— 将字符串或数字转换为浮点数</span><br><span class="line"></span><br><span class="line">上述两个方法与parseInt和parseFloat功能一致，在ES6中推荐使用Number.的方法调用，目的是为了减少全局性方法，使语言逐步模块化。</span><br></pre></td></tr></table></figure>
-
-<h3 id="数组扩展"><a href="#数组扩展" class="headerlink" title="数组扩展"></a>数组扩展</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">//合并数组</span><br><span class="line">let a = [1,2]</span><br><span class="line">let b = [3]</span><br><span class="line">let c = [...a, ...b]</span><br><span class="line"></span><br><span class="line">//Array.from() 将伪数组对象或可遍历对象转换为真数组</span><br><span class="line">//典型的伪数组有：函数的arguments对象，以及大多数DOM元素，还有字符串</span><br><span class="line"></span><br><span class="line">//快速转换为数组</span><br><span class="line">Array.of(3, 4, 5)</span><br><span class="line"></span><br><span class="line">//判断对象是否为数组</span><br><span class="line">if(Array.isArray(obj))&#123;...&#125;</span><br><span class="line"></span><br><span class="line">//检索数据中是否有5</span><br><span class="line">[1, 2, 3].includes(5) //false</span><br><span class="line"></span><br><span class="line">//找出第一个匹配表达式的结果，只要匹配到一项，函数就返回</span><br><span class="line">let a =[1, 3, 4, -89].find((value, index, arr) =&gt; &#123;</span><br><span class="line">    return value &lt; 0;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(a); //-89</span><br><span class="line"></span><br><span class="line">//找出第一个匹配表达式的结果的下标</span><br><span class="line">let a = [1, 2, 3, -2].findIndex((value, index, arr) =&gt; &#123;</span><br><span class="line">    return value &lt; 0;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(a); //3</span><br><span class="line"></span><br><span class="line">//内容过滤</span><br><span class="line">let a = [1, 2, 3, -4].filter((item) =&gt; &#123;</span><br><span class="line">    return item &gt; 0;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(a); //[1, 2, 3]</span><br><span class="line"></span><br><span class="line">//内容实例</span><br><span class="line">.keys() —— 获得数组中所有元素的键名(索引下标)</span><br><span class="line">.values() —— 获得数组中所有元素的数据</span><br><span class="line">.entries() —— 获得数组中所有数据的键名和数据</span><br><span class="line">类似Object中的同名函数</span><br></pre></td></tr></table></figure>
-
-<h3 id="对象扩展"><a href="#对象扩展" class="headerlink" title="对象扩展"></a>对象扩展</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 对象内容合并</span><br><span class="line">let a = &#123;a:1,b:2&#125;, //&#123;a: 1, b: 4&#125;</span><br><span class="line">    b = &#123;b:3&#125;,</span><br><span class="line">    c = &#123;b:4,c:5&#125;</span><br><span class="line">let d = Object.assign(a, b, c) //&#123;a: 1, b: 4, c: 5&#125;</span><br><span class="line">// 合并的同时更新a对象的内容</span><br><span class="line">// a自身没有的属性不会被添加，只会更新</span><br><span class="line">// 只会影响a第一个，不会影响后面的b、c</span><br><span class="line">// 推荐使用下面这种</span><br><span class="line">let d = Object.assign(&#123;&#125;, a, b, c)</span><br><span class="line"></span><br><span class="line">//对象内容</span><br><span class="line">Object.keys() —— 获取所有键名，以数组形式返回</span><br><span class="line">Object.values() —— 获取所有值内容，以数组形式返回</span><br><span class="line">Object.entries() —— 获取所有键名和值内容，以数组形式返回，成员内容也是数组形式 例如：[[&#x27;a&#x27;, 1],[&#x27;b&#x27;, 2]]</span><br><span class="line"></span><br><span class="line">//判断对象是否为数组对象</span><br><span class="line">if(Object.isArray(obj))&#123;&#125;</span><br><span class="line"></span><br><span class="line">//判断对象是否为空对象</span><br><span class="line">if(obj &amp;&amp; Object.keys(obj).length)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Destructuring解构赋值"><a href="#Destructuring解构赋值" class="headerlink" title="Destructuring解构赋值"></a>Destructuring解构赋值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">let [a, b, c] = [1, 2, 3] //如果个数不匹配，没有对应上的为undefined</span><br><span class="line"></span><br><span class="line">let [a, b, c = &#x27;default&#x27;] = [12, 23] //指定默认值</span><br><span class="line"></span><br><span class="line">let [a, ...b] = [1, 2, 3] //b的值为[2, 3]</span><br><span class="line"></span><br><span class="line">let [a, b, c] = &#x27;yes&#x27; //a的值为y，b的值为e，c的值为s</span><br><span class="line"></span><br><span class="line">//如果名称是字符串的自带属性，则会获得属性的值</span><br><span class="line">let &#123; length &#125; = &#x27;yes&#x27; //length 为3</span><br><span class="line"></span><br><span class="line">//解构赋值使用实例，作为函数传参，使用默认值</span><br><span class="line">let obj = &#123;a: 1, b: 2&#125;</span><br><span class="line">function test(&#123;a = 10, b&#125;) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">test(obj)</span><br><span class="line"></span><br><span class="line">// 对象结构解构赋值</span><br><span class="line">let obj = &#123;a: 1, b: 2&#125;;</span><br><span class="line">let &#123; a, b &#125; = obj; //a = 1,b = 2,需要严格匹配名称，数组的模式是严格匹配下标。</span><br><span class="line"></span><br><span class="line">let obj = &#123;a: 1, b: 2&#125;;</span><br><span class="line">let &#123; a = 0, b = 3 &#125; = obj; //赋值并给定默认值</span><br><span class="line"></span><br><span class="line">let obj = &#123; a: 1, b: 2&#125;;</span><br><span class="line">let &#123;a: A, b&#125; = obj; //获得内容后，将变量会从新命名</span><br><span class="line"></span><br><span class="line">let a = 0;</span><br><span class="line">(&#123;a, b&#125; = obj);//对已存在的a进行修改值，并生成新的变量b</span><br><span class="line"></span><br><span class="line">//解构的同时使用重命名和设置默认值的语法</span><br><span class="line">const person = &#123;name: &quot;zhangsan&quot;,sex: &quot;male&quot;&#125;;</span><br><span class="line">const &#123;name: middleName = &quot;zhangxiaosan&quot;&#125; = person;</span><br><span class="line">console.log(middleName); //&quot;zhangsan&quot;</span><br><span class="line">// 首先声明middleName这个变量，查询person的middle属性，如果存在则赋值给middleNmae，如果不存在使用默认值&quot;zhangxiaosan&quot;</span><br><span class="line"></span><br><span class="line">//多层解构赋值</span><br><span class="line">let obj = &#123;</span><br><span class="line">    arr: [&#x27;aaa&#x27;, &#123;a: 1&#125;]</span><br><span class="line">&#125;</span><br><span class="line">let &#123;arr: [b, &#123;a&#125;]&#125; = obj; //b为&#x27;aaa&#x27;,a为1，注意结构要对应。</span><br><span class="line"></span><br><span class="line">//数组转化为对象</span><br><span class="line">const points = [</span><br><span class="line">    [1,2],</span><br><span class="line">    [3,4]</span><br><span class="line">];</span><br><span class="line">let newPoints = points.map(item =&gt; &#123;</span><br><span class="line">    const [x,y] = item;</span><br><span class="line">    return &#123;x, y&#125;;</span><br><span class="line">&#125;)</span><br><span class="line">or</span><br><span class="line">let newPoints = points.map(([x, y]) =&gt; &#123;</span><br><span class="line">    return &#123;x, y&#125;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(newPoints);</span><br><span class="line">//[</span><br><span class="line">//  &#123;x:1,y:2&#125;,</span><br><span class="line">//  &#123;x:3,y:4&#125;</span><br><span class="line">//]</span><br></pre></td></tr></table></figure>
-
-<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//如果箭头函数直接返回一个对象，必须在对象外面加上括号，否则会报错</span><br><span class="line">//报错，会报SyntaxError</span><br><span class="line">let count = num =&gt; &#123;base: 50&#125;;</span><br><span class="line">//正确返回方式</span><br><span class="line">let count = num =&gt; (&#123;base: 50&#125;);</span><br><span class="line"></span><br><span class="line">//特点：更简洁的函数和封闭上下文的this指向。</span><br></pre></td></tr></table></figure>
-
-<h3 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">//基本用法</span><br><span class="line">let name = Symbol(&quot;name&quot;);</span><br><span class="line">console.log(name); //Symbol(name)</span><br><span class="line">console.log(typeof name); //&quot;symbol&quot;</span><br><span class="line"></span><br><span class="line">// Symbol 函数不能用new命令，因为Symbol是原始数据类型，不是对象</span><br><span class="line">// Symbol表示独一无二的值，因此带有相同参数的两个Symbol值也不相等</span><br><span class="line">let name1 = Symbol();</span><br><span class="line">let name2 = Symbol();</span><br><span class="line">name1 === name2;// false</span><br><span class="line">let name1 = Symbol(&quot;name&quot;);</span><br><span class="line">let name2 = Symbol(&quot;name&quot;);</span><br><span class="line">name1 === name2; // false</span><br><span class="line"></span><br><span class="line">//Symbol不能进行隐式类型转换</span><br><span class="line">let name = Symbol(&#x27;foo&#x27;);</span><br><span class="line">console.log(&quot;nihao&quot; + name);</span><br><span class="line">//浏览器报错：Uncaught TypeError:Cannot convert a Symbol value to a string.</span><br><span class="line"></span><br><span class="line">//Symbol值可以显示转换为字符串</span><br><span class="line">let name = Symbol(&#x27;foo&#x27;);</span><br><span class="line">String(name); //&quot;Symbol(foo)&quot;</span><br><span class="line">name.toString(); //&quot;Symbol(foo)&quot;</span><br><span class="line"></span><br><span class="line">//Symbol值不能转换为数字</span><br><span class="line">let name = Symbol(&#x27;foo&#x27;);</span><br><span class="line">Number(name);</span><br><span class="line">//浏览器报错：Uncaught TypeError:Cannot convert a Symbol value to a number.</span><br><span class="line"></span><br><span class="line">//Symbol值可以转换为布尔值</span><br><span class="line">let name = Symbol(&#x27;foo&#x27;);</span><br><span class="line">Boolean(name); //true</span><br><span class="line">!name //false</span><br><span class="line"></span><br><span class="line">//Symbol变量不能作为webStorage的键使用</span><br><span class="line">let name = Symbol();</span><br><span class="line">localStorage.setItem(name,&quot;aaaa&quot;);</span><br><span class="line">//浏览器报错：Uncaught TypeError:Cannot convert a Symbol value to a string.</span><br><span class="line"></span><br><span class="line">//使用场景</span><br><span class="line">//作为对象属性名</span><br><span class="line">//不能用.只能用[]</span><br><span class="line">let name = Symbol();</span><br><span class="line">let obj = &#123;&#125;;</span><br><span class="line">obj[name] = &quot;zhangsan&quot;;</span><br><span class="line">console.log(obj); //&#123;Symbol():&quot;zhangsan&quot;&#125;</span><br><span class="line"></span><br><span class="line">//Symbol作为属性名时，该属性时公有属性不是私有属性，可以在类的外部访问，但是不会出现在for...in,for...of的循环中，也不会被Object.keys()、Object.getOwnPropertyNames()返回。</span><br><span class="line">//可以通过Object.getOwnPropertySymbols()和Reflect.ownKeys()取到。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//定义常量，保证唯一性</span><br><span class="line">const COLOR_RED = Symbol(&quot;red&quot;);</span><br><span class="line">const MY_RED = Symbol(&quot;red&quot;);</span><br><span class="line"></span><br><span class="line">//Symbol.for() </span><br><span class="line">//作用：用于将描述相同的Symbol变量指向同一个Symbol值</span><br><span class="line">//Symbol()定义的值每次都是新建的，即使描述相同值也不同</span><br><span class="line">//Symbol.for() 会先检查给定的描述是否存在，不存在才会新建一个值，并将这个值登记在全局环境中供搜索。</span><br><span class="line">let a1 = Symbol.for(&#x27;a&#x27;);</span><br><span class="line">let a2 = Symbol.for(&#x27;a&#x27;);</span><br><span class="line">a1 === a2 //true</span><br><span class="line">typeof a1 //&quot;symbol&quot;</span><br><span class="line">typeof a2 //&quot;symbol&quot;</span><br><span class="line"></span><br><span class="line">//Symbol.keyFor()</span><br><span class="line">//检测Symbol值是否被登记过，返回一个已登记的Symbol类型值的key</span><br><span class="line">let a1 = Symbol.for(&#x27;a&#x27;);</span><br><span class="line">Symbol.keyFor(a1); //&quot;a&quot;</span><br><span class="line"></span><br><span class="line">let a2 = Symbol(&#x27;a&#x27;);</span><br><span class="line">Symbol.keyFor(a2); //undefined</span><br><span class="line"></span><br><span class="line">//Symbol的属性</span><br><span class="line">//Symbol.peorotype.description 用于返回Symbol数据的描述</span><br><span class="line">let a = Symbol(&quot;accc&quot;);</span><br><span class="line">a.description //&quot;accc&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="排除Object中不需要的键值"><a href="#排除Object中不需要的键值" class="headerlink" title="排除Object中不需要的键值"></a>排除Object中不需要的键值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;a:1,b:2,c:3&#125;;</span><br><span class="line"></span><br><span class="line">const &#123;a,...rest&#125; = obj; //获取除了a之外的所有属性</span><br></pre></td></tr></table></figure>
-
-<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//使用reduce对象数组的某一个属性求和</span><br><span class="line">const obj = [</span><br><span class="line">    &#123;name: &quot;lilei&quot;,score: 98&#125;,</span><br><span class="line">    &#123;name: &quot;hanmeimei&quot;,score: 90&#125;</span><br><span class="line">]</span><br><span class="line">const scoreTotal = objs.reduce((total, obj) =&gt; &#123;</span><br><span class="line">    return total + obj.score;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//使用reduce同时做到map和filter的作用</span><br><span class="line">const number = [10,20,30,40];</span><br><span class="line">const doubledOver50 = number.reduce((finalList, num) =&gt; &#123;</span><br><span class="line">    num = num * 2;</span><br><span class="line"></span><br><span class="line">    if(num &gt; 50) &#123;</span><br><span class="line">        finalList.push(num);</span><br><span class="line">    &#125;</span><br><span class="line">    return finalList;</span><br><span class="line">&#125;,[]);</span><br><span class="line">doubledOver50; //[60, 80]</span><br></pre></td></tr></table></figure>
-
-<h3 id="import-动态加载"><a href="#import-动态加载" class="headerlink" title="import() 动态加载"></a>import() 动态加载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//把import作为一个函数可以实现动态加载模块</span><br><span class="line">if(true) &#123;</span><br><span class="line">    import(&#x27;./module.js).then(res =&gt; &#123;</span><br><span class="line">        console.log(res);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1250,18 +1233,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1297,7 +1280,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">226k</span>
+    <span title="站点总字数">227k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

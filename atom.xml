@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-01-02T07:38:44.465Z</updated>
+  <updated>2022-01-04T03:22:21.094Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>获取唯一id的三种方法</title>
+    <link href="http://yoursite.com/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/</id>
+    <published>2022-01-04T03:19:53.000Z</published>
+    <updated>2022-01-04T03:22:21.094Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="uuid"><a href="#uuid" class="headerlink" title="uuid"></a>uuid</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const UUID = (len = 32) =&gt; &#123;</span><br><span class="line">  return &quot;xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx&quot;</span><br><span class="line">    .replace(/[xy]/g, function replace(c) &#123;</span><br><span class="line">      /* eslint-disable no-bitwise */</span><br><span class="line">      const r = (Math.random() * 16) | 0;</span><br><span class="line">      const v = c === &quot;x&quot; ? r : (r &amp; 0x3) | 0x8;</span><br><span class="line"></span><br><span class="line">      return v.toString(16);</span><br><span class="line">    &#125;)</span><br><span class="line">    .substring(0, len);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h2 id="nanoid"><a href="#nanoid" class="headerlink" title="nanoid"></a>nanoid</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const nanoid = (t = 21) =&gt; &#123;</span><br><span class="line">  let e = &quot;&quot;,</span><br><span class="line">    r = crypto.getRandomValues(new Uint8Array(t));</span><br><span class="line">  for (; t--; ) &#123;</span><br><span class="line">    let n = 63 &amp; r[t];</span><br><span class="line">    e +=</span><br><span class="line">      n &lt; 36</span><br><span class="line">        ? n.toString(36)</span><br><span class="line">        : n &lt; 62</span><br><span class="line">        ? (n - 26).toString(36).toUpperCase()</span><br><span class="line">        : n &lt; 63</span><br><span class="line">        ? &quot;_&quot;</span><br><span class="line">        : &quot;-&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  return e;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="原生方法"><a href="#原生方法" class="headerlink" title="原生方法"></a>原生方法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const id = URL.createObjectURL(new Blob()).substr(-36)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;uuid&quot;&gt;&lt;a href=&quot;#uuid&quot; class=&quot;headerlink&quot; title=&quot;uuid&quot;&gt;&lt;/a&gt;uuid&lt;/h2&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;</summary>
+      
+    
+    
+    
+    <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
+    
+    
+    <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>vue3源码调试</title>
@@ -468,33 +492,6 @@
     
     
     <category term="浏览器" scheme="http://yoursite.com/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTML语义化</title>
-    <link href="http://yoursite.com/2019/09/30/HTML%E8%AF%AD%E4%B9%89%E5%8C%96/"/>
-    <id>http://yoursite.com/2019/09/30/HTML%E8%AF%AD%E4%B9%89%E5%8C%96/</id>
-    <published>2019-09-30T08:04:32.000Z</published>
-    <updated>2019-09-30T08:09:31.023Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>什么是HTML语义化？</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">根据内容的结构化，选择合适的标签，便于开发者阅读和写出更优雅的代码的同时利于SEO的优化。</span><br></pre></td></tr></table></figure><ul><li>为什么要语义化？</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- 为了在没有CSS的情况下，页面也能呈现出很好地内容结构、代码结构:为了裸奔时好看；</span><br><span class="line">-  用户体验：例如title、alt用于解释名词或解释图片信息、label标签的活用；</span><br><span class="line">- 有利于SEO ：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息： 爬虫依赖于</span><br><span class="line">标签来确定上下文和各个关键字的权重；</span><br><span class="line">- 方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页；</span><br><span class="line">- 便于团队开发和维护，语义化更具可读性，是下一步网页的重要动向，遵循W3C标准的</span><br><span class="line">团队都遵循这个标准，可以减少差异化。</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;什么是HTML语义化？&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;</summary>
-      
-    
-    
-    
-    <category term="html" scheme="http://yoursite.com/categories/html/"/>
-    
-    
-    <category term="html" scheme="http://yoursite.com/tags/html/"/>
     
   </entry>
   
