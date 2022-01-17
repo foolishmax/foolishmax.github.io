@@ -5777,6 +5777,8 @@ shuffle(arr)
 <p><strong>第二种解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;t extends User&gt;(u: T): T &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    ...u,</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<span id="more"></span>
+
 <h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><ul>
 <li>以下函数我们希望参数<em>a</em>和<em>b</em>的类型都是一致的，即<em>a</em>和<em>b</em>同时为<em>number</em>或<em>string</em>类型，当它们的类型不一致时，ts 类型检查器能自动提示对应的错误信息。</li>
 </ul>
