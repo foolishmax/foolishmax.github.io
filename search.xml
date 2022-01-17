@@ -5808,7 +5808,7 @@ shuffle(arr)
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SetOptional 测试用例</span><br><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b?: string;</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type SomeOptional = SetOptional&lt;Foo, &#x27;a&#x27; | &#x27;b&#x27;&gt;</span><br><span class="line"></span><br><span class="line">type SomeOptional = &#123;</span><br><span class="line">  a?: number; //该属性变为可选的</span><br><span class="line">  b?: string; //保持不变</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// SetRequired 测试用例</span><br><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b?: string;</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type SomeRequired = SetRequired&lt;Foo, &#x27;a&#x27; | &#x27;b&#x27;&gt;</span><br><span class="line"></span><br><span class="line">type SomeRequired = &#123;</span><br><span class="line">  a: number; //保持不变</span><br><span class="line">  b: string; //该属性变为必选的</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>解决方案</strong></p>
+<p><strong>解决方案 1</strong></p>
 <ul>
 <li>SetOptional</li>
 </ul>
@@ -5818,6 +5818,9 @@ shuffle(arr)
 <li>SetRequired</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b?: string;</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Simplify&lt;T&gt; = &#123;</span><br><span class="line">  [P in keyof T]: T[P]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type SetRequired&lt;T, K extends keyof T&gt; = Simplify&lt;Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt; &amp; Required&lt;Pick&lt;T, K&gt;&gt;&gt;</span><br><span class="line"></span><br><span class="line">type SomeRequired = SetRequired&lt;Foo, &#x27;b&#x27; | &#x27;c&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 2</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b?: string;</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Simplely&lt;T&gt; = &#123;</span><br><span class="line">  [P in keyof T]: T[P]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type SetOptional&lt;T, K extends keyof T&gt; = Simplely&lt;&#123; [X in keyof Omit&lt;T, K&gt;]: T[X]; &#125; &amp; &#123; [P in K]?: T[P] &#125;&gt;;</span><br><span class="line">type SetRequired&lt;T, K extends keyof T&gt; = Simplely&lt;&#123; [X in keyof Omit&lt;T, K&gt;]: T[X]; &#125; &amp; &#123; [P in K]-?: T[P] &#125;&gt;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type SomeOptional = SetOptional&lt;Foo, &#x27;a&#x27; | &#x27;b&#x27;&gt;;</span><br><span class="line">type SomeRequired = SetRequired&lt;Foo, &#x27;b&#x27; | &#x27;c&#x27;&gt;;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
