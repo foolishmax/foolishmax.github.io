@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-01-04T03:22:21.094Z</updated>
+  <updated>2022-01-17T08:00:50.503Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TSS进阶题目</title>
+    <link href="http://yoursite.com/2022/01/17/TSS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/"/>
+    <id>http://yoursite.com/2022/01/17/TSS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/</id>
+    <published>2022-01-17T07:50:20.000Z</published>
+    <updated>2022-01-17T08:00:50.503Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="在线-TS-地址-typescript"><a href="#在线-TS-地址-typescript" class="headerlink" title="在线 TS 地址 typescript"></a>在线 TS 地址 <a href="https://www.typescriptlang.org/">typescript</a></h2><h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><ul><li>以下代码为什么会提示错误，应该如何解决上述问题？</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;T extends User&gt;(u: T): T &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>第一种解决方案</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;T extends User&gt;(u: T): User &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>第二种解决方案</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;t extends User&gt;(u: T): T &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    ...u,</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;在线-TS-地址-typescript&quot;&gt;&lt;a href=&quot;#在线-TS-地址-typescript&quot; class=&quot;headerlink&quot; title=&quot;在线 TS 地址 typescript&quot;&gt;&lt;/a&gt;在线 TS 地址 &lt;a href=&quot;https://www</summary>
+      
+    
+    
+    
+    <category term="typescript" scheme="http://yoursite.com/categories/typescript/"/>
+    
+    
+    <category term="typescript" scheme="http://yoursite.com/tags/typescript/"/>
+    
+  </entry>
   
   <entry>
     <title>获取唯一id的三种方法</title>
@@ -468,30 +492,6 @@
     
     
     <category term="前端安全" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浏览器是怎么对HTML5的离线存储资源进行管理和加载的？</title>
-    <link href="http://yoursite.com/2019/10/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%AF%B9HTML5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%AD%98%E5%82%A8%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86%E5%92%8C%E5%8A%A0%E8%BD%BD%E7%9A%84%EF%BC%9F/"/>
-    <id>http://yoursite.com/2019/10/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%AF%B9HTML5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%AD%98%E5%82%A8%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86%E5%92%8C%E5%8A%A0%E8%BD%BD%E7%9A%84%EF%BC%9F/</id>
-    <published>2019-10-08T03:44:55.000Z</published>
-    <updated>2019-10-08T03:50:23.181Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="浏览器是怎么对HTML5的离线存储资源进行管理和加载的？"><a href="#浏览器是怎么对HTML5的离线存储资源进行管理和加载的？" class="headerlink" title="浏览器是怎么对HTML5的离线存储资源进行管理和加载的？"></a>浏览器是怎么对HTML5的离线存储资源进行管理和加载的？</h2><ul><li><p>在线的情况下：浏览器发现html头部有manifest属性，会请求manifest文件，如果是<br>第一次访问app，浏览器会根据manifest文件的内容下载相应的资源并进行离线缓存。如果<br>已经离线存储了，浏览器会使用离线的资源加载页面，然后浏览器会比对新的manifest文件<br>与旧的manifest文件，如果文件没有发生改变，就不要做任何操作，如果文件改变，就会重新<br>下载文件中的资源并进行离线存储。</p></li><li><p>离线的情况下：浏览器就直接使用离线存储的资源。</p></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;浏览器是怎么对HTML5的离线存储资源进行管理和加载的？&quot;&gt;&lt;a href=&quot;#浏览器是怎么对HTML5的离线存储资源进行管理和加载的？&quot; class=&quot;headerlink&quot; title=&quot;浏览器是怎么对HTML5的离线存储资源进行管理和加载的？&quot;&gt;&lt;/a&gt;浏览</summary>
-      
-    
-    
-    
-    <category term="浏览器" scheme="http://yoursite.com/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    
-    
-    <category term="浏览器" scheme="http://yoursite.com/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     
   </entry>
   

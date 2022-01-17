@@ -5763,4 +5763,25 @@ shuffle(arr)
         <tag>面经</tag>
       </tags>
   </entry>
+  <entry>
+    <title>TSS进阶题目</title>
+    <url>/2022/01/17/TSS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/</url>
+    <content><![CDATA[<h2 id="在线-TS-地址-typescript"><a href="#在线-TS-地址-typescript" class="headerlink" title="在线 TS 地址 typescript"></a>在线 TS 地址 <a href="https://www.typescriptlang.org/">typescript</a></h2><h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><ul>
+<li>以下代码为什么会提示错误，应该如何解决上述问题？</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;T extends User&gt;(u: T): T &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>第一种解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;T extends User&gt;(u: T): User &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二种解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;t extends User&gt;(u: T): T &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    ...u,</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>typescript</category>
+      </categories>
+      <tags>
+        <tag>typescript</tag>
+      </tags>
+  </entry>
 </search>
