@@ -28,7 +28,7 @@
 <meta property="og:description" content="在线 TS 地址 typescript第一题 以下代码为什么会提示错误，应该如何解决上述问题？  1234567891011type User &#x3D; &amp;#123;  id: number;  kind: string;&amp;#125;function createCustomer&lt;T extends User&gt;(u: T): T &amp;#123;  return &amp;#123;    id: u.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-17T07:50:20.000Z">
-<meta property="article:modified_time" content="2022-01-17T09:34:33.276Z">
+<meta property="article:modified_time" content="2022-01-17T09:37:07.091Z">
 <meta property="article:author" content="Foolish-Max">
 <meta property="article:tag" content="typescript">
 <meta name="twitter:card" content="summary">
@@ -177,7 +177,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-01-17 15:50:20 / 修改时间：17:34:33" itemprop="dateCreated datePublished" datetime="2022-01-17T15:50:20+08:00">2022-01-17</time>
+              <time title="创建时间：2022-01-17 15:50:20 / 修改时间：17:37:07" itemprop="dateCreated datePublished" datetime="2022-01-17T15:50:20+08:00">2022-01-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -195,14 +195,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
+              <span>4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -269,6 +269,9 @@
 
 <p><strong>解决方案 2</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b?: string;</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Simplely&lt;T&gt; = &#123;</span><br><span class="line">  [P in keyof T]: T[P]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type SetOptional&lt;T, K extends keyof T&gt; = Simplely&lt;&#123; [X in keyof Omit&lt;T, K&gt;]: T[X]; &#125; &amp; &#123; [P in K]?: T[P] &#125;&gt;;</span><br><span class="line">type SetRequired&lt;T, K extends keyof T&gt; = Simplely&lt;&#123; [X in keyof Omit&lt;T, K&gt;]: T[X]; &#125; &amp; &#123; [P in K]-?: T[P] &#125;&gt;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type SomeOptional = SetOptional&lt;Foo, &#x27;a&#x27; | &#x27;b&#x27;&gt;;</span><br><span class="line">type SomeRequired = SetRequired&lt;Foo, &#x27;b&#x27; | &#x27;c&#x27;&gt;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 3</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type Simplify&lt;T&gt; = &#123;</span><br><span class="line">    [P in keyof T]: T[P]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type SetOptional&lt;T, K extends keyof T&gt; = Simplify&lt;Partial&lt;Pick&lt;T, K&gt;&gt; &amp; Omit&lt;T, K&gt;&gt;;</span><br><span class="line"></span><br><span class="line">type SetRequired&lt;T, K extends keyof T&gt; = Simplify&lt;Required&lt;Pick&lt;T, K&gt;&gt; &amp; Omit&lt;T, K&gt;&gt;</span><br></pre></td></tr></table></figure>
 
     </div>
 
