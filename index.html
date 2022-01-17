@@ -161,7 +161,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/17/TSS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/" class="post-title-link" itemprop="url">TSS进阶题目</a>
+            <a href="/2022/01/17/TSS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/" class="post-title-link" itemprop="url">TS进阶题目</a>
         </h2>
 
         <div class="post-meta">
@@ -172,7 +172,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-01-17 15:50:20 / 修改时间：16:00:50" itemprop="dateCreated datePublished" datetime="2022-01-17T15:50:20+08:00">2022-01-17</time>
+              <time title="创建时间：2022-01-17 15:50:20 / 修改时间：17:01:47" itemprop="dateCreated datePublished" datetime="2022-01-17T15:50:20+08:00">2022-01-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -190,14 +190,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>572</span>
+              <span>3.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -219,6 +219,46 @@
 
 <p><strong>第二种解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;t extends User&gt;(u: T): T &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    ...u,</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><ul>
+<li>以下函数我们希望参数<em>a</em>和<em>b</em>的类型都是一致的，即<em>a</em>和<em>b</em>同时为<em>number</em>或<em>string</em>类型，当它们的类型不一致时，ts 类型检查器能自动提示对应的错误信息。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function f(a: string | number,b: string | number) &#123;</span><br><span class="line">  if (typeof a === &#x27;string&#x27;) &#123;</span><br><span class="line">    return a + &#x27;:&#x27; + b;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return a + b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(1, 2); // OK</span><br><span class="line">f(&#x27;a&#x27;, &#x27;b&#x27;); // OK</span><br><span class="line">f(&#x27;a&#x27;, 2); // Error</span><br><span class="line">f(1, &#x27;b&#x27;); //Error</span><br></pre></td></tr></table></figure>
+
+<p><strong>第一种解决方案</strong></p>
+<ul>
+<li>函数重载</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function f(a: string, b: string): string;</span><br><span class="line">function f(a: number, b: number): number;</span><br><span class="line">function f(a: string | number, b: string | number): string | number &#123;</span><br><span class="line">  if (typeof a === &#x27;string&#x27;) &#123;</span><br><span class="line">    return a + &#x27;:&#x27; + b;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return (a as number) + (b as number);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(1, 2); // OK</span><br><span class="line">f(&#x27;a&#x27;, &#x27;b&#x27;); // OK</span><br><span class="line">f(1, &#x27;b&#x27;); // Error</span><br><span class="line">f(&#x27;a&#x27;, 2); // Error</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二种解决方案</strong></p>
+<ul>
+<li>自定义路由守卫</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const isStringArray = (params: string[] | number[]): params is string[] =&gt; typeof params[0] === &#x27;string&#x27;;</span><br><span class="line"></span><br><span class="line">function f(...args: string[] | number[]) &#123;</span><br><span class="line">  if (isStringArray(args)) &#123;</span><br><span class="line">    return args[0] + &#x27;:&#x27; + args[1];</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return args[0] + args[1];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(1, 2); // OK</span><br><span class="line">f(&#x27;a&#x27;, &#x27;b&#x27;); // OK</span><br><span class="line">f(1, &#x27;b&#x27;); // Error</span><br><span class="line">f(&#x27;a&#x27;, 2); // Error</span><br></pre></td></tr></table></figure>
+
+<p><strong>第三种解决方案</strong></p>
+<ul>
+<li>范型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function f&lt;T extends string | number&gt;(a: T, b: T) &#123;</span><br><span class="line">  if (typeof a === &#x27;string&#x27;) &#123;</span><br><span class="line">    return a + &#x27;:&#x27; + b;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return (a as number) + (b as number);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(1, 2); // OK</span><br><span class="line">f(&#x27;a&#x27;, &#x27;b&#x27;); // OK</span><br><span class="line">f(1, &#x27;b&#x27;); // Error</span><br><span class="line">f(&#x27;a&#x27;, 2); // Error</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><ul>
+<li>实现 SetOptional 工具类型，支持把给定的 keys 对应的属性变为可选，参考<em>Partial<T></em></li>
+<li>实现 SetRequired 工具类型，支持把给定的 keys 对应的属性变成必填，参考 <em>Require<T></em></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// SetOptional 测试用例</span><br><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b?: string;</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type SomeOptional = SetOptional&lt;Foo, &#x27;a&#x27; | &#x27;b&#x27;&gt;</span><br><span class="line"></span><br><span class="line">type SomeOptional = &#123;</span><br><span class="line">  a?: number; //该属性变为可选的</span><br><span class="line">  b?: string; //保持不变</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// SetRequired 测试用例</span><br><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b?: string;</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type SomeRequired = SetRequired&lt;Foo, &#x27;a&#x27; | &#x27;b&#x27;&gt;</span><br><span class="line"></span><br><span class="line">type SomeRequired = &#123;</span><br><span class="line">  a: number; //保持不变</span><br><span class="line">  b: string; //该属性变为必选的</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<ul>
+<li>SetOptional</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b?: string;</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 对交叉类型进行扁平化处理</span><br><span class="line">type Simplify&lt;T&gt; = &#123;</span><br><span class="line">  [P in keyof T]: T[P]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type SetOptional&lt;T, K extends keyof T&gt; = Simplify&lt;Partial&lt;Pick&lt;T, K&gt;&gt; &amp; Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;&gt;</span><br><span class="line"></span><br><span class="line">type SomeOptional = SetOptional&lt;Foo, &#x27;a&#x27; | &#x27;b&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>SetRequired</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b?: string;</span><br><span class="line">  c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Simplify&lt;T&gt; = &#123;</span><br><span class="line">  [P in keyof T]: T[P]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type SetRequired&lt;T, K extends keyof T&gt; = Simplify&lt;Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt; &amp; Required&lt;Pick&lt;T, K&gt;&gt;&gt;</span><br><span class="line"></span><br><span class="line">type SomeRequired = SetRequired&lt;Foo, &#x27;b&#x27; | &#x27;c&#x27;&gt;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1282,12 +1322,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">230k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:29</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
