@@ -1,1293 +1,333 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Foolish-Max">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>foolishmax - 仅作为个人学习记录</title><meta name="author" content="foolishmax"><meta name="copyright" content="foolishmax"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="foolishmax">
 <meta property="og:url" content="http://yoursite.com/page/8/index.html">
-<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:site_name" content="foolishmax">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Foolish-Max">
+<meta property="og:image" content="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/avatar.gif">
+<meta property="article:author" content="foolishmax">
 <meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://yoursite.com/page/8/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>Foolish-Max</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
+<meta name="twitter:image" content="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/avatar.gif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/page/8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'foolishmax',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-01-18 13:02:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Foolish-Max</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
-            
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/WEB%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/17/WEB%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">WEB前端性能优化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-07-17 00:48:51" itemprop="dateCreated datePublished" datetime="2019-07-17T00:48:51+08:00">2019-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-30 15:00:45" itemprop="dateModified" datetime="2019-09-30T15:00:45+08:00">2019-09-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">浏览器</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="WEB前端性能优化常见方法"><a href="#WEB前端性能优化常见方法" class="headerlink" title="WEB前端性能优化常见方法"></a>WEB前端性能优化常见方法</h1><p>前端性能优化针对不用资源有不同的性能优化方式</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/17/WEB%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/16/JavaScript%E4%B8%AD%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/16/JavaScript%E4%B8%AD%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">JavaScript中判断数据类型</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-07-16 23:47:27" itemprop="dateCreated datePublished" datetime="2019-07-16T23:47:27+08:00">2019-07-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-26 19:08:29" itemprop="dateModified" datetime="2019-09-26T19:08:29+08:00">2019-09-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="JavaScript中判断数据类型的几种方法"><a href="#JavaScript中判断数据类型的几种方法" class="headerlink" title="JavaScript中判断数据类型的几种方法"></a>JavaScript中判断数据类型的几种方法</h2><h4 id="一、typeof直接返回数据类型，但是无法判断数组、null、对象"><a href="#一、typeof直接返回数据类型，但是无法判断数组、null、对象" class="headerlink" title="一、typeof直接返回数据类型，但是无法判断数组、null、对象"></a>一、typeof直接返回数据类型，但是无法判断数组、null、对象</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/16/JavaScript%E4%B8%AD%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/16/%E7%AE%80%E5%8D%95%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%8E%9F%E5%9E%8B%E9%93%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/16/%E7%AE%80%E5%8D%95%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="post-title-link" itemprop="url">简单说一下原型链</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-07-16 19:25:12" itemprop="dateCreated datePublished" datetime="2019-07-16T19:25:12+08:00">2019-07-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-26 18:40:38" itemprop="dateModified" datetime="2019-09-26T18:40:38+08:00">2019-09-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>430</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="简单说下原型链"><a href="#简单说下原型链" class="headerlink" title="简单说下原型链"></a>简单说下原型链</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/16/%E7%AE%80%E5%8D%95%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%8E%9F%E5%9E%8B%E9%93%BE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/10/%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">说一下浏览器的缓存机制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-07-10 12:58:58" itemprop="dateCreated datePublished" datetime="2019-07-10T12:58:58+08:00">2019-07-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-05 15:22:35" itemprop="dateModified" datetime="2019-08-05T15:22:35+08:00">2019-08-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">浏览器</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/10/%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84reflow%E5%92%8Crepaint/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84reflow%E5%92%8Crepaint/" class="post-title-link" itemprop="url">浏览器的reflow和repaint</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-07-09 11:28:18" itemprop="dateCreated datePublished" datetime="2019-07-09T11:28:18+08:00">2019-07-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-14 10:43:42" itemprop="dateModified" datetime="2019-08-14T10:43:42+08:00">2019-08-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">浏览器</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>300</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="浏览器的reflow和repaint"><a href="#浏览器的reflow和repaint" class="headerlink" title="浏览器的reflow和repaint"></a>浏览器的reflow和repaint</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84reflow%E5%92%8Crepaint/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/CSS-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/07/CSS-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" class="post-title-link" itemprop="url">CSS-清除浮动</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-07-07 11:48:51" itemprop="dateCreated datePublished" datetime="2019-07-07T11:48:51+08:00">2019-07-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-07-08 15:37:06" itemprop="dateModified" datetime="2019-07-08T15:37:06+08:00">2019-07-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>859</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CSS-清除浮动"><a href="#CSS-清除浮动" class="headerlink" title="CSS-清除浮动"></a>CSS-清除浮动</h2><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004865198">原文链接</a></p>
-<h3 id="什么是CSS清除浮动"><a href="#什么是CSS清除浮动" class="headerlink" title="什么是CSS清除浮动?"></a>什么是CSS清除浮动?</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在非IE浏览器（如Firefox）下，当容器的高度为auto，且容器的内容中有浮动（float为left</span><br><span class="line">或right）的元素，在这种情况下，容器的高度不能自动伸长以适应内容的高度，使得内容溢出到</span><br><span class="line">容器外面而影响（甚至破坏）布局的现象。这个现象叫浮动溢出，为了防止这个现象的出现而进行</span><br><span class="line">的CSS处理，就叫CSS清除浮动。</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/07/CSS-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/%E7%89%9B%E5%AE%A2%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/06/%E7%89%9B%E5%AE%A2%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93-1/" class="post-title-link" itemprop="url">牛客学习知识总结-1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-07-06 20:13:17" itemprop="dateCreated datePublished" datetime="2019-07-06T20:13:17+08:00">2019-07-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-26 18:15:39" itemprop="dateModified" datetime="2019-09-26T18:15:39+08:00">2019-09-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">牛客</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="牛客学习知识总结"><a href="#牛客学习知识总结" class="headerlink" title="牛客学习知识总结"></a>牛客学习知识总结</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/06/%E7%89%9B%E5%AE%A2%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/%E4%BB%80%E4%B9%88%E6%98%AFDOCTYPE%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/06/%E4%BB%80%E4%B9%88%E6%98%AFDOCTYPE%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%EF%BC%9F/" class="post-title-link" itemprop="url">什么是DOCTYPE及其作用？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-07-06 16:03:58" itemprop="dateCreated datePublished" datetime="2019-07-06T16:03:58+08:00">2019-07-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-05 15:22:35" itemprop="dateModified" datetime="2019-08-05T15:22:35+08:00">2019-08-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">渲染机制类</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>361</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="什么是DOCTYPE及其作用？"><a href="#什么是DOCTYPE及其作用？" class="headerlink" title="什么是DOCTYPE及其作用？"></a>什么是DOCTYPE及其作用？</h2><ul>
-<li><p>DOCTYPE是document type（文档类型）的缩写。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/06/%E4%BB%80%E4%B9%88%E6%98%AFDOCTYPE%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%EF%BC%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/React/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/01/React/" class="post-title-link" itemprop="url">React</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-07-01 16:37:51" itemprop="dateCreated datePublished" datetime="2019-07-01T16:37:51+08:00">2019-07-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-08 22:46:09" itemprop="dateModified" datetime="2020-10-08T22:46:09+08:00">2020-10-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="React的基本认识"><a href="#React的基本认识" class="headerlink" title="React的基本认识"></a>React的基本认识</h2><ul>
-<li>Fecebook开源的一个js库</li>
-<li>一个用来动态构建用户界面的js库</li>
-<li>React的特点：<ul>
-<li>声明式编程</li>
-<li>组件化编程</li>
-<li>高效</li>
-<li>单向数据流</li>
-<li>支持客户端与服务端渲染</li>
-</ul>
-</li>
-<li>React高效的原因<ul>
-<li>虚拟DOM，不直接操作DOM(批量更新，减少更新的次数)</li>
-<li>高效的DOM Diff算法，最小化页面重绘(减小页面更新的区域)</li>
-</ul>
-</li>
-</ul>
-<h2 id="React中的生命周期函数"><a href="#React中的生命周期函数" class="headerlink" title="React中的生命周期函数"></a>React中的生命周期函数</h2><p>生命周期函数是指组件在某一时刻自动执行的函数</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/01/React/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/" class="post-title-link" itemprop="url">比较Vue和React？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-30 15:55:01" itemprop="dateCreated datePublished" datetime="2019-06-30T15:55:01+08:00">2019-06-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-24 20:34:01" itemprop="dateModified" datetime="2019-10-24T20:34:01+08:00">2019-10-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue%E3%80%81React/" itemprop="url" rel="index"><span itemprop="name">Vue、React</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="比较Vue和React的相同点和不同点？"><a href="#比较Vue和React的相同点和不同点？" class="headerlink" title="比较Vue和React的相同点和不同点？"></a>比较Vue和React的相同点和不同点？</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
       }
     }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Foolish-Max</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-          <span class="site-state-item-count">95</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">33</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">31</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/avatar.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">95</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">33</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/avatar.gif')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">foolishmax</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">foolishmax</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2019/07/17/WEB%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="WEB前端性能优化">WEB前端性能优化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-16T16:48:51.000Z" title="发表于 2019-07-17 00:48:51">2019-07-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a></span></div><div class="content">WEB前端性能优化常见方法前端性能优化针对不用资源有不同的性能优化方式
+
+
+内容优化
+
+(1)减少HTTP请求数：因为一个完整的请求要经过    DNS寻址，与服务器建立连接，发送数据，等待服务器响应，接受数据等消耗时间成本和资源成本的复杂过程。
+常见解决方法：
+
+
+资源和并和压缩：合并多个CSS文件和js文件并使用相应的工具对js、css、图片等进行压缩处理
+雪碧图（精灵图）：减少请求数
+合理设置http缓存：原则就是能缓存的越多越好，越久越好，通过http header中设置Expires过期时间，或者Last-Modifed进行请求验证
+减少http请求头、配置多个域名和CDN加速、使用缓存（HTTP缓存、浏览器缓存、应用缓存）、优化cookie
+
+
+（2）避免重定向：减少不必要的http跳转
+（3）延迟加载组件，预加载组件，图片懒加载
+（4）减少DOM元素数量：页面中存在大量DOM元素，会导致JavaScript遍历DOM的效率变慢。
+
+
+服务器优化
+
+（1）使用内容分发网络（CDN）：把网站内容分散到多个、处于不同地域位置的服务器上可以加快下载速度
+（2）Gzip压缩
+（3） ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2019/07/16/JavaScript%E4%B8%AD%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="JavaScript中判断数据类型">JavaScript中判断数据类型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-16T15:47:27.000Z" title="发表于 2019-07-16 23:47:27">2019-07-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/JavaScript/">JavaScript</a></span></div><div class="content">JavaScript中判断数据类型的几种方法一、typeof直接返回数据类型，但是无法判断数组、null、对象
+
+1234567891011121314151617181920212223typeof 1&quot;number&quot;typeof NaN&quot;number&quot;typeof &quot;1&quot;&quot;string&quot;typeof true&quot;boolean&quot;typeof undefined&quot;undefined&quot;typeof null&quot;object&quot;typeof []&quot;object&quot;typeof &#123;&#125;&quot;object&quot;
+其中，null、[]、&#123;&#125;都返回“object”。null可是原始数据类型的啊，怎么就是&#39;object&#39;
+了呢？？原来这个已经是历史问题了，在 JS 的最初版本中使用的是 32 位系统，为了性能
+考虑使用低位存储变量的类型信息，000 开头代表是对象，然而 null 表 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2019/07/16/%E7%AE%80%E5%8D%95%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="简单说一下原型链">简单说一下原型链</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-16T11:25:12.000Z" title="发表于 2019-07-16 19:25:12">2019-07-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/JavaScript/">JavaScript</a></span></div><div class="content">简单说下原型链
+
+原型链是由原型对象组成的，每个对象都有__proto__属性，指向了创建该对象的构造函数的原型，__proto__将对象连接起来组成了原型链。
+
+原型链：用来实现继承和共享属性的有限对象链。
+
+每个对象都有__proto__（隐式原型）属性，指向创建该对象的构造函数的原型。其实这个属性指向了 [[prototype]]，但是 [[prototype]] 是内部属性，我们并不能访问到，所以使用 proto 来访问。
+
+对象的隐式原型等于对象的构造函数的显式原型：obj.proto === Object.prototype
+
+访问属性的时候，js引擎会调用内部的默认。。。。。。[[Get]]操作，[[Get]]操作首先会检查对象本身是否包含这个属性如果对象没有这个属性，则对象可以通过__proto__来寻找不属于该对象的属性，proto将对象和原型连接起来形成原型链
+
+Function.prototype 和 Object.prototype是两个特殊的对象，他们由引擎创建。
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2019/07/10/%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" title="说一下浏览器的缓存机制">说一下浏览器的缓存机制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-10T04:58:58.000Z" title="发表于 2019-07-10 12:58:58">2019-07-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a></span></div><div class="content">前言
+缓存可以简单高效的提高性能优化，对于一个数据请求来说，分为网络请求、后端处理、浏览器
+响应三个步骤，浏览器缓存可以优化网络请求和响应部分。比如：直接换用缓存而不发起请求，
+或者发起请求但后端存储的数据和前端一致，就没有必要将数据回传，这样就减少的响应数据，
+使得缓存文件可以重复利用，减少带宽，减低网络负荷。
+
+缓存位置网络请求会先从缓存位置上面查找缓存，如果都没有命中，才会去请求网络资源，从缓存位置
+分为四种，并且各自有优先级：
+- Service Worker
+- Memory Cache
+- Disk Cache
+- Push Cache
+
+Service Worker&nbsp;&nbsp;&nbsp;&nbsp;Service Worker 是运行在浏览器背后的独立线程，一般可以用来实现缓存功能。使用 Service Worker的话，传输协议必须为 HTTPS。因为Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、如何匹配缓存、如 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2019/07/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84reflow%E5%92%8Crepaint/" title="浏览器的reflow和repaint">浏览器的reflow和repaint</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-09T03:28:18.000Z" title="发表于 2019-07-09 11:28:18">2019-07-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a></span></div><div class="content">浏览器的reflow和repaint
+
+reflow（回流||重排）：当浏览器上某一个位置的布局发生了改变，浏览器会重新从根部开始计算该节点的
+
+布局。比如：向页面中添加、删除某一元素等，dom节点的宽高位置改变，只要这些操作影响了
+页面的元素位置或大小的变化，都会引起reflow。
+
+repaint（重绘）：如果只改变页面元素的颜色、字体等不影响布局的属性时，浏览器会进行repaint。
+
+总结123由上可见，相比repaint操作，reflow的耗时要更多。只要是动态的对页面进行修改，浏览器的reflow和repaint的操作就不可避免，我们要做的就是尽可能的减少浏览器的reflow和repaint的次数。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2019/07/07/CSS-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/" title="CSS-清除浮动">CSS-清除浮动</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-07T03:48:51.000Z" title="发表于 2019-07-07 11:48:51">2019-07-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CSS/">CSS</a></span></div><div class="content">CSS-清除浮动原文链接
+什么是CSS清除浮动?1234在非IE浏览器（如Firefox）下，当容器的高度为auto，且容器的内容中有浮动（float为left或right）的元素，在这种情况下，容器的高度不能自动伸长以适应内容的高度，使得内容溢出到容器外面而影响（甚至破坏）布局的现象。这个现象叫浮动溢出，为了防止这个现象的出现而进行的CSS处理，就叫CSS清除浮动。
+
+清除浮动的方法
+方法一：使用带clear属性的空元素
+
+12345在浮动元素后使用一个空元素如&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;，并在CSS中赋予.clear&#123;clear:both;&#125;属性即可清理浮动。亦可使用&lt;br class=&quot;clear&quot; /&gt;或&lt;hr class=&quot;clear&quot; /&gt;来进行清理。优点：简单，代码少，浏览器兼容好。缺点：需要添加大量的无语义的html元素，代码不够优雅，后期不容易维护。
+
+
+方法二：使用CSS的overflow属性
+
+1给浮动元素的容器添加 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2019/07/06/%E7%89%9B%E5%AE%A2%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93-1/" title="牛客学习知识总结-1">牛客学习知识总结-1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-06T12:13:17.000Z" title="发表于 2019-07-06 20:13:17">2019-07-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%89%9B%E5%AE%A2/">牛客</a></span></div><div class="content">牛客学习知识总结
+
+超链接
+
+a标签的href的属性值是url，里面必须包含协议，没有协议就会解析成相对路径。
+
+
+HTTP状态码分类：
+
+1** 信息，服务器收到请求，需要请求者继续执行操作
+2** 成功，操作被成功接受并处理。
+200 服务端成功处理了请求并返回内容
+
+
+3** 重定向，需要进一步的操作以完成请求
+301 永久重定向
+302 临时重定向
+304 资源未被修改，返回一个304状态吗然后从本地缓存中加载请求的资源
+
+
+4** 客户端错误，请求包含语法错误或无法完成请求。
+404 （页面丢失）未找到资源
+403 服务器拒绝请求
+408 （请求超时） 服务器等候请求时发生超时
+
+
+5** 服务器错误，服务器在处理请求的过程中发生错误
+503 服务器暂时不可用
+504 服务器内部错误
 
 
 
-      </div>
 
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+HTTP协议的特征：
+
+C/S(客户端/服务器)模式：只要客户端和服务器知道如何处理数据内容，任何类型的数据都可以通过HTTP来发送，客户端和服务器指定合适的MIME-type内容类型。
+简单快速
+灵活
+无连接：限制每次连接只处理一个请求，收到客户的应答后即断开连接，可以节省传输时间。
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2019/07/06/%E4%BB%80%E4%B9%88%E6%98%AFDOCTYPE%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%EF%BC%9F/" title="什么是DOCTYPE及其作用？">什么是DOCTYPE及其作用？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-06T08:03:58.000Z" title="发表于 2019-07-06 16:03:58">2019-07-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6%E7%B1%BB/">渲染机制类</a></span></div><div class="content">什么是DOCTYPE及其作用？
+DOCTYPE是document type（文档类型）的缩写。
+
+写法：(声明了浏览器就会进入标准模式，按照W3C标准渲染页面)
+
+DOCTYPE的作用：
+
+DOCTYPE是用来声明文档类型和DTD规范的，校验文件和代码的合法性。
+告诉浏览器通过哪种规范（文档类型，DTD）来解析文档。
 
 
-      </div>
-    </main>
+DTD（document type definition）文档类型定义是一系列的语法规则，用来定义XML  或HTML的文件类型。浏览器会根据它来判断文档类型，决定使用哪种协议来解析，以及切换  浏览器的模式。
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
+浏览器模式
+  为了能够很好的显示满足标准的页面，又能最大程度兼容不合法的HTML，浏览器厂商会提供两种  浏览器模式。
 
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-    <span title="站点总字数">234k</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="站点阅读时长">3:33</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-        
+标准模式：根据W3C标准来渲染页面。
+混杂模式（兼容模式、怪异模式）：浏览器采用更加宽松、向后兼容的方式来渲染页面。
 
 
 
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2019/07/01/React/" title="React">React</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-01T08:37:51.000Z" title="发表于 2019-07-01 16:37:51">2019-07-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/React/">React</a></span></div><div class="content">React的基本认识
+Fecebook开源的一个js库
+一个用来动态构建用户界面的js库
+React的特点：
+声明式编程
+组件化编程
+高效
+单向数据流
+支持客户端与服务端渲染
+
+
+React高效的原因
+虚拟DOM，不直接操作DOM(批量更新，减少更新的次数)
+高效的DOM Diff算法，最小化页面重绘(减小页面更新的区域)
 
 
 
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+React中的生命周期函数生命周期函数是指组件在某一时刻自动执行的函数
 
 
 
+初始化过程（Initialization）
+在constructor()里面初始化Props和State属性。
+getDefaultProps()可以设置组件的默认属性值。
 
-  
+挂载过程（Mounting）
+componentWillMount(): 在组件即将被挂载到页面的时刻自动执行。
+render(): 将组件挂载到页面。
+componentDidMount(): 组件被挂载到页面之后立即执行。
+
+更新过程（Updation）
+componentWillReceiveProps()（在16.4版本中废弃，不推荐使用）：  一个组件从父组件接受参数，如果这个组件第一次存在父组件中不 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/" title="比较Vue和React？">比较Vue和React？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-06-30T07:55:01.000Z" title="发表于 2019-06-30 15:55:01">2019-06-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Vue%E3%80%81React/">Vue、React</a></span></div><div class="content">比较Vue和React的相同点和不同点？
+
+相同点
+都有组件化开发和Virtual DOM
+都支持props进行父子组件间的数据通信
+都支持数据驱动视图，不直接操作真实DOM，状态数据更新页面则自动更新
+都支持服务端渲染
+都支持原生应用的开发方案，React有React Native，Vue有Weex
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
-</html>
+不同点
+数据绑定： Vue实现了数据的双向绑定，React数据流动是单向的
+React推荐的组件写法为JSX，也就是把HTML和CSS全部写进Javascript中，即“all in js”Vue推荐的组件写法是webpack+vue-loader的单文件组件格式，即html、css、js写在同一个文件
+state对象在react应用中不可变，需要使用setState方法更新状态；在vue中state对象不是必须的，数据由data属性在vue对象中管理
+virtual DOM不一样，vue会跟踪每一个组件的依赖关系，不需要重新渲染整个组件树，而对于React而言，每当应用的状态被改变时，全部组件都会重新渲染，所以react会需要shouldComponentUpdate这个生命周期函 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/7/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#content-inner">9</a><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/9/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/avatar.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">foolishmax</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">95</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">33</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2022/01/17/TS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/" title="TS进阶题目">TS进阶题目</a><time datetime="2022-01-17T07:50:20.000Z" title="发表于 2022-01-17 15:50:20">2022-01-17</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/" title="获取唯一id的三种方法">获取唯一id的三种方法</a><time datetime="2022-01-04T03:19:53.000Z" title="发表于 2022-01-04 11:19:53">2022-01-04</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2022/01/02/vue3%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/" title="vue3源码调试">vue3源码调试</a><time datetime="2022-01-02T07:11:11.000Z" title="发表于 2022-01-02 15:11:11">2022-01-02</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2021/11/01/lerna%E5%BC%80%E5%8F%91/" title="lerna开发">lerna开发</a><time datetime="2021-11-01T10:19:30.000Z" title="发表于 2021-11-01 18:19:30">2021-11-01</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2021/10/27/webpack%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B%E5%B8%88/" title="webpack配置工程师">webpack配置工程师</a><time datetime="2021-10-27T02:48:00.000Z" title="发表于 2021-10-27 10:48:00">2021-10-27</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Ajax/"><span class="card-category-list-name">Ajax</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CSS/"><span class="card-category-list-name">CSS</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Css/"><span class="card-category-list-name">Css</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DOM/"><span class="card-category-list-name">DOM</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/HTML/"><span class="card-category-list-name">HTML</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JavaScript/"><span class="card-category-list-name">JavaScript</span><span class="card-category-list-count">32</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Node-js/"><span class="card-category-list-name">Node.js</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/React/"><span class="card-category-list-name">React</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Ajax/" style="font-size: 1.1em; color: #999">Ajax</a> <a href="/tags/CSS/" style="font-size: 1.1em; color: #999">CSS</a> <a href="/tags/Css/" style="font-size: 1.1em; color: #999">Css</a> <a href="/tags/DOM/" style="font-size: 1.1em; color: #999">DOM</a> <a href="/tags/HTML/" style="font-size: 1.1em; color: #999">HTML</a> <a href="/tags/JavaScript/" style="font-size: 1.5em; color: #99a9bf">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 1.3em; color: #99a1ac">Node.js</a> <a href="/tags/React/" style="font-size: 1.23em; color: #999ea6">React</a> <a href="/tags/Vue/" style="font-size: 1.17em; color: #999c9f">Vue</a> <a href="/tags/Webpack/" style="font-size: 1.1em; color: #999">Webpack</a> <a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/html/" style="font-size: 1.1em; color: #999">html</a> <a href="/tags/javascript/" style="font-size: 1.1em; color: #999">javascript</a> <a href="/tags/lerna/" style="font-size: 1.1em; color: #999">lerna</a> <a href="/tags/token/" style="font-size: 1.1em; color: #999">token</a> <a href="/tags/ts/" style="font-size: 1.1em; color: #999">ts</a> <a href="/tags/typescript/" style="font-size: 1.1em; color: #999">typescript</a> <a href="/tags/vue3/" style="font-size: 1.1em; color: #999">vue3</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">前端安全</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 1.1em; color: #999">异步</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 1.1em; color: #999">微信小程序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 1.37em; color: #99a4b2">数据结构与算法</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/" style="font-size: 1.1em; color: #999">本地存储</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 1.1em; color: #999">框架</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 1.43em; color: #99a6b9">浏览器</a> <a href="/tags/%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6%E7%B1%BB/" style="font-size: 1.1em; color: #999">渲染机制类</a> <a href="/tags/%E7%89%9B%E5%AE%A2/" style="font-size: 1.1em; color: #999">牛客</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" style="font-size: 1.1em; color: #999">网络请求</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.1em; color: #999">设计模式</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 1.3em; color: #99a1ac">面经</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 1.3em; color: #99a1ac">面试题</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/01/"><span class="card-archive-list-date">一月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/11/"><span class="card-archive-list-date">十一月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">95</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-01-18T05:02:07.483Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By foolishmax</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

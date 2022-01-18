@@ -1,974 +1,196 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Foolish-Max">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>foolishmax - 仅作为个人学习记录</title><meta name="author" content="foolishmax"><meta name="copyright" content="foolishmax"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="foolishmax">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Foolish-Max">
+<meta property="og:site_name" content="foolishmax">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Foolish-Max">
+<meta property="og:image" content="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/avatar.gif">
+<meta property="article:author" content="foolishmax">
 <meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://yoursite.com/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>Foolish-Max</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
+<meta name="twitter:image" content="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/avatar.gif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'foolishmax',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-01-18 13:02:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<link rel="alternate" href="/atom.xml" title="Foolish-Max" type="application/atom+xml">
-</head>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Foolish-Max</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">合抱之木始于毫末，万丈高楼起于垒土</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
-            
-      
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/17/TS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/17/TS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/" class="post-title-link" itemprop="url">TS进阶题目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-17 15:50:20" itemprop="dateCreated datePublished" datetime="2022-01-17T15:50:20+08:00">2022-01-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-18 11:13:25" itemprop="dateModified" datetime="2022-01-18T11:13:25+08:00">2022-01-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>6.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="在线-TS-地址-typescript"><a href="#在线-TS-地址-typescript" class="headerlink" title="在线 TS 地址 typescript"></a>在线 TS 地址 <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/">typescript</a></h2><h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><ul>
-<li>以下代码为什么会提示错误，应该如何解决上述问题？</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;T extends User&gt;(u: T): T &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>第一种解决方案</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;T extends User&gt;(u: T): User &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>第二种解决方案</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">type User = &#123;</span><br><span class="line">  id: number;</span><br><span class="line">  kind: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createCustomer&lt;t extends User&gt;(u: T): T &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    ...u,</span><br><span class="line">    id: u.id,</span><br><span class="line">    kind: &#x27;customer&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/17/TS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-      
-    </div>
-
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/avatar.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">95</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">33</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/avatar.gif')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">foolishmax</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">foolishmax</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2022/01/17/TS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/" title="TS进阶题目">TS进阶题目</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-01-17T07:50:20.000Z" title="发表于 2022-01-17 15:50:20">2022-01-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/typescript/">typescript</a></span></div><div class="content">在线 TS 地址 typescript第一题
+以下代码为什么会提示错误，应该如何解决上述问题？
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
+1234567891011type User = &#123;  id: number;  kind: string;&#125;function createCustomer&lt;T extends User&gt;(u: T): T &#123;  return &#123;    id: u.id,    kind: &#x27;customer&#x27;  &#125;&#125;
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
+第一种解决方案
+1234567891011type User = &#123;  id: number;  kind: string;&#125;function createCustomer&lt;T extends User&gt;(u: T): User &#123;  return &#123;    id: u.id,    kind: &#x27;customer&#x27;,  &#125;&#125;
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">获取唯一id的三种方法</a>
-        </h2>
+第二种解决方案
+123456789101112type User = &#12 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/" title="获取唯一id的三种方法">获取唯一id的三种方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-01-04T03:19:53.000Z" title="发表于 2022-01-04 11:19:53">2022-01-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/javascript/">javascript</a></span></div><div class="content">uuid1234567891011const UUID = (len = 32) =&gt; &#123;  return &quot;xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx&quot;    .replace(/[xy]/g, function replace(c) &#123;      /* eslint-disable no-bitwise */      const r = (Math.random() * 16) | 0;      const v = c === &quot;x&quot; ? r : (r &amp; 0x3) | 0x8;      return v.toString(16);    &#125;)    .substring(0, len);&#125;;
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
+nanoid1234567891011121314151617const nanoid = (t = 21) =&gt; &#123;  let e = &quot;&quot;,    r = crypto.getRandomValues(new Uint8Array ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2022/01/02/vue3%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/" title="vue3源码调试">vue3源码调试</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-01-02T07:11:11.000Z" title="发表于 2022-01-02 15:11:11">2022-01-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue3/">vue3</a></span></div><div class="content">vue3 源码调试步骤clone 项目1git clone https://github.com/vuejs/vue-next.git
 
-              <time title="创建时间：2022-01-04 11:19:53 / 修改时间：11:22:21" itemprop="dateCreated datePublished" datetime="2022-01-04T11:19:53+08:00">2022-01-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
+安装依赖1yarn --ignore-scripts
 
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>623</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
+修改配置修改package.json中的 scripts 下 dev 的配置，后面添加 –sourcemap
+123&quot;dev&quot;: &quot;node scripts/dev.js&quot;// ⬇&quot;dev&quot;: &quot;node scripts/dev.js --sourcemap&quot;
 
-        </div>
-      </header>
+编译1yarn run dev
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+当终端出现waiting for changes…表示编译成功，可以ctrl+c结束进程查看源码了
+打包完成之后，examples 下面的文件会引用 dist 文件下的文件（dist 文件是我们刚才编译后生成的文件）
+debugger我们直接在package/vue/examples目录下添加demo/test.html文件，并引用**../../dist/vue.global.js**文件就可以使用 vue3 了，代码如下 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2021/11/01/lerna%E5%BC%80%E5%8F%91/" title="lerna开发">lerna开发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-01T10:19:30.000Z" title="发表于 2021-11-01 18:19:30">2021-11-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/lerna/">lerna</a></span></div><div class="content">创建 npm 私服
+verdaccio 是一个简单、零配置的本地私有化 npm 仓库
 
-      
-          <h2 id="uuid"><a href="#uuid" class="headerlink" title="uuid"></a>uuid</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const UUID = (len = 32) =&gt; &#123;</span><br><span class="line">  return &quot;xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx&quot;</span><br><span class="line">    .replace(/[xy]/g, function replace(c) &#123;</span><br><span class="line">      /* eslint-disable no-bitwise */</span><br><span class="line">      const r = (Math.random() * 16) | 0;</span><br><span class="line">      const v = c === &quot;x&quot; ? r : (r &amp; 0x3) | 0x8;</span><br><span class="line"></span><br><span class="line">      return v.toString(16);</span><br><span class="line">    &#125;)</span><br><span class="line">    .substring(0, len);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+123456cnpm install verdaccio -gverdacciohttp://localhost:4873npm adduser --registry http://localhost:4873/npm publish --registry http://localhost: 4873/
 
-<h2 id="nanoid"><a href="#nanoid" class="headerlink" title="nanoid"></a>nanoid</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const nanoid = (t = 21) =&gt; &#123;</span><br><span class="line">  let e = &quot;&quot;,</span><br><span class="line">    r = crypto.getRandomValues(new Uint8Array(t));</span><br><span class="line">  for (; t--; ) &#123;</span><br><span class="line">    let n = 63 &amp; r[t];</span><br><span class="line">    e +=</span><br><span class="line">      n &lt; 36</span><br><span class="line">        ? n.toString(36)</span><br><span class="line">        : n &lt; 62</span><br><span class="line">        ? (n - 26).toString(36).toUpperCase()</span><br><span class="line">        : n &lt; 63</span><br><span class="line">        ? &quot;_&quot;</span><br><span class="line">        : &quot;-&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  return e;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+lerna 常用命令项目初始化| 命令 | 说明 || — | — || lerna init –independent | 初始化项目 |
+创建包| 命令 | 说明 || — | — || lerna create module-1 | 创建 package || lerna add | 安装依赖 || lerna link | 链接依赖 |
+开发和测试| 命令 | 说明 || — | — || lerna exec | 执行 shell 脚本 || lerna run | 执行 npm 命令 || lerna clean | 清空依赖|| lerna bootstrap | 重新安装依赖 |
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2021/10/27/webpack%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B%E5%B8%88/" title="webpack配置工程师">webpack配置工程师</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-27T02:48:00.000Z" title="发表于 2021-10-27 10:48:00">2021-10-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Webpack/">Webpack</a></span></div><div class="content">构建webpack知识体系分为下面三个层级：1.基础–会配置2.进阶–能优化3.深入–懂原理
+一、基础篇1.简单配置  该部分需掌握：  1.Webpack常规配置项有哪些？  2.常用loader有哪些？如何配置？  3.常用插件plugin有哪些？如何配置？  4.Babel如何配置？Babel插件如何使用？
+1.1 安装依赖需要现在本地安装webpack及webpack-cli
+1$ npm install webpack webpack-cli -D
 
-<h2 id="原生方法"><a href="#原生方法" class="headerlink" title="原生方法"></a>原生方法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const id = URL.createObjectURL(new Blob()).substr(-36)</span><br></pre></td></tr></table></figure>
+1.2 开始工作webpack在4以后就支持0配置打包，我们可以测试一下1.新建webpack-work项目，新建 ./src/index.js文件，写一段简单的代码
+123const a = &#x27;hello foolishmax&#x27;;console.log(a);module.exports = a;
 
-      
-    </div>
+2.直接运行npx webpack，启动打包)
+打包完成，会有一个提示：The &#39;mode&#39; option has not been set,...
+意思就是我们没有配置mode（告知webpa ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2021/10/05/React%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9F%A5%E8%AF%86%E9%93%BE%E8%B7%AF/" title="React深入浅出知识链路">React深入浅出知识链路</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-05T03:07:11.000Z" title="发表于 2021-10-05 11:07:11">2021-10-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/React/">React</a></span></div><div class="content">React框架的关键设计思想：“组件”、“虚拟DOM”组件化: 工程化思想在框架中的落地12“封闭”：在组件自身的渲染工作流中，每个组件都只处理它的内部的渲染逻辑。“开放”：针对组件间通信来说，React基于“单向数据流”的原则完成组件间的通信。
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/02/vue3%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/">
+虚拟DOM：核心算法的基石：123组件初始化-&gt;render方法-&gt;生成虚拟DOM-&gt;ReactDOM.render方法-&gt;生成真实DOM组件更新-&gt;render方法-&gt;生成新的虚拟DOM-&gt;diff算法-&gt;定位两次虚拟DOM的差异-&gt;批量更新
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
+componentWillReceiveProps(nextProps)1如果父组件导致子组件重新渲染，即使props没有更改，也会调用此方法，如果只想处理更改，请确保当前值和变更值的比较。---React官方
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/02/vue3%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/" class="post-title-link" itemprop="url">vue3源码调试</a>
-        </h2>
+shouldComponentUpdate1React组件会根据shouldComponentUpdate的返回值来决定是否执行后面的生命周期进而决定是否对组件进行re-render(重渲染)
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-02 15:11:11 / 修改时间：15:38:44" itemprop="dateCreated datePublished" datetime="2022-01-02T15:11:11+08:00">2022-01-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue3/" itemprop="url" rel="index"><span itemprop="name">vue3</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="vue3-源码调试步骤"><a href="#vue3-源码调试步骤" class="headerlink" title="vue3 源码调试步骤"></a>vue3 源码调试步骤</h2><h3 id="clone-项目"><a href="#clone-项目" class="headerlink" title="clone 项目"></a>clone 项目</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/vuejs/vue-next.git</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn --ignore-scripts</span><br></pre></td></tr></table></figure>
-
-<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改<strong>package.json</strong>中的 scripts 下 dev 的配置，后面添加 <em>–sourcemap</em></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;dev&quot;: &quot;node scripts/dev.js&quot;</span><br><span class="line">// ⬇</span><br><span class="line">&quot;dev&quot;: &quot;node scripts/dev.js --sourcemap&quot;</span><br></pre></td></tr></table></figure>
-
-<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn run dev</span><br></pre></td></tr></table></figure>
-
-<p>当终端出现<strong>waiting for changes…<strong>表示编译成功，可以</strong>ctrl+c</strong>结束进程查看源码了</p>
-<p>打包完成之后，examples 下面的文件会引用 dist 文件下的文件（dist 文件是我们刚才编译后生成的文件）<br><img src="../images/vue3-dist.jpg" alt="vue3-dist"></p>
-<h3 id="debugger"><a href="#debugger" class="headerlink" title="debugger"></a>debugger</h3><p>我们直接在<strong>package/vue/examples</strong>目录下添加<strong>demo/test.html</strong>文件，并引用**../../dist/vue.global.js**文件就可以使用 vue3 了，代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;script src=&quot;../../dist/vue.global.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;template id=&quot;foo&quot;&gt;</span><br><span class="line">      &lt;h2&gt;&#123;&#123;name&#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      const App = &#123;</span><br><span class="line">        template: &#x27;#foo&#x27;,</span><br><span class="line">        data: function () &#123;</span><br><span class="line">          return &#123;</span><br><span class="line">            name: &#x27;foolishmax&#x27;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      Vue.createApp(App).mount(&#x27;#app&#x27;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>接下来在浏览器中打开就可以进行 vue3 的代码调试了。</p>
-<p><img src="../images/vue3-debugger.jpg" alt="vue3-debugger"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/01/lerna%E5%BC%80%E5%8F%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/01/lerna%E5%BC%80%E5%8F%91/" class="post-title-link" itemprop="url">lerna开发</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-01 18:19:30" itemprop="dateCreated datePublished" datetime="2021-11-01T18:19:30+08:00">2021-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-08 19:00:12" itemprop="dateModified" datetime="2021-11-08T19:00:12+08:00">2021-11-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/lerna/" itemprop="url" rel="index"><span itemprop="name">lerna</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="创建-npm-私服"><a href="#创建-npm-私服" class="headerlink" title="创建 npm 私服"></a>创建 npm 私服</h2><ul>
-<li>verdaccio 是一个简单、零配置的本地私有化 npm 仓库</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cnpm install verdaccio -g</span><br><span class="line"></span><br><span class="line">verdaccio</span><br><span class="line">http://localhost:4873</span><br><span class="line">npm adduser --registry http://localhost:4873/</span><br><span class="line">npm publish --registry http://localhost: 4873/</span><br></pre></td></tr></table></figure>
-
-<h2 id="lerna-常用命令"><a href="#lerna-常用命令" class="headerlink" title="lerna 常用命令"></a>lerna 常用命令</h2><p>项目初始化<br>| 命令 | 说明 |<br>| — | — |<br>| lerna init –independent | 初始化项目 |</p>
-<p>创建包<br>| 命令 | 说明 |<br>| — | — |<br>| lerna create module-1 | 创建 package |<br>| lerna add | 安装依赖 |<br>| lerna link | 链接依赖 |</p>
-<p>开发和测试<br>| 命令 | 说明 |<br>| — | — |<br>| lerna exec | 执行 shell 脚本 |<br>| lerna run | 执行 npm 命令 |<br>| lerna clean | 清空依赖|<br>| lerna bootstrap | 重新安装依赖 |</p>
-<p>package 依赖</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.给指定package安装依赖</span><br><span class="line">$ lerna add lodash packages/module-1</span><br><span class="line">$ lerna add lodash --scope=module-1</span><br><span class="line">$ lerna add lodash **/module-1</span><br><span class="line">$yarn workspace module-1 add lodash</span><br><span class="line"></span><br><span class="line">2.给所有package安装依赖</span><br><span class="line">$ lerna add lodash</span><br><span class="line"></span><br><span class="line">3.workspace之间的依赖</span><br><span class="line">$ lerna add module-2 packages/module-1</span><br><span class="line">$ lerna add module-2 --scope module-1</span><br></pre></td></tr></table></figure>
-
-<p>发布</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lerna publish</span><br></pre></td></tr></table></figure>
-
-<h2 id="lerna-json"><a href="#lerna-json" class="headerlink" title="lerna.json"></a>lerna.json</h2><ul>
-<li>version: 当前仓库的版本，independent mode 请设置为 <strong>independent</strong>.<ul>
-<li>lerna 对于包的管理有两种模式：固定模式 fixed、独立模式 independent。</li>
-<li>固定模式所有包是统一的版本号，每次升级所有包统一更新，无论这个包内容是否改变。 *具体体现在 lerna 的配置文件中 lerna.json 中永远会存在一个确定版本号：{“version”: “0.0.1”}</li>
-<li>独立模式，每个包都是单独的版本号，每次 lerna 触发发布命令，每个包的版本都会单独变化，具体体现在 lerna 的配置文件 lerna.json 中没有一个确定的版本号，而是{“version”:”independent”}</li>
-</ul>
-</li>
-<li>npmClient: 指定运行的客户端程序 默认为 npm</li>
-<li>ignoreChanges: 一个不包含在<strong>lerna changed/publish</strong>的 glob 数组，使用这个阻止发布不必要的更新，比如修复<strong>README.md</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;useWorkspaces&quot;: true, // 使用 workspaces 配置。此项为 true 的话，将使用 package.json 的 &quot;workspaces&quot;，下面的 &quot;packages&quot; 字段将不生效</span><br><span class="line">    &quot;version&quot;: &quot;0.1.0&quot;, // 所有包版本号，独立模式-&quot;independent&quot;</span><br><span class="line">    &quot;npmClient&quot;: &quot;cnpm&quot;, // npm client，可设置为 cnpm、yarn 等</span><br><span class="line">    &quot;packages&quot;: [ // 包所在目录，可指定多个</span><br><span class="line">        &quot;packages/*&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;command&quot;: &#123; // lerna 命令相关配置</span><br><span class="line">        &quot;publish&quot;: &#123; // 发布相关</span><br><span class="line">            &quot;ignoreChanges&quot;: [ // 指定文件或目录的变更，不触发 publish</span><br><span class="line">                &quot;.gitignore&quot;,</span><br><span class="line">                &quot;*.log&quot;,</span><br><span class="line">                &quot;*.md&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;bootstrap&quot;: &#123; // bootstrap 相关</span><br><span class="line">            &quot;ignore&quot;: &quot;npm-*&quot;,  // 不受 bootstrap 影响的包</span><br><span class="line">            &quot;npmClientArgs&quot;: [ // bootstr 执行参数</span><br><span class="line">                &quot;--no-package-lock&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="CRA-lerna-react-typescript-项目搭建"><a href="#CRA-lerna-react-typescript-项目搭建" class="headerlink" title="CRA + lerna + react + typescript 项目搭建"></a>CRA + lerna + react + typescript 项目搭建</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1.create-react-app demo --template typescript</span><br><span class="line"></span><br><span class="line">2.cd demo</span><br><span class="line"></span><br><span class="line">3.npm run eject</span><br><span class="line"></span><br><span class="line">4.lerna init</span><br><span class="line"></span><br><span class="line">5.lerna create builder-script</span><br><span class="line"></span><br><span class="line">6.自定义builder-scripts脚本命令</span><br><span class="line"></span><br><span class="line">7.自定义 eslintrc、tsconfig、webpack等配置项</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/27/webpack%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B%E5%B8%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/27/webpack%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B%E5%B8%88/" class="post-title-link" itemprop="url">webpack配置工程师</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-10-27 10:48:00 / 修改时间：15:27:38" itemprop="dateCreated datePublished" datetime="2021-10-27T10:48:00+08:00">2021-10-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Webpack/" itemprop="url" rel="index"><span itemprop="name">Webpack</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>构建webpack知识体系分为下面三个层级：<br>1.基础–会配置<br>2.进阶–能优化<br>3.深入–懂原理</p>
-<h2 id="一、基础篇"><a href="#一、基础篇" class="headerlink" title="一、基础篇"></a>一、基础篇</h2><h3 id="1-简单配置"><a href="#1-简单配置" class="headerlink" title="1.简单配置"></a>1.简单配置</h3><p>  该部分需掌握：<br>  1.Webpack常规配置项有哪些？<br>  2.常用loader有哪些？如何配置？<br>  3.常用插件plugin有哪些？如何配置？<br>  4.Babel如何配置？Babel插件如何使用？</p>
-<h4 id="1-1-安装依赖"><a href="#1-1-安装依赖" class="headerlink" title="1.1 安装依赖"></a>1.1 安装依赖</h4><p>需要现在本地安装<strong>webpack</strong>及<strong>webpack-cli</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-开始工作"><a href="#1-2-开始工作" class="headerlink" title="1.2 开始工作"></a>1.2 开始工作</h4><p>webpack在4以后就支持0配置打包，我们可以测试一下<br>1.新建webpack-work项目，新建 <code>./src/index.js</code>文件，写一段简单的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = &#x27;hello foolishmax&#x27;;</span><br><span class="line">console.log(a);</span><br><span class="line">module.exports = a;</span><br></pre></td></tr></table></figure>
-
-<p>2.直接运行<code>npx webpack</code>，启动打包<br><img src="../images/webpack-mode-error.png" alt="webpack-mode-error">)</p>
-<p>打包完成，会有一个提示：<code>The &#39;mode&#39; option has not been set,...</code></p>
-<p>意思就是我们没有配置mode（告知webpack使用相应模式的内置优化，默认为<code>production</code>，另外还有<code>development</code>、<code>none</code>）</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>development</td>
-<td>开发模式，打包更加快速，省了代码优化步骤</td>
-</tr>
-<tr>
-<td>production</td>
-<td>生产模式，打包比较慢，开启tree-shaking和压缩代码</td>
-</tr>
-<tr>
-<td>none</td>
-<td>不使用任何默认优化选项</td>
-</tr>
-</tbody></table>
-<p>webpack.config.js中配置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &#x27;development&#x27;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="1-3配置文件"><a href="#1-3配置文件" class="headerlink" title="1.3配置文件"></a>1.3配置文件</h4><p>虽然可以零配置打包，但是实际工作中，还是需要使用配置文件的方式来满足不同项目的需求。<br>1.跟路径下创建配置文件<code>webpack.config.js</code><br>2.新增基本配置信息</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &#x27;development&#x27;, // 模式</span><br><span class="line">  entry: &#x27;./src/index.js&#x27;, // 打包入口地址</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#x27;bundle.js&#x27;, // 输出文件名</span><br><span class="line">    path: path.join(__dirname, &#x27;dist&#x27;) // 输出文件目录</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-loader"><a href="#1-4-loader" class="headerlink" title="1.4 loader"></a>1.4 loader</h4><p>这里我们把入口文件改成css文件，看下打包结果如何<br>1.新增<code>./src/main.css</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  padding: 0 20px;</span><br><span class="line">  max-width: 800px;</span><br><span class="line">  background: #f4f8fb;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>2.修改entry配置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &#x27;development&#x27;,</span><br><span class="line">  entry: &#x27;./src/main.css&#x27;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#x27;bundle.js&#x27;,</span><br><span class="line">    path: path.join(__dirname, &#x27;dist&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>3.运行打包命令： <code>npx webpack</code><br><img src="../images/webpack-loader.png" alt="loader"><br>这里的报错信息是因为：webpack默认支持处理js文件，其他类型都处理不了，需要借助loader来对不同类型的文件进行处理。</p>
-<p>4.安装<code>css-loader</code>来处理CSS</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install css-loader -D</span><br></pre></td></tr></table></figure>
-<p>5.配置资源加载模块</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &#x27;development&#x27;,</span><br><span class="line">  entry: &#x27;./src/main.css&#x27;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#x27;bundle.css&#x27;,</span><br><span class="line">    path: path.join(__dirname, &#x27;dist&#x27;)</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [ // 转换规则</span><br><span class="line">      &#123;</span><br><span class="line">        test: /.css$/, // 匹配所有css文件</span><br><span class="line">        use: &#x27;css-loader&#x27;, //对应的loader名称</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>6.重新运行打包命令<code>npx webpack</code>,就可以打包成功了</p>
-<p>总结：loader就是将webpack不认识的内容转化为认识的内容</p>
-<h4 id="插件（plugin）"><a href="#插件（plugin）" class="headerlink" title="插件（plugin）"></a>插件（plugin）</h4><p>插件可以贯穿webpack打包的生命周期，执行不同的任务</p>
-<p>1.新建<code>./src/index.html</code>文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如果想要打包后的资源文件，例如js或者css文件可以自动引入到html中，就需要使用插件<code>html-webpack-plugin</code>来做这件事情。</p>
-<p>2.本地安装 <code>html-webpack-plugin</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install html-webpack-plugin -D</span><br></pre></td></tr></table></figure>
-
-<p>3.配置插件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;);</span><br><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &#x27;development&#x27;,</span><br><span class="line">  entry: &#x27;./src/main.js&#x27;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#x27;bundle.js&#x27;,</span><br><span class="line">    path: path.join(__dirname, &#x27;dist&#x27;)</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [ // 转换规则</span><br><span class="line">      &#123;</span><br><span class="line">        test: /.css$/, // 匹配所有css文件</span><br><span class="line">        use: &#x27;css-loader&#x27;, //对应的loader名称</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: &#x27;./src/index.html&#x27;,</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>运行一下打包，打开dist目录下的index.html文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">  &lt;script defer src=&quot;bundle.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;</span><br><span class="line">  &lt;body&gt;&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>可以看到它自动引入打包好的bundle.js</p>
-<h4 id="1-6自动清空打包目录"><a href="#1-6自动清空打包目录" class="headerlink" title="1.6自动清空打包目录"></a>1.6自动清空打包目录</h4><p>每次打包的时候，打包目录都会遗留上次打包的文件，为了保持打包目录的纯净，打包前需将上次打包目录清空。</p>
-<p>1.安装 <code>clean-webpack-plugin</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install clean-webpack-plugin -D</span><br></pre></td></tr></table></figure>
-
-<p>2.配置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;);</span><br><span class="line">const &#123;CleanWebpackPlugin&#125; = require(&#x27;clean-webpack-plugin&#x27;);</span><br><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: &#x27;./src/index.html&#x27;,</span><br><span class="line">    &#125;),</span><br><span class="line">    new CleanWebpackPlugin()</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-7区分环境"><a href="#1-7区分环境" class="headerlink" title="1.7区分环境"></a>1.7区分环境</h4><p>本底环境</p>
-<ul>
-<li>需要更快的构建速度</li>
-<li>需要打印debug信息</li>
-<li>需要live reload或者hot reload功能</li>
-<li>需要sourcemap方便定位问题</li>
-<li>…</li>
-</ul>
-<p>生产环境：</p>
-<ul>
-<li>需要更小的包体积，代码压缩+tree-shaking</li>
-<li>需要进行代码分割</li>
-<li>需要压缩图片体积</li>
-<li>…</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7023242274876162084#heading-6">掘金</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/05/React%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9F%A5%E8%AF%86%E9%93%BE%E8%B7%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/05/React%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9F%A5%E8%AF%86%E9%93%BE%E8%B7%AF/" class="post-title-link" itemprop="url">React深入浅出知识链路</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-05 11:07:11" itemprop="dateCreated datePublished" datetime="2021-10-05T11:07:11+08:00">2021-10-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-07 16:24:17" itemprop="dateModified" datetime="2021-10-07T16:24:17+08:00">2021-10-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="React框架的关键设计思想：“组件”、“虚拟DOM”"><a href="#React框架的关键设计思想：“组件”、“虚拟DOM”" class="headerlink" title="React框架的关键设计思想：“组件”、“虚拟DOM”"></a>React框架的关键设计思想：“组件”、“虚拟DOM”</h3><h3 id="组件化-工程化思想在框架中的落地"><a href="#组件化-工程化思想在框架中的落地" class="headerlink" title="组件化: 工程化思想在框架中的落地"></a>组件化: 工程化思想在框架中的落地</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">“封闭”：在组件自身的渲染工作流中，每个组件都只处理它的内部的渲染逻辑。</span><br><span class="line">“开放”：针对组件间通信来说，React基于“单向数据流”的原则完成组件间的通信。</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/05/React%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%9F%A5%E8%AF%86%E9%93%BE%E8%B7%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/04/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%89%8B%E5%86%99%E9%83%A8%E5%88%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/04/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%89%8B%E5%86%99%E9%83%A8%E5%88%86/" class="post-title-link" itemprop="url">面试题目手写部分</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-04 21:57:04" itemprop="dateCreated datePublished" datetime="2021-10-04T21:57:04+08:00">2021-10-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-05 12:08:20" itemprop="dateModified" datetime="2021-10-05T12:08:20+08:00">2021-10-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">面经</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>24k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>22 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>[toc]</p>
-<h1 id="手写部分"><a href="#手写部分" class="headerlink" title="手写部分"></a>手写部分</h1><h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/04/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%89%8B%E5%86%99%E9%83%A8%E5%88%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/04/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/04/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">面试题目总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-10-04 21:54:55 / 修改时间：21:56:31" itemprop="dateCreated datePublished" datetime="2021-10-04T21:54:55+08:00">2021-10-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">面经</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>22k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>20 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>[toc]</p>
-<h2 id="从浏览器地址栏输入url到显示页面的步骤"><a href="#从浏览器地址栏输入url到显示页面的步骤" class="headerlink" title="从浏览器地址栏输入url到显示页面的步骤"></a>从浏览器地址栏输入url到显示页面的步骤</h2><pre><code>1. 浏览器查看缓存(浏览器对应的都会有cache文件)。
+getDerivedStateFro ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2021/10/04/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%89%8B%E5%86%99%E9%83%A8%E5%88%86/" title="面试题目手写部分">面试题目手写部分</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-04T13:57:04.000Z" title="发表于 2021-10-04 21:57:04">2021-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a></span></div><div class="content">[toc]
+手写部分数组去重
+123456789101112131415161718192021222324252627282930313233343536373839404142// indexOffunction unique(arr) &#123;    let res = [];        for(let i = 0; i &lt; arr.length; i++) &#123;        if(res.indexOf(arr[i]) &lt; 0) &#123;            res.push(arrp[i])        &#125;    &#125;        return res;&#125;// includesfunction unique(arr) &#123;    let res = [];        for (let item of arr) &#123;        if(!res.includes(item)) &#123;            res.push(item)        &#125;    &#125;  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2021/10/04/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%80%BB%E7%BB%93/" title="面试题目总结">面试题目总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-04T13:54:55.000Z" title="发表于 2021-10-04 21:54:55">2021-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a></span></div><div class="content">[toc]
+从浏览器地址栏输入url到显示页面的步骤1. 浏览器查看缓存(浏览器对应的都会有cache文件)。
 若请求有缓存且未过期，则取缓存资源提供给客户端，否则发起请求与服务器进行验证。
 检验是否过期通常有两个HTTP头：Expires、Cache-control
 2.浏览器需要获取域名对应的ip地址，过程如下：
@@ -981,380 +203,24 @@
 3.客户端发送HTTP请求。
 4.TCP传输报文（三次握手四次挥手）
 5.向客户端返回资源
-6.解析HTML文档，构建DOM树，CSSOM树，下载资源，执行js脚本等。
-</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/04/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%80%BB%E7%BB%93/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+6.解析HTML文 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2021/05/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%B3%E9%97%AD%E6%B8%85%E9%99%A4token/" title="浏览器关闭清除token">浏览器关闭清除token</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-05-24T14:03:02.000Z" title="发表于 2021-05-24 22:03:02">2021-05-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/token/">token</a></span></div><div class="content">知识点
+浏览器关闭会出发 beforeunload ，unload 这两个事件。
+浏览器刷新也会触发，还会触发load事件
+
+如何清除token
+方案一
+123window.onbeforeunload = function () &#123;    localStorage.removeItem(&quot;token&quot;)&#125;
+缺点： 刷新也会清空token
+
+方案二
+  123456789101112131415window.onunload = function() &#123;    localStorage.setItem(&quot;lastTime&quot;,new Date().getTime())&#125;window.onload = function() &#123;    let lastTime = localStorage.getItem(&quot;lastTime&quot;);    const interval = 3 * 1000;    // 如果时间间隔大于3s，则清除token    if (!lastTime || n ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2021/03/28/%E5%87%A1%E4%BA%8B%E9%A2%84%E5%88%99%E7%AB%8B%EF%BC%8C%E4%B8%8D%E9%A2%84%E5%88%99%E5%BA%9F/" title="凡事预则立，不预则废">凡事预则立，不预则废</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-28T15:22:16.000Z" title="发表于 2021-03-28 23:22:16">2021-03-28</time></span></div><div class="content">凡事预则立，不预则废凡事预则立，不预则废
+</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/avatar.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">foolishmax</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">95</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">33</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2022/01/17/TS%E8%BF%9B%E9%98%B6%E9%A2%98%E7%9B%AE/" title="TS进阶题目">TS进阶题目</a><time datetime="2022-01-17T07:50:20.000Z" title="发表于 2022-01-17 15:50:20">2022-01-17</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/" title="获取唯一id的三种方法">获取唯一id的三种方法</a><time datetime="2022-01-04T03:19:53.000Z" title="发表于 2022-01-04 11:19:53">2022-01-04</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2022/01/02/vue3%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/" title="vue3源码调试">vue3源码调试</a><time datetime="2022-01-02T07:11:11.000Z" title="发表于 2022-01-02 15:11:11">2022-01-02</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2021/11/01/lerna%E5%BC%80%E5%8F%91/" title="lerna开发">lerna开发</a><time datetime="2021-11-01T10:19:30.000Z" title="发表于 2021-11-01 18:19:30">2021-11-01</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2021/10/27/webpack%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B%E5%B8%88/" title="webpack配置工程师">webpack配置工程师</a><time datetime="2021-10-27T02:48:00.000Z" title="发表于 2021-10-27 10:48:00">2021-10-27</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%B3%E9%97%AD%E6%B8%85%E9%99%A4token/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%B3%E9%97%AD%E6%B8%85%E9%99%A4token/" class="post-title-link" itemprop="url">浏览器关闭清除token</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-24 22:03:02 / 修改时间：23:05:25" itemprop="dateCreated datePublished" datetime="2021-05-24T22:03:02+08:00">2021-05-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/token/" itemprop="url" rel="index"><span itemprop="name">token</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>780</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
-<li>浏览器关闭会出发 <strong>beforeunload</strong> ，<strong>unload</strong> 这两个事件。</li>
-<li>浏览器刷新也会触发，还会触发<strong>load</strong>事件</li>
-</ul>
-<h2 id="如何清除token"><a href="#如何清除token" class="headerlink" title="如何清除token"></a>如何清除token</h2><ul>
-<li><p>方案一</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.onbeforeunload = function () &#123;</span><br><span class="line">    localStorage.removeItem(&quot;token&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>缺点： 刷新也会清空token</p>
-</li>
-<li><p>方案二</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">window.onunload = function() &#123;</span><br><span class="line">    localStorage.setItem(&quot;lastTime&quot;,new Date().getTime())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">window.onload = function() &#123;</span><br><span class="line">    let lastTime = localStorage.getItem(&quot;lastTime&quot;);</span><br><span class="line">    const interval = 3 * 1000;</span><br><span class="line">    // 如果时间间隔大于3s，则清除token</span><br><span class="line">    if (!lastTime || new Date().getTime() - lastTime &gt; interval) &#123;</span><br><span class="line">        localStorage.remove(&quot;token&quot;);</span><br><span class="line">        console.log(&quot;remove token&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log(&quot;time is less than not remove token&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>补充<br>  可以使用sessionStorage代替localStorage来存储token，当关闭浏览器时会自动清除token，sessionStorage不是持久化的本地存储，而是会话级别的存储，而localStorage是持久化的本地存储，除非主动删除数据，否则数据是不会过期的。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/28/%E5%87%A1%E4%BA%8B%E9%A2%84%E5%88%99%E7%AB%8B%EF%BC%8C%E4%B8%8D%E9%A2%84%E5%88%99%E5%BA%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foolish-Max">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foolish-Max">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/28/%E5%87%A1%E4%BA%8B%E9%A2%84%E5%88%99%E7%AB%8B%EF%BC%8C%E4%B8%8D%E9%A2%84%E5%88%99%E5%BA%9F/" class="post-title-link" itemprop="url">凡事预则立，不预则废</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-28 23:22:16" itemprop="dateCreated datePublished" datetime="2021-03-28T23:22:16+08:00">2021-03-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-23 22:21:49" itemprop="dateModified" datetime="2021-05-23T22:21:49+08:00">2021-05-23</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>20</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="凡事预则立，不预则废"><a href="#凡事预则立，不预则废" class="headerlink" title="凡事预则立，不预则废"></a>凡事预则立，不预则废</h3><p>凡事预则立，不预则废</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Foolish-Max</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">95</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">33</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">31</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Foolish-Max</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-    <span title="站点总字数">234k</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="站点阅读时长">3:33</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
-</html>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Ajax/"><span class="card-category-list-name">Ajax</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CSS/"><span class="card-category-list-name">CSS</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Css/"><span class="card-category-list-name">Css</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DOM/"><span class="card-category-list-name">DOM</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/HTML/"><span class="card-category-list-name">HTML</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JavaScript/"><span class="card-category-list-name">JavaScript</span><span class="card-category-list-count">32</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Node-js/"><span class="card-category-list-name">Node.js</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/React/"><span class="card-category-list-name">React</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Ajax/" style="font-size: 1.1em; color: #999">Ajax</a> <a href="/tags/CSS/" style="font-size: 1.1em; color: #999">CSS</a> <a href="/tags/Css/" style="font-size: 1.1em; color: #999">Css</a> <a href="/tags/DOM/" style="font-size: 1.1em; color: #999">DOM</a> <a href="/tags/HTML/" style="font-size: 1.1em; color: #999">HTML</a> <a href="/tags/JavaScript/" style="font-size: 1.5em; color: #99a9bf">JavaScript</a> <a href="/tags/Node-js/" style="font-size: 1.3em; color: #99a1ac">Node.js</a> <a href="/tags/React/" style="font-size: 1.23em; color: #999ea6">React</a> <a href="/tags/Vue/" style="font-size: 1.17em; color: #999c9f">Vue</a> <a href="/tags/Webpack/" style="font-size: 1.1em; color: #999">Webpack</a> <a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/html/" style="font-size: 1.1em; color: #999">html</a> <a href="/tags/javascript/" style="font-size: 1.1em; color: #999">javascript</a> <a href="/tags/lerna/" style="font-size: 1.1em; color: #999">lerna</a> <a href="/tags/token/" style="font-size: 1.1em; color: #999">token</a> <a href="/tags/ts/" style="font-size: 1.1em; color: #999">ts</a> <a href="/tags/typescript/" style="font-size: 1.1em; color: #999">typescript</a> <a href="/tags/vue3/" style="font-size: 1.1em; color: #999">vue3</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">前端安全</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 1.1em; color: #999">异步</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 1.1em; color: #999">微信小程序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 1.37em; color: #99a4b2">数据结构与算法</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/" style="font-size: 1.1em; color: #999">本地存储</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 1.1em; color: #999">框架</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 1.43em; color: #99a6b9">浏览器</a> <a href="/tags/%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6%E7%B1%BB/" style="font-size: 1.1em; color: #999">渲染机制类</a> <a href="/tags/%E7%89%9B%E5%AE%A2/" style="font-size: 1.1em; color: #999">牛客</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" style="font-size: 1.1em; color: #999">网络请求</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.1em; color: #999">设计模式</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 1.3em; color: #99a1ac">面经</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 1.3em; color: #99a1ac">面试题</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/01/"><span class="card-archive-list-date">一月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/11/"><span class="card-archive-list-date">十一月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">95</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-01-18T05:02:07.483Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By foolishmax</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

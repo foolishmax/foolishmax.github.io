@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Foolish-Max</title>
+  <title>foolishmax</title>
   
-  <subtitle>合抱之木始于毫末，万丈高楼起于垒土</subtitle>
+  <subtitle>仅作为个人学习记录</subtitle>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
@@ -10,7 +10,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>Foolish-Max</name>
+    <name>foolishmax</name>
     
   </author>
   
