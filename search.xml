@@ -1405,6 +1405,11 @@ function doSomething() &#123;
 <li>EmptyObject</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// type PropertyKey = string | number | symbol;</span><br><span class="line"></span><br><span class="line">type EmptyObject = &#123;</span><br><span class="line">  [K in PropertyKey]: never;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">const shouldPass: EmptyObject = &#123;&#125;; // OK</span><br><span class="line">const shouldFail: EmptyObject = &#123; // Error</span><br><span class="line">  prop: &quot;TS&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>takeSomeTypeOnly</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type SomeType = &#123;</span><br><span class="line">  prop: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Exclusive&lt;T1, T2 extends T1&gt; = &#123;</span><br><span class="line">  [K in keyof T2]: K extends keyof T1 ? T2[K] : never;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function takeSomeTypeOnly&lt;T extends SomeType&gt;(x: Exclusive&lt;SomeType, T&gt;) &#123;return x&#125;;</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">const x = &#123;prop: &#x27;a&#x27;&#125;;</span><br><span class="line">takeSomeTypeOnly(x); // OK</span><br><span class="line"></span><br><span class="line">const y = &#123;prop: &#x27;a&#x27;, additionalProp: &#x27;x&#x27;&#125;;</span><br><span class="line">takeSomeTypeOnly(y); // Error</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
@@ -2838,12 +2843,12 @@ console.clear()  //用于清除当前控制台的所有输出，将光标回置�
 <h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yarn run dev</span><br></pre></td></tr></table></figure>
 
 <p>当终端出现<strong>waiting for changes…<strong>表示编译成功，可以</strong>ctrl+c</strong>结束进程查看源码了</p>
-<p>打包完成之后，examples 下面的文件会引用 dist 文件下的文件（dist 文件是我们刚才编译后生成的文件）<br><img src="../images/vue3-dist.jpg" alt="vue3-dist"></p>
+<p>打包完成之后，examples 下面的文件会引用 dist 文件下的文件（dist 文件是我们刚才编译后生成的文件）<br><img src="../images/md_img/vue3-dist.jpg" alt="vue3-dist"></p>
 <h3 id="debugger"><a href="#debugger" class="headerlink" title="debugger"></a>debugger</h3><p>我们直接在<strong>package/vue/examples</strong>目录下添加<strong>demo/test.html</strong>文件，并引用**../../dist/vue.global.js**文件就可以使用 vue3 了，代码如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;script src=&quot;../../dist/vue.global.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;template id=&quot;foo&quot;&gt;</span><br><span class="line">      &lt;h2&gt;&#123;&#123;name&#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      const App = &#123;</span><br><span class="line">        template: &#x27;#foo&#x27;,</span><br><span class="line">        data: function () &#123;</span><br><span class="line">          return &#123;</span><br><span class="line">            name: &#x27;foolishmax&#x27;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      Vue.createApp(App).mount(&#x27;#app&#x27;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>接下来在浏览器中打开就可以进行 vue3 的代码调试了。</p>
-<p><img src="../images/vue3-debugger.jpg" alt="vue3-debugger"></p>
+<p><img src="../images/md_img/vue3-debugger.jpg" alt="vue3-debugger"></p>
 ]]></content>
       <categories>
         <category>vue3</category>
@@ -2938,17 +2943,17 @@ console.clear()  //用于清除当前控制台的所有输出，将光标回置�
   <entry>
     <title>webpack配置工程师</title>
     <url>/2021/10/27/webpack%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B%E5%B8%88/</url>
-    <content><![CDATA[<p>构建webpack知识体系分为下面三个层级：<br>1.基础–会配置<br>2.进阶–能优化<br>3.深入–懂原理</p>
-<h2 id="一、基础篇"><a href="#一、基础篇" class="headerlink" title="一、基础篇"></a>一、基础篇</h2><h3 id="1-简单配置"><a href="#1-简单配置" class="headerlink" title="1.简单配置"></a>1.简单配置</h3><p>  该部分需掌握：<br>  1.Webpack常规配置项有哪些？<br>  2.常用loader有哪些？如何配置？<br>  3.常用插件plugin有哪些？如何配置？<br>  4.Babel如何配置？Babel插件如何使用？</p>
+    <content><![CDATA[<p>构建 webpack 知识体系分为下面三个层级： 1.基础–会配置 2.进阶–能优化 3.深入–懂原理</p>
+<h2 id="一、基础篇"><a href="#一、基础篇" class="headerlink" title="一、基础篇"></a>一、基础篇</h2><h3 id="1-简单配置"><a href="#1-简单配置" class="headerlink" title="1.简单配置"></a>1.简单配置</h3><p>该部分需掌握：<br>1.Webpack 常规配置项有哪些？ 2.常用 loader 有哪些？如何配置？ 3.常用插件 plugin 有哪些？如何配置？<br>4.Babel 如何配置？Babel 插件如何使用？</p>
 <h4 id="1-1-安装依赖"><a href="#1-1-安装依赖" class="headerlink" title="1.1 安装依赖"></a>1.1 安装依赖</h4><p>需要现在本地安装<strong>webpack</strong>及<strong>webpack-cli</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm install webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
 
-<h4 id="1-2-开始工作"><a href="#1-2-开始工作" class="headerlink" title="1.2 开始工作"></a>1.2 开始工作</h4><p>webpack在4以后就支持0配置打包，我们可以测试一下<br>1.新建webpack-work项目，新建 <code>./src/index.js</code>文件，写一段简单的代码</p>
+<h4 id="1-2-开始工作"><a href="#1-2-开始工作" class="headerlink" title="1.2 开始工作"></a>1.2 开始工作</h4><p>webpack 在 4 以后就支持 0 配置打包，我们可以测试一下 1.新建 webpack-work 项目，新建 <code>./src/index.js</code>文件，写一段简单的代码</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const a = &#x27;hello foolishmax&#x27;;</span><br><span class="line">console.log(a);</span><br><span class="line">module.exports = a;</span><br></pre></td></tr></table></figure>
 
-<p>2.直接运行<code>npx webpack</code>，启动打包<br><img src="../images/webpack-mode-error.png" alt="webpack-mode-error">)</p>
+<p>2.直接运行<code>npx webpack</code>，启动打包<br><img src="../images/md_img/webpack-mode-error.png" alt="webpack-mode-error">)</p>
 <p>打包完成，会有一个提示：<code>The &#39;mode&#39; option has not been set,...</code></p>
-<p>意思就是我们没有配置mode（告知webpack使用相应模式的内置优化，默认为<code>production</code>，另外还有<code>development</code>、<code>none</code>）</p>
+<p>意思就是我们没有配置 mode（告知 webpack 使用相应模式的内置优化，默认为<code>production</code>，另外还有<code>development</code>、<code>none</code>）</p>
 <table>
 <thead>
 <tr>
@@ -2962,57 +2967,62 @@ console.clear()  //用于清除当前控制台的所有输出，将光标回置�
 </tr>
 <tr>
 <td>production</td>
-<td>生产模式，打包比较慢，开启tree-shaking和压缩代码</td>
+<td>生产模式，打包比较慢，开启 tree-shaking 和压缩代码</td>
 </tr>
 <tr>
 <td>none</td>
 <td>不使用任何默认优化选项</td>
 </tr>
 </tbody></table>
-<p>webpack.config.js中配置：</p>
+<p>webpack.config.js 中配置：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &#x27;development&#x27;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="1-3配置文件"><a href="#1-3配置文件" class="headerlink" title="1.3配置文件"></a>1.3配置文件</h4><p>虽然可以零配置打包，但是实际工作中，还是需要使用配置文件的方式来满足不同项目的需求。<br>1.跟路径下创建配置文件<code>webpack.config.js</code><br>2.新增基本配置信息</p>
+
+<h4 id="1-3-配置文件"><a href="#1-3-配置文件" class="headerlink" title="1.3 配置文件"></a>1.3 配置文件</h4><p>虽然可以零配置打包，但是实际工作中，还是需要使用配置文件的方式来满足不同项目的需求。 1.跟路径下创建配置文件<code>webpack.config.js</code> 2.新增基本配置信息</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &#x27;development&#x27;, // 模式</span><br><span class="line">  entry: &#x27;./src/index.js&#x27;, // 打包入口地址</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#x27;bundle.js&#x27;, // 输出文件名</span><br><span class="line">    path: path.join(__dirname, &#x27;dist&#x27;) // 输出文件目录</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h4 id="1-4-loader"><a href="#1-4-loader" class="headerlink" title="1.4 loader"></a>1.4 loader</h4><p>这里我们把入口文件改成css文件，看下打包结果如何<br>1.新增<code>./src/main.css</code></p>
+<h4 id="1-4-loader"><a href="#1-4-loader" class="headerlink" title="1.4 loader"></a>1.4 loader</h4><p>这里我们把入口文件改成 css 文件，看下打包结果如何 1.新增<code>./src/main.css</code></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  padding: 0 20px;</span><br><span class="line">  max-width: 800px;</span><br><span class="line">  background: #f4f8fb;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>2.修改entry配置</p>
+
+<p>2.修改 entry 配置</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &#x27;development&#x27;,</span><br><span class="line">  entry: &#x27;./src/main.css&#x27;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#x27;bundle.js&#x27;,</span><br><span class="line">    path: path.join(__dirname, &#x27;dist&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>3.运行打包命令： <code>npx webpack</code><br><img src="../images/webpack-loader.png" alt="loader"><br>这里的报错信息是因为：webpack默认支持处理js文件，其他类型都处理不了，需要借助loader来对不同类型的文件进行处理。</p>
-<p>4.安装<code>css-loader</code>来处理CSS</p>
+
+<p>3.运行打包命令： <code>npx webpack</code><br><img src="../images/md_img/webpack-loader.png" alt="loader"><br>这里的报错信息是因为：webpack 默认支持处理 js 文件，其他类型都处理不了，需要借助 loader 来对不同类型的文件进行处理。</p>
+<p>4.安装<code>css-loader</code>来处理 CSS</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install css-loader -D</span><br></pre></td></tr></table></figure>
+
 <p>5.配置资源加载模块</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &#x27;development&#x27;,</span><br><span class="line">  entry: &#x27;./src/main.css&#x27;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#x27;bundle.css&#x27;,</span><br><span class="line">    path: path.join(__dirname, &#x27;dist&#x27;)</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [ // 转换规则</span><br><span class="line">      &#123;</span><br><span class="line">        test: /.css$/, // 匹配所有css文件</span><br><span class="line">        use: &#x27;css-loader&#x27;, //对应的loader名称</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>6.重新运行打包命令<code>npx webpack</code>,就可以打包成功了</p>
-<p>总结：loader就是将webpack不认识的内容转化为认识的内容</p>
-<h4 id="插件（plugin）"><a href="#插件（plugin）" class="headerlink" title="插件（plugin）"></a>插件（plugin）</h4><p>插件可以贯穿webpack打包的生命周期，执行不同的任务</p>
+<p>总结：loader 就是将 webpack 不认识的内容转化为认识的内容</p>
+<h4 id="插件（plugin）"><a href="#插件（plugin）" class="headerlink" title="插件（plugin）"></a>插件（plugin）</h4><p>插件可以贯穿 webpack 打包的生命周期，执行不同的任务</p>
 <p>1.新建<code>./src/index.html</code>文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-<p>如果想要打包后的资源文件，例如js或者css文件可以自动引入到html中，就需要使用插件<code>html-webpack-plugin</code>来做这件事情。</p>
+<p>如果想要打包后的资源文件，例如 js 或者 css 文件可以自动引入到 html 中，就需要使用插件<code>html-webpack-plugin</code>来做这件事情。</p>
 <p>2.本地安装 <code>html-webpack-plugin</code></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install html-webpack-plugin -D</span><br></pre></td></tr></table></figure>
 
 <p>3.配置插件</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;);</span><br><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &#x27;development&#x27;,</span><br><span class="line">  entry: &#x27;./src/main.js&#x27;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#x27;bundle.js&#x27;,</span><br><span class="line">    path: path.join(__dirname, &#x27;dist&#x27;)</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [ // 转换规则</span><br><span class="line">      &#123;</span><br><span class="line">        test: /.css$/, // 匹配所有css文件</span><br><span class="line">        use: &#x27;css-loader&#x27;, //对应的loader名称</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: &#x27;./src/index.html&#x27;,</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>运行一下打包，打开dist目录下的index.html文件</p>
+<p>运行一下打包，打开 dist 目录下的 index.html 文件</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">  &lt;script defer src=&quot;bundle.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;</span><br><span class="line">  &lt;body&gt;&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>可以看到它自动引入打包好的bundle.js</p>
-<h4 id="1-6自动清空打包目录"><a href="#1-6自动清空打包目录" class="headerlink" title="1.6自动清空打包目录"></a>1.6自动清空打包目录</h4><p>每次打包的时候，打包目录都会遗留上次打包的文件，为了保持打包目录的纯净，打包前需将上次打包目录清空。</p>
+
+<p>可以看到它自动引入打包好的 bundle.js</p>
+<h4 id="1-6-自动清空打包目录"><a href="#1-6-自动清空打包目录" class="headerlink" title="1.6 自动清空打包目录"></a>1.6 自动清空打包目录</h4><p>每次打包的时候，打包目录都会遗留上次打包的文件，为了保持打包目录的纯净，打包前需将上次打包目录清空。</p>
 <p>1.安装 <code>clean-webpack-plugin</code></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm install clean-webpack-plugin -D</span><br></pre></td></tr></table></figure>
 
 <p>2.配置</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;);</span><br><span class="line">const &#123;CleanWebpackPlugin&#125; = require(&#x27;clean-webpack-plugin&#x27;);</span><br><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: &#x27;./src/index.html&#x27;,</span><br><span class="line">    &#125;),</span><br><span class="line">    new CleanWebpackPlugin()</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="1-7区分环境"><a href="#1-7区分环境" class="headerlink" title="1.7区分环境"></a>1.7区分环境</h4><p>本底环境</p>
+<h4 id="1-7-区分环境"><a href="#1-7-区分环境" class="headerlink" title="1.7 区分环境"></a>1.7 区分环境</h4><p>本底环境</p>
 <ul>
 <li>需要更快的构建速度</li>
-<li>需要打印debug信息</li>
-<li>需要live reload或者hot reload功能</li>
-<li>需要sourcemap方便定位问题</li>
+<li>需要打印 debug 信息</li>
+<li>需要 live reload 或者 hot reload 功能</li>
+<li>需要 sourcemap 方便定位问题</li>
 <li>…</li>
 </ul>
 <p>生产环境：</p>
