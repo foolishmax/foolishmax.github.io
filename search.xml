@@ -1410,6 +1410,28 @@ function doSomething() &#123;
 <li>takeSomeTypeOnly</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type SomeType = &#123;</span><br><span class="line">  prop: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Exclusive&lt;T1, T2 extends T1&gt; = &#123;</span><br><span class="line">  [K in keyof T2]: K extends keyof T1 ? T2[K] : never;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function takeSomeTypeOnly&lt;T extends SomeType&gt;(x: Exclusive&lt;SomeType, T&gt;) &#123;return x&#125;;</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">const x = &#123;prop: &#x27;a&#x27;&#125;;</span><br><span class="line">takeSomeTypeOnly(x); // OK</span><br><span class="line"></span><br><span class="line">const y = &#123;prop: &#x27;a&#x27;, additionalProp: &#x27;x&#x27;&#125;;</span><br><span class="line">takeSomeTypeOnly(y); // Error</span><br></pre></td></tr></table></figure>
+
+<h2 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h2><ul>
+<li>定义一个<em>NonEmptyArray</em>工具类型，用于确保数据为非空数组</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type NonEmptyArray&lt;T&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">const err: NonEmptyArray&lt;string&gt; = []; // Error</span><br><span class="line">const succ: NonEmptyArray&lt;string&gt; = [&#x27;Hello Ts&#x27;]; //Ok</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 1</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type NonEmptyArray&lt;T&gt; = [T, ...T[]];</span><br><span class="line"></span><br><span class="line">const err: NonEmptyArray&lt;string&gt; = []; // Error</span><br><span class="line">const succ: NonEmptyArray&lt;string&gt; = [&#x27;Hello Ts&#x27;]; //Ok</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 2</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type NonEmptyArray&lt;T&gt; = T[] &amp; &#123;0: T&#125;;</span><br><span class="line"></span><br><span class="line">const err: NonEmptyArray&lt;string&gt; = []; // Error</span><br><span class="line">const succ: NonEmptyArray&lt;string&gt; = [&#x27;Hello Ts&#x27;]; //Ok</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 3</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type NonEmptyArray&lt;T&gt; = &#123;</span><br><span class="line">  [P in number]: T;</span><br><span class="line">&#125; &amp; &#123;</span><br><span class="line">  0: T</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const err: NonEmptyArray&lt;string&gt; = []; // Error</span><br><span class="line">const succ: NonEmptyArray&lt;string&gt; = [&#x27;Hello Ts&#x27;]; //Ok</span><br></pre></td></tr></table></figure>
+
+<h2 id="第九题-没看懂，后面回来在研究"><a href="#第九题-没看懂，后面回来在研究" class="headerlink" title="第九题(没看懂，后面回来在研究)"></a>第九题(没看懂，后面回来在研究)</h2><ul>
+<li>定义一个<em>JoinStrArray</em>工具类型，用于根据指定的<code>Separator</code>分隔符，对字符串数据类型进行拼接，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type JoinStrArray&lt;Arr extends string[], Separator extends string, Result extends string = &quot;&quot;&gt; = // 你的实现代码</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type Names = [&quot;Sem&quot;, &quot;Lolo&quot;, &quot;Kaquko&quot;]</span><br><span class="line">type NamesComma = JoinStrArray&lt;Names, &quot;,&quot;&gt; // &quot;Sem,Lolo,Kaquko&quot;</span><br><span class="line">type NamesSpace = JoinStrArray&lt;Names, &quot; &quot;&gt; // &quot;Sem Lolo Kaquko&quot;</span><br><span class="line">type NamesStars = JoinStrArray&lt;Names, &quot;⭐️&quot;&gt; // &quot;Sem⭐️Lolo⭐️Kaquko&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type JoinStrArray&lt;Arr extends string[], Separator extends string, Result extends string = &quot;&quot;&gt; =</span><br><span class="line">    Arr extends [infer El,...infer Rest] ?</span><br><span class="line">            Rest extends string[] ?</span><br><span class="line">            El extends string ?</span><br><span class="line">            Result extends &quot;&quot; ?</span><br><span class="line">            JoinStrArray&lt;Rest, Separator,`$&#123;El&#125;`&gt; :</span><br><span class="line">            JoinStrArray&lt;Rest, Separator,`$&#123;Result&#125;$&#123;Separator&#125;$&#123;El&#125;`&gt; :</span><br><span class="line">            `$&#123;Result&#125;` :</span><br><span class="line">            `$&#123;Result&#125;` :</span><br><span class="line">            `$&#123;Result&#125;`</span><br><span class="line"></span><br><span class="line">type Names = [&quot;Sem&quot;, &quot;Lolo&quot;, &quot;Kaquko&quot;]</span><br><span class="line">type NamesComma = JoinStrArray&lt;Names, &quot;,&quot;&gt; // &quot;Sem,Lolo,Kaquko&quot;</span><br><span class="line">type NamesSpace = JoinStrArray&lt;Names, &quot; &quot;&gt; // &quot;Sem Lolo Kaquko&quot;</span><br><span class="line">type NamesStars = JoinStrArray&lt;Names, &quot;⭐️&quot;&gt; // &quot;Sem⭐️Lolo⭐️Kaquko&quot;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
