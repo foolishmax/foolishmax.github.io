@@ -2356,6 +2356,14 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type JoinStrArray&lt;Arr extends string[], Separator extends string, Result extends string = &quot;&quot;&gt; =</span><br><span class="line">    Arr extends [infer El,...infer Rest] ?</span><br><span class="line">            Rest extends string[] ?</span><br><span class="line">            El extends string ?</span><br><span class="line">            Result extends &quot;&quot; ?</span><br><span class="line">            JoinStrArray&lt;Rest, Separator,`$&#123;El&#125;`&gt; :</span><br><span class="line">            JoinStrArray&lt;Rest, Separator,`$&#123;Result&#125;$&#123;Separator&#125;$&#123;El&#125;`&gt; :</span><br><span class="line">            `$&#123;Result&#125;` :</span><br><span class="line">            `$&#123;Result&#125;` :</span><br><span class="line">            `$&#123;Result&#125;`</span><br><span class="line"></span><br><span class="line">type Names = [&quot;Sem&quot;, &quot;Lolo&quot;, &quot;Kaquko&quot;]</span><br><span class="line">type NamesComma = JoinStrArray&lt;Names, &quot;,&quot;&gt; // &quot;Sem,Lolo,Kaquko&quot;</span><br><span class="line">type NamesSpace = JoinStrArray&lt;Names, &quot; &quot;&gt; // &quot;Sem Lolo Kaquko&quot;</span><br><span class="line">type NamesStars = JoinStrArray&lt;Names, &quot;⭐️&quot;&gt; // &quot;Sem⭐️Lolo⭐️Kaquko&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十题"><a href="#第十题" class="headerlink" title="第十题"></a>第十题</h2><ul>
+<li>实现一个<em>Trim</em>工具类型，用于对字符串字面量类型进行去空格处理，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Trim&lt;V extends string&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type Result = Trim&lt;&#x27;  foolishmax  &#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type TrimLeft&lt;V extends string&gt; = V extends ` $&#123;infer R&#125;` ? TrimLeft&lt;R&gt; : V;</span><br><span class="line">type TrimRight&lt;V extends string&gt; = V extends `$&#123;infer R&#125; `? TrimRight&lt;R&gt; : V;</span><br><span class="line"></span><br><span class="line">type Trim&lt;V extends string&gt; = TrimLeft&lt;TrimRight&lt;V&gt;&gt;;</span><br><span class="line"></span><br><span class="line">type Result = Trim&lt;&#x27;  foolishmax  &#x27;&gt;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
