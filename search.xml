@@ -2046,10 +2046,10 @@ Vue.component(&#39;my-component&#39;, &#123;
 <p>在条件判断类型的定义中，将泛型参数使用 <strong>[]</strong> 括起来，即可阻断条件判断类型的分配，此时，传入的 T 的类型就会被当作一个整体，不再分配。</p>
 ]]></content>
       <categories>
-        <category>ts</category>
+        <category>typescript</category>
       </categories>
       <tags>
-        <tag>ts</tag>
+        <tag>typescript</tag>
       </tags>
   </entry>
   <entry>
