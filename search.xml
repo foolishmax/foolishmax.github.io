@@ -1977,25 +1977,26 @@ Vue.component(&#39;my-component&#39;, &#123;
   <entry>
     <title>TypeScript</title>
     <url>/2019/08/23/TypeScript/</url>
-    <content><![CDATA[<h3 id="什么是TypeScript？"><a href="#什么是TypeScript？" class="headerlink" title="什么是TypeScript？"></a>什么是TypeScript？</h3><span id="more"></span>
+    <content><![CDATA[<h3 id="什么是-TypeScript？"><a href="#什么是-TypeScript？" class="headerlink" title="什么是 TypeScript？"></a>什么是 TypeScript？</h3><span id="more"></span>
+
 <ul>
-<li><p>TypeScript是JavaScript的超集，任何合法的js程序都是合法的TypeScript程序</p>
+<li><p>TypeScript 是 JavaScript 的超集，任何合法的 js 程序都是合法的 TypeScript 程序</p>
 </li>
-<li><p>TypeScript通过向JavaScript增加可选的静态类型声明把JavaScript变成强类型程序<br>语言</p>
+<li><p>TypeScript 通过向 JavaScript 增加可选的静态类型声明把 JavaScript 变成强类型程序<br>语言</p>
 </li>
 <li><p>提供静态类型声明可约束函数、变量、属性等程序实体</p>
 </li>
 </ul>
-<h3 id="为什么要使用TypeScript？"><a href="#为什么要使用TypeScript？" class="headerlink" title="为什么要使用TypeScript？"></a>为什么要使用TypeScript？</h3><ol>
+<h3 id="为什么要使用-TypeScript？"><a href="#为什么要使用-TypeScript？" class="headerlink" title="为什么要使用 TypeScript？"></a>为什么要使用 TypeScript？</h3><ol>
 <li><p>提供了静态类型系统，大大增强了代码的可读性以及可维护性</p>
 </li>
-<li><p>提供最新和不断发展的javascript特性，能让我们建立 更健壮的组件</p>
+<li><p>提供最新和不断发展的 javascript 特性，能让我们建立 更健壮的组件</p>
 </li>
-<li><p>TS具有防患于未然的静态检查，以及干净利落的只能提示</p>
+<li><p>TS 具有防患于未然的静态检查，以及干净利落的只能提示</p>
 </li>
 </ol>
-<h3 id="TypeScript中的数据类型"><a href="#TypeScript中的数据类型" class="headerlink" title="TypeScript中的数据类型"></a>TypeScript中的数据类型</h3><blockquote>
-<p>typescript中为了使编写的代码更规范，更利于维护，增加了类型校验，在typescript中<br>主要提供了以下数据类型：</p>
+<h3 id="TypeScript-中的数据类型"><a href="#TypeScript-中的数据类型" class="headerlink" title="TypeScript 中的数据类型"></a>TypeScript 中的数据类型</h3><blockquote>
+<p>typescript 中为了使编写的代码更规范，更利于维护，增加了类型校验，在 typescript 中<br>主要提供了以下数据类型：</p>
 </blockquote>
 <ul>
 <li>布尔类型 bolean</li>
@@ -2005,22 +2006,44 @@ Vue.component(&#39;my-component&#39;, &#123;
 <li>元组类型 tuple</li>
 <li>枚举类型 enum</li>
 <li>任意类型 any</li>
-<li>null和undefined</li>
-<li>void类型</li>
-<li>never类型</li>
+<li>null 和 undefined</li>
+<li>void 类型</li>
+<li>never 类型</li>
 </ul>
 <blockquote>
-<p>typescript中为了使编写的代码更规范，更有利于维护，增加了类型校验，写ts代码必须指定类型</p>
+<p>typescript 中为了使编写的代码更规范，更有利于维护，增加了类型校验，写 ts 代码必须指定类型</p>
 </blockquote>
 <h3 id="未声明类型的变量-如果变量在声明的时候，未指定其类型，那么他会被识别为任意类"><a href="#未声明类型的变量-如果变量在声明的时候，未指定其类型，那么他会被识别为任意类" class="headerlink" title="未声明类型的变量: 如果变量在声明的时候，未指定其类型，那么他会被识别为任意类"></a>未声明类型的变量: 如果变量在声明的时候，未指定其类型，那么他会被识别为任意类</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let something;</span><br><span class="line"></span><br><span class="line">something = &#x27;seven&#x27;</span><br><span class="line"></span><br><span class="line">something = 7</span><br><span class="line">//不会报错</span><br></pre></td></tr></table></figure>
 
-<h3 id="如果没有明确的指定类型，那么typescript会依照类型推论的规则推导出一个规则"><a href="#如果没有明确的指定类型，那么typescript会依照类型推论的规则推导出一个规则" class="headerlink" title="如果没有明确的指定类型，那么typescript会依照类型推论的规则推导出一个规则"></a>如果没有明确的指定类型，那么typescript会依照类型推论的规则推导出一个规则</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let num = &#x27;seven&#x27;</span><br><span class="line">num = 7</span><br><span class="line">//会报错</span><br><span class="line">//上面代码等价于：</span><br><span class="line">let num:string = &#x27;seven&#x27;</span><br><span class="line">num = 7</span><br><span class="line">//typescript自动推测出num属于string类型</span><br></pre></td></tr></table></figure>
+<h3 id="如果没有明确的指定类型，那么-typescript-会依照类型推论的规则推导出一个规则"><a href="#如果没有明确的指定类型，那么-typescript-会依照类型推论的规则推导出一个规则" class="headerlink" title="如果没有明确的指定类型，那么 typescript 会依照类型推论的规则推导出一个规则"></a>如果没有明确的指定类型，那么 typescript 会依照类型推论的规则推导出一个规则</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let num = &#x27;seven&#x27;</span><br><span class="line">num = 7</span><br><span class="line">//会报错</span><br><span class="line">//上面代码等价于：</span><br><span class="line">let num:string = &#x27;seven&#x27;</span><br><span class="line">num = 7</span><br><span class="line">//typescript自动推测出num属于string类型</span><br></pre></td></tr></table></figure>
 
 <h3 id="联合类型：表示取值可以为多种类型中的一种"><a href="#联合类型：表示取值可以为多种类型中的一种" class="headerlink" title="联合类型：表示取值可以为多种类型中的一种"></a>联合类型：表示取值可以为多种类型中的一种</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let flag:string | number</span><br><span class="line">flag = &#x27;seven&#x27;</span><br><span class="line">flag = 7</span><br><span class="line">//联合类型使用 | 分隔每个类型，表示允许flag为string类型或者number类型</span><br><span class="line">---------------------------------------</span><br><span class="line">//访问联合类型的属性或者方法</span><br><span class="line">//当typescript不确定一个联合类型的变量到底是哪个类型的时候，</span><br><span class="line">我们只能访问联合类型的所有类型中共有的属性和方法</span><br><span class="line"></span><br><span class="line">function getLength(something:string|number):number&#123;</span><br><span class="line">    return something.length</span><br><span class="line">&#125;</span><br><span class="line">//上面代码会报错，因为length不是string和number共有的属性</span><br><span class="line"></span><br><span class="line">//可以访问共有属性toString()</span><br><span class="line">function getString(something:string|number):string &#123;</span><br><span class="line">    return something.toString()</span><br><span class="line">&#125;</span><br><span class="line">---------------------------------------</span><br><span class="line">//联合属性在赋值的时候，会根据类型推论的规则推断出一个类型</span><br><span class="line">let a:string|number</span><br><span class="line">a = &#x27;seven&#x27;</span><br><span class="line">console.log(a.length) //5，a被推断为string，有length属性</span><br><span class="line">a = 7</span><br><span class="line">console.log(a.length) //编译时报错，被推断为number，无length属性</span><br></pre></td></tr></table></figure>
 
 <h3 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//数组类型定义(不允许出现其他类型，数组方法参数也有限制，</span><br><span class="line">如push(&#x27;7&#x27;)会报错，不能为字符串)</span><br><span class="line">let arr:number[] = [1,2,3]</span><br><span class="line">let arr:(number | string)[] = [1,&#x27;1&#x27;,2]</span><br><span class="line">---------------------------------</span><br><span class="line">//数组泛型</span><br><span class="line">let arr:Array&lt;number&gt; = [1,2,3]</span><br><span class="line">----------------------------------</span><br><span class="line">//用接口表示数组</span><br><span class="line">interface NumberArray &#123;</span><br><span class="line">    [index:number]:number</span><br><span class="line">&#125;</span><br><span class="line">let arr:NumberArray = [1,2,3]</span><br><span class="line">//NumberArray表示，只要index的类型时number，那么值的类型也必须时number</span><br><span class="line">-----------------------------------</span><br><span class="line">//any在数组中的应用</span><br><span class="line">let arr:any[] = [&#x27;hello&#x27;, 24, &#123;a:1&#125;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h3 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//函数声明（不允许输入多余或者少于要求的参数）</span><br><span class="line">function sum(x:number, y: number):number &#123;</span><br><span class="line">    return x + y</span><br><span class="line">&#125;</span><br><span class="line">sum(1,2) //right</span><br><span class="line">sum(1,2,3) //false</span><br><span class="line">sum(1) //false</span><br><span class="line">----------------------------------------------</span><br><span class="line">//函数表达式</span><br><span class="line">let sum:(x:number, y: number) =&gt; number = function(x:number, y:number):number &#123;</span><br><span class="line">    return x + y</span><br><span class="line">&#125;</span><br><span class="line">-----------------------------------------------</span><br><span class="line">//可选参数（使用 ? 表示可选的参数，只能放在参数的最后，后面不允许出现必须参数）</span><br><span class="line">function buildName(firstName:string, lastName?:string):string &#123;</span><br><span class="line">    if (lastName) &#123;</span><br><span class="line">        return firstName + &#x27; &#x27; + lastName</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return firstName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let tomcat = buildName(&#x27;tom&#x27;, &#x27;cat&#x27;)</span><br><span class="line">let tom = buildName(&#x27;tom&#x27;)</span><br><span class="line">--------------------------------------------------</span><br><span class="line">//参数默认值（typescript会将添加了默认值的参数识别为可选参数）</span><br><span class="line">    function buildName(firstName:string, lastName:string = &#x27;cat&#x27;):string &#123;</span><br><span class="line">        if (lastName) &#123;</span><br><span class="line">            return firstName + &#x27; &#x27; + lastName</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return firstName</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    let tomcat = buildName(&#x27;tom&#x27;, &#x27;cat&#x27;)</span><br><span class="line">    let tom = buildName(&#x27;tom&#x27;)</span><br><span class="line">----------------------------------------------------</span><br><span class="line">//剩余参数，可以使用...rest的方式获取函数中的剩余参数</span><br><span class="line">function push(array: any[], ...items:any[]) &#123;</span><br><span class="line">    items.forEach(function(item) &#123;</span><br><span class="line">        array.push(item)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">let a = []</span><br><span class="line">push(a, 1,2,3,4)</span><br><span class="line">-------------------------------------------------------</span><br><span class="line">//重载：允许一个函数接受不同数量或者类型的参数时，做出不同的处理</span><br><span class="line">//例如，数字或者字符串的反转输出</span><br><span class="line">function reverse(x: number): number;</span><br><span class="line">function reverse(x: string): string;</span><br><span class="line">function reverse(x: number | string): number | string &#123;</span><br><span class="line">    if (typeof x === &#x27;number&#x27;) &#123;</span><br><span class="line">        return Number(x.toString().split(&#x27;&#x27;).reverse().join(&#x27;&#x27;));</span><br><span class="line">    &#125; else if (typeof x === &#x27;string&#x27;) &#123;</span><br><span class="line">        return x.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//函数声明（不允许输入多余或者少于要求的参数）</span><br><span class="line">function sum(x:number, y: number):number &#123;</span><br><span class="line">    return x + y</span><br><span class="line">&#125;</span><br><span class="line">sum(1,2) //right</span><br><span class="line">sum(1,2,3) //false</span><br><span class="line">sum(1) //false</span><br><span class="line">----------------------------------------------</span><br><span class="line">//函数表达式</span><br><span class="line">let sum:(x:number, y: number) =&gt; number = function(x:number, y:number):number &#123;</span><br><span class="line">    return x + y</span><br><span class="line">&#125;</span><br><span class="line">-----------------------------------------------</span><br><span class="line">//可选参数（使用 ? 表示可选的参数，只能放在参数的最后，后面不允许出现必须参数）</span><br><span class="line">function buildName(firstName:string, lastName?:string):string &#123;</span><br><span class="line">    if (lastName) &#123;</span><br><span class="line">        return firstName + &#x27; &#x27; + lastName</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return firstName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let tomcat = buildName(&#x27;tom&#x27;, &#x27;cat&#x27;)</span><br><span class="line">let tom = buildName(&#x27;tom&#x27;)</span><br><span class="line">--------------------------------------------------</span><br><span class="line">//参数默认值（typescript会将添加了默认值的参数识别为可选参数）</span><br><span class="line">    function buildName(firstName:string, lastName:string = &#x27;cat&#x27;):string &#123;</span><br><span class="line">        if (lastName) &#123;</span><br><span class="line">            return firstName + &#x27; &#x27; + lastName</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return firstName</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    let tomcat = buildName(&#x27;tom&#x27;, &#x27;cat&#x27;)</span><br><span class="line">    let tom = buildName(&#x27;tom&#x27;)</span><br><span class="line">----------------------------------------------------</span><br><span class="line">//剩余参数，可以使用...rest的方式获取函数中的剩余参数</span><br><span class="line">function push(array: any[], ...items:any[]) &#123;</span><br><span class="line">    items.forEach(function(item) &#123;</span><br><span class="line">        array.push(item)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">let a = []</span><br><span class="line">push(a, 1,2,3,4)</span><br><span class="line">-------------------------------------------------------</span><br><span class="line">//重载：允许一个函数接受不同数量或者类型的参数时，做出不同的处理</span><br><span class="line">//例如，数字或者字符串的反转输出</span><br><span class="line">function reverse(x: number): number;</span><br><span class="line">function reverse(x: string): string;</span><br><span class="line">function reverse(x: number | string): number | string &#123;</span><br><span class="line">    if (typeof x === &#x27;number&#x27;) &#123;</span><br><span class="line">        return Number(x.toString().split(&#x27;&#x27;).reverse().join(&#x27;&#x27;));</span><br><span class="line">    &#125; else if (typeof x === &#x27;string&#x27;) &#123;</span><br><span class="line">        return x.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型（注意点）"><a href="#泛型（注意点）" class="headerlink" title="泛型（注意点）"></a>泛型（注意点）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type A1 = &#x27;x&#x27; extends &#x27;x&#x27; ? string : number; // string</span><br><span class="line">type A2 = &#x27;x&#x27; | &#x27;y&#x27; extends &#x27;x&#x27; ? string : number; // number</span><br><span class="line"></span><br><span class="line">type P&lt;T&gt; = T extends &#x27;x&#x27; ? string : number;</span><br><span class="line">type A3 = P&lt;&#x27;x&#x27; | &#x27;y&#x27;&gt; // ?</span><br></pre></td></tr></table></figure>
+
+<p>这里的<em>extends</em>是指<strong>类型 A 可以分配给类型 B，而不是说类型 A 是类型 B 的子集</strong>。<br>P 是带参数 T 的泛型类型，A1 和 A2 的形式一样，结果也很好理解，A3 是泛型类型 P 传入参数<br>**’x’ | ‘y’**得到的类型，如果将 <strong>‘x’ | ‘Y’</strong> 代入泛型类的表达式，那应该会得到和 A2 类型的形式完全一样的结果，这里直接给结论了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type P&lt;T&gt; = T extends &#x27;x&#x27; ? string : number;</span><br><span class="line">type A3 = P&lt;&#x27;x&#x27; | &#x27;y&#x27;&gt; // A3的类型是 string ｜ number</span><br></pre></td></tr></table></figure>
+
+<p>结果是不是出人意料？原因就是<strong>分配条件类型</strong>,在 TS 中对于 extends 关键字的条件类型（即上面的三元表达式类型），如果<em>extends</em>前面的参数是一个泛型类型，当传入该参数的是联合类型，则使用分配律计算最终结果。</p>
+<p><em>分配律</em>是指，将联合型类的联合项拆分成单项，分别代入条件类型，然后将每个单项代入，再将得到的结果联合起来，得到最终的结果。</p>
+<ul>
+<li>特殊的 never</li>
+</ul>
+<p>那么，我们在看一个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type A1 = never extends &#x27;x&#x27; ? string : number;</span><br><span class="line"></span><br><span class="line">type P&lt;T&gt; = T extends &#x27;x&#x27; ? string : number;</span><br><span class="line"></span><br><span class="line">type A2 = P&lt;never&gt; // never</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子中，A2 和 A1 的结果竟然不一样，看起来<em>never</em>并不是一个联合类型啊，所以直接代入条件类型获取的结果应该和 A1 相同才对啊？</p>
+<p>实际上，<strong>never 被认为是空的联合类型</strong>，never 是一个没有联合项的联合类型，所以还是满足上面的分配律，又因为没有联合项可以分配，所以*P<T>*的表达式根本就没有执行，所以 A2 的定义就类似于永远没有返回的函数一样，是 never 类型。</p>
+<ul>
+<li>如何防止条件判断中的分配</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type P&lt;T&gt; = [T] extends [&#x27;x&#x27;] ? string : number;</span><br><span class="line"></span><br><span class="line">type A1 = P&lt;&#x27;x&#x27; | &#x27;y&#x27;&gt;; // number</span><br><span class="line"></span><br><span class="line">type A2 = P&lt;never&gt; // string</span><br></pre></td></tr></table></figure>
+
+<p>在条件判断类型的定义中，将泛型参数使用 <strong>[]</strong> 括起来，即可阻断条件判断类型的分配，此时，传入的 T 的类型就会被当作一个整体，不再分配。</p>
 ]]></content>
       <categories>
         <category>ts</category>
@@ -2364,6 +2387,17 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type TrimLeft&lt;V extends string&gt; = V extends ` $&#123;infer R&#125;` ? TrimLeft&lt;R&gt; : V;</span><br><span class="line">type TrimRight&lt;V extends string&gt; = V extends `$&#123;infer R&#125; `? TrimRight&lt;R&gt; : V;</span><br><span class="line"></span><br><span class="line">type Trim&lt;V extends string&gt; = TrimLeft&lt;TrimRight&lt;V&gt;&gt;;</span><br><span class="line"></span><br><span class="line">type Result = Trim&lt;&#x27;  foolishmax  &#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十一题"><a href="#第十一题" class="headerlink" title="第十一题"></a>第十一题</h2><ul>
+<li>实现一个*IsEqual&lt;A, B&gt;*工具类型，用于比较两个类型是否相等，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type IsEqual&lt;A, B&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type E0 = IsEqual&lt;1, 2&gt;; // false</span><br><span class="line">type E1 = IsEqual&lt;&#123;a : 1, &#123;a: 1&#125;&#125;&gt;; // true</span><br><span class="line">type E2 = IsEqual&lt;[1], []&gt;; // false</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 1</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type IsEqual&lt;A, B&gt; = A extends B ? (B extends A ? true : false) : false;</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type E0 = IsEqual&lt;1, 2&gt;; // false</span><br><span class="line">type E1 = IsEqual&lt;&#123;a : 1&#125;, &#123;a: 1&#125;&gt;; // true</span><br><span class="line">type E2 = IsEqual&lt;[1], []&gt;; // false</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 2</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type IsEqual&lt;A, B&gt; =</span><br><span class="line">(&lt;G&gt;() =&gt; G extends A ? 1 : 2) extends</span><br><span class="line">(&lt;G&gt;() =&gt; G extends B ? 1 : 2) ? true : false;</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type E0 = IsEqual&lt;1, 2&gt;; // false</span><br><span class="line">type E1 = IsEqual&lt;&#123;a : 1&#125;, &#123;a: 1&#125;&gt;; // true</span><br><span class="line">type E2 = IsEqual&lt;[1], []&gt;; // false</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
