@@ -2279,6 +2279,22 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案 2</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Head&lt;T extends Array&lt;any&gt;&gt; = T extends [head: infer H, ...rest: any[]] ? H : never;</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type H0 = Head&lt;[]&gt; // never</span><br><span class="line">type H1 = Head&lt;[1]&gt; // 1</span><br><span class="line">type H2 = Head&lt;[2,3,4]&gt; // 2</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十三题"><a href="#第十三题" class="headerlink" title="第十三题"></a>第十三题</h2><ul>
+<li>实现一个<em>Tail</em>工具类型，用于获取数组类型除了第一个类型外，剩余的类型，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Tail&lt;T extends Array&lt;any&gt;&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type T0 = Tail&lt;[]&gt; //[]</span><br><span class="line">type T1 = Tail&lt;[1, 2]&gt; // [2]</span><br><span class="line">type T2 = Tail&lt;[1, 2, 3, 4, 5]&gt; //[2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Tail&lt;T extends Array&lt;any&gt;&gt; = T extends [infer A, ...infer B] ? B : [];</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type T0 = Tail&lt;[]&gt; //[]</span><br><span class="line">type T1 = Tail&lt;[1, 2]&gt; // [2]</span><br><span class="line">type T2 = Tail&lt;[1, 2, 3, 4, 5]&gt; //[2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十四题"><a href="#第十四题" class="headerlink" title="第十四题"></a>第十四题</h2><ul>
+<li>实现一个<em>Unshift</em>工具类型，用于把指定类型 E 作为第一个元素添加到<em>T</em>数组类型中，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Unshift&lt;T extends any[], E&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type U0 = Unshift&lt;[], 1&gt;; // [1]</span><br><span class="line">type U1 = Unshift&lt;[1, 2, 3], 0&gt;; //[0, 1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Unshift&lt;T extends any[], E&gt; = [E, ...T];</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type U0 = Unshift&lt;[], 1&gt;; // [1]</span><br><span class="line">type U1 = Unshift&lt;[1, 2, 3], 0&gt;; //[0, 1, 2, 3]</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
