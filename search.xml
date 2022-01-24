@@ -1386,7 +1386,7 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <p>这里的<em>extends</em>是指<strong>类型 A 可以分配给类型 B，而不是说类型 A 是类型 B 的子集</strong>。<br>P 是带参数 T 的泛型类型，A1 和 A2 的形式一样，结果也很好理解，A3 是泛型类型 P 传入参数<br>**’x’ | ‘y’**得到的类型，如果将 <strong>‘x’ | ‘Y’</strong> 代入泛型类的表达式，那应该会得到和 A2 类型的形式完全一样的结果，这里直接给结论了</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type P&lt;T&gt; = T extends &#x27;x&#x27; ? string : number;</span><br><span class="line">type A3 = P&lt;&#x27;x&#x27; | &#x27;y&#x27;&gt; // A3的类型是 string ｜ number</span><br></pre></td></tr></table></figure>
 
-<p>结果是不是出人意料？原因就是<strong>分配条件类型</strong>,在 TS 中对于 extends 关键字的条件类型（即上面的三元表达式类型），如果<em>extends</em>前面的参数是一个泛型类型，当传入该参数的是联合类型，则使用分配律计算最终结果。</p>
+<p>结果是不是出人意料？原因就是<strong>分配条件类型</strong>,在 TS 中对于 extends 关键字的条件类型（即上面的三元表达式类型），如果<em>extends</em>前面的参数是一个(裸类型)泛型类型，当传入该参数的是联合类型，则使用分配律计算最终结果。</p>
 <p><em>分配律</em>是指，将联合型类的联合项拆分成单项，分别代入条件类型，然后将每个单项代入，再将得到的结果联合起来，得到最终的结果。</p>
 <ul>
 <li>特殊的 never</li>
@@ -2325,6 +2325,17 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案 2</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Includes&lt;T extends any[], E&gt; = T extends [infer A, ...infer R] ? E extends A ? true : Includes&lt;R, E&gt; : false;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type I0 = Includes&lt;[], 1&gt;; // false</span><br><span class="line">type I1 = Includes&lt;[2, 3], 2&gt;; // true</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十八题"><a href="#第十八题" class="headerlink" title="第十八题"></a>第十八题</h2><ul>
+<li>实现一个<em>UnionToIntersection</em>工具类型，用于把联合类型转换为交叉类型，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type UnionToIntersection&lt;U&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type U0 = UnionToIntersection&lt;string | number&gt;; // never</span><br><span class="line">type U1 = UnionToIntersection&lt;&#123;name: string&#125; | &#123;age: number&#125;&gt;; // &#123;name: string&#125; &amp; &#123;age: number&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<ul>
+<li><a href="https://www.jianshu.com/p/071b948209f3">逆变协变</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type UnionToIntersection&lt;U&gt; = (U extends any ? (k: U) =&gt; void : never) extends (k: infer I) =&gt; void ? I : never</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type U0 = UnionToIntersection&lt;string | number&gt; // never</span><br><span class="line">type U1 = UnionToIntersection&lt;&#123; name: string &#125; | &#123; age: number &#125;&gt; // &#123; name: string; &#125; &amp; &#123; age: number; &#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
