@@ -2295,6 +2295,25 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Unshift&lt;T extends any[], E&gt; = [E, ...T];</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type U0 = Unshift&lt;[], 1&gt;; // [1]</span><br><span class="line">type U1 = Unshift&lt;[1, 2, 3], 0&gt;; //[0, 1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十五题"><a href="#第十五题" class="headerlink" title="第十五题"></a>第十五题</h2><ul>
+<li>实现一个<em>Shift</em>工具类型，用于移除<em>T</em>数组类型中的第一个类型，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Shift&lt;T extends any[]&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type S0 = Shift&lt;[1, 2, 3]&gt;</span><br><span class="line">type S1 = Shift&lt;[string, number, boolean]&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Shift&lt;T extends any[]&gt; = T extends [infer A, ...infer B] ? B : [];</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type S0 = Shift&lt;[1, 2, 3]&gt;; // [2, 3]</span><br><span class="line">type S1 = Shift&lt;[string, number, boolean]&gt;; // [number, boolean]</span><br><span class="line">type S2 = Shift&lt;[]&gt;; // []</span><br><span class="line">type S3 = Shift&lt;[string]&gt;; // []</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十六题"><a href="#第十六题" class="headerlink" title="第十六题"></a>第十六题</h2><ul>
+<li>实现一个<em>Push</em>工具类型，用于把指定类型<em>E</em>作为最后一个元素添加到<em>T</em>数组类型中，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Push&lt;T extends any[], E&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type P0 = Push&lt;[], 1&gt;; // [1]</span><br><span class="line">type P1 = Push&lt;[1, 2, 3], 4&gt;; // [1, 2, 3, 4]</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 1</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Push&lt;T extends any[], E&gt; = T extends [...infer U] ? [...U, E] : never;</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type P0 = Push&lt;[], 1&gt;; // [1]</span><br><span class="line">type P1 = Push&lt;[1, 2, 3], 4&gt;; // [1, 2, 3, 4]</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 2</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Push&lt;T extends any[], E&gt; = [...T, E];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type P0 = Push&lt;[], 1&gt;; // [1]</span><br><span class="line">type P1 = Push&lt;[1, 2, 3], 4&gt;; // [1, 2, 3, 4]</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
