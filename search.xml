@@ -2333,9 +2333,14 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案</strong></p>
 <ul>
-<li><a href="https://www.jianshu.com/p/071b948209f3">逆变协变</a></li>
+<li><p><a href="https://www.jianshu.com/p/071b948209f3">逆变协变</a></p>
+</li>
+<li><p>注释</p>
+</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type UnionToIntersection&lt;U&gt; = (U extends any ? (k: U) =&gt; void : never) extends (k: infer I) =&gt; void ? I : never</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type U0 = UnionToIntersection&lt;string | number&gt; // never</span><br><span class="line">type U1 = UnionToIntersection&lt;&#123; name: string &#125; | &#123; age: number &#125;&gt; // &#123; name: string; &#125; &amp; &#123; age: number; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Fun&lt;X&gt; = (...args: X[]) =&gt; void;</span><br><span class="line"></span><br><span class="line">let f: Fun&lt;string&gt;</span><br><span class="line">let g: Fun&lt;string | number&gt;</span><br><span class="line"></span><br><span class="line">g = f // this cannot be assigned</span><br><span class="line"></span><br><span class="line">当f赋值给g时，新的g不能使用number类型的参数，我们丢失了g的一部分类型，这就属于 逆变(contra-variance),这个和交集的工作机制类似。</span><br><span class="line"></span><br><span class="line">当我们把逆变位置放在条件类型时：Typescript会创建一个交集，我们从函数参数中infer了一个类型，TypeScript知道我们必须符合逆变的条件，然后TypeScript会自动创建并集中所有的成分的交集。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type UnionToIntersection&lt;U&gt; = (U extends any ? (k: U) =&gt; void : never) extends (k: infer I) =&gt; void ? I : never</span><br><span class="line"></span><br><span class="line">// 测试用例</span><br><span class="line">type U0 = UnionToIntersection&lt;string | number&gt; // never</span><br><span class="line">type U1 = UnionToIntersection&lt;&#123; name: string &#125; | &#123; age: number &#125;&gt; // &#123; name: string; &#125; &amp; &#123; age: number; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
