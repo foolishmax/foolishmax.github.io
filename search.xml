@@ -2361,6 +2361,14 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案 4</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Person = &#123;</span><br><span class="line">  id: string;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">  from?: string;</span><br><span class="line">  speak?: string;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">type OptionalKeys&lt;T&gt; = &#123;</span><br><span class="line">  [P in keyof T]: (undefined extends T[P] ? P : never)</span><br><span class="line">&#125;[keyof T] &amp; keyof T</span><br><span class="line"></span><br><span class="line">type PersonOptionalKeys = OptionalKeys&lt;Person&gt;; // &quot;from&quot; | &quot;speak</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二十题"><a href="#第二十题" class="headerlink" title="第二十题"></a>第二十题</h2><ul>
+<li>实现一个<em>Curry</em>工具类型，用来实现函数类型的柯里化处理，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Curry&lt;</span><br><span class="line">  F extends (...args: any[]) =&gt; any,</span><br><span class="line">  P extends any[] = Parameters&lt;F&gt;,</span><br><span class="line">  R = ReturnType&lt;F&gt;</span><br><span class="line">&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type C0 = Curry&lt;() =&gt; Date&gt;; // () =&gt; Date</span><br><span class="line">type C1 = Curry&lt;(a:number) =&gt; Date&gt;; // (arg: number) =&gt; Date</span><br><span class="line">type C2 = Curry&lt;(a: number, b: string) =&gt; Date&gt;; // (arg: number)=&gt;(arg: string) =&gt; Date</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Curry&lt;</span><br><span class="line">  F extends (...args: any[]) =&gt; any,</span><br><span class="line">  P extends any[] = Parameters&lt;F&gt;,</span><br><span class="line">  R = ReturnType&lt;F&gt;,</span><br><span class="line">&gt; = P extends [infer A, ...infer B]</span><br><span class="line">  ? B extends []</span><br><span class="line">  ? (arg: A) =&gt; R</span><br><span class="line">  : (arg: A) =&gt; Curry&lt;(...arg: B) =&gt; R&gt;</span><br><span class="line">  : F;</span><br><span class="line"></span><br><span class="line">type C0 = Curry&lt;() =&gt; Date&gt;; // () =&gt; Date</span><br><span class="line">type C1 = Curry&lt;(a:number) =&gt; Date&gt;; // (arg: number) =&gt; Date</span><br><span class="line">type C2 = Curry&lt;(a: number, b: string) =&gt; Date&gt;; // (arg: number)=&gt;(arg: string) =&gt; Date</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
