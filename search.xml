@@ -2369,6 +2369,27 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Curry&lt;</span><br><span class="line">  F extends (...args: any[]) =&gt; any,</span><br><span class="line">  P extends any[] = Parameters&lt;F&gt;,</span><br><span class="line">  R = ReturnType&lt;F&gt;,</span><br><span class="line">&gt; = P extends [infer A, ...infer B]</span><br><span class="line">  ? B extends []</span><br><span class="line">  ? (arg: A) =&gt; R</span><br><span class="line">  : (arg: A) =&gt; Curry&lt;(...arg: B) =&gt; R&gt;</span><br><span class="line">  : F;</span><br><span class="line"></span><br><span class="line">type C0 = Curry&lt;() =&gt; Date&gt;; // () =&gt; Date</span><br><span class="line">type C1 = Curry&lt;(a:number) =&gt; Date&gt;; // (arg: number) =&gt; Date</span><br><span class="line">type C2 = Curry&lt;(a: number, b: string) =&gt; Date&gt;; // (arg: number)=&gt;(arg: string) =&gt; Date</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二十一题"><a href="#第二十一题" class="headerlink" title="第二十一题"></a>第二十一题</h2><ul>
+<li>实现一个<em>Merge</em>工具类型，用于把两个类型合成一个新的类型，第二类型（SecondType）的<em>Keys</em>将会覆盖第一种类型（FirstType）的<em>Keys</em>，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Bar = &#123;</span><br><span class="line">  b: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Merge&lt;FirstType, SecondType&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type M = Merge&lt;Foo, Bar&gt;; // &#123;a: number, b: number&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 1</strong></p>
+<ul>
+<li>将 FirstType 和 SecondType 做交叉类型，并遍历每一个属性；</li>
+<li>如果当前属性名在 SecondType 类型中，则使用 SecondType 类型中的当前属性值；</li>
+<li>如果当前属性名在 FirstType 类型中，则使用 FirstType 类型中的当前属性值；</li>
+<li>否则为 never；</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Bar = &#123;</span><br><span class="line">  b: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Merge&lt;FirstType, SecondType&gt; =&#123;</span><br><span class="line">  [K in keyof (FirstType &amp; SecondType)]</span><br><span class="line">  : K extends keyof SecondType</span><br><span class="line">  ? SecondType[K]</span><br><span class="line">  : K extends keyof FirstType</span><br><span class="line">  ? FirstType[K]</span><br><span class="line">  : never&#125;</span><br><span class="line"></span><br><span class="line">type M = Merge&lt;Foo, Bar&gt;; // &#123;a: number, b: number&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 2</strong></p>
+<ul>
+<li>先将 FirstType 类型中已经有的，和 SecondType 类型中相同的属性删除；</li>
+<li>将前面结果和 SecondType 做交叉类型，获得合并后结果。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Foo = &#123;</span><br><span class="line">  a: number;</span><br><span class="line">  b: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Bar = &#123;</span><br><span class="line">  b: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Merge&lt;F, S&gt; = Omit&lt;F, keyof S&gt; &amp; S;</span><br><span class="line"></span><br><span class="line">type M = Merge&lt;Foo, Bar&gt;; // &#123;a: number, b: number&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
