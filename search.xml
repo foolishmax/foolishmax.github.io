@@ -2426,6 +2426,17 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案 2</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Foo = &#123;</span><br><span class="line">  readonly a: number;</span><br><span class="line">  readonly b: string;</span><br><span class="line">  readonly c: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Mutable&lt;T, Keys extends keyof T = keyof T&gt; =</span><br><span class="line">&#123;-readonly [K in Keys]: T[K] : T[K]&#125; &amp; Omit&lt;T, Keys&gt;;</span><br><span class="line"></span><br><span class="line">const mutableFoo: Mutable&lt;Foo, &#x27;a&#x27;&gt; = &#123; a: 1, b: &#x27;2&#x27;, c: true &#125;;</span><br><span class="line"></span><br><span class="line">mutableFoo.a = 3; // ok</span><br><span class="line">mutableFoo.b = &#x27;6&#x27;; // Cannot assign to &#x27;b&#x27; because it is a read-only property.</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二十五题"><a href="#第二十五题" class="headerlink" title="第二十五题"></a>第二十五题</h2><ul>
+<li>实现一个 <code>IsUnion</code> 工具类型，判断指定的类型是否为联合类型，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type IsUnion&lt;T, U = T&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type I0 = IsUnion&lt;string|number&gt; // true</span><br><span class="line">type I1 = IsUnion&lt;string|never&gt; // false</span><br><span class="line">type I2 = IsUnion&lt;string|unknown&gt; //false</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type IsUnion&lt;T, U = T&gt; = T extends any ? [U] extends [T] ? false : true : never;</span><br><span class="line"></span><br><span class="line">type I0 = IsUnion&lt;string|number&gt; // true</span><br><span class="line">type I1 = IsUnion&lt;string|never&gt; // false</span><br><span class="line">type I2 = IsUnion&lt;string|unknown&gt; //false</span><br></pre></td></tr></table></figure>
+
+<p>知识点： 1.联合类型作为泛型的时候 extends 会触发分发执行 2.联合类型 T 写成[T]就变成了普通类型，extends 的时候不会分发执行</p>
+<p>这里第一步<code>T extends any</code>肯定为真，一个其实就是利用其分发的特性，后面的[T]就是一个联合类型拆开后的某一个，因此如果是联合类型的话<code>[U] extends [T]</code>一定为否</p>
 ]]></content>
       <categories>
         <category>typescript</category>
