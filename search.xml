@@ -2404,6 +2404,14 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案 3</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Responder = &#123;</span><br><span class="line">  text?: () =&gt; string;</span><br><span class="line">  json?: () =&gt; string;</span><br><span class="line">  secure?: boolean;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">type RequireAtLeastOne&lt;ObjectType, KeysType extends keyof ObjectType = KeysType extends unknown</span><br><span class="line">? Omit&lt;ObjectType, KeysType&gt; &amp; Require&lt;Pick&lt;ObjectType, KeysType&gt;&gt;</span><br><span class="line">: never</span><br><span class="line"></span><br><span class="line">// 表示当前类型至少包含 &#x27;text&#x27; 或 &#x27;json&#x27; 键</span><br><span class="line">const responder: RequireAtLeastOne&lt;Responder, &quot;text&quot; | &quot;json&quot;&gt; = &#123;</span><br><span class="line">  json: () =&gt; &#x27;&#123;&quot;message&quot;: &quot;ok&quot;&#125;&#x27;,</span><br><span class="line">  secure: true,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="第二十三题"><a href="#第二十三题" class="headerlink" title="第二十三题"></a>第二十三题</h2><ul>
+<li>实现一个<em>RemoveIndexSignature</em>工具类型，用于移除已有类型中的索引签名，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">interface Foo &#123;</span><br><span class="line">  [key: string]: any;</span><br><span class="line">  [key: number]: any;</span><br><span class="line">  [key: symbol]: any;</span><br><span class="line">  bar(): void;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type RemoveIndexSignature&lt;T&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type R = RemoveIndexSignature&lt;Foo&gt;; // &#123;bar: ()=&gt;void;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">interface Foo &#123;</span><br><span class="line">  [key: string]: any;</span><br><span class="line">  [key: number]: any;</span><br><span class="line">  [key: symbol]: any;</span><br><span class="line">  bar(): void;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type RemoveIndexSignature&lt;T&gt; = &#123;</span><br><span class="line">  [K in keyof T as string extends K ? never : number extends K ? never : symbol extends K ? never : K]: T[K]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type R = RemoveIndexSignature&lt;Foo&gt;; // &#123;bar: () =&gt; void;&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
