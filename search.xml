@@ -2437,6 +2437,27 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p>知识点： 1.联合类型作为泛型的时候 extends 会触发分发执行 2.联合类型 T 写成[T]就变成了普通类型，extends 的时候不会分发执行</p>
 <p>这里第一步<code>T extends any</code>肯定为真，一个其实就是利用其分发的特性，后面的[T]就是一个联合类型拆开后的某一个，因此如果是联合类型的话<code>[U] extends [T]</code>一定为否</p>
+<h2 id="第二十六题"><a href="#第二十六题" class="headerlink" title="第二十六题"></a>第二十六题</h2><ul>
+<li>实现一个<code>IsNever</code>工具类型，判断指定的类型是否为<code>never</code>类型，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type IsNever&lt;T&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type I0 = IsNever&lt;never&gt; // true</span><br><span class="line">type I1 = IsNever&lt;never | string&gt; // false</span><br><span class="line">type I2 = IsNever&lt;null&gt; // false</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<ul>
+<li>用<code>[]</code>包裹 T，否则泛型参数会被当作一个裸类型处理，走<code>条件式分布类型</code>的判断逻辑，当泛型参数是 any 这种特殊值时，会得到分布后的类型。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type IsNever&lt;T&gt; = [T] extends [never] ? true : false;</span><br><span class="line"></span><br><span class="line">type I0 = IsNever&lt;never&gt; // true</span><br><span class="line">type I1 = IsNever&lt;never | string&gt; // false</span><br><span class="line">type I2 = IsNever&lt;null&gt; // false</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二十七题"><a href="#第二十七题" class="headerlink" title="第二十七题"></a>第二十七题</h2><ul>
+<li>实现一个<code>Reverse</code>工具类型，用于对元祖类型中元素的位置颠倒，并返回该数组，元祖的第一个元素就会变成最后一个，最后一个元素变成第一个。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Reverse&lt;</span><br><span class="line">  T extends any[],</span><br><span class="line">  R extends any[] = []</span><br><span class="line">&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type R0 = Reverse&lt;[]&gt; // []</span><br><span class="line">type R1 = Reverse&lt;[1, 2, 3]&gt; // [3, 2, 1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 1</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Reverse&lt;</span><br><span class="line">  T extends any[],</span><br><span class="line">  R extends any[] = []</span><br><span class="line">&gt; = T extends [infer A, ...infer B] ? Reverse&lt;B, [A, ...R]&gt; : R;</span><br><span class="line"></span><br><span class="line">type R0 = Reverse&lt;[]&gt; // []</span><br><span class="line">type R1 = Reverse&lt;[1, 2, 3]&gt; // [3, 2, 1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 2</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Reverse&lt;</span><br><span class="line">  T extends any[]</span><br><span class="line">&gt; = T extends [infer A, ...infer B] ? [...Reverse&lt;B&gt;, A] : [];</span><br><span class="line"></span><br><span class="line">type R0 = Reverse&lt;[]&gt; // []</span><br><span class="line">type R1 = Reverse&lt;[1, 2, 3]&gt; // [3, 2, 1]</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
