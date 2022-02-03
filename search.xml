@@ -2506,6 +2506,14 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type ToNumber&lt;T extends string, S extends any[] = [], L extends number = S[&quot;length&quot;]&gt; =</span><br><span class="line">`$&#123;L&#125;` extends T ? L : ToNumber&lt;T, [...S, 1]&gt;</span><br><span class="line"></span><br><span class="line">type T0 = ToNumber&lt;&quot;0&quot;&gt;; // 0</span><br><span class="line">type T1 = ToNumber&lt;&quot;10&quot;&gt;; // 10</span><br><span class="line">type T2 = ToNumber&lt;&quot;20&quot;&gt;; // 20</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三十四题"><a href="#第三十四题" class="headerlink" title="第三十四题"></a>第三十四题</h2><ul>
+<li>实现一个<code>SmallerThan</code>工具类型，用于比较数值类型的大小，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type SmallerThan&lt;</span><br><span class="line">  N extends number,</span><br><span class="line">  M extends number,</span><br><span class="line">&gt; = //代码实现</span><br><span class="line"></span><br><span class="line">type S0 = SmallerThan&lt;0, 1&gt;; // true</span><br><span class="line">type S1 = SmallerThan&lt;2, 0&gt;; // false</span><br><span class="line">type S2 = SmallerThan&lt;8, 10&gt;; // true</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type SmallerThan&lt;</span><br><span class="line">  N extends number,</span><br><span class="line">  M extends number,</span><br><span class="line">  S extends any[] = [],</span><br><span class="line">  L extends number = S[&quot;length&quot;]</span><br><span class="line">&gt; = L extends N</span><br><span class="line">? L extends M ? false : true</span><br><span class="line">: L extends M ? false : SmallerThan&lt;N, M, [...S, 1]&gt;</span><br><span class="line"></span><br><span class="line">type S0 = SmallerThan&lt;0, 1&gt;; // true</span><br><span class="line">type S1 = SmallerThan&lt;2, 0&gt;; // false</span><br><span class="line">type S2 = SmallerThan&lt;8, 10&gt;; // true</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
