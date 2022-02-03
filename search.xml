@@ -2498,6 +2498,14 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type RepeatString&lt;</span><br><span class="line">  T extends string,</span><br><span class="line">  C extends number,</span><br><span class="line">  S extends string = &#x27;&#x27;,</span><br><span class="line">  A extends any[] = []</span><br><span class="line">&gt; = A[&quot;length&quot;] extends C</span><br><span class="line">? S</span><br><span class="line">: RepeatString&lt;T, C, `$&#123;S&#125;$&#123;T&#125;`, [...A, T]&gt;</span><br><span class="line"></span><br><span class="line">type S0 = RepeatString&lt;&quot;a&quot;, 0&gt;; // &#x27;&#x27;</span><br><span class="line">type S1 = RepeatString&lt;&quot;ab&quot;, 2&gt;; // &#x27;abab&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三十三题"><a href="#第三十三题" class="headerlink" title="第三十三题"></a>第三十三题</h2><ul>
+<li>实现一个<code>ToNumber</code>工具类型，用于实现把数值字符串转换为数值类型，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type ToNumber&lt;T extends string&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type T0 = ToNumber&lt;&quot;0&quot;&gt;; // 0</span><br><span class="line">type T1 = ToNumber&lt;&quot;10&quot;&gt;; // 10</span><br><span class="line">type T2 = ToNumber&lt;&quot;20&quot;&gt;; // 20</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type ToNumber&lt;T extends string, S extends any[] = [], L extends number = S[&quot;length&quot;]&gt; =</span><br><span class="line">`$&#123;L&#125;` extends T ? L : ToNumber&lt;T, [...S, 1]&gt;</span><br><span class="line"></span><br><span class="line">type T0 = ToNumber&lt;&quot;0&quot;&gt;; // 0</span><br><span class="line">type T1 = ToNumber&lt;&quot;10&quot;&gt;; // 10</span><br><span class="line">type T2 = ToNumber&lt;&quot;20&quot;&gt;; // 20</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
