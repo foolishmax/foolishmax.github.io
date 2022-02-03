@@ -2490,6 +2490,14 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Repeat&lt;T, C extends number, A extends any[]&gt; = A[&quot;length&quot;] extends C ? A : Repeat&lt;T, C, [...A, T]&gt;;</span><br><span class="line"></span><br><span class="line">type R0 = Repeat&lt;0, 0&gt;; // []</span><br><span class="line">type R1 = Repeat&lt;1, 3&gt;; // [1, 1, 1]</span><br><span class="line">type R2 = Repeat&lt;number, 2&gt;; // [number, number]</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三十二题"><a href="#第三十二题" class="headerlink" title="第三十二题"></a>第三十二题</h2><ul>
+<li>实现一个<code>RepeatString</code>工具类型，用于根据类型变量<code>C</code>的值，重复 T 类型并以<code>字符串</code>的形式返回新的类型，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type RepeatString&lt;</span><br><span class="line">  T extends string,</span><br><span class="line">  C extends number,</span><br><span class="line">&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type S0 = RepeatString&lt;&quot;a&quot;, 0&gt;; // &#x27;&#x27;</span><br><span class="line">type S1 = RepeatString&lt;&quot;ab&quot;, 2&gt;; // &#x27;abab&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type RepeatString&lt;</span><br><span class="line">  T extends string,</span><br><span class="line">  C extends number,</span><br><span class="line">  S extends string = &#x27;&#x27;,</span><br><span class="line">  A extends any[] = []</span><br><span class="line">&gt; = A[&quot;length&quot;] extends C</span><br><span class="line">? S</span><br><span class="line">: RepeatString&lt;T, C, `$&#123;S&#125;$&#123;T&#125;`, [...A, T]&gt;</span><br><span class="line"></span><br><span class="line">type S0 = RepeatString&lt;&quot;a&quot;, 0&gt;; // &#x27;&#x27;</span><br><span class="line">type S1 = RepeatString&lt;&quot;ab&quot;, 2&gt;; // &#x27;abab&#x27;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
