@@ -2556,6 +2556,25 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// StartWith</span><br><span class="line">type StartsWith&lt;T extends string, U extends string&gt; = T extends `$&#123;U&#125;$&#123;infer R&#125;` ? true : false;</span><br><span class="line"></span><br><span class="line">type S0 = StartsWith&lt;&#x27;123&#x27;, &#x27;12&#x27;&gt;; // true</span><br><span class="line">type S1 = StartsWith&lt;&#x27;123&#x27;, &#x27;13&#x27;&gt;; // false</span><br><span class="line">type S2 = StartsWith&lt;&#x27;123&#x27;, &#x27;1234&#x27;&gt;; // false</span><br><span class="line"></span><br><span class="line">// EndsWith</span><br><span class="line">type EndsWith&lt;T extends string, U extends string&gt; = T extends `$&#123;infer Head&#125;$&#123;U&#125;` ? true : false;</span><br><span class="line"></span><br><span class="line">type E0 = EndsWith&lt;&#x27;123&#x27;, &#x27;23&#x27;&gt;; // true</span><br><span class="line">type E1 = EndsWith&lt;&#x27;123&#x27;, &#x27;13&#x27;&gt;; //false</span><br><span class="line">type E2 = EndsWith&lt;&#x27;123&#x27;, &#x27;123&#x27;&gt;; //true</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三十九题"><a href="#第三十九题" class="headerlink" title="第三十九题"></a>第三十九题</h2><ul>
+<li>实现<code>IsAny</code>工具类型，用于判断类型<code>T</code>是否为<code>any</code>类型，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type IsAny&lt;T&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type I0 = IsAny&lt;never&gt;; // false</span><br><span class="line">type I1 = IsAny&lt;unknown&gt;; // false</span><br><span class="line">type I2 = IsAny&lt;any&gt;; // tue</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 1</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 思路： 利用任何类型和any交叉都等于any来实现</span><br><span class="line">type IsAny&lt;T&gt; = 0 extends 1 &amp; T ? true : false;</span><br><span class="line"></span><br><span class="line">type I0 = IsAny&lt;never&gt;; // false</span><br><span class="line">type I1 = IsAny&lt;unknown&gt;; // false</span><br><span class="line">type I2 = IsAny&lt;any&gt;; // tue</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案 2</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// unknown 只能赋给 unknown 或者 any</span><br><span class="line">type IsAny&lt;T&gt; = [unknown] extends [T] ? ([T] extends [string] ? true : false) : false;</span><br><span class="line"></span><br><span class="line">type I0 = IsAny&lt;never&gt;; // false</span><br><span class="line">type I1 = IsAny&lt;unknown&gt;; // false</span><br><span class="line">type I2 = IsAny&lt;any&gt;; // tue</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四十题"><a href="#第四十题" class="headerlink" title="第四十题"></a>第四十题</h2><ul>
+<li>实现<code>AnyOf</code>工具类型，只要数组中任意元素的类型非<code>Falsy</code>类型、<code>&#123;&#125;</code>类型或<code>[]</code>类型，则返回<code>true</code>，否则返回<code>false</code>,如果数组为空的话，则返回<code>false</code>，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type AnyOf&lt;T extends any[]&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type A0 = AnyOf&lt;[]&gt;; //false</span><br><span class="line">type A1 = AnyOf&lt;[0,&#x27;&#x27;,false,[],&#123;&#125;]&gt;; //false</span><br><span class="line">type A2 = AnyOf&lt;[1, &quot;&quot;,false,[],&#123;&#125;]&gt;; true</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Falsy = &#123;</span><br><span class="line">  [p in PropertyKey]: never</span><br><span class="line">&#125; | [] | &#x27;&#x27; | &quot;&quot; | false | 0 | undefined | null</span><br><span class="line"></span><br><span class="line">type AnyOf&lt;T extends any[]&gt; = T extends [infer A, ...infer Rest]</span><br><span class="line">? (A extends Falsy ? AnyOf&lt;Rest&gt; : true)</span><br><span class="line">: false</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
