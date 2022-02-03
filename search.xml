@@ -2514,7 +2514,26 @@ Vue.component(&#39;my-component&#39;, &#123;
 
 <p><strong>解决方案</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type SmallerThan&lt;</span><br><span class="line">  N extends number,</span><br><span class="line">  M extends number,</span><br><span class="line">  S extends any[] = [],</span><br><span class="line">  L extends number = S[&quot;length&quot;]</span><br><span class="line">&gt; = L extends N</span><br><span class="line">? L extends M ? false : true</span><br><span class="line">: L extends M ? false : SmallerThan&lt;N, M, [...S, 1]&gt;</span><br><span class="line"></span><br><span class="line">type S0 = SmallerThan&lt;0, 1&gt;; // true</span><br><span class="line">type S1 = SmallerThan&lt;2, 0&gt;; // false</span><br><span class="line">type S2 = SmallerThan&lt;8, 10&gt;; // true</span><br></pre></td></tr></table></figure>
-]]></content>
+
+<h2 id="第三十五题"><a href="#第三十五题" class="headerlink" title="第三十五题"></a>第三十五题</h2><ul>
+<li>实现一个<code>Add</code>工具类型，用于实现对数组对应的数值进行加法运算，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Add&lt;T, R&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type A0 = Add&lt;5, 5&gt;; // 10</span><br><span class="line">type A1 = Add&lt;8, 20&gt;; // 28</span><br><span class="line">type A2 = Add&lt;10, 20&gt;; // 30</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Push&lt;T extends number[], V&gt; = [...T, V];</span><br><span class="line"></span><br><span class="line">type CreateTuple&lt;</span><br><span class="line">  T extends number,</span><br><span class="line">  A extends number[] = []</span><br><span class="line">&gt; = A[&quot;length&quot;] extends T ? A : CreateTuple&lt;T, Push&lt;A, 1&gt;&gt;;</span><br><span class="line"></span><br><span class="line">type Add&lt;T extends number, R extends number&gt; = [...CreateTuple&lt;T&gt;, ...CreateTuple&lt;R&gt;][&quot;length&quot;];</span><br><span class="line"></span><br><span class="line">type A0 = Add&lt;5, 5&gt;; // 10</span><br><span class="line">type A1 = Add&lt;8, 20&gt;; // 28</span><br><span class="line">type A2 = Add&lt;10, 20&gt;; // 30</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三十六题"><a href="#第三十六题" class="headerlink" title="第三十六题"></a>第三十六题</h2><ul>
+<li>实现一个<code>Filter</code>工具类型，用于根据类型变量<code>F</code>的值进行类型过滤，示例如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Filter&lt;T extends any[], F&gt; = // 代码实现</span><br><span class="line"></span><br><span class="line">type F0 = Filter&lt;[6, &quot;lolo&quot;, 7, &quot;semlinker&quot;, false], number&gt;; // [6, 7]</span><br><span class="line">type F1 = Filter&lt;[&quot;kakuqo&quot;, 2, [&quot;ts&quot;], &quot;lolo&quot;], string&gt;; // [&quot;kakuqo&quot;, &quot;lolo&quot;]</span><br><span class="line">type F2 = Filter&lt;[0, true, any, &quot;abao&quot;], string&gt;; // [any, &quot;abao&quot;]</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 本题关键点就是对`any`类型的处理：</span><br><span class="line">type A0 = any &amp; 1; // any</span><br><span class="line">type A1 = any &amp; boolean; // any</span><br><span class="line">type A2 = any &amp; never; // never</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type IsAny&lt;T&gt; = 0 extends (1 &amp; T) ? true : false;</span><br><span class="line"></span><br><span class="line">type Filter&lt;T extends any[], F&gt; = T extends [infer R1, ...infer R2]</span><br><span class="line">? IsAny&lt;R1&gt; extends true</span><br><span class="line">? [R1, ...Filter&lt;R2, F&gt;]</span><br><span class="line">: [...R1 extends F ? [R1] : [], ...Filter&lt;R2, F&gt;]</span><br><span class="line">:[]</span><br><span class="line"></span><br><span class="line">type F0 = Filter&lt;[6, &quot;lolo&quot;, 7, &quot;semlinker&quot;, false], number&gt;; // [6, 7]</span><br><span class="line">type F1 = Filter&lt;[&quot;kakuqo&quot;, 2, [&quot;ts&quot;], &quot;lolo&quot;], string&gt;; // [&quot;kakuqo&quot;, &quot;lolo&quot;]</span><br><span class="line">type F2 = Filter&lt;[0, true, any, &quot;abao&quot;], string&gt;; // [any, &quot;abao&quot;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三十七题"><a href="#第三十七题" class="headerlink" title="第三十七题"></a>第三十七题</h2>]]></content>
       <categories>
         <category>typescript</category>
       </categories>
