@@ -6354,4 +6354,18 @@ shuffle(arr)
         <tag>面试题</tag>
       </tags>
   </entry>
+  <entry>
+    <title>30-seconds-of-code-study</title>
+    <url>/2022/02/07/30-seconds-of-code-study/</url>
+    <content><![CDATA[<h2 id="Question-1-toSafeInteger"><a href="#Question-1-toSafeInteger" class="headerlink" title="Question 1: toSafeInteger"></a>Question 1: toSafeInteger</h2><p>Converts a value to a safe integer.</p>
+<ul>
+<li>Use <code>Math.max()</code> and <code>Math.min()</code> to find the closest safe value.</li>
+<li>Use <code>Math.round()</code> to convert to an integer.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> toSafeinteger = <span class="function"><span class="params">num</span> =&gt;</span></span><br><span class="line">  <span class="built_in">Math</span>.round(</span><br><span class="line">    <span class="built_in">Math</span>.max(<span class="built_in">Math</span>.min(num, <span class="built_in">Number</span>.MAX_SAFE_INTEGER), <span class="built_in">Number</span>.MIN_SAFE_INTEGER)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">toSafeInteger(<span class="string">&#x27;3.2&#x27;</span>); <span class="comment">// 3</span></span><br><span class="line">toSafeInteger(<span class="literal">Infinity</span>); <span class="comment">// 9007199254740991</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>javaScript</tag>
+      </tags>
+  </entry>
 </search>

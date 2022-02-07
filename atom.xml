@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2022-02-07T08:37:30.881Z</updated>
+  <updated>2022-02-07T10:09:36.183Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>30-seconds-of-code-study</title>
+    <link href="https://github.com/foolishmax/2022/02/07/30-seconds-of-code-study/"/>
+    <id>https://github.com/foolishmax/2022/02/07/30-seconds-of-code-study/</id>
+    <published>2022-02-07T09:52:54.000Z</published>
+    <updated>2022-02-07T10:09:36.183Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Question-1-toSafeInteger"><a href="#Question-1-toSafeInteger" class="headerlink" title="Question 1: toSafeInteger"></a>Question 1: toSafeInteger</h2><p>Converts a value to a safe integer.</p><ul><li>Use <code>Math.max()</code> and <code>Math.min()</code> to find the closest safe value.</li><li>Use <code>Math.round()</code> to convert to an integer.</li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> toSafeinteger = <span class="function"><span class="params">num</span> =&gt;</span></span><br><span class="line">  <span class="built_in">Math</span>.round(</span><br><span class="line">    <span class="built_in">Math</span>.max(<span class="built_in">Math</span>.min(num, <span class="built_in">Number</span>.MAX_SAFE_INTEGER), <span class="built_in">Number</span>.MIN_SAFE_INTEGER)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">toSafeInteger(<span class="string">&#x27;3.2&#x27;</span>); <span class="comment">// 3</span></span><br><span class="line">toSafeInteger(<span class="literal">Infinity</span>); <span class="comment">// 9007199254740991</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Question-1-toSafeInteger&quot;&gt;&lt;a href=&quot;#Question-1-toSafeInteger&quot; class=&quot;headerlink&quot; title=&quot;Question 1: toSafeInteger&quot;&gt;&lt;/a&gt;Question 1: t</summary>
+      
+    
+    
+    
+    
+    <category term="javaScript" scheme="https://github.com/foolishmax/tags/javaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>TS进阶题目</title>
@@ -477,30 +499,6 @@
     
     
     <category term="浏览器" scheme="https://github.com/foolishmax/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端安全</title>
-    <link href="https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"/>
-    <id>https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/</id>
-    <published>2019-10-10T05:50:51.000Z</published>
-    <updated>2019-10-10T15:21:26.062Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h2><h4 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h4><ul><li>就是通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，<br>最终达到欺骗服务器执行恶意的SQL命令</li></ul><h4 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h4><ul><li>xss：跨站脚本攻击(Cross Site Scripting),攻击者通过注入非法的html标签<br>或者JavaScript代码，从而当用户浏览该网页时，控制用户浏览器。</li><li>xss主要分为三类：<ul><li>DOM xss<ul><li>DOM即文本对象模型，DOM通常代表在html、xhtml和xml中的对象，使用DOM<br>可以允许程序和脚本动态的访问和更新文档的内容、结构和样式。它不需要服务器<br>解析响应的直接参与，触发XSS靠的是浏览器端的DOM解析，可以认为完全是客户端<br>的事情。</li></ul></li><li>反射型 xss<ul><li>反射型XSS也被称为非持久性XSS，是现在最容易出现的一种XSS漏洞。发出请<br>求时，XSS代码出现在URL中 ，最后输入提交到服务器，服务器解析后在响应内容<br>中出现这段XSS代码，最后浏览器解析执行。</li></ul></li><li>存储型 xss<ul><li>存储型XSS又被称为持久性XSS，它是最危险的一种跨站脚本，相比反射型XSS<br>和DOM型XSS具有更高的隐蔽性，所以危害更大，因为它不需要用户手动触发。<br>允许用户存储数据的web程序都可能存在存储型XSS漏洞，当攻击者提交一段XSS<br>代码后，被服务器端接收并存储，当所有浏览者访问某个页面时都会被XSS，其中<br>最典型的例子就是留言板。</li></ul></li></ul></li><li>主要影响：<ul><li>利用虚假输入表单骗取用户个人信息</li><li>利用脚本窃取用户的Cookie值，被害者在不知情的情况下，帮助攻击者发送恶意请求。</li><li>显示伪造的文章或者图片</li></ul></li><li>防御措施：<ul><li>设置httpOnly：在cookie中设置HttpOnly属性后，js脚本将无法读取到cookie的信息。</li><li>输入检查，对于用户输入进行格式检查。<ul><li>移除用户上传的DOM属性，如onerror事件等。</li><li>移除用户上传的style节点、script节点、iframe节点。</li></ul></li></ul></li></ul><h4 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h4><ul><li><p>csrf：跨站请求伪造(Cross-Site Request Forgeries)，冒充用户发起请求，完成<br>一些违背用户意愿的事情。</p></li><li><p>防御措施</p><ul><li>Token验证：<ul><li>第一步：后端随机产生一个token，把这个token保存在session状态中，同时<br>后端把token交给前端页面；</li><li>第二步：前端页面提交请求时，把token加入到请求数据或者头信息中，一起<br>传给后端；</li><li>后端验证前端传来的token与session是否一致，一致则合法，否则非法请求。</li></ul></li><li>Referer check：请求来源验证，但是不能保证100%有效，因为服务器并不是什么<br>时候都能取到Referer，而且低版本浏览器存在伪造Referer的风险。</li><li>验证码：强制用户必须和应用进行交互，完成最终请求，但用户体验比较差。</li></ul></li></ul><h4 id="clickjacking"><a href="#clickjacking" class="headerlink" title="clickjacking"></a>clickjacking</h4><ul><li><p>clickjacking: 点击劫持，利用透明的按钮或连接做成陷阱，覆盖在web页面之上，然后<br>诱使用户在不知的情况下，点击那个链接访问内容的一种攻击手段。又称为界面伪装。</p></li><li><p>大概有两种方式：</p><ul><li>攻击者使用一个透明iframe，覆盖在一个网页上，然后诱使用户在该页面上进行操作，<br>此时用将在不知情的情况下点击透明的iframe页面。</li><li>攻击者使用一张图片覆盖在网页，遮挡网页原有的位置含义。</li></ul></li><li><p>防御措施：</p><ul><li>X-FRAME-OPTIONS 响应头是用来给浏览器指示允许一个页面可否在<code>&lt;frame&gt;</code>,<br><code>&lt;iframe&gt;</code> 或者 <code>&lt;object&gt;</code> 中展现的标记。网站可以使用此功能，来确保自己网站<br>内容没有被嵌到别人的网站中去，也从而避免点击劫持的攻击。</li></ul></li></ul><h5 id="控制台注入代码"><a href="#控制台注入代码" class="headerlink" title="控制台注入代码"></a>控制台注入代码</h5>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;前端安全&quot;&gt;&lt;a href=&quot;#前端安全&quot; class=&quot;headerlink&quot; title=&quot;前端安全&quot;&gt;&lt;/a&gt;前端安全&lt;/h2&gt;&lt;h4 id=&quot;sql注入&quot;&gt;&lt;a href=&quot;#sql注入&quot; class=&quot;headerlink&quot; title=&quot;sql注入&quot;&gt;</summary>
-      
-    
-    
-    
-    <category term="前端安全" scheme="https://github.com/foolishmax/categories/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="前端安全" scheme="https://github.com/foolishmax/tags/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
