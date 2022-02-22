@@ -648,28 +648,38 @@ find会遍历所有元素，执行给定的函数
   <entry>
     <title>Node.js之express</title>
     <url>/2019/09/08/Node-js%E4%B9%8Bexpress/</url>
-    <content><![CDATA[<h2 id="Node-js之express"><a href="#Node-js之express" class="headerlink" title="Node.js之express"></a>Node.js之express</h2><span id="more"></span>
+    <content><![CDATA[<h2 id="Node-js-之-express"><a href="#Node-js-之-express" class="headerlink" title="Node.js 之 express"></a>Node.js 之 express</h2><span id="more"></span>
 
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//引包</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//相当于原来的http.createServer</span></span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"></span><br><span class="line"><span class="comment">//公开指定目录</span></span><br><span class="line">app.use(<span class="string">&#x27;/puclic/&#x27;</span>, express.static(<span class="string">&#x27;./public/&#x27;</span>))</span><br><span class="line"><span class="comment">//当省略第一个参数的时候，可以通过省略/public的方式访问</span></span><br><span class="line"><span class="comment">//app.use(express.static(&#x27;./public/&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//当服务器收到get请求 / 的时候，执行回调函数</span></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    res.send(<span class="string">&#x27;hello exporess&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/about&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">&#x27;hello world&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//相当于server.listen</span></span><br><span class="line">app.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;app is running at port 3000&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//引包</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//相当于原来的http.createServer</span></span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="comment">//公开指定目录</span></span><br><span class="line">app.use(<span class="string">&quot;/puclic/&quot;</span>, express.static(<span class="string">&quot;./public/&quot;</span>));</span><br><span class="line"><span class="comment">//当省略第一个参数的时候，可以通过省略/public的方式访问</span></span><br><span class="line"><span class="comment">//app.use(express.static(&#x27;./public/&#x27;))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//当服务器收到get请求 / 的时候，执行回调函数</span></span><br><span class="line">app.get(<span class="string">&quot;/&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">&quot;hello exporess&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&quot;/about&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//相当于server.listen</span></span><br><span class="line">app.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;app is running at port 3000&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="Express使用art-template"><a href="#Express使用art-template" class="headerlink" title="Express使用art-template"></a>Express使用art-template</h2><ul>
-<li><a href="http://aui.github.io/art-template/express/">Express&amp;art-template官网</a></li>
-<li>Install<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save art-templates</span><br><span class="line">npm install --save express-art-template    </span><br></pre></td></tr></table></figure>
-</li>
+<h2 id="Express-使用-art-template"><a href="#Express-使用-art-template" class="headerlink" title="Express 使用 art-template"></a>Express 使用 art-template</h2><ul>
+<li><a href="http://aui.github.io/art-template/express/">Express&amp;art-template 官网</a></li>
+<li>Install</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save art-templates</span><br><span class="line">npm install --save express-art-template</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>Example<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var express = require(&#x27;express&#x27;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">// view engine setup</span><br><span class="line">app.engine(&#x27;art&#x27;, require(&#x27;express-art-template&#x27;));</span><br><span class="line">app.set(&#x27;view&#x27;, &#123;</span><br><span class="line">    debug: process.env.NODE_ENV !== &#x27;production&#x27;</span><br><span class="line">&#125;);</span><br><span class="line">app.set(&#x27;views&#x27;, path.join(__dirname, &#x27;views&#x27;));</span><br><span class="line">app.set(&#x27;view engine&#x27;, &#x27;art&#x27;);</span><br><span class="line"></span><br><span class="line">// routes</span><br><span class="line">app.get(&#x27;/&#x27;, function (req, res) &#123;</span><br><span class="line">    res.render(&#x27;index.art&#x27;, &#123;</span><br><span class="line">        user: &#123;</span><br><span class="line">            name: &#x27;aui&#x27;,</span><br><span class="line">            tags: [&#x27;art&#x27;, &#x27;template&#x27;, &#x27;nodejs&#x27;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>Example</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var express = require(&#x27;express&#x27;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">// view engine setup</span><br><span class="line">app.engine(&#x27;art&#x27;, require(&#x27;express-art-template&#x27;));</span><br><span class="line">app.set(&#x27;view&#x27;, &#123;</span><br><span class="line">    debug: process.env.NODE_ENV !== &#x27;production&#x27;</span><br><span class="line">&#125;);</span><br><span class="line">app.set(&#x27;views&#x27;, path.join(__dirname, &#x27;views&#x27;));</span><br><span class="line">app.set(&#x27;view engine&#x27;, &#x27;art&#x27;);</span><br><span class="line"></span><br><span class="line">// routes</span><br><span class="line">app.get(&#x27;/&#x27;, function (req, res) &#123;</span><br><span class="line">    res.render(&#x27;index.art&#x27;, &#123;</span><br><span class="line">        user: &#123;</span><br><span class="line">            name: &#x27;aui&#x27;,</span><br><span class="line">            tags: [&#x27;art&#x27;, &#x27;template&#x27;, &#x27;nodejs&#x27;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h2 id="body-parser"><a href="#body-parser" class="headerlink" title="body-parser"></a>body-parser</h2><ul>
-<li><p>在Express中没有内置获取表单POST请求体的API，需要引入一个第三方包：body-parser</p>
+<li><p>在 Express 中没有内置获取表单 POST 请求体的 API，需要引入一个第三方包：body-parser</p>
 </li>
 <li><p>Install</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save body-parser</span><br></pre></td></tr></table></figure></li>
-<li><p>config</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var express = require(&#x27;express&#x27;)</span><br><span class="line">var bodyParser = require(&#x27;body-parser&#x27;)</span><br><span class="line">var app = express()</span><br><span class="line"></span><br><span class="line">//配置 body-parser,req对象上就会多出来一个 body 属性</span><br><span class="line">app.use(bodyParser.urlencoded(&#123;extended: false&#125;))</span><br><span class="line">app.use(bodyParser.json())</span><br></pre></td></tr></table></figure></li>
-<li><p>use</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">app.use(function(req, res)&#123;</span><br><span class="line">    res.setHeader(&#x27;Content-Type&#x27;, &#x27;text/plain&#x27;)</span><br><span class="line">    res.write(&#x27;hello&#x27;)</span><br><span class="line">    res.end()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save body-parser</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>config</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var express = require(&#x27;express&#x27;)</span><br><span class="line">var bodyParser = require(&#x27;body-parser&#x27;)</span><br><span class="line">var app = express()</span><br><span class="line"></span><br><span class="line">//配置 body-parser,req对象上就会多出来一个 body 属性</span><br><span class="line">app.use(bodyParser.urlencoded(&#123;extended: false&#125;))</span><br><span class="line">app.use(bodyParser.json())</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>use</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">app.use(function(req, res)&#123;</span><br><span class="line">    res.setHeader(&#x27;Content-Type&#x27;, &#x27;text/plain&#x27;)</span><br><span class="line">    res.write(&#x27;hello&#x27;)</span><br><span class="line">    res.end()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Node.js</category>
@@ -6363,6 +6373,18 @@ shuffle(arr)
 ]]></content>
       <tags>
         <tag>javaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RBAC是什么？</title>
+    <url>/2022/02/22/RBAC%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
+    <content><![CDATA[<h2 id="RBAC-是什么"><a href="#RBAC-是什么" class="headerlink" title="RBAC 是什么?"></a>RBAC 是什么?</h2><p><em>RBAC</em>是基于角色的访问控制(<code>Role-Based Access Control</code>)在<em>RBAC</em>中，权限与角色相关联，用户通过适当角色的成员而得到这些角色的权限，权限赋予给角色，而角色又赋予给用户，这样权限设计的很清楚，管理起来也很方便。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>other</tag>
       </tags>
   </entry>
 </search>
