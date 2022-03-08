@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2022-02-22T09:29:21.257Z</updated>
+  <updated>2022-03-08T02:55:03.103Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>koa-generator快速搭建koa服务</title>
+    <link href="https://github.com/foolishmax/2022/03/08/koa-generator%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAkoa%E6%9C%8D%E5%8A%A1/"/>
+    <id>https://github.com/foolishmax/2022/03/08/koa-generator%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAkoa%E6%9C%8D%E5%8A%A1/</id>
+    <published>2022-03-08T02:46:25.000Z</published>
+    <updated>2022-03-08T02:55:03.103Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-全局安装koa-generator脚手架"><a href="#1-全局安装koa-generator脚手架" class="headerlink" title="1.全局安装koa-generator脚手架"></a>1.全局安装<em>koa-generator</em>脚手架</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g koa-generator</span><br><span class="line"># or</span><br><span class="line">yarn global add koa-generator</span><br></pre></td></tr></table></figure><h2 id="创建koa项目"><a href="#创建koa项目" class="headerlink" title="创建koa项目"></a>创建<em>koa</em>项目</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">koa2 project-name</span><br><span class="line"></span><br><span class="line">// 使用ejs引擎</span><br><span class="line">koa2 -e project-name</span><br></pre></td></tr></table></figure><h2 id="进入项目安装依赖"><a href="#进入项目安装依赖" class="headerlink" title="进入项目安装依赖"></a>进入项目安装依赖</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd project-name</span><br><span class="line">yarn install</span><br></pre></td></tr></table></figure><h2 id="项目运行"><a href="#项目运行" class="headerlink" title="项目运行"></a>项目运行</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br><span class="line"># or</span><br><span class="line">npm run dev</span><br><span class="line"># or...</span><br></pre></td></tr></table></figure><h3 id="使用-pm2-启动-koa-项目"><a href="#使用-pm2-启动-koa-项目" class="headerlink" title="使用 pm2 启动 koa 项目"></a>使用 pm2 启动 koa 项目</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 全局安装</span><br><span class="line">npm install -g pm2</span><br><span class="line">// 启动项目</span><br><span class="line">pm2 start ./bin/www</span><br><span class="line">// pm2自动重启</span><br><span class="line">pm2 start ./bin/www/ --watch</span><br></pre></td></tr></table></figure><h3 id="pm2-相关命令（www-是项目名）"><a href="#pm2-相关命令（www-是项目名）" class="headerlink" title="pm2 相关命令（www 是项目名）"></a>pm2 相关命令（www 是项目名）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pm2 list          #查看所有已启动项目</span><br><span class="line">pm2 start         #启动</span><br><span class="line">pm2 restart www   #重启</span><br><span class="line">pm2 stop www      #停止</span><br><span class="line">pm2 delete www    #删除</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1-全局安装koa-generator脚手架&quot;&gt;&lt;a href=&quot;#1-全局安装koa-generator脚手架&quot; class=&quot;headerlink&quot; title=&quot;1.全局安装koa-generator脚手架&quot;&gt;&lt;/a&gt;1.全局安装&lt;em&gt;koa-genera</summary>
+      
+    
+    
+    
+    <category term="node" scheme="https://github.com/foolishmax/categories/node/"/>
+    
+    
+    <category term="node" scheme="https://github.com/foolishmax/tags/node/"/>
+    
+  </entry>
   
   <entry>
     <title>RBAC是什么？</title>
@@ -475,30 +499,6 @@
     
     
     <category term="微信小程序" scheme="https://github.com/foolishmax/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Chrome打开一个页面需要启动多少线程？分别有哪些线程？</title>
-    <link href="https://github.com/foolishmax/2019/10/14/Chrome%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E9%9C%80%E8%A6%81%E5%90%AF%E5%8A%A8%E5%A4%9A%E5%B0%91%E7%BA%BF%E7%A8%8B%EF%BC%9F%E5%88%86%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BA%BF%E7%A8%8B%EF%BC%9F/"/>
-    <id>https://github.com/foolishmax/2019/10/14/Chrome%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E9%9C%80%E8%A6%81%E5%90%AF%E5%8A%A8%E5%A4%9A%E5%B0%91%E7%BA%BF%E7%A8%8B%EF%BC%9F%E5%88%86%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BA%BF%E7%A8%8B%EF%BC%9F/</id>
-    <published>2019-10-14T06:37:34.000Z</published>
-    <updated>2019-10-19T17:50:46.365Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Chrome打开一个页面需要启动多少线程？分别有哪些线程？"><a href="#Chrome打开一个页面需要启动多少线程？分别有哪些线程？" class="headerlink" title="Chrome打开一个页面需要启动多少线程？分别有哪些线程？"></a>Chrome打开一个页面需要启动多少线程？分别有哪些线程？</h2><pre><code>最新Chrome浏览器包括：一个浏览器(Browser)主线程、一个GPU进程、一个网络(NetWork)进程、多个渲染进程和多个插件进程</code></pre><ul><li><p>线程：</p><ul><li>浏览器进程：主要负责界面显示、用户交互、子进程管理、同时提供存储等功能。</li><li>渲染进程：核心任务是将HTML、CSS和JavaScript转换为用户可以与之交互的网页，<br>排版引擎Blink和JavaScript引擎V8都是运行在该进程中，默认情况下，Chrome会为每个<br>Tab标签创建一个渲染进程。出于安全考虑，渲染进程都是运行在沙箱模式下。</li><li>GPU进程：Chrome刚开始的时候是没有GPU进程的，而GPU使用的使用初衷是为了实现<br>3D CSS效果，之后随后网页、Chrome的UI界面都选择采用GPU来绘制，这使得GPU称为<br>浏览器普遍的需求，最后，Chrome在其多进程架构上也引入了GPU进程。</li><li>网络进程：主要负责网页的网络资源加载，之前是作为一个模块运行在浏览器进程里面<br>的，最近才独立出来，称为一个单独的进程。</li><li>插件进程：主要负责插件的运行，因插件易崩溃，所以需要通过插件进程来隔离，以<br>保证插件进程崩溃不会对浏览器和页面造成影响。</li></ul></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Chrome打开一个页面需要启动多少线程？分别有哪些线程？&quot;&gt;&lt;a href=&quot;#Chrome打开一个页面需要启动多少线程？分别有哪些线程？&quot; class=&quot;headerlink&quot; title=&quot;Chrome打开一个页面需要启动多少线程？分别有哪些线程？&quot;&gt;&lt;/a</summary>
-      
-    
-    
-    
-    <category term="浏览器" scheme="https://github.com/foolishmax/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    
-    
-    <category term="浏览器" scheme="https://github.com/foolishmax/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     
   </entry>
   

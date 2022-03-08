@@ -6387,4 +6387,26 @@ shuffle(arr)
         <tag>other</tag>
       </tags>
   </entry>
+  <entry>
+    <title>koa-generator快速搭建koa服务</title>
+    <url>/2022/03/08/koa-generator%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAkoa%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="1-全局安装koa-generator脚手架"><a href="#1-全局安装koa-generator脚手架" class="headerlink" title="1.全局安装koa-generator脚手架"></a>1.全局安装<em>koa-generator</em>脚手架</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g koa-generator</span><br><span class="line"># or</span><br><span class="line">yarn global add koa-generator</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建koa项目"><a href="#创建koa项目" class="headerlink" title="创建koa项目"></a>创建<em>koa</em>项目</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">koa2 project-name</span><br><span class="line"></span><br><span class="line">// 使用ejs引擎</span><br><span class="line">koa2 -e project-name</span><br></pre></td></tr></table></figure>
+
+<h2 id="进入项目安装依赖"><a href="#进入项目安装依赖" class="headerlink" title="进入项目安装依赖"></a>进入项目安装依赖</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd project-name</span><br><span class="line">yarn install</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目运行"><a href="#项目运行" class="headerlink" title="项目运行"></a>项目运行</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm start</span><br><span class="line"># or</span><br><span class="line">npm run dev</span><br><span class="line"># or...</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-pm2-启动-koa-项目"><a href="#使用-pm2-启动-koa-项目" class="headerlink" title="使用 pm2 启动 koa 项目"></a>使用 pm2 启动 koa 项目</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 全局安装</span><br><span class="line">npm install -g pm2</span><br><span class="line">// 启动项目</span><br><span class="line">pm2 start ./bin/www</span><br><span class="line">// pm2自动重启</span><br><span class="line">pm2 start ./bin/www/ --watch</span><br></pre></td></tr></table></figure>
+
+<h3 id="pm2-相关命令（www-是项目名）"><a href="#pm2-相关命令（www-是项目名）" class="headerlink" title="pm2 相关命令（www 是项目名）"></a>pm2 相关命令（www 是项目名）</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pm2 list          #查看所有已启动项目</span><br><span class="line">pm2 start         #启动</span><br><span class="line">pm2 restart www   #重启</span><br><span class="line">pm2 stop www      #停止</span><br><span class="line">pm2 delete www    #删除</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>node</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+      </tags>
+  </entry>
 </search>
