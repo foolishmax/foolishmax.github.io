@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2022-03-08T02:55:03.103Z</updated>
+  <updated>2022-03-11T10:08:03.940Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>100道前端优质面试题</title>
+    <link href="https://github.com/foolishmax/2022/03/11/100%E9%81%93%E5%89%8D%E7%AB%AF%E4%BC%98%E8%B4%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <id>https://github.com/foolishmax/2022/03/11/100%E9%81%93%E5%89%8D%E7%AB%AF%E4%BC%98%E8%B4%A8%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
+    <published>2022-03-11T09:46:11.000Z</published>
+    <updated>2022-03-11T10:08:03.940Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h2&gt;</summary>
+      
+    
+    
+    
+    <category term="javascript" scheme="https://github.com/foolishmax/categories/javascript/"/>
+    
+    
+    <category term="javascript" scheme="https://github.com/foolishmax/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>koa-generator快速搭建koa服务</title>
@@ -478,27 +502,6 @@
     
     
     <category term="浏览器" scheme="https://github.com/foolishmax/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微信小程序</title>
-    <link href="https://github.com/foolishmax/2019/10/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    <id>https://github.com/foolishmax/2019/10/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</id>
-    <published>2019-10-18T16:28:59.000Z</published>
-    <updated>2020-07-16T15:47:08.052Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h2><h4 id="文件主要目录及文件作用"><a href="#文件主要目录及文件作用" class="headerlink" title="文件主要目录及文件作用"></a>文件主要目录及文件作用</h4> <span id="more"></span><ul><li>component 组件文件夹<ul><li>navBar 底部组件<ul><li>navBar.js 底部组件的js代码</li><li>navBar.json 底部组件的配置文件</li><li>navBar.wxml 底部组件的html代码</li><li>navBar.wxss 底部组件的css代码</li></ul></li></ul></li><li>pages 页面文件夹<ul><li>index 首页<ul><li>index.js 首页的js代码</li><li>index.json 首页的配置文件</li><li>index.wxml 首页的html代码</li><li>index.wxss 首页的css代码</li></ul></li></ul></li><li>public 图片文件夹</li><li>utils 工具文件夹<ul><li>api.js 控制api的文件</li><li>md5.js 工具：MD5加密文件</li><li>timestamp.js 工具：事件戳文件</li></ul></li><li>app.json 设置全局的基础数据等</li><li>app.wxss 公共样式，可通过import导入更多</li><li>project.config.json 项目配置文件</li></ul><h4 id="微信小程序生命周期"><a href="#微信小程序生命周期" class="headerlink" title="微信小程序生命周期"></a>微信小程序生命周期</h4><ul><li>onLoad(): 页面加载时触发，一个页面只会调用一次，可以在onLoad中获取打开当前页面<br>所调用的query参数。</li><li>onShow(): 页面显示/切入前台时触发，每次打开页面都会调用一次。</li><li>onReady(): 页面初次渲染完成时触发，一个页面只会调用一次。</li><li>onHide(): 页面隐藏/切入后台时触发，当navigateTo或底部tab切换时调用。</li><li>onUnload(): 页面卸载时触发。</li></ul><h4 id="app-json是对当前小程序的全局配置，讲述三个配置各个项的含义"><a href="#app-json是对当前小程序的全局配置，讲述三个配置各个项的含义" class="headerlink" title="app.json是对当前小程序的全局配置，讲述三个配置各个项的含义?"></a>app.json是对当前小程序的全局配置，讲述三个配置各个项的含义?</h4><ul><li>pages字段：用于描述当前小程序所有页面路径，为了让微信客户端知道当前小程序页面<br>定义在那个目录。</li><li>window字段：小程序所有页面的顶部背景颜色，文字颜色定义等。</li><li>tab字段：小程序全局顶部tab或底部tab。</li></ul><h4 id="小程序的wxss和css有哪些不一样的地方？"><a href="#小程序的wxss和css有哪些不一样的地方？" class="headerlink" title="小程序的wxss和css有哪些不一样的地方？"></a>小程序的wxss和css有哪些不一样的地方？</h4><ul><li>新像素单位rpx</li><li>样式可直接使用import导入</li></ul><h4 id="小程序wxml和标准的html的异同？"><a href="#小程序wxml和标准的html的异同？" class="headerlink" title="小程序wxml和标准的html的异同？"></a>小程序wxml和标准的html的异同？</h4><p>都是用来描述页面的结构，都是由标签、属性等构成。</p><ul><li>标签名字不一样，且小程序标签更少，单一标签更多。</li><li>多了一些wx:if这样的属性和双大括号这样的表达式。</li><li>wxml只能在微信小程序开发者工具中预览，html可以在浏览器内预览。</li><li>组件封装不同，wxml对组件进行了重新封装。</li><li>小程序运行在JS Core内，没有DOM树和window对象，小程序无法使用window对象和document<br>对象。</li></ul><h4 id="小程序wxss和css的异同？"><a href="#小程序wxss和css的异同？" class="headerlink" title="小程序wxss和css的异同？"></a>小程序wxss和css的异同？</h4><p>都是用来描述页面的样子</p><ul><li>wxss具有css大部分的特性，也做了一些扩充和修改。</li><li>wxss新增了尺寸单位，wxss在底层支持新的尺寸单位rpx。</li><li>wxss仅支持部分css选择器。</li><li>wxss提供全局样式和局部样式。</li></ul><h4 id="小程序页面间有哪些传递数据的方法？"><a href="#小程序页面间有哪些传递数据的方法？" class="headerlink" title="小程序页面间有哪些传递数据的方法？"></a>小程序页面间有哪些传递数据的方法？</h4><ul><li>使用全局变量实现数据传递</li><li>页面跳转或重定向时，使用url带参数传递数据</li><li>使用组件模板template传递参数</li><li>使用数据库传递数据</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;微信小程序&quot;&gt;&lt;a href=&quot;#微信小程序&quot; class=&quot;headerlink&quot; title=&quot;微信小程序&quot;&gt;&lt;/a&gt;微信小程序&lt;/h2&gt;&lt;h4 id=&quot;文件主要目录及文件作用&quot;&gt;&lt;a href=&quot;#文件主要目录及文件作用&quot; class=&quot;headerlink&quot; title=&quot;文件主要目录及文件作用&quot;&gt;&lt;/a&gt;文件主要目录及文件作用&lt;/h4&gt;</summary>
-    
-    
-    
-    <category term="微信小程序" scheme="https://github.com/foolishmax/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-    
-    <category term="微信小程序" scheme="https://github.com/foolishmax/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
   </entry>
   
