@@ -6412,7 +6412,12 @@ shuffle(arr)
   <entry>
     <title>100道前端优质面试题</title>
     <url>/2022/03/11/100%E9%81%93%E5%89%8D%E7%AB%AF%E4%BC%98%E8%B4%A8%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
-    <content><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+    <content><![CDATA[<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><ul>
+<li>程序执行时需要的计算量和内存空间</li>
+<li>复杂度是数量级，不是具体的数字</li>
+<li>一般是针对一个具体的算法，而非一个完整的系统</li>
+</ul>
+]]></content>
       <categories>
         <category>javascript</category>
       </categories>

@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2022-03-11T10:08:03.940Z</updated>
+  <updated>2022-03-12T05:01:26.662Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -21,14 +21,17 @@
     <link href="https://github.com/foolishmax/2022/03/11/100%E9%81%93%E5%89%8D%E7%AB%AF%E4%BC%98%E8%B4%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <id>https://github.com/foolishmax/2022/03/11/100%E9%81%93%E5%89%8D%E7%AB%AF%E4%BC%98%E8%B4%A8%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
     <published>2022-03-11T09:46:11.000Z</published>
-    <updated>2022-03-11T10:08:03.940Z</updated>
+    <updated>2022-03-12T05:01:26.662Z</updated>
     
-    <content type="html"><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+    <content type="html"><![CDATA[<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><ul><li>程序执行时需要的计算量和内存空间</li><li>复杂度是数量级，不是具体的数字</li><li>一般是针对一个具体的算法，而非一个完整的系统</li></ul>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h2&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;复杂度&quot;&gt;&lt;a href=&quot;#复杂度&quot; class=&quot;headerlink&quot; title=&quot;复杂度&quot;&gt;&lt;/a&gt;复杂度&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;程序执行时需要的计算量和内存空间&lt;/li&gt;
+&lt;li&gt;复杂度是数量级，不是具体的数字&lt;/li&gt;
+&lt;li&gt;一般是针对一个具体</summary>
       
     
     
