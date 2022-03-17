@@ -6566,7 +6566,25 @@ shuffle(arr)
 </ul>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (timer) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">      timer = <span class="number">0</span>;</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="22"><a href="#22" class="headerlink" title="22."></a>22.</h2><h2 id="23"><a href="#23" class="headerlink" title="23."></a>23.</h2><h2 id="24"><a href="#24" class="headerlink" title="24."></a>24.</h2><h2 id="25"><a href="#25" class="headerlink" title="25."></a>25.</h2><h2 id="26"><a href="#26" class="headerlink" title="26."></a>26.</h2><h2 id="27"><a href="#27" class="headerlink" title="27."></a>27.</h2><h2 id="28"><a href="#28" class="headerlink" title="28."></a>28.</h2><h2 id="29"><a href="#29" class="headerlink" title="29."></a>29.</h2><h2 id="30"><a href="#30" class="headerlink" title="30."></a>30.</h2>]]></content>
+<h2 id="22-px-em-rem-vw-vh有什么区别？"><a href="#22-px-em-rem-vw-vh有什么区别？" class="headerlink" title="22.px % em rem vw/vh有什么区别？"></a>22.<em>px % em rem vw/vh</em>有什么区别？</h2><ul>
+<li><p>px 基本单位，是绝对单位（其他的都是相对单位）</p>
+</li>
+<li><p>% 是相对于父元素的宽度比例</p>
+</li>
+<li><p>em 相对于当前元素的 font-size</p>
+</li>
+<li><p>rem 相对于跟元素的 font-size</p>
+</li>
+<li><p>vw 屏幕宽度的 1%</p>
+</li>
+<li><p>vh 屏幕高度的 1%</p>
+</li>
+<li><p>vmin 取 vw、vh 两者中的最小值</p>
+</li>
+<li><p>vmax 取 vw、vh 两者中的最大值</p>
+</li>
+</ul>
+<h2 id="23"><a href="#23" class="headerlink" title="23."></a>23.</h2><h2 id="24"><a href="#24" class="headerlink" title="24."></a>24.</h2><h2 id="25"><a href="#25" class="headerlink" title="25."></a>25.</h2><h2 id="26"><a href="#26" class="headerlink" title="26."></a>26.</h2><h2 id="27"><a href="#27" class="headerlink" title="27."></a>27.</h2><h2 id="28"><a href="#28" class="headerlink" title="28."></a>28.</h2><h2 id="29"><a href="#29" class="headerlink" title="29."></a>29.</h2><h2 id="30"><a href="#30" class="headerlink" title="30."></a>30.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
