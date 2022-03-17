@@ -6495,7 +6495,32 @@ shuffle(arr)
 </ul>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findPalindromeNumbers1</span>(<span class="params">max: <span class="built_in">number</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> res: <span class="built_in">number</span>[] = [];</span><br><span class="line">  <span class="keyword">if</span> (max &lt; <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= max; i++) &#123;</span><br><span class="line">    <span class="comment">// 转换为字符转 -&gt; 转换为数组 -&gt; 再反转 -&gt; 比较</span></span><br><span class="line">    <span class="keyword">const</span> s = i.toString();</span><br><span class="line">    <span class="keyword">if</span> (s === s.split(<span class="string">&quot;&quot;</span>).reverse().join(<span class="string">&quot;&quot;</span>)) &#123;</span><br><span class="line">      res.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findPalindromeNumbers1(<span class="number">200</span>));</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findPalindromeNumbers2</span>(<span class="params">max: <span class="built_in">number</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> res: <span class="built_in">number</span>[] = [];</span><br><span class="line">  <span class="keyword">if</span> (max &lt;= <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= max; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> n = i;</span><br><span class="line">    <span class="keyword">let</span> rev = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// n: 123</span></span><br><span class="line">    <span class="comment">// rev: 321</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      rev = rev * <span class="number">10</span> + (n % <span class="number">10</span>);</span><br><span class="line">      n = <span class="built_in">Math</span>.floor(n / <span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i === rev) res.push(i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findPalindromeNumbers2(<span class="number">200</span>));</span><br></pre></td></tr></table></figure>
 
-<h2 id="16"><a href="#16" class="headerlink" title="16."></a>16.</h2><h2 id="17"><a href="#17" class="headerlink" title="17."></a>17.</h2><h2 id="18"><a href="#18" class="headerlink" title="18."></a>18.</h2><h2 id="19"><a href="#19" class="headerlink" title="19."></a>19.</h2>]]></content>
+<h2 id="16-高效的字符串前缀匹配"><a href="#16-高效的字符串前缀匹配" class="headerlink" title="16.高效的字符串前缀匹配"></a>16.高效的字符串前缀匹配</h2><ul>
+<li>有一个英文单词库（数组），里面有几十万个英文单词</li>
+<li>输入一个字符串，快速判断是不是某一个单词的前缀</li>
+<li>（说明思路，不用写代码）</li>
+</ul>
+<p>思路一：</p>
+<ol>
+<li><p>遍历单词库数组</p>
+</li>
+<li><p>indexOf 判断前缀</p>
+</li>
+<li><p>实际时间复杂度超过 O(n),因为 indexOf 的计算量</p>
+</li>
+</ol>
+<p>思路二（对象取 key 时间复杂度为 O(1)）：</p>
+<ol>
+<li><p>英文字母一共就 26 个，可以提前把单词库数组拆分为 26 个</p>
+</li>
+<li><p>第一层 26 个，第二层、第三层，继续拆分…</p>
+</li>
+<li><p>最后把单词库拆分为一颗树</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 树结构</span><br><span class="line">const wordsTree = &#123;</span><br><span class="line">  a: &#123;</span><br><span class="line">    a: &#123;...&#125;</span><br><span class="line">    b: &#123;...&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  b: &#123;</span><br><span class="line">    a: &#123;...&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  c: &#123;</span><br><span class="line">    a: &#123;...&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="17"><a href="#17" class="headerlink" title="17."></a>17.</h2><h2 id="18"><a href="#18" class="headerlink" title="18."></a>18.</h2><h2 id="19"><a href="#19" class="headerlink" title="19."></a>19.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
