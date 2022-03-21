@@ -6584,7 +6584,37 @@ shuffle(arr)
 <li><p>vmax 取 vw、vh 两者中的最大值</p>
 </li>
 </ul>
-<h2 id="23"><a href="#23" class="headerlink" title="23."></a>23.</h2><h2 id="24"><a href="#24" class="headerlink" title="24."></a>24.</h2><h2 id="25"><a href="#25" class="headerlink" title="25."></a>25.</h2><h2 id="26"><a href="#26" class="headerlink" title="26."></a>26.</h2><h2 id="27"><a href="#27" class="headerlink" title="27."></a>27.</h2><h2 id="28"><a href="#28" class="headerlink" title="28."></a>28.</h2><h2 id="29"><a href="#29" class="headerlink" title="29."></a>29.</h2><h2 id="30"><a href="#30" class="headerlink" title="30."></a>30.</h2>]]></content>
+<h2 id="23-箭头函数"><a href="#23-箭头函数" class="headerlink" title="23.箭头函数"></a>23.箭头函数</h2><ul>
+<li><p>箭头函数的特点</p>
+<ol>
+<li>没有 arguments</li>
+<li>无法通过 apply、call、bind 改变 this</li>
+<li>某些肩头函数代码难以阅读</li>
+</ol>
+</li>
+</ul>
+<h2 id="24-for…in-和-for…of-有什么区别"><a href="#24-for…in-和-for…of-有什么区别" class="headerlink" title="24.for…in 和 for…of 有什么区别"></a>24.for…in 和 for…of 有什么区别</h2><ul>
+<li><p>key 和 value</p>
+<ol>
+<li>for…in 遍历得到 key</li>
+<li>for…of 遍历得到 value</li>
+</ol>
+</li>
+<li><p>适用于不同的数据类型</p>
+<ol>
+<li>遍历对象： for…in 可以，for…of 不可以</li>
+<li>遍历 Map、Set：for…of 可以，for…in 不可以</li>
+<li>遍历 generator：for…of 可以，for…in 不可以</li>
+</ol>
+</li>
+<li><p>可枚举 vs 可迭代</p>
+<ol>
+<li>for…in 用于可枚举（Object.getOwnPropertyDescriptors(obj)）数据，如对象、数组、字符串</li>
+<li>for…of 用于可迭代(arr[Symbol.iterator])数据，如数组、字符串、Map、Set</li>
+</ol>
+</li>
+</ul>
+<h2 id="25"><a href="#25" class="headerlink" title="25."></a>25.</h2><h2 id="26"><a href="#26" class="headerlink" title="26."></a>26.</h2><h2 id="27"><a href="#27" class="headerlink" title="27."></a>27.</h2><h2 id="28"><a href="#28" class="headerlink" title="28."></a>28.</h2><h2 id="29"><a href="#29" class="headerlink" title="29."></a>29.</h2><h2 id="30"><a href="#30" class="headerlink" title="30."></a>30.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
