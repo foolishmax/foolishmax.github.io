@@ -6645,7 +6645,21 @@ shuffle(arr)
 <li><p>HTMLCollection 和 NodeList 都不是数组，而是“累数组”</p>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 转换</span></span><br><span class="line"><span class="keyword">const</span> arr1 = <span class="built_in">Array</span>.from(list);</span><br><span class="line"><span class="keyword">const</span> arr2 = <span class="built_in">Array</span>.prototype.slice.call(list);</span><br><span class="line"><span class="keyword">const</span> arr3 = [...list];</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="28-Vue-中-computed-和-watch-的区别？"><a href="#28-Vue-中-computed-和-watch-的区别？" class="headerlink" title="28. Vue 中 computed 和 watch 的区别？"></a>28. Vue 中 computed 和 watch 的区别？</h2><h2 id="29"><a href="#29" class="headerlink" title="29."></a>29.</h2><h2 id="30"><a href="#30" class="headerlink" title="30."></a>30.</h2>]]></content>
+<h2 id="28-Vue-中-computed-和-watch-的区别？"><a href="#28-Vue-中-computed-和-watch-的区别？" class="headerlink" title="28. Vue 中 computed 和 watch 的区别？"></a>28. Vue 中 computed 和 watch 的区别？</h2><ul>
+<li><p>用途不同</p>
+<ol>
+<li>computed 用于计算产生新的数据，有缓存</li>
+<li>watch 用于监听现有数据</li>
+</ol>
+</li>
+<li><p>扩展知识</p>
+<ol>
+<li>computed 有缓存</li>
+<li>methods 没有缓存</li>
+</ol>
+</li>
+</ul>
+<h2 id="29"><a href="#29" class="headerlink" title="29."></a>29.</h2><h2 id="30"><a href="#30" class="headerlink" title="30."></a>30.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
