@@ -6659,7 +6659,20 @@ shuffle(arr)
 </ol>
 </li>
 </ul>
-<h2 id="29"><a href="#29" class="headerlink" title="29."></a>29.</h2><h2 id="30"><a href="#30" class="headerlink" title="30."></a>30.</h2>]]></content>
+<h2 id="29-Vue-组件通讯的方式"><a href="#29-Vue-组件通讯的方式" class="headerlink" title="29. Vue 组件通讯的方式"></a>29. Vue 组件通讯的方式</h2><ul>
+<li>props 和 $emit</li>
+<li>自定义事件</li>
+<li>$attrs</li>
+<li>$parent</li>
+<li>$refs</li>
+<li>provide/inject</li>
+<li>vuex</li>
+</ul>
+<h2 id="30-vuex-mutation-和-action-的区别？"><a href="#30-vuex-mutation-和-action-的区别？" class="headerlink" title="30. vuex mutation 和 action 的区别？"></a>30. vuex mutation 和 action 的区别？</h2><ul>
+<li>mutation: 同步代码</li>
+<li>action: 可包含异步代码</li>
+</ul>
+<h2 id="31"><a href="#31" class="headerlink" title="31."></a>31.</h2><h2 id="32"><a href="#32" class="headerlink" title="32."></a>32.</h2><h2 id="33"><a href="#33" class="headerlink" title="33."></a>33.</h2><h2 id="34"><a href="#34" class="headerlink" title="34."></a>34.</h2><h2 id="35"><a href="#35" class="headerlink" title="35."></a>35.</h2><h2 id="36"><a href="#36" class="headerlink" title="36."></a>36.</h2><h2 id="37"><a href="#37" class="headerlink" title="37."></a>37.</h2><h2 id="38"><a href="#38" class="headerlink" title="38."></a>38.</h2><h2 id="39"><a href="#39" class="headerlink" title="39."></a>39.</h2><h2 id="40"><a href="#40" class="headerlink" title="40."></a>40.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
