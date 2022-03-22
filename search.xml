@@ -6672,7 +6672,39 @@ shuffle(arr)
 <li>mutation: 同步代码</li>
 <li>action: 可包含异步代码</li>
 </ul>
-<h2 id="31"><a href="#31" class="headerlink" title="31."></a>31.</h2><h2 id="32"><a href="#32" class="headerlink" title="32."></a>32.</h2><h2 id="33"><a href="#33" class="headerlink" title="33."></a>33.</h2><h2 id="34"><a href="#34" class="headerlink" title="34."></a>34.</h2><h2 id="35"><a href="#35" class="headerlink" title="35."></a>35.</h2><h2 id="36"><a href="#36" class="headerlink" title="36."></a>36.</h2><h2 id="37"><a href="#37" class="headerlink" title="37."></a>37.</h2><h2 id="38"><a href="#38" class="headerlink" title="38."></a>38.</h2><h2 id="39"><a href="#39" class="headerlink" title="39."></a>39.</h2><h2 id="40"><a href="#40" class="headerlink" title="40."></a>40.</h2>]]></content>
+<h2 id="31-JS-严格模式有什么特点？"><a href="#31-JS-严格模式有什么特点？" class="headerlink" title="31. JS 严格模式有什么特点？"></a>31. JS 严格模式有什么特点？</h2><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>; <span class="comment">//全局开启</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &quot;use strict&quot;</span>; <span class="comment">// 局部开启</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>特点<ol>
+<li>全局变量必须先声明</li>
+<li>禁止使用 with</li>
+<li>this 指向 undefined 而不是 window</li>
+<li>函数参数不能重名</li>
+<li>eval 有单独作用域，不推荐使用</li>
+</ol>
+</li>
+</ul>
+<h2 id="32-HTTP-跨域请求事为什么发送-options-请求？"><a href="#32-HTTP-跨域请求事为什么发送-options-请求？" class="headerlink" title="32. HTTP 跨域请求事为什么发送 options 请求？"></a>32. HTTP 跨域请求事为什么发送 options 请求？</h2><ul>
+<li>跨域请求<ol>
+<li>浏览器同源策略</li>
+<li>同源策略一般限制 ajax 网络请求，不能跨域请求 server</li>
+<li>不会限制<code>&lt;link&gt; &lt;img&gt; &lt;script&gt; &lt;iframe&gt;</code> 加载第三方资源</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// JSONP</span></span><br><span class="line"><span class="comment">// client</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="built_in">window</span>.onSuccess = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://www.aaa.com/api/getData&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="comment">// server</span></span><br><span class="line"><span class="comment">// https://www.aaa.com/api/getData 返回一段字符串，交给前端执行达到传递数据的目的</span></span><br><span class="line"><span class="string">&#x27;onSuccess(&#123;data: &#123;/* 数据内容 */&#125;&#125;)&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// CORS 配置允许跨域（服务端）</span></span><br><span class="line">response.setHeader(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>, <span class="string">&quot;http://localhost:8080&quot;</span>); <span class="comment">// 或者 *</span></span><br><span class="line">response.setHeader(<span class="string">&quot;Access-Control-Allow-Headers&quot;</span>, <span class="string">&quot;X-Requested-With&quot;</span>);</span><br><span class="line">response.setHeader(</span><br><span class="line">  <span class="string">&quot;Access-Control-Allow-Methods&quot;</span>,</span><br><span class="line">  <span class="string">&quot;PUT,POST,GET,DELETE,OPTIONS&quot;</span></span><br><span class="line">);</span><br><span class="line">response.setHeader(<span class="string">&quot;Access-Control-Allow-Credentials&quot;</span>, <span class="string">&quot;true&quot;</span>); <span class="comment">// 允许跨域接受cookie</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>答案<ol>
+<li>options 请求，是跨域请求之前的预检查</li>
+<li>浏览器自行发起的</li>
+<li>不会影响实际的功能</li>
+</ol>
+</li>
+</ul>
+<h2 id="33"><a href="#33" class="headerlink" title="33."></a>33.</h2><h2 id="34"><a href="#34" class="headerlink" title="34."></a>34.</h2><h2 id="35"><a href="#35" class="headerlink" title="35."></a>35.</h2><h2 id="36"><a href="#36" class="headerlink" title="36."></a>36.</h2><h2 id="37"><a href="#37" class="headerlink" title="37."></a>37.</h2><h2 id="38"><a href="#38" class="headerlink" title="38."></a>38.</h2><h2 id="39"><a href="#39" class="headerlink" title="39."></a>39.</h2><h2 id="40"><a href="#40" class="headerlink" title="40."></a>40.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
