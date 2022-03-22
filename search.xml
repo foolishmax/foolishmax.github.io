@@ -6627,7 +6627,25 @@ shuffle(arr)
 <li><p>scrollHeight、scrollWidth: padding + 实际内容尺寸</p>
 </li>
 </ul>
-<h2 id="27"><a href="#27" class="headerlink" title="27."></a>27.</h2><h2 id="28"><a href="#28" class="headerlink" title="28."></a>28.</h2><h2 id="29"><a href="#29" class="headerlink" title="29."></a>29.</h2><h2 id="30"><a href="#30" class="headerlink" title="30."></a>30.</h2>]]></content>
+<h2 id="27-HTMLCollection-和-NodeList-区别？"><a href="#27-HTMLCollection-和-NodeList-区别？" class="headerlink" title="27. HTMLCollection 和 NodeList 区别？"></a>27. HTMLCollection 和 NodeList 区别？</h2><ul>
+<li><p>Node 和 Element</p>
+<ol>
+<li>DOM 是一棵树，所有节点都是 Node</li>
+<li>Node 是 Element 的基类</li>
+<li>Element 是其他 HTML 元素的基类，如 HTMLDivElement</li>
+</ol>
+</li>
+<li><p>HTMLCollection 和 NodeList</p>
+<ol>
+<li>HTMLCollection 是 Element 的集合（elem.children）</li>
+<li>NodeList 是 Node 集合（elem.childNodes）</li>
+<li>HTMLCollection 不会包含 Text 和 Comment 节点，NodeList 则会包含</li>
+</ol>
+</li>
+<li><p>HTMLCollection 和 NodeList 都不是数组，而是“累数组”</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 转换</span></span><br><span class="line"><span class="keyword">const</span> arr1 = <span class="built_in">Array</span>.from(list);</span><br><span class="line"><span class="keyword">const</span> arr2 = <span class="built_in">Array</span>.prototype.slice.call(list);</span><br><span class="line"><span class="keyword">const</span> arr3 = [...list];</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="28-Vue-中-computed-和-watch-的区别？"><a href="#28-Vue-中-computed-和-watch-的区别？" class="headerlink" title="28. Vue 中 computed 和 watch 的区别？"></a>28. Vue 中 computed 和 watch 的区别？</h2><h2 id="29"><a href="#29" class="headerlink" title="29."></a>29.</h2><h2 id="30"><a href="#30" class="headerlink" title="30."></a>30.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
