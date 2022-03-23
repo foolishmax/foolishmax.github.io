@@ -6796,7 +6796,77 @@ shuffle(arr)
 </ul>
 </li>
 </ul>
-<h2 id="39"><a href="#39" class="headerlink" title="39."></a>39.</h2><h2 id="40"><a href="#40" class="headerlink" title="40."></a>40.</h2>]]></content>
+<h2 id="39-vue-生命周期？"><a href="#39-vue-生命周期？" class="headerlink" title="39. vue 生命周期？"></a>39. vue 生命周期？</h2><ul>
+<li><p>befroeCreate</p>
+<ul>
+<li>创建一个空白的 Vue 实例</li>
+<li>data、method 尚未被初始化，不可使用</li>
+</ul>
+</li>
+<li><p>created</p>
+<ul>
+<li>vue 实例初始化完成，完成相应式绑定</li>
+<li>data、method 都已经初始化完成，可以调用</li>
+<li>尚未开始渲染模板</li>
+</ul>
+</li>
+<li><p>beforeMount</p>
+<ul>
+<li>编译模板，调用 render 生成 vdom</li>
+<li>还没有开始渲染 DOM</li>
+</ul>
+</li>
+<li><p>mounted</p>
+<ul>
+<li>完成 DOM 渲染</li>
+<li>组件创建完成</li>
+<li>开始由“创建阶段”进入“运行阶段”</li>
+</ul>
+</li>
+<li><p>beforeUpdate</p>
+<ul>
+<li>data 发生变化之后</li>
+<li>准备更新 DOM （尚未更新 DOM）</li>
+</ul>
+</li>
+<li><p>updated</p>
+<ul>
+<li>data 发生变化，且 DOM 更新完成</li>
+<li>不要在 updated 中修改 data，可能会导致死循环</li>
+</ul>
+</li>
+<li><p>beforeUnmount</p>
+<ul>
+<li>组件进入销毁阶段（尚未销毁，可以正常使用）</li>
+<li>可移除、解绑一些全局事件、自定义事件</li>
+</ul>
+</li>
+<li><p>unmounted</p>
+<ul>
+<li>组件被销毁了</li>
+<li>所有子组件也被销毁了</li>
+</ul>
+</li>
+<li><p>连环问：vue 什么时候操作 dom 比较合适？</p>
+<ul>
+<li>mounted 和 updated 都不能保证子组件全部挂载完成</li>
+<li>使用 $nextTick 操作 dom</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">mounted</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">  <span class="built_in">this</span>.$nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 仅在整个视图都被渲染之后才会运行的代码</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>连环问：Ajax 应该放在那个生命周期？</p>
+<ul>
+<li>两个选择：created 和 mounted</li>
+<li>推荐：mounted</li>
+</ul>
+</li>
+<li><p>vue3 composition API 生命周期有什么区别？</p>
+<ul>
+<li>setup 代替了 beforeCreate 和 created</li>
+<li>使用 hooks 函数的形式，如 mounted 改为 onMounted()</li>
+</ul>
+</li>
+</ul>
+<h2 id="40-Vue2、Vue3、React-三者-diff-算法有什么区别？"><a href="#40-Vue2、Vue3、React-三者-diff-算法有什么区别？" class="headerlink" title="40. Vue2、Vue3、React 三者 diff 算法有什么区别？"></a>40. Vue2、Vue3、React 三者 diff 算法有什么区别？</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
