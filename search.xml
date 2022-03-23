@@ -6767,7 +6767,36 @@ shuffle(arr)
 
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> cpuCoreLength = <span class="built_in">require</span>(<span class="string">&quot;os&quot;</span>).cpus().length;</span><br><span class="line"><span class="keyword">const</span> cluster = <span class="built_in">require</span>(<span class="string">&quot;cluster&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (cluster.isMaster) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; cpuCoreLength; i++) &#123;</span><br><span class="line">    cluster.fork(); <span class="comment">// 开启子进程</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  cluster.on(<span class="string">&quot;exit&quot;</span>, <span class="function">(<span class="params">worker</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;子进程退出&quot;</span>);</span><br><span class="line">    cluster.fork(); <span class="comment">// 进程守护</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>);</span><br><span class="line">    res.end(<span class="string">&quot;done&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  server.listen(<span class="number">3000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="37-请描述-JS-Bridge-的原理"><a href="#37-请描述-JS-Bridge-的原理" class="headerlink" title="37. 请描述 JS Bridge 的原理"></a>37. 请描述 JS Bridge 的原理</h2><h2 id="38"><a href="#38" class="headerlink" title="38."></a>38.</h2><h2 id="39"><a href="#39" class="headerlink" title="39."></a>39.</h2><h2 id="40"><a href="#40" class="headerlink" title="40."></a>40.</h2>]]></content>
+<h2 id="37-请描述-JS-Bridge-的原理"><a href="#37-请描述-JS-Bridge-的原理" class="headerlink" title="37. 请描述 JS Bridge 的原理"></a>37. 请描述 JS Bridge 的原理</h2><ul>
+<li><p>什么是 JS Bridge？</p>
+<ul>
+<li>js 无法直接调用 native API</li>
+<li>需要通过一些特定的“格式”来调用</li>
+<li>这些“格式”就统称 JS-Bridge，例如微信 JSSDK</li>
+</ul>
+</li>
+<li><p>JS Bridge 的常见实现方式</p>
+<ul>
+<li>注册全局 API</li>
+<li>URL Scheme</li>
+</ul>
+</li>
+</ul>
+<h2 id="38-requestIdleCallback-和-requestAnimationFrame-有什么区别？"><a href="#38-requestIdleCallback-和-requestAnimationFrame-有什么区别？" class="headerlink" title="38. requestIdleCallback 和 requestAnimationFrame 有什么区别？"></a>38. requestIdleCallback 和 requestAnimationFrame 有什么区别？</h2><ul>
+<li><p>区别</p>
+<ul>
+<li>requestAnimationFrame 每次渲染完都会执行，高优先级</li>
+<li>requestIdleCallback 空闲时候才执行，低优先级</li>
+<li>requestAnimationFrame 比 requestIdleCallback 先执行，因为优先级高</li>
+</ul>
+</li>
+<li><p>补充</p>
+<ul>
+<li>两者都是宏任务</li>
+</ul>
+</li>
+</ul>
+<h2 id="39"><a href="#39" class="headerlink" title="39."></a>39.</h2><h2 id="40"><a href="#40" class="headerlink" title="40."></a>40.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
