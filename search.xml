@@ -6886,7 +6886,7 @@ shuffle(arr)
 </ul>
 </li>
 </ul>
-<h2 id="41-Vue-router-三种模式"><a href="#41-Vue-router-三种模式" class="headerlink" title="41. Vue-router 三种模式"></a>41. Vue-router 三种模式</h2><ul>
+<h2 id="41-Vue-router-三种模式（React-router-也一样）"><a href="#41-Vue-router-三种模式（React-router-也一样）" class="headerlink" title="41. Vue-router 三种模式（React-router 也一样）"></a>41. Vue-router 三种模式（React-router 也一样）</h2><ul>
 <li>Hash</li>
 <li>WebHistory</li>
 <li>MemoryHistory（v4 之前叫做 abstract history）</li>
