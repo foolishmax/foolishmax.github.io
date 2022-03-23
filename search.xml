@@ -6727,7 +6727,24 @@ shuffle(arr)
 <li><p><a href="https://www.cnblogs.com/dasusu/p/12200176.html">参考</a></p>
 </li>
 </ul>
-<h2 id="34"><a href="#34" class="headerlink" title="34."></a>34.</h2><h2 id="35"><a href="#35" class="headerlink" title="35."></a>35.</h2><h2 id="36"><a href="#36" class="headerlink" title="36."></a>36.</h2><h2 id="37"><a href="#37" class="headerlink" title="37."></a>37.</h2><h2 id="38"><a href="#38" class="headerlink" title="38."></a>38.</h2><h2 id="39"><a href="#39" class="headerlink" title="39."></a>39.</h2><h2 id="40"><a href="#40" class="headerlink" title="40."></a>40.</h2>]]></content>
+<h2 id="34-vdom-真的很快吗？"><a href="#34-vdom-真的很快吗？" class="headerlink" title="34.vdom 真的很快吗？"></a>34.vdom 真的很快吗？</h2><ul>
+<li><p>js 直接操作 dom 才是最快的，vdom 并不快</p>
+</li>
+<li><p>但是 vdom 是最合适“数据驱动视图”的技术方案</p>
+</li>
+</ul>
+<h2 id="35-遍历数组，for-和-forEach-哪个快？"><a href="#35-遍历数组，for-和-forEach-哪个快？" class="headerlink" title="35.遍历数组，for 和 forEach 哪个快？"></a>35.遍历数组，for 和 forEach 哪个快？</h2><ul>
+<li><p>时间复杂度都是 O(n)</p>
+</li>
+<li><p>结论：</p>
+<ol>
+<li>for 更快</li>
+<li>forEach 每次都要创建一个函数来调用，而 for 不会创建函数</li>
+<li>函数需要独立的作用域，会有额外的开销</li>
+</ol>
+</li>
+</ul>
+<h2 id="36"><a href="#36" class="headerlink" title="36."></a>36.</h2><h2 id="37"><a href="#37" class="headerlink" title="37."></a>37.</h2><h2 id="38"><a href="#38" class="headerlink" title="38."></a>38.</h2><h2 id="39"><a href="#39" class="headerlink" title="39."></a>39.</h2><h2 id="40"><a href="#40" class="headerlink" title="40."></a>40.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
