@@ -6866,7 +6866,32 @@ shuffle(arr)
 </ul>
 </li>
 </ul>
-<h2 id="40-Vue2、Vue3、React-三者-diff-算法有什么区别？"><a href="#40-Vue2、Vue3、React-三者-diff-算法有什么区别？" class="headerlink" title="40. Vue2、Vue3、React 三者 diff 算法有什么区别？"></a>40. Vue2、Vue3、React 三者 diff 算法有什么区别？</h2>]]></content>
+<h2 id="40-Vue2、Vue3、React-三者-diff-算法有什么区别？"><a href="#40-Vue2、Vue3、React-三者-diff-算法有什么区别？" class="headerlink" title="40. Vue2、Vue3、React 三者 diff 算法有什么区别？"></a>40. Vue2、Vue3、React 三者 diff 算法有什么区别？</h2><ul>
+<li>严格的 Tree diff 算法的时间复杂度是 O(n*3)</li>
+<li>vue、react 框架对 tree diff 进行了优化 O(n)<ul>
+<li>只比较同一层级，不跨级比较</li>
+<li>tag 不同则删除重建</li>
+<li>子节点通过 key 区分<ul>
+<li>vdom diff 算法会根据 key 判断元素是否需要删除</li>
+<li>匹配了 key，则只移动元素 - 性能较好</li>
+<li>未匹配 key，则删除重建 - 性能较差</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>区别<ul>
+<li>react 仅右移</li>
+<li>vue2 双端比较</li>
+<li>vue3 最长递增子序列</li>
+</ul>
+</li>
+</ul>
+<h2 id="41-Vue-router-三种模式"><a href="#41-Vue-router-三种模式" class="headerlink" title="41. Vue-router 三种模式"></a>41. Vue-router 三种模式</h2><ul>
+<li>Hash</li>
+<li>WebHistory</li>
+<li>MemoryHistory（v4 之前叫做 abstract history）</li>
+</ul>
+]]></content>
       <categories>
         <category>javascript</category>
       </categories>
