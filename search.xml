@@ -6892,6 +6892,8 @@ shuffle(arr)
 <li>MemoryHistory（v4 之前叫做 abstract history）</li>
 </ul>
 <h2 id="42-移动端-H5-click-有-300ms-延迟，如何解决？"><a href="#42-移动端-H5-click-有-300ms-延迟，如何解决？" class="headerlink" title="42. 移动端 H5 click 有 300ms 延迟，如何解决？"></a>42. 移动端 H5 click 有 300ms 延迟，如何解决？</h2><ul>
+<li><p>背景：double tap to zoom</p>
+</li>
 <li><p>初期解决方案 FastClick</p>
 <ul>
 <li>监听 touchend 事件(touchstart touchend 会先于 click 触发)</li>
