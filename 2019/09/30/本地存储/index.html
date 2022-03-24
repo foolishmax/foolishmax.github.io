@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>本地存储 | foolishmax</title><meta name="keywords" content="本地存储"><meta name="author" content="foolishmax,827864735@qq.com"><meta name="copyright" content="foolishmax"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="客户端的本地存储：  localStorage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="本地存储">
+<meta property="og:url" content="https://github.com/foolishmax/2019/09/30/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/index.html">
+<meta property="og:site_name" content="foolishmax">
+<meta property="og:description" content="客户端的本地存储：  localStorage">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg">
+<meta property="article:published_time" content="2019-09-30T08:02:46.000Z">
+<meta property="article:modified_time" content="2020-07-16T14:24:05.746Z">
+<meta property="article:author" content="foolishmax">
+<meta property="article:tag" content="本地存储">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg"><link rel="shortcut icon" href="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/c53adcf935afd3891d1594abbe9cda2c8bfb7edf/images/assets_img/l.svg"><link rel="canonical" href="https://github.com/foolishmax/2019/09/30/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '本地存储',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2020-07-16 22:24:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/assets_img/lbs.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">100</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">34</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">foolishmax</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">本地存储</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-09-30T08:02:46.000Z" title="发表于 2019-09-30 16:02:46">2019-09-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-07-16T14:24:05.746Z" title="更新于 2020-07-16 22:24:05">2020-07-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/">本地存储</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="本地存储"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li><p>客户端的本地存储：</p>
+<ul>
+<li><p>localStorage</p>
+<span id="more"></span>
+<ul>
+<li>生命周期永久生效，除非手动删除，否则关闭页面也会存在</li>
+<li>可以在同一浏览器多窗口共享</li>
+<li>以键值对的形式存储使用</li>
+<li>方法：<ul>
+<li>存储数据：localStorage.setItem(key, value)</li>
+<li>获取数据：localStorage.getItem(key)</li>
+<li>删除数据：localStorage.removeItem(key)</li>
+<li>删除所有数据：localStorage.clear()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sessionStorage </p>
+<ul>
+<li>声明周期为关闭浏览器窗口</li>
+<li>在同一个窗口中数据可以共享</li>
+<li>以键值对的形式存储</li>
+<li>方法：<ul>
+<li>存储数据：sessionStorage.setItem(key, value)</li>
+<li>获取数据：sessionStorage.getItem(key)</li>
+<li>删除数据：sessionStorage.removeItem(key)</li>
+<li>删除所有数据：sessionStorage.clear()</li>
+</ul>
+  <a target="_blank" rel="noopener" href='https://www.cnblogs.com/pengc/p/8714475.html'>localStorage和sessionStorage</a>  <a target="_blank" rel="noopener" href='https://www.cnblogs.com/8023-CHD/p/11067141.html'>cookie和session</a></li>
+</ul>
+</li>
+<li><p>IndexDB 离线存储，当网络断开，可以从浏览器中读取数据，用来做一些离线应用</p>
+</li>
+<li><p>Cookie </p>
+<ul>
+<li>包含字段<ul>
+<li>name: cookie名称</li>
+<li>value: 值</li>
+<li>domain: cookie生效的域名</li>
+<li>path: cookie生效的路径</li>
+<li>expires/max-age: cookie过期时间</li>
+<li>size: 大小</li>
+<li>HttpOnly: 用户端不可更改</li>
+</ul>
+</li>
+<li>存储用户信息，通过在客户端记录信息确定用户身份，最大为4kb</li>
+<li>会话Cookie，若不设置过期时间，表示这个cookie的生命周期为浏览器会话期间，浏览器<br>关闭，cookie就消失，会话cookie会保存在内存中而不是硬盘上。</li>
+<li>持久Cookie，若设置了过期时间，浏览器会把cookie保存在硬盘上，关闭浏览器仍然有效直到<br>超过设定的过期时间。</li>
+<li>cookie数据始终在同源的http请求中携带(即使不需要)，即会在浏览器和服务器之间来回传递。</li>
+<li>Cookie具有不可跨域名性，例如浏览器访问百度不会带上谷歌的cookie</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>服务端的存储：</p>
+<ul>
+<li>Session<ul>
+<li>Session 服务器端一种记录客户端状态的机制</li>
+<li>cookie数据存放在客户的浏览器上，session将数据存放在服务器端</li>
+<li>Session相对Cookie来说比较安全，别人可以分析本地存放的cookie进行cookie欺骗</li>
+<li>Session会在一定时间内保存在服务器上，访问量较多的时候会比较占用服务器的性能，<br>考虑到减轻服务器性能方面的时候，应当使用cookie</li>
+<li>可以将登陆等重要信息保存在session，其他信息放在cookie中</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:827864735@qq.com">foolishmax</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://github.com/foolishmax/2019/09/30/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/">https://github.com/foolishmax/2019/09/30/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://github.com/foolishmax" target="_blank">foolishmax</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/">本地存储</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2019/09/30/HTML%E8%AF%AD%E4%B9%89%E5%8C%96/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">HTML语义化</div></div></a></div><div class="next-post pull-right"><a href="/2019/09/27/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">常见设计模式</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://raw.githubusercontent.com/foolishmax/foolishmax.github.io/master/images/assets_img/lbs.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">foolishmax</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">100</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">34</div></a></div></div><a id="card-info-btn" href="https://github.com/foolishmax"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">仅作为个人学习记录</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/14/%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E5%8E%9F%E7%90%86/" title="单页面应用前端路由原理"><img src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="单页面应用前端路由原理"/></a><div class="content"><a class="title" href="/2022/03/14/%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E5%8E%9F%E7%90%86/" title="单页面应用前端路由原理">单页面应用前端路由原理</a><time datetime="2022-03-14T07:09:06.000Z" title="发表于 2022-03-14 15:09:06">2022-03-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/11/100%E9%81%93%E5%89%8D%E7%AB%AF%E4%BC%98%E8%B4%A8%E9%9D%A2%E8%AF%95%E9%A2%98/" title="100道前端优质面试题"><img src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="100道前端优质面试题"/></a><div class="content"><a class="title" href="/2022/03/11/100%E9%81%93%E5%89%8D%E7%AB%AF%E4%BC%98%E8%B4%A8%E9%9D%A2%E8%AF%95%E9%A2%98/" title="100道前端优质面试题">100道前端优质面试题</a><time datetime="2022-03-11T09:46:11.000Z" title="发表于 2022-03-11 17:46:11">2022-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/08/koa-generator%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAkoa%E6%9C%8D%E5%8A%A1/" title="koa-generator快速搭建koa服务"><img src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="koa-generator快速搭建koa服务"/></a><div class="content"><a class="title" href="/2022/03/08/koa-generator%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAkoa%E6%9C%8D%E5%8A%A1/" title="koa-generator快速搭建koa服务">koa-generator快速搭建koa服务</a><time datetime="2022-03-08T02:46:25.000Z" title="发表于 2022-03-08 10:46:25">2022-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/22/RBAC%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" title="RBAC是什么？"><img src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RBAC是什么？"/></a><div class="content"><a class="title" href="/2022/02/22/RBAC%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" title="RBAC是什么？">RBAC是什么？</a><time datetime="2022-02-22T09:25:38.000Z" title="发表于 2022-02-22 17:25:38">2022-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/07/30-seconds-of-code-study/" title="30-seconds-of-code-study"><img src="/../images/md_img/30-seconds-of-code.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="30-seconds-of-code-study"/></a><div class="content"><a class="title" href="/2022/02/07/30-seconds-of-code-study/" title="30-seconds-of-code-study">30-seconds-of-code-study</a><time datetime="2022-02-07T09:52:54.000Z" title="发表于 2022-02-07 17:52:54">2022-02-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By foolishmax</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
