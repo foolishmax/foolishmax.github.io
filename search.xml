@@ -631,8 +631,72 @@
 <h2 id="49-defer-和-async-有什么区别？"><a href="#49-defer-和-async-有什么区别？" class="headerlink" title="49. defer 和 async 有什么区别？"></a>49. defer 和 async 有什么区别？</h2><ul>
 <li>区别 <img src="/images/md_img/defer_async.jpg" alt="区别"></li>
 </ul>
-<h2 id="50-prefetch-和-dns-prefetch-有什么区别？"><a href="#50-prefetch-和-dns-prefetch-有什么区别？" class="headerlink" title="50. prefetch 和 dns-prefetch 有什么区别？"></a>50. prefetch 和 dns-prefetch 有什么区别？</h2><p>-</p>
-]]></content>
+<h2 id="50-prefetch-和-dns-prefetch-有什么区别？"><a href="#50-prefetch-和-dns-prefetch-有什么区别？" class="headerlink" title="50. prefetch 和 dns-prefetch 有什么区别？"></a>50. prefetch 和 dns-prefetch 有什么区别？</h2><ul>
+<li>preload 资源在当前页面使用，会优先加载</li>
+<li>prefetch 资源在未来页面使用，空闲时加载</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preload&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span> <span class="attr">as</span>=<span class="string">&quot;style&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;prefetch&quot;</span> <span class="attr">href</span>=<span class="string">&quot;other.js&quot;</span> <span class="attr">as</span>=<span class="string">&quot;script&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dns-prefetch 即 DNS 预查询</li>
+<li>preconnect 即 DNS 预连接</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;dns-prefetch&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://www.xxx.com/&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preconnect&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://www.xxx.com&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="51-你知道哪些前端攻击？该如何预防？"><a href="#51-你知道哪些前端攻击？该如何预防？" class="headerlink" title="51. 你知道哪些前端攻击？该如何预防？"></a>51. 你知道哪些前端攻击？该如何预防？</h2><ul>
+<li><p>xss</p>
+<ul>
+<li>Cross Site Script 跨站脚本攻击</li>
+<li>手段：将 js 代码插入到网页内容中，渲染时执行 js 代码</li>
+<li>预防：特殊字符替换（前端或后端）</li>
+</ul>
+</li>
+<li><p>csrf</p>
+<ul>
+<li><p>Cross Site Request Forgery 跨站请求伪造</p>
+</li>
+<li><p>手段：诱导用户去访问另一个网站的接口，伪造请求</p>
+</li>
+<li><p>预防：严格的跨域限制 + 验证码机制</p>
+</li>
+<li><p>csrf 详细过程</p>
+<ul>
+<li>用户登录 A 网站，有了 A 网站的 cookie</li>
+<li>诱导用户到 B 网站，并发起 A 网站的请求</li>
+<li>A 网站的 API 发现有 cookie，认为是用户自己操作的</li>
+</ul>
+</li>
+<li><p>csrf 预防手段</p>
+<ul>
+<li>严格的跨域请求限制，如判断 referer（请求来源）</li>
+<li>为 cookie 设置 SameSite，禁止跨域传递 cookie</li>
+<li>关键接口使用短信验证码</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>点击劫持</p>
+<ul>
+<li>click jacing</li>
+<li>手段：诱导界面上蒙一个透明 iframe，诱导用户点击</li>
+<li>预防：让 iframe 不能跨域加载</li>
+</ul>
+</li>
+<li><p>DDos</p>
+<ul>
+<li>Distribute denial-of-service 分布式拒绝服务</li>
+<li>手段：分布式的、大规模的流量访问，使服务器瘫痪</li>
+<li>预防：软件层不好做，需硬件预防（如阿里云 WAF）</li>
+</ul>
+</li>
+<li><p>SQL 注入</p>
+<ul>
+<li>手段：提交内容时写入 SQL 语句，破环数据库</li>
+<li>预防：处理输入的内容，替换特殊字符</li>
+</ul>
+</li>
+</ul>
+<h2 id="52"><a href="#52" class="headerlink" title="52."></a>52.</h2><h2 id="53"><a href="#53" class="headerlink" title="53"></a>53</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
