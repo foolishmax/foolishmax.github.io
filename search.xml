@@ -6891,7 +6891,18 @@ shuffle(arr)
 <li>WebHistory</li>
 <li>MemoryHistory（v4 之前叫做 abstract history）</li>
 </ul>
-]]></content>
+<h2 id="42-移动端-H5-click-有-300ms-延迟，如何解决？"><a href="#42-移动端-H5-click-有-300ms-延迟，如何解决？" class="headerlink" title="42. 移动端 H5 click 有 300ms 延迟，如何解决？"></a>42. 移动端 H5 click 有 300ms 延迟，如何解决？</h2><ul>
+<li><p>初期解决方案 FastClick</p>
+<ul>
+<li>监听 touchend 事件(touchstart touchend 会先于 click 触发)</li>
+<li>使用自定义 DOM 事件模拟一个 click 事件</li>
+<li>把默认的 click 事件(300ms 之后触发)禁止掉</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(</span><br><span class="line">  <span class="string">&quot;load&quot;</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    FastClick.attach(<span class="built_in">document</span>.body);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+<li><p>现代浏览器的改进（width=device-width）</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0&quot;&gt;</span><br><span class="line">  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;id=edge&quot;&gt;</span><br><span class="line">  &lt;title&gt;title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="43"><a href="#43" class="headerlink" title="43."></a>43.</h2><h2 id="44"><a href="#44" class="headerlink" title="44."></a>44.</h2><h2 id="45"><a href="#45" class="headerlink" title="45."></a>45.</h2><h2 id="46"><a href="#46" class="headerlink" title="46."></a>46.</h2><h2 id="47"><a href="#47" class="headerlink" title="47."></a>47.</h2><h2 id="48"><a href="#48" class="headerlink" title="48."></a>48.</h2><h2 id="49"><a href="#49" class="headerlink" title="49."></a>49.</h2><h2 id="50"><a href="#50" class="headerlink" title="50."></a>50.</h2><h2 id="51"><a href="#51" class="headerlink" title="51."></a>51.</h2><h2 id="52"><a href="#52" class="headerlink" title="52."></a>52.</h2><h2 id="53"><a href="#53" class="headerlink" title="53."></a>53.</h2><h2 id="54"><a href="#54" class="headerlink" title="54."></a>54.</h2><h2 id="55"><a href="#55" class="headerlink" title="55."></a>55.</h2><h2 id="56"><a href="#56" class="headerlink" title="56."></a>56.</h2><h2 id="57"><a href="#57" class="headerlink" title="57."></a>57.</h2><h2 id="58"><a href="#58" class="headerlink" title="58."></a>58.</h2><h2 id="59"><a href="#59" class="headerlink" title="59."></a>59.</h2><h2 id="60"><a href="#60" class="headerlink" title="60."></a>60.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
