@@ -6967,10 +6967,16 @@ shuffle(arr)
 </li>
 </ul>
 <h2 id="45-如何实现-SSO-单点登录？"><a href="#45-如何实现-SSO-单点登录？" class="headerlink" title="45. 如何实现 SSO 单点登录？"></a>45. 如何实现 SSO 单点登录？</h2><ul>
-<li>基于 cookie<ul>
+<li><p>基于 cookie（主域名相同）</p>
+<ul>
 <li>cookie 默认不可跨域共享，但有些情况下可设置共享</li>
 <li>主域名相同，如<a href="http://www.baidu.com,image.baidu.com/">www.baidu.com,image.baidu.com</a></li>
 <li>设置 cookie domain 为主域名，即可共享 cookie</li>
+</ul>
+</li>
+<li><p>SSO（主域名不相同，cookie 无法共享）</p>
+<ul>
+<li><img src="../images/md_img/sso.jpg" alt="sso"></li>
 </ul>
 </li>
 </ul>
