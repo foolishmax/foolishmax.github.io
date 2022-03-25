@@ -999,6 +999,49 @@
 </ul>
 </li>
 </ul>
+<h2 id="H5-页面如何进行首屏优化？"><a href="#H5-页面如何进行首屏优化？" class="headerlink" title="H5 页面如何进行首屏优化？"></a>H5 页面如何进行首屏优化？</h2><ul>
+<li><p>路由懒加载</p>
+<ul>
+<li>适用于 SPA</li>
+<li>路由拆分，优先保证首页加载</li>
+</ul>
+</li>
+<li><p>服务端渲染 SSR</p>
+<ul>
+<li>传统前后端分离（SPA）渲染页面的过程复杂</li>
+<li>SSR 渲染页面过程简单，所有性能好</li>
+<li>如果是纯 H5 页面，SSR 是性能优化的终极方案</li>
+</ul>
+</li>
+<li><p>App 预取</p>
+<ul>
+<li>如果 H5 在 App WebView 中展示，可使用 App 预取</li>
+<li>用户访问列表页面时，App 预加载文章首屏内容</li>
+<li>用户进入 H5 页面，直接从 App 中获取内容，瞬间展示首屏</li>
+</ul>
+</li>
+<li><p>分页</p>
+<ul>
+<li>针对列表页</li>
+<li>默认只展示第一页内容</li>
+<li>上滑加载更多</li>
+</ul>
+</li>
+<li><p>图片懒加载 lazyload</p>
+<ul>
+<li>针对详情页</li>
+<li>默认只展示文本内容，然后出发图片懒加载</li>
+<li>注意：提前设置图片尺寸，尽量只重绘不重排</li>
+</ul>
+</li>
+<li><p>Hybrid</p>
+<ul>
+<li>提前将 HTML、JS、CSS 下载到 App 内部</li>
+<li>在 App webview 中使用 file：// 协议加载页面文件</li>
+<li>再用 Ajax 获取内容并展示（也结合 App 预取）</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>javascript</category>
