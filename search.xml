@@ -732,7 +732,70 @@
 <li><p>实际项目推荐 socket.io,API 更简洁</p>
 </li>
 </ul>
-<h2 id="53"><a href="#53" class="headerlink" title="53."></a>53.</h2>]]></content>
+<h2 id="53-WebSocket-和-HTTP-长轮询的区别？"><a href="#53-WebSocket-和-HTTP-长轮询的区别？" class="headerlink" title="53. WebSocket 和 HTTP 长轮询的区别？"></a>53. WebSocket 和 HTTP 长轮询的区别？</h2><ul>
+<li><p>区别</p>
+<ul>
+<li>HTTP 长轮询：客户端发起请求，服务端阻塞，不会立即返回</li>
+<li>WebSocket：客户端可发起请求，服务端也可发起请求</li>
+</ul>
+</li>
+<li><p>注意</p>
+<ul>
+<li>HTTP 长轮询，需处理 timeout，即 timeout 之后重新发请求</li>
+</ul>
+</li>
+</ul>
+<h2 id="54-描述从输入-url-到页面展示的完整过程"><a href="#54-描述从输入-url-到页面展示的完整过程" class="headerlink" title="54. 描述从输入 url 到页面展示的完整过程"></a>54. 描述从输入 url 到页面展示的完整过程</h2><ul>
+<li>网络请求<ul>
+<li>DNS 查询（得到 IP），建立 TCP 连接（三次握手）</li>
+<li>浏览器发起 HTTP 请求</li>
+<li>收到请求响应，得到 HTML 源代码</li>
+</ul>
+</li>
+<li>解析（字符串 -&gt; 结构化数据）<ul>
+<li>HTML 构建 DOM 树</li>
+<li>CSS 构建 CSSOM 树（style tree）</li>
+<li>两者结合，形成 render tree</li>
+</ul>
+</li>
+<li>渲染（render tree 绘制到页面）<ul>
+<li>计算各个 DOM 的尺寸、定位，最后绘制到页面</li>
+<li>遇到 js 可能会执行（参考 defer、async）</li>
+<li>异步 CSS、图片加载，可能会触发重新渲染</li>
+</ul>
+</li>
+</ul>
+<h2 id="55-重绘-repaint-重排-reflow-有什么区别？"><a href="#55-重绘-repaint-重排-reflow-有什么区别？" class="headerlink" title="55. 重绘 repaint 重排 reflow 有什么区别？"></a>55. 重绘 repaint 重排 reflow 有什么区别？</h2><ul>
+<li><p>重绘 repaint</p>
+<ul>
+<li>元素外观改变，如颜色、背景色</li>
+<li>但元素的尺寸、定位不变，不会影响到其他元素的位置</li>
+</ul>
+</li>
+<li><p>重排 relfow</p>
+<ul>
+<li>重新计算尺寸和布局，可能会影响其他元素的位置</li>
+<li>如元素高度增加，可能会使相邻元素位置下移</li>
+</ul>
+</li>
+<li><p>区别</p>
+<ul>
+<li>重排比重绘影响更大，消耗更大</li>
+<li>所以，要尽量避免无意义的重排</li>
+</ul>
+</li>
+<li><p>减少重排的方法</p>
+<ul>
+<li>集中修改样式，或直接切换 css、class</li>
+<li>修改之前先设置 display: none,脱离文档流</li>
+<li>使用 BFC 特性，不影响其他元素位置</li>
+<li>频发触发（resize、scroll）使用节流和防抖</li>
+<li>使用 createDocumentFragment 批量操作 DOM</li>
+<li>优化动画，使用 CSS3 和 requestAnimationFrame</li>
+</ul>
+</li>
+</ul>
+]]></content>
       <categories>
         <category>javascript</category>
       </categories>
