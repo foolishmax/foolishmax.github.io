@@ -1106,7 +1106,42 @@
 </ul>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ErrorBoundary</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(props);</span><br><span class="line">    <span class="built_in">this</span>.state = &#123;</span><br><span class="line">      <span class="attr">error</span>: <span class="literal">null</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="title">getDerivedStateFromError</span>(<span class="params">error</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 更新state，显示降级UI</span></span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123; error &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">componentDidCatch</span>(<span class="params">error, errorInfo</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 统计上报错误信息</span></span><br><span class="line">    <span class="built_in">console</span>.log(error, errorInfo);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.state.error) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>报错了<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.props.children;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="64"><a href="#64" class="headerlink" title="64."></a>64.</h2><h2 id="65"><a href="#65" class="headerlink" title="65."></a>65.</h2><h2 id="66"><a href="#66" class="headerlink" title="66."></a>66.</h2><h2 id="67"><a href="#67" class="headerlink" title="67."></a>67.</h2><h2 id="68"><a href="#68" class="headerlink" title="68."></a>68.</h2><h2 id="69"><a href="#69" class="headerlink" title="69."></a>69.</h2>]]></content>
+<h2 id="64-如果一个-H5-很慢，你该如何排查性能问题？"><a href="#64-如果一个-H5-很慢，你该如何排查性能问题？" class="headerlink" title="64. 如果一个 H5 很慢，你该如何排查性能问题？"></a>64. 如果一个 H5 很慢，你该如何排查性能问题？</h2><ul>
+<li><p>前端性能指标</p>
+<ul>
+<li>First Paint（FP）</li>
+<li>First ContentFul Paint（FCP）</li>
+<li>DomContentLoaded（DCL）</li>
+<li>Largest Contentful Paint（LCP）</li>
+<li>Load（L）</li>
+</ul>
+</li>
+<li><p>Chrome devtools</p>
+<ul>
+<li>Performance 可查看上述性能指标，并有网页快照</li>
+<li>Network 可以查看各个资源的加载时间</li>
+</ul>
+</li>
+<li><p>lighthouse（第三方性能评测工具）</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// terminal</span></span><br><span class="line">lighthouse https:<span class="comment">//www.imooc.com/ --view --preset=desktop</span></span><br></pre></td></tr></table></figure></li>
+<li><p>通过以上工具来判读是加载慢还是渲染慢</p>
+<ul>
+<li>加载慢<ul>
+<li>优化服务端硬件配置，使用 CDN</li>
+<li>路由懒加载，大组件异步加载-减少主包的体积</li>
+<li>优化 http 缓存策略</li>
+</ul>
+</li>
+<li>渲染慢<ul>
+<li>优化服务端接口（如 ajax 获取数据慢）</li>
+<li>优化全段组件内部逻辑</li>
+<li>服务端渲染 SSR</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="65"><a href="#65" class="headerlink" title="65."></a>65.</h2><h2 id="66"><a href="#66" class="headerlink" title="66."></a>66.</h2><h2 id="67"><a href="#67" class="headerlink" title="67."></a>67.</h2><h2 id="68"><a href="#68" class="headerlink" title="68."></a>68.</h2><h2 id="69"><a href="#69" class="headerlink" title="69."></a>69.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
