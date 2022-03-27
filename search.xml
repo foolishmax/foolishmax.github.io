@@ -999,7 +999,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="H5-页面如何进行首屏优化？"><a href="#H5-页面如何进行首屏优化？" class="headerlink" title="H5 页面如何进行首屏优化？"></a>H5 页面如何进行首屏优化？</h2><ul>
+<h2 id="59-H5-页面如何进行首屏优化？"><a href="#59-H5-页面如何进行首屏优化？" class="headerlink" title="59. H5 页面如何进行首屏优化？"></a>59. H5 页面如何进行首屏优化？</h2><ul>
 <li><p>路由懒加载</p>
 <ul>
 <li>适用于 SPA</li>
@@ -1042,7 +1042,59 @@
 </ul>
 </li>
 </ul>
-]]></content>
+<h2 id="60-后端一次性返回-10w-条数据，你该如何渲染？"><a href="#60-后端一次性返回-10w-条数据，你该如何渲染？" class="headerlink" title="60. 后端一次性返回 10w 条数据，你该如何渲染？"></a>60. 后端一次性返回 10w 条数据，你该如何渲染？</h2><ul>
+<li><p>设计不合理，去砍了后端</p>
+</li>
+<li><p>自定义中间层</p>
+<ul>
+<li>自定义 nodejs 中间层，获取并拆分这 10w 条数据</li>
+<li>前端对接 nodejs 中间层，而不是服务端</li>
+<li>成本比较高</li>
+</ul>
+</li>
+<li><p>虚拟列表</p>
+<ul>
+<li>只渲染可视区域</li>
+</ul>
+</li>
+</ul>
+<h2 id="61-React-都有哪些注意点（坑）？"><a href="#61-React-都有哪些注意点（坑）？" class="headerlink" title="61. React 都有哪些注意点（坑）？"></a>61. React 都有哪些注意点（坑）？</h2><ul>
+<li><p>自定义组件首字母大写</p>
+</li>
+<li><p>js 关键字的冲突（htmlFor、className）</p>
+</li>
+<li><p>JSX 的数据类型</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">&lt;Demo value=&#123;<span class="number">1</span>&#125; /&gt; <span class="comment">// number</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">Demo</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span> <span class="comment">// string</span></span><br></pre></td></tr></table></figure></li>
+<li><p>setState 是异步更新的</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">this</span>.setState(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">num</span>: <span class="built_in">this</span>.state.num + <span class="number">1</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.state.num); <span class="comment">// 正确</span></span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>.state.num); <span class="comment">// 错误</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="62-如何统一监听-Vue-组件报错？"><a href="#62-如何统一监听-Vue-组件报错？" class="headerlink" title="62. 如何统一监听 Vue 组件报错？"></a>62. 如何统一监听 Vue 组件报错？</h2><ul>
+<li><p>window.onerror</p>
+<ul>
+<li>全局监听所有 js 错误</li>
+<li>try…catch 中的错误无法被监听到</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span> (<span class="params">msg, source, line, column, error</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(msg, source, line, column, error);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&quot;error&quot;</span>, <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(event);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>errorCaptured 生命周期</p>
+<ul>
+<li>监听所有下级组件的错误</li>
+<li>返回 false 会阻止向上传播</li>
+</ul>
+</li>
+<li><p>errorHandler 配置</p>
+<ul>
+<li>Vue 全局错误监听，所有组件错误都会汇总到这里</li>
+<li>但 errorCaptured 返回 false，不会传播到这里</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">app.config.errorHandler = <span class="function">(<span class="params">err, vm, info</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error, vm, info);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li><p>异步错误</p>
+<ul>
+<li>异步回调里面的错误，errorHandler 监听不到</li>
+<li>需要使用 window.onerror</li>
+</ul>
+</li>
+</ul>
+<h2 id="63"><a href="#63" class="headerlink" title="63."></a>63.</h2><h2 id="64"><a href="#64" class="headerlink" title="64."></a>64.</h2><h2 id="65"><a href="#65" class="headerlink" title="65."></a>65.</h2><h2 id="66"><a href="#66" class="headerlink" title="66."></a>66.</h2><h2 id="67"><a href="#67" class="headerlink" title="67."></a>67.</h2><h2 id="68"><a href="#68" class="headerlink" title="68."></a>68.</h2><h2 id="69"><a href="#69" class="headerlink" title="69."></a>69.</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
