@@ -1141,7 +1141,23 @@
 </ul>
 </li>
 </ul>
-<h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="65-如何理解-HTML-语义化？"><a href="#65-如何理解-HTML-语义化？" class="headerlink" title="65. 如何理解 HTML 语义化？"></a>65. 如何理解 HTML 语义化？</h2><ul>
+<li>让人更容易读懂（增加代码可读性）</li>
+<li>让搜索引擎更容易读懂（SEO）</li>
+</ul>
+<h2 id="66-块状元素-amp-内联元素？"><a href="#66-块状元素-amp-内联元素？" class="headerlink" title="66. 块状元素 &amp; 内联元素？"></a>66. 块状元素 &amp; 内联元素？</h2><ul>
+<li>块级元素<ul>
+<li>display: block/table;</li>
+<li>div、h1、h2、table、ul、ol、p 等</li>
+</ul>
+</li>
+<li>内联元素<ul>
+<li>display: inline/inline-block;</li>
+<li>span、img、input、button 等；</li>
+</ul>
+</li>
+</ul>
+<h2 id="67"><a href="#67" class="headerlink" title="67."></a>67.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
@@ -1681,164 +1697,320 @@ null 和 undefined 是无效的对象，因此是不会有constructor存在的�
   <entry>
     <title>jQuery学习</title>
     <url>/2020/09/05/Jquery%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h2 id="jQuery学习"><a href="#jQuery学习" class="headerlink" title="jQuery学习"></a>jQuery学习</h2><h3 id="入口函数"><a href="#入口函数" class="headerlink" title="入口函数"></a>入口函数</h3><ul>
-<li>jQuery入口函数<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    //执行代码</span><br><span class="line">&#125;)</span><br><span class="line">或者（简写）</span><br><span class="line">$(function()&#123;</span><br><span class="line">    //执行代码</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<span id="more"></span></li>
-<li>javascript入口函数<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">    //执行代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>jQuery的入口函数是在html的所有标签DOM都加载之后，就会执行包裹的代码，可以执行多次，并且不会覆盖上次。</li>
-<li>javascript的window.onload事件是等到所有内容，包括外部图片之类的文件加载完成后，才会执行，只能执行一次，如果第二次会把第一次的执行覆盖。</li>
+    <content><![CDATA[<h2 id="jQuery-学习"><a href="#jQuery-学习" class="headerlink" title="jQuery 学习"></a>jQuery 学习</h2><h3 id="入口函数"><a href="#入口函数" class="headerlink" title="入口函数"></a>入口函数</h3><ul>
+<li>jQuery 入口函数</li>
 </ul>
-<h3 id="jQuery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h3><ul>
-<li><p>元素选择器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;)</span><br></pre></td></tr></table></figure></li>
-<li><p>id选择器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;#test&quot;)</span><br></pre></td></tr></table></figure></li>
-<li><p>class选择器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;.test&quot;)</span><br></pre></td></tr></table></figure></li>
-<li><p>属性选择器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;[href]&quot;)</span><br></pre></td></tr></table></figure></li>
-<li><p>:empty 选择器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;:empty&quot;)</span><br><span class="line">//选择空的元素，既不不含子元素也不包含文本的元素</span><br><span class="line">$(&quot;div:empty&quot;) //选择div中为空的div元素</span><br></pre></td></tr></table></figure></li>
-<li><p>:parent选择器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;td:parent&quot;)</span><br><span class="line">//选取所有带有子元素或文本的&lt;td&gt;标签元素</span><br></pre></td></tr></table></figure></li>
-<li><p>:contains 选择器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;div:contains(&#x27;hello&#x27;)&quot;)</span><br><span class="line">//找到div中包含文本hello的指定元素</span><br></pre></td></tr></table></figure></li>
-<li><p>:has选择器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;div:has(p)&quot;)</span><br><span class="line">//找到包含p标签元素的div</span><br></pre></td></tr></table></figure></li>
-<li><p>补充</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;:button&quot;) //获取所有type为button的&lt;input&gt;元素和&lt;button&gt;元素，去掉冒号，只能获取&lt;button&gt;元素。</span><br></pre></td></tr></table></figure>
-<h3 id="常用jQuery事件方法"><a href="#常用jQuery事件方法" class="headerlink" title="常用jQuery事件方法"></a>常用jQuery事件方法</h3></li>
-<li><p>click() 点击事件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).click(function()&#123;</span><br><span class="line">    $(this).hide();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>dblclick() 双击事件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).dblclick(function()&#123;</span><br><span class="line">    $(this).hide();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>mouseenter() 鼠标指针穿过元素时</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).mouseenter(function()&#123;</span><br><span class="line">    alert(&quot;您的鼠标移到了p标签元素上！&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>mouseleave() 鼠标指针离开元素时</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).mouseleave(function()&#123;</span><br><span class="line">    alert(&quot;您的鼠标离开了该p标签元素！&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>mouseup() 当在元素上松开鼠标时</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).mouseup(()=&gt;&#123;</span><br><span class="line">    alert(&quot;鼠标在p标签上松开！&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>hover() 模拟光标悬停事件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).hover(</span><br><span class="line">    function()&#123;</span><br><span class="line">        alert(&quot;你进入了p标签！&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">    function()&#123;</span><br><span class="line">        alert(&quot;你离开了p标签！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
-<li><p>focus()  当元素获得焦点时</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;input&quot;).focus(function()&#123;</span><br><span class="line">    $(this).css(&quot;background-color&quot;,&quot;#ccc&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>blur() 当元素失去焦点时</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;input&quot;).blur(function()&#123;</span><br><span class="line">    $(this).css(&quot;background-color&quot;,&quot;#fff&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>keypress,keydown,keyup</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//获取按键代码或ASCII码</span><br><span class="line">$(window).keydown(function(event)&#123;</span><br><span class="line">    //通过event.which可以拿到按键代码，如果是keypress事件中则拿到ASCII码。</span><br><span class="line">    console.log(event);</span><br><span class="line">&#125;)</span><br><span class="line">//获取事件对象</span><br><span class="line">$(window).keypress(function(event)&#123;    </span><br><span class="line">    //获取事件对象，里面包含各种有用的信息。</span><br><span class="line">    console.log(event);</span><br><span class="line">    //console.log(event.which);</span><br><span class="line">&#125;);</span><br><span class="line">//keypress事件获取键入的字符</span><br><span class="line">$(window).keypress(function(event)&#123;</span><br><span class="line">    //event.which是获取ASCII码，前面的函数是将ASCII码转换成字符，空格键和Enter键输出均为空白。</span><br><span class="line">    console.log(String.fromCharCode(event.which));</span><br><span class="line">    //从event对象中key属性获取字符，但是Enter键的key值为&quot;Enter&quot;，空白键还是空白&quot; &quot;。</span><br><span class="line">    console.log(event.key);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li><p>off() 事件移除</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).off() //移除所有button元素身上绑定的事件</span><br><span class="line"></span><br><span class="line">$(&quot;button&quot;).off(&quot;click&quot;) //移除所有的click事件，移除指定类型</span><br><span class="line"></span><br><span class="line">$(&quot;button&quot;).off(&quot;click&quot;, test) //移除click事件中的test回调方法，移除指定类型的事件</span><br></pre></td></tr></table></figure></li>
-<li><p>阻止事件冒泡</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;.son&quot;).click(function(event)&#123;</span><br><span class="line">    alert(&quot;son&quot;)</span><br><span class="line">    //return false;</span><br><span class="line">    event.stopPropagation(); //阻止事件冒泡</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(&quot;.father&quot;).click(function()&#123;</span><br><span class="line">    alert(&quot;father&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>阻止默认行为</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//a标签跳转、submit提交按钮等</span><br><span class="line">$(&quot;a&quot;).click(function(event)&#123;</span><br><span class="line">    alert(&quot;弹出注册框！&quot;);</span><br><span class="line">    event.preventDefault();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>trigger()、triggerHandler() 自动触发事件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//触发绑定到被选元素的所有事件</span><br><span class="line">$(&quot;.father&quot;).click(function()&#123;</span><br><span class="line">    alert(&quot;father&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">$(&quot;.father&quot;).trigger(&quot;click&quot;);   //方法一:会触发事件冒泡</span><br><span class="line">$(&quot;.father&quot;).triggerHandler(&quot;click&quot;); //方法二:只触发事件，不会触发事件冒泡</span><br><span class="line">-------------------------------</span><br><span class="line">$(&quot;input[type=&#x27;submit&#x27;]&quot;).click(function()&#123;</span><br><span class="line">    alert(&quot;submit&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">$(&quot;input[type=&#x27;submit&#x27;]&quot;).trigger(&quot;click&quot;); //方法一：触发事件的同时，还会触发默认行为。</span><br><span class="line">$(&quot;input[type=&#x27;submit&#x27;]&quot;).triggerHandler(&quot;click&quot;) //方法二：只触发事件，不触发默认行为。</span><br><span class="line">//注意：这里&lt;a&gt;标签有点特殊，这两个方法都不会触发默认行为，如果想使用trigger()触发&lt;a&gt;标签的事件和默认行为的话，可以在&lt;a&gt;标签中添加一个&lt;span&gt;,例如&lt;a href =&quot;#&quot;&gt;&lt;span&gt;百度&lt;/span&gt;&lt;/a&gt; 这种写法。</span><br></pre></td></tr></table></figure></li>
-<li><p>自定义事件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/*</span><br><span class="line">* 想要自定义事件，必须满足两个条件</span><br><span class="line">* 1.事件必须是通过on绑定的</span><br><span class="line">* 2.事件必须通过trigger来触发</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">$(&quot;.son&quot;).on(&quot;myClick&quot;,function()&#123;</span><br><span class="line">    alert(&quot;son&quot;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(&quot;.son&quot;).trigger(&quot;myClick&quot;);</span><br><span class="line">or</span><br><span class="line">$(&quot;.son&quot;).triggerHandler(&quot;myClick&quot;);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>事件命名空间</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/*</span><br><span class="line">* 想要事件的命名空间有效，必须满足两个条件</span><br><span class="line">* 1.事件通过on来绑定(自定义事件)</span><br><span class="line">* 2.通过trigger()或者triggerHandler()来触发</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">$(&quot;.son&quot;).on(&quot;eventName.zs&quot;,function()&#123;</span><br><span class="line">    alert(&quot;click zhangsan&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">$(&quot;.son&quot;).on(&quot;eventName.ls&quot;,function()&#123;</span><br><span class="line">    alert(&quot;click lisi&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">$(&quot;.son&quot;).trigger(&quot;click.zs&quot;);</span><br><span class="line">or</span><br><span class="line">$(&quot;.son&quot;).triggerHandler(&quot;click.zs&quot;);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="隐藏和显示"><a href="#隐藏和显示" class="headerlink" title="隐藏和显示"></a>隐藏和显示</h3><ul>
-<li><p>hide() 隐藏html元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;#hide&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).hide();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>show() 显示html元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;#show&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).show();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>语法 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(selector).hide(speed,callback);</span><br><span class="line"></span><br><span class="line">$(selector).show(speed,callback);</span><br><span class="line"></span><br><span class="line">//可选的speed参数表示规定显示/隐藏的速度(slow、fast、毫秒)</span><br><span class="line">//可选的callback参数是隐藏或显示完成后所执行的函数名称</span><br><span class="line"></span><br><span class="line">$(&quot;.hidebtn&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;div&quot;).hide(1000,&quot;linear&quot;,function()&#123;</span><br><span class="line">        alert(&quot;Hide() 方法已完成!&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//第二个参数是一个字符串，表示过渡使用哪种缓动函数，jQuery自身提供(linear、swing)</span><br><span class="line">//补充：callback函数名后面加上括号，会立刻执行函数体，而不是等到显示/隐藏之后才执行,如add()作为callback参数会立即执行，而add作为参数则不会，callback函数可以是匿名函数，$(selector)选中的元素个数为n个，则callback函数会执行n次。</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>toggle() 切换hide()和show()方法</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).toggle();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="淡入淡出"><a href="#淡入淡出" class="headerlink" title="淡入淡出"></a>淡入淡出</h3><ul>
-<li><p>fadeIn() 用于淡入以隐藏的元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).fadeIn(3000);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//语法： $(selector).fadeIn(speed, callback)</span><br><span class="line">// 可选的speed参数规定效果的时长(slow、fast、毫秒)</span><br><span class="line">// 可选的callback参数是fading完成后所执行的函数名称</span><br></pre></td></tr></table></figure></li>
-<li><p>fadeOut() 用于淡出可见元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).fadeOut(&quot;slow&quot;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//语法： $(selector).fadeOut(speed, callback)</span><br><span class="line">// 可选的speed参数规定效果的时长(slow、fast、毫秒)</span><br><span class="line">// 可选的callback参数是fading完成后所执行的函数名称</span><br></pre></td></tr></table></figure></li>
-<li><p>fadeToggle() 用于在fadeIn()与fadeOut()方法之间进行切换</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).fadeToggle();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//语法： $(selector).fadeToggle(speed, callback)</span><br><span class="line">// 可选的speed参数规定效果的时长(slow、fast、毫秒)</span><br><span class="line">// 可选的callback参数是fading完成后所执行的函数名称</span><br></pre></td></tr></table></figure></li>
-<li><p>fadeTo() 允许渐变为给定的不透明度</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).fadeTo(&quot;slow&quot;, 0.3);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//语法：$(selector).fadeTo(speed, opacity, callback)</span><br><span class="line">//必须的speed参数规定效果时长(slow、fast、毫秒)</span><br><span class="line">//必须的opacity规定不透明度(介于0-1之间)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="滑动方法"><a href="#滑动方法" class="headerlink" title="滑动方法"></a>滑动方法</h3><ul>
-<li><p>slideDown() 用于元素向下滑动</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).slideDown();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//语法：$(selector).slideDown(speed,callback)</span><br><span class="line">//可选的 speed 参数规定效果的时长。它可以取以下值：&quot;slow&quot;、&quot;fast&quot; 或毫秒。</span><br><span class="line">//可选的 callback 参数是滑动完成后所执行的函数名称。</span><br></pre></td></tr></table></figure></li>
-<li><p>slideUp() 用于元素向上滑动</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).slideUp();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//语法：$(selector).slideUp(speed,callback)</span><br><span class="line">//可选的 speed 参数规定效果的时长。它可以取以下值：&quot;slow&quot;、&quot;fast&quot; 或毫秒。</span><br><span class="line">//可选的 callback 参数是滑动完成后所执行的函数名称。</span><br></pre></td></tr></table></figure></li>
-<li><p>slideToggle() 在slideDown()与slideUp()方法之间进行切换</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).slideToggle();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//语法：$(selector).slideToggle(speed,callback)</span><br><span class="line">//可选的 speed 参数规定效果的时长。它可以取以下值：&quot;slow&quot;、&quot;fast&quot; 或毫秒。</span><br><span class="line">//可选的 callback 参数是滑动完成后所执行的函数名称。</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><ul>
-<li><p>animate()方法</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//默认情况下，所有html元素都有一个静态位置，且无法移动。</span><br><span class="line">//先将p标签元素设置为position:relative/absolute/fixed</span><br><span class="line"></span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;p&quot;).animate(&#123;</span><br><span class="line">      left:&#x27;250px&#x27;,</span><br><span class="line">      opacity:&#x27;0.5&#x27;,</span><br><span class="line">      height:&#x27;400px&#x27;,</span><br><span class="line">      width: &#x27;400px&#x27;,</span><br><span class="line">      paddingLeft:&#x27;10px&#x27;</span><br><span class="line">      &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//语法： $(selector).animate(&#123;params&#125;,speed,callback)</span><br><span class="line">// params参数可以操作几乎所有的css属性，但名字要采用camel标记法</span><br></pre></td></tr></table></figure></li>
-<li><p>stop() 停止动画</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> $(&quot;#flip&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;#panel&quot;).slideDown(5000);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">$(&quot;#stop&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;#panel&quot;).stop();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">语法: $(selector).stop(stopAll,goToEnd)</span><br><span class="line">//可选的 stopAll 参数规定是否应该清除动画队列。默认是 false，即仅停/止活动的动画，允许任何排入队列的动画向后执行。</span><br><span class="line">//可选的 goToEnd 参数规定是否立即完成当前动画。默认是 false。</span><br></pre></td></tr></table></figure></li>
-<li><p>jQuery方法链接</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;#p1&quot;).css(&quot;color&quot;,&quot;red&quot;)</span><br><span class="line">  .slideUp(2000)</span><br><span class="line">  .slideDown(2000);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="jQuery获取内容和属性"><a href="#jQuery获取内容和属性" class="headerlink" title="jQuery获取内容和属性"></a>jQuery获取内容和属性</h3><ul>
-<li><p>获取内容 text()、html()、val()</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    //执行代码</span><br><span class="line">&#125;)</span><br><span class="line">或者（简写）</span><br><span class="line">$(function()&#123;</span><br><span class="line">    //执行代码</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
 <ul>
+<li>javascript 入口函数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">    //执行代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>jQuery 的入口函数是在 html 的所有标签 DOM 都加载之后，就会执行包裹的代码，可以执行多次，并且不会覆盖上次。</li>
+<li>javascript 的 window.onload 事件是等到所有内容，包括外部图片之类的文件加载完成后，才会执行，只能执行一次，如果第二次会把第一次的执行覆盖。</li>
+</ul>
+<h3 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器</h3><ul>
+<li>元素选择器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>id 选择器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;#test&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>class 选择器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;.test&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>属性选择器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;[href]&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>:empty 选择器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;:empty&quot;)</span><br><span class="line">//选择空的元素，既不不含子元素也不包含文本的元素</span><br><span class="line">$(&quot;div:empty&quot;) //选择div中为空的div元素</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>:parent 选择器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;td:parent&quot;)</span><br><span class="line">//选取所有带有子元素或文本的&lt;td&gt;标签元素</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>:contains 选择器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;div:contains(&#x27;hello&#x27;)&quot;)</span><br><span class="line">//找到div中包含文本hello的指定元素</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>:has 选择器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;div:has(p)&quot;)</span><br><span class="line">//找到包含p标签元素的div</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>补充</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;:button&quot;) //获取所有type为button的&lt;input&gt;元素和&lt;button&gt;元素，去掉冒号，只能获取&lt;button&gt;元素。</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用-jQuery-事件方法"><a href="#常用-jQuery-事件方法" class="headerlink" title="常用 jQuery 事件方法"></a>常用 jQuery 事件方法</h3><ul>
+<li>click() 点击事件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).click(function()&#123;</span><br><span class="line">    $(this).hide();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dblclick() 双击事件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).dblclick(function()&#123;</span><br><span class="line">    $(this).hide();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mouseenter() 鼠标指针穿过元素时</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).mouseenter(function()&#123;</span><br><span class="line">    alert(&quot;您的鼠标移到了p标签元素上！&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mouseleave() 鼠标指针离开元素时</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).mouseleave(function()&#123;</span><br><span class="line">    alert(&quot;您的鼠标离开了该p标签元素！&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mouseup() 当在元素上松开鼠标时</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).mouseup(()=&gt;&#123;</span><br><span class="line">    alert(&quot;鼠标在p标签上松开！&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>hover() 模拟光标悬停事件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).hover(</span><br><span class="line">    function()&#123;</span><br><span class="line">        alert(&quot;你进入了p标签！&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">    function()&#123;</span><br><span class="line">        alert(&quot;你离开了p标签！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>focus() 当元素获得焦点时</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;input&quot;).focus(function()&#123;</span><br><span class="line">    $(this).css(&quot;background-color&quot;,&quot;#ccc&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>blur() 当元素失去焦点时</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;input&quot;).blur(function()&#123;</span><br><span class="line">    $(this).css(&quot;background-color&quot;,&quot;#fff&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>keypress,keydown,keyup</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//获取按键代码或ASCII码</span><br><span class="line">$(window).keydown(function(event)&#123;</span><br><span class="line">    //通过event.which可以拿到按键代码，如果是keypress事件中则拿到ASCII码。</span><br><span class="line">    console.log(event);</span><br><span class="line">&#125;)</span><br><span class="line">//获取事件对象</span><br><span class="line">$(window).keypress(function(event)&#123;</span><br><span class="line">    //获取事件对象，里面包含各种有用的信息。</span><br><span class="line">    console.log(event);</span><br><span class="line">    //console.log(event.which);</span><br><span class="line">&#125;);</span><br><span class="line">//keypress事件获取键入的字符</span><br><span class="line">$(window).keypress(function(event)&#123;</span><br><span class="line">    //event.which是获取ASCII码，前面的函数是将ASCII码转换成字符，空格键和Enter键输出均为空白。</span><br><span class="line">    console.log(String.fromCharCode(event.which));</span><br><span class="line">    //从event对象中key属性获取字符，但是Enter键的key值为&quot;Enter&quot;，空白键还是空白&quot; &quot;。</span><br><span class="line">    console.log(event.key);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>off() 事件移除</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).off() //移除所有button元素身上绑定的事件</span><br><span class="line"></span><br><span class="line">$(&quot;button&quot;).off(&quot;click&quot;) //移除所有的click事件，移除指定类型</span><br><span class="line"></span><br><span class="line">$(&quot;button&quot;).off(&quot;click&quot;, test) //移除click事件中的test回调方法，移除指定类型的事件</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>阻止事件冒泡</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;.son&quot;).click(function(event)&#123;</span><br><span class="line">    alert(&quot;son&quot;)</span><br><span class="line">    //return false;</span><br><span class="line">    event.stopPropagation(); //阻止事件冒泡</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(&quot;.father&quot;).click(function()&#123;</span><br><span class="line">    alert(&quot;father&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>阻止默认行为</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//a标签跳转、submit提交按钮等</span><br><span class="line">$(&quot;a&quot;).click(function(event)&#123;</span><br><span class="line">    alert(&quot;弹出注册框！&quot;);</span><br><span class="line">    event.preventDefault();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>trigger()、triggerHandler() 自动触发事件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//触发绑定到被选元素的所有事件</span><br><span class="line">$(&quot;.father&quot;).click(function()&#123;</span><br><span class="line">    alert(&quot;father&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">$(&quot;.father&quot;).trigger(&quot;click&quot;);   //方法一:会触发事件冒泡</span><br><span class="line">$(&quot;.father&quot;).triggerHandler(&quot;click&quot;); //方法二:只触发事件，不会触发事件冒泡</span><br><span class="line">-------------------------------</span><br><span class="line">$(&quot;input[type=&#x27;submit&#x27;]&quot;).click(function()&#123;</span><br><span class="line">    alert(&quot;submit&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">$(&quot;input[type=&#x27;submit&#x27;]&quot;).trigger(&quot;click&quot;); //方法一：触发事件的同时，还会触发默认行为。</span><br><span class="line">$(&quot;input[type=&#x27;submit&#x27;]&quot;).triggerHandler(&quot;click&quot;) //方法二：只触发事件，不触发默认行为。</span><br><span class="line">//注意：这里&lt;a&gt;标签有点特殊，这两个方法都不会触发默认行为，如果想使用trigger()触发&lt;a&gt;标签的事件和默认行为的话，可以在&lt;a&gt;标签中添加一个&lt;span&gt;,例如&lt;a href =&quot;#&quot;&gt;&lt;span&gt;百度&lt;/span&gt;&lt;/a&gt; 这种写法。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自定义事件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/*</span><br><span class="line">* 想要自定义事件，必须满足两个条件</span><br><span class="line">* 1.事件必须是通过on绑定的</span><br><span class="line">* 2.事件必须通过trigger来触发</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">$(&quot;.son&quot;).on(&quot;myClick&quot;,function()&#123;</span><br><span class="line">    alert(&quot;son&quot;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(&quot;.son&quot;).trigger(&quot;myClick&quot;);</span><br><span class="line">or</span><br><span class="line">$(&quot;.son&quot;).triggerHandler(&quot;myClick&quot;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>事件命名空间</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/*</span><br><span class="line">* 想要事件的命名空间有效，必须满足两个条件</span><br><span class="line">* 1.事件通过on来绑定(自定义事件)</span><br><span class="line">* 2.通过trigger()或者triggerHandler()来触发</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">$(&quot;.son&quot;).on(&quot;eventName.zs&quot;,function()&#123;</span><br><span class="line">    alert(&quot;click zhangsan&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">$(&quot;.son&quot;).on(&quot;eventName.ls&quot;,function()&#123;</span><br><span class="line">    alert(&quot;click lisi&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">$(&quot;.son&quot;).trigger(&quot;click.zs&quot;);</span><br><span class="line">or</span><br><span class="line">$(&quot;.son&quot;).triggerHandler(&quot;click.zs&quot;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="隐藏和显示"><a href="#隐藏和显示" class="headerlink" title="隐藏和显示"></a>隐藏和显示</h3><ul>
+<li>hide() 隐藏 html 元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;#hide&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).hide();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>show() 显示 html 元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;#show&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).show();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>语法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(selector).hide(speed,callback);</span><br><span class="line"></span><br><span class="line">$(selector).show(speed,callback);</span><br><span class="line"></span><br><span class="line">//可选的speed参数表示规定显示/隐藏的速度(slow、fast、毫秒)</span><br><span class="line">//可选的callback参数是隐藏或显示完成后所执行的函数名称</span><br><span class="line"></span><br><span class="line">$(&quot;.hidebtn&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;div&quot;).hide(1000,&quot;linear&quot;,function()&#123;</span><br><span class="line">        alert(&quot;Hide() 方法已完成!&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//第二个参数是一个字符串，表示过渡使用哪种缓动函数，jQuery自身提供(linear、swing)</span><br><span class="line">//补充：callback函数名后面加上括号，会立刻执行函数体，而不是等到显示/隐藏之后才执行,如add()作为callback参数会立即执行，而add作为参数则不会，callback函数可以是匿名函数，$(selector)选中的元素个数为n个，则callback函数会执行n次。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>toggle() 切换 hide()和 show()方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).toggle();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="淡入淡出"><a href="#淡入淡出" class="headerlink" title="淡入淡出"></a>淡入淡出</h3><ul>
+<li>fadeIn() 用于淡入以隐藏的元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).fadeIn(3000);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//语法： $(selector).fadeIn(speed, callback)</span><br><span class="line">// 可选的speed参数规定效果的时长(slow、fast、毫秒)</span><br><span class="line">// 可选的callback参数是fading完成后所执行的函数名称</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fadeOut() 用于淡出可见元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).fadeOut(&quot;slow&quot;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//语法： $(selector).fadeOut(speed, callback)</span><br><span class="line">// 可选的speed参数规定效果的时长(slow、fast、毫秒)</span><br><span class="line">// 可选的callback参数是fading完成后所执行的函数名称</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fadeToggle() 用于在 fadeIn()与 fadeOut()方法之间进行切换</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).fadeToggle();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//语法： $(selector).fadeToggle(speed, callback)</span><br><span class="line">// 可选的speed参数规定效果的时长(slow、fast、毫秒)</span><br><span class="line">// 可选的callback参数是fading完成后所执行的函数名称</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fadeTo() 允许渐变为给定的不透明度</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).fadeTo(&quot;slow&quot;, 0.3);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//语法：$(selector).fadeTo(speed, opacity, callback)</span><br><span class="line">//必须的speed参数规定效果时长(slow、fast、毫秒)</span><br><span class="line">//必须的opacity规定不透明度(介于0-1之间)</span><br></pre></td></tr></table></figure>
+
+<h3 id="滑动方法"><a href="#滑动方法" class="headerlink" title="滑动方法"></a>滑动方法</h3><ul>
+<li>slideDown() 用于元素向下滑动</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).slideDown();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//语法：$(selector).slideDown(speed,callback)</span><br><span class="line">//可选的 speed 参数规定效果的时长。它可以取以下值：&quot;slow&quot;、&quot;fast&quot; 或毫秒。</span><br><span class="line">//可选的 callback 参数是滑动完成后所执行的函数名称。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>slideUp() 用于元素向上滑动</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).slideUp();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//语法：$(selector).slideUp(speed,callback)</span><br><span class="line">//可选的 speed 参数规定效果的时长。它可以取以下值：&quot;slow&quot;、&quot;fast&quot; 或毫秒。</span><br><span class="line">//可选的 callback 参数是滑动完成后所执行的函数名称。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>slideToggle() 在 slideDown()与 slideUp()方法之间进行切换</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).slideToggle();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//语法：$(selector).slideToggle(speed,callback)</span><br><span class="line">//可选的 speed 参数规定效果的时长。它可以取以下值：&quot;slow&quot;、&quot;fast&quot; 或毫秒。</span><br><span class="line">//可选的 callback 参数是滑动完成后所执行的函数名称。</span><br></pre></td></tr></table></figure>
+
+<h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><ul>
+<li>animate()方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//默认情况下，所有html元素都有一个静态位置，且无法移动。</span><br><span class="line">//先将p标签元素设置为position:relative/absolute/fixed</span><br><span class="line"></span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;p&quot;).animate(&#123;</span><br><span class="line">      left:&#x27;250px&#x27;,</span><br><span class="line">      opacity:&#x27;0.5&#x27;,</span><br><span class="line">      height:&#x27;400px&#x27;,</span><br><span class="line">      width: &#x27;400px&#x27;,</span><br><span class="line">      paddingLeft:&#x27;10px&#x27;</span><br><span class="line">      &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//语法： $(selector).animate(&#123;params&#125;,speed,callback)</span><br><span class="line">// params参数可以操作几乎所有的css属性，但名字要采用camel标记法</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>stop() 停止动画</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> $(&quot;#flip&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;#panel&quot;).slideDown(5000);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">$(&quot;#stop&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;#panel&quot;).stop();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">语法: $(selector).stop(stopAll,goToEnd)</span><br><span class="line">//可选的 stopAll 参数规定是否应该清除动画队列。默认是 false，即仅停/止活动的动画，允许任何排入队列的动画向后执行。</span><br><span class="line">//可选的 goToEnd 参数规定是否立即完成当前动画。默认是 false。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>jQuery 方法链接</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;#p1&quot;).css(&quot;color&quot;,&quot;red&quot;)</span><br><span class="line">  .slideUp(2000)</span><br><span class="line">  .slideDown(2000);</span><br></pre></td></tr></table></figure>
+
+<h3 id="jQuery-获取内容和属性"><a href="#jQuery-获取内容和属性" class="headerlink" title="jQuery 获取内容和属性"></a>jQuery 获取内容和属性</h3><ul>
+<li>获取内容 text()、html()、val()<ul>
 <li>text() 设置或返回所选元素的文本内容</li>
-<li>html() 设置或返回所选元素的内容(包括html标记)</li>
-<li>val() 设置或返回表单字段的值<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    alert($(&quot;p&quot;).text());</span><br><span class="line">&#125;)</span><br><span class="line">//-----------------------------</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    alert($(&quot;p&quot;).html())</span><br><span class="line">&#125;)</span><br><span class="line">//------------------------------</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  alert($(&quot;input&quot;).val());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>html() 设置或返回所选元素的内容(包括 html 标记)</li>
+<li>val() 设置或返回表单字段的值</li>
 </ul>
 </li>
-<li><p>获取属性 attr()</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//项目QC刚用过</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    console.log($(&quot;p&quot;).attr(&quot;data-text&quot;));</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>补充：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">prop()函数返回相应属性或空字符串。</span><br><span class="line">attr()函数返回相应属性或undefined</span><br><span class="line">1.对于HTML元素本身就带有的固有属性，在处理时使用prop方法</span><br><span class="line">2.对HTML元素我们自己定义的DOM属性，在处理时使用attr方法</span><br><span class="line">3.具有true和false两个属性的属性，如checked、selected或者disabled使用prop()</span><br></pre></td></tr></table></figure></li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    alert($(&quot;p&quot;).text());</span><br><span class="line">&#125;)</span><br><span class="line">//-----------------------------</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    alert($(&quot;p&quot;).html())</span><br><span class="line">&#125;)</span><br><span class="line">//------------------------------</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  alert($(&quot;input&quot;).val());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取属性 attr()</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//项目QC刚用过</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    console.log($(&quot;p&quot;).attr(&quot;data-text&quot;));</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>补充：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">prop()函数返回相应属性或空字符串。</span><br><span class="line">attr()函数返回相应属性或undefined</span><br><span class="line">1.对于HTML元素本身就带有的固有属性，在处理时使用prop方法</span><br><span class="line">2.对HTML元素我们自己定义的DOM属性，在处理时使用attr方法</span><br><span class="line">3.具有true和false两个属性的属性，如checked、selected或者disabled使用prop()</span><br></pre></td></tr></table></figure>
+
 <h3 id="设置内容和属性"><a href="#设置内容和属性" class="headerlink" title="设置内容和属性"></a>设置内容和属性</h3><ul>
-<li><p>设置内容 text()、html()、val()</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    alert($(&quot;p&quot;).text(&quot;hello&quot;));</span><br><span class="line">&#125;)</span><br><span class="line">//-----------------------------</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    alert($(&quot;p&quot;).html(&quot;hello&quot;))</span><br><span class="line">&#125;)</span><br><span class="line">//------------------------------</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  alert($(&quot;input&quot;).val(&quot;hello&quot;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li><p>text()、html() 以及 val() 的回调函数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).text(function(i,orignText)&#123;</span><br><span class="line">        //i 为被选元素列表中当前元素的下标</span><br><span class="line">        //orignText 为原来的值</span><br><span class="line">        //return 为返回的新值</span><br><span class="line"></span><br><span class="line">        return &quot;hello&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>设置属性 attr()</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).attr(&quot;data-text&quot;,&quot;hello world&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">// 允许同时设置多个属性</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).attr(&#123;</span><br><span class="line">        &quot;data-text&quot;,&quot;hello world&quot;,</span><br><span class="line">        &quot;title&quot;,&quot;jQuery学习！&quot;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>attr() 也存在回调函数(同上)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;#runoob&quot;).attr(&quot;href&quot;, function(i,origValue)&#123;</span><br><span class="line">    return origValue + &quot;/jquery&quot;; </span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>设置内容 text()、html()、val()</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    alert($(&quot;p&quot;).text(&quot;hello&quot;));</span><br><span class="line">&#125;)</span><br><span class="line">//-----------------------------</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    alert($(&quot;p&quot;).html(&quot;hello&quot;))</span><br><span class="line">&#125;)</span><br><span class="line">//------------------------------</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  alert($(&quot;input&quot;).val(&quot;hello&quot;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>text()、html() 以及 val() 的回调函数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).text(function(i,orignText)&#123;</span><br><span class="line">        //i 为被选元素列表中当前元素的下标</span><br><span class="line">        //orignText 为原来的值</span><br><span class="line">        //return 为返回的新值</span><br><span class="line"></span><br><span class="line">        return &quot;hello&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置属性 attr()</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).attr(&quot;data-text&quot;,&quot;hello world&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">// 允许同时设置多个属性</span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    $(&quot;p&quot;).attr(&#123;</span><br><span class="line">        &quot;data-text&quot;,&quot;hello world&quot;,</span><br><span class="line">        &quot;title&quot;,&quot;jQuery学习！&quot;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>attr() 也存在回调函数(同上)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">  $(&quot;#runoob&quot;).attr(&quot;href&quot;, function(i,origValue)&#123;</span><br><span class="line">    return origValue + &quot;/jquery&quot;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <h3 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h3><ul>
-<li><p>removeAttr()</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;span&quot;).removeAttr(&quot;class name&quot;);</span><br><span class="line">//表示同时删除span标签的class和name属性</span><br></pre></td></tr></table></figure></li>
-<li><p>removeProp()</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;span&quot;).removeProp(&quot;class&quot;);</span><br><span class="line">//表示删除所有span标签的class属性</span><br></pre></td></tr></table></figure></li>
+<li>removeAttr()</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;span&quot;).removeAttr(&quot;class name&quot;);</span><br><span class="line">//表示同时删除span标签的class和name属性</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>removeProp()</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;span&quot;).removeProp(&quot;class&quot;);</span><br><span class="line">//表示删除所有span标签的class属性</span><br></pre></td></tr></table></figure>
+
 <h3 id="jQuery-添加元素"><a href="#jQuery-添加元素" class="headerlink" title="jQuery 添加元素"></a>jQuery 添加元素</h3><ul>
 <li><p>append/prepend 是在选择元素内容嵌入(文本或标签)</p>
 </li>
 <li><p>after/before 实在元素外部追加(文本或标签)</p>
 </li>
-<li><p>参数可以是多个，可以是一个list</p>
+<li><p>参数可以是多个，可以是一个 list</p>
 </li>
 </ul>
 <h3 id="jQuery-删除元素"><a href="#jQuery-删除元素" class="headerlink" title="jQuery 删除元素"></a>jQuery 删除元素</h3><ul>
-<li><p>remove() 方法</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).remove()</span><br><span class="line"></span><br><span class="line">//remove() 方法删除被选元素及其子元素</span><br></pre></td></tr></table></figure></li>
-<li><p>empty() 方法</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).empty()</span><br><span class="line"></span><br><span class="line">//empty() 方法删除被选元素的子元素而不删除自身</span><br></pre></td></tr></table></figure></li>
-<li><p>过滤被删除的元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).remove(&quot;.italic&quot;)</span><br><span class="line"></span><br><span class="line">//表示删除所有&lt;p&gt;标签元素中class = &quot;italic&quot;的元素</span><br><span class="line">//过滤时，只能作用于同级元素之间</span><br></pre></td></tr></table></figure></li>
+<li>remove() 方法</li>
 </ul>
-<h3 id="jQuery-获取并设置CSS类"><a href="#jQuery-获取并设置CSS类" class="headerlink" title="jQuery 获取并设置CSS类"></a>jQuery 获取并设置CSS类</h3><ul>
-<li><p>addClass() 向不用的元素添加class属性，在添加类时可以选取多个元素,也可以设置多个类。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">	$(&quot;h1, h3, p&quot;).addClass(&quot;fontColor fontSize&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>removeClass() 在不同元素中删除指定的class属性</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">	$(&quot;h1, h3, p&quot;).removeClass(&quot;fontSize&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>toggleClass() 对被选元素进行添加/删除类的切换操作</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;.btn2&quot;).click(function()&#123;</span><br><span class="line">	$(&quot;h1, h3, p&quot;).toggleClass(&quot;fontColor2&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="css-方法"><a href="#css-方法" class="headerlink" title="css() 方法"></a>css() 方法</h3><ul>
-<li>返回css属性<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).css(&quot;background-color&quot;);</span><br></pre></td></tr></table></figure></li>
-<li>设置css属性,可以同时设置多个<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).css(&#123;&quot;background-color&quot;:&quot;yellow&quot;,&quot;font-size&quot;:&quot;200%&quot;&#125;);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h3><ul>
-<li><p>width()、height()</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).remove()</span><br><span class="line"></span><br><span class="line">//remove() 方法删除被选元素及其子元素</span><br></pre></td></tr></table></figure>
+
 <ul>
+<li>empty() 方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).empty()</span><br><span class="line"></span><br><span class="line">//empty() 方法删除被选元素的子元素而不删除自身</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>过滤被删除的元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).remove(&quot;.italic&quot;)</span><br><span class="line"></span><br><span class="line">//表示删除所有&lt;p&gt;标签元素中class = &quot;italic&quot;的元素</span><br><span class="line">//过滤时，只能作用于同级元素之间</span><br></pre></td></tr></table></figure>
+
+<h3 id="jQuery-获取并设置-CSS-类"><a href="#jQuery-获取并设置-CSS-类" class="headerlink" title="jQuery 获取并设置 CSS 类"></a>jQuery 获取并设置 CSS 类</h3><ul>
+<li>addClass() 向不用的元素添加 class 属性，在添加类时可以选取多个元素,也可以设置多个类。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">	$(&quot;h1, h3, p&quot;).addClass(&quot;fontColor fontSize&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>removeClass() 在不同元素中删除指定的 class 属性</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">	$(&quot;h1, h3, p&quot;).removeClass(&quot;fontSize&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>toggleClass() 对被选元素进行添加/删除类的切换操作</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;.btn2&quot;).click(function()&#123;</span><br><span class="line">	$(&quot;h1, h3, p&quot;).toggleClass(&quot;fontColor2&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="css-方法"><a href="#css-方法" class="headerlink" title="css() 方法"></a>css() 方法</h3><ul>
+<li>返回 css 属性</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).css(&quot;background-color&quot;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置 css 属性,可以同时设置多个</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).css(&#123;&quot;background-color&quot;:&quot;yellow&quot;,&quot;font-size&quot;:&quot;200%&quot;&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h3><ul>
+<li>width()、height()<ul>
 <li>width() 方法设置或返回元素的宽度（不包括内边距、边框或外边距）</li>
-<li>height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).width() //获取</span><br><span class="line">$(&quot;p&quot;).width(20) //设置</span><br></pre></td></tr></table></figure></li>
+<li>height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）。</li>
 </ul>
 </li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).width() //获取</span><br><span class="line">$(&quot;p&quot;).width(20) //设置</span><br></pre></td></tr></table></figure>
+
+<ul>
 <li><p>innerWidth()、innerHeight()</p>
 <ul>
 <li>innerWidth() 方法返回元素的宽度（包括内边距）。</li>
@@ -1852,28 +2024,48 @@ null 和 undefined 是无效的对象，因此是不会有constructor存在的�
 </ul>
 </li>
 <li><p>offset()</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;.son&quot;).offset().left //元素距离窗口的偏移距离</span><br><span class="line"></span><br><span class="line">$(&quot;.son&quot;).offset(&#123;</span><br><span class="line">    left: 20,</span><br><span class="line">&#125;) //设置元素距离窗口的偏移距离</span><br></pre></td></tr></table></figure></li>
-<li><p>position()</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;.son&quot;).position().left //获取元素距离定位元素的偏移距离</span><br><span class="line"></span><br><span class="line">// 注意点：position() 方法只能获取不能设置</span><br></pre></td></tr></table></figure></li>
-<li><p>scrollTop() </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;scroller&quot;).scrollTop() //获取元素相对滚动条顶部的偏移</span><br><span class="line"></span><br><span class="line">$(&quot;scroller&quot;).scrollTop(300) //设置元素相对滚动条顶部的偏移</span><br><span class="line"></span><br><span class="line">//获取网页滚动的偏移(考虑兼容)</span><br><span class="line">$(&quot;body&quot;).scrollTop() + $(&quot;html&quot;).scrollTop() //ie-&gt;body,chrome...-&gt;html</span><br><span class="line"></span><br><span class="line">//设置网页滚动的偏移(考虑兼容)</span><br><span class="line">$(&quot;html,body&quot;).scrollTop(300) </span><br></pre></td></tr></table></figure></li>
-<li><p>补充：设置了box-sizing后，width()=width - padding - border</p>
 </li>
 </ul>
-<h3 id="jQuery遍历"><a href="#jQuery遍历" class="headerlink" title="jQuery遍历"></a>jQuery遍历</h3><h4 id="祖先"><a href="#祖先" class="headerlink" title="祖先"></a>祖先</h4><ul>
-<li><p>parent() 返回元素的直接父元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&quot;span&quot;).parents();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>parents() 返回被选元素的所有祖先元素，直到文档根元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&quot;span&quot;).parents();</span><br><span class="line">&#125;)</span><br><span class="line">//过滤所有祖先，并且是&lt;ul&gt;元素</span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&quot;span&quot;).parents(&quot;ul&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li><p>parentsUntil() 返回给定的两个元素之间的所有祖先元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//返回&lt;span&gt;与&lt;div&gt;元素之间的所有祖先元素</span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&quot;span&quot;).parentsUntil(&quot;div&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;.son&quot;).offset().left //元素距离窗口的偏移距离</span><br><span class="line"></span><br><span class="line">$(&quot;.son&quot;).offset(&#123;</span><br><span class="line">    left: 20,</span><br><span class="line">&#125;) //设置元素距离窗口的偏移距离</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>position()</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;.son&quot;).position().left //获取元素距离定位元素的偏移距离</span><br><span class="line"></span><br><span class="line">// 注意点：position() 方法只能获取不能设置</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>scrollTop()</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;scroller&quot;).scrollTop() //获取元素相对滚动条顶部的偏移</span><br><span class="line"></span><br><span class="line">$(&quot;scroller&quot;).scrollTop(300) //设置元素相对滚动条顶部的偏移</span><br><span class="line"></span><br><span class="line">//获取网页滚动的偏移(考虑兼容)</span><br><span class="line">$(&quot;body&quot;).scrollTop() + $(&quot;html&quot;).scrollTop() //ie-&gt;body,chrome...-&gt;html</span><br><span class="line"></span><br><span class="line">//设置网页滚动的偏移(考虑兼容)</span><br><span class="line">$(&quot;html,body&quot;).scrollTop(300)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>补充：设置了 box-sizing 后，width()=width - padding - border</li>
+</ul>
+<h3 id="jQuery-遍历"><a href="#jQuery-遍历" class="headerlink" title="jQuery 遍历"></a>jQuery 遍历</h3><h4 id="祖先"><a href="#祖先" class="headerlink" title="祖先"></a>祖先</h4><ul>
+<li>parent() 返回元素的直接父元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&quot;span&quot;).parents();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>parents() 返回被选元素的所有祖先元素，直到文档根元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&quot;span&quot;).parents();</span><br><span class="line">&#125;)</span><br><span class="line">//过滤所有祖先，并且是&lt;ul&gt;元素</span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&quot;span&quot;).parents(&quot;ul&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>parentsUntil() 返回给定的两个元素之间的所有祖先元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//返回&lt;span&gt;与&lt;div&gt;元素之间的所有祖先元素</span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&quot;span&quot;).parentsUntil(&quot;div&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
 <h4 id="后代"><a href="#后代" class="headerlink" title="后代"></a>后代</h4><ul>
-<li><p>children() 返回被选元素的所有直接子元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;div&quot;).children();</span><br><span class="line"></span><br><span class="line">//可以使用可选参数来过滤子元素的搜索</span><br><span class="line">$(&quot;div&quot;).children(&quot;p.aaa&quot;); //返回类名为aaa的&lt;p&gt;元素，且是div的直接子元素。</span><br></pre></td></tr></table></figure></li>
-<li><p>find() 返回被选元素的后代元素，一路向下直到最后一个后代</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;div&quot;).find(&quot;span&quot;);</span><br></pre></td></tr></table></figure></li>
+<li>children() 返回被选元素的所有直接子元素</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;div&quot;).children();</span><br><span class="line"></span><br><span class="line">//可以使用可选参数来过滤子元素的搜索</span><br><span class="line">$(&quot;div&quot;).children(&quot;p.aaa&quot;); //返回类名为aaa的&lt;p&gt;元素，且是div的直接子元素。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>find() 返回被选元素的后代元素，一路向下直到最后一个后代</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;div&quot;).find(&quot;span&quot;);</span><br></pre></td></tr></table></figure>
+
 <h4 id="同胞"><a href="#同胞" class="headerlink" title="同胞"></a>同胞</h4><ul>
 <li><p>siblings() 返回被选元素的所有同胞元素，可以使用可选参数过滤搜索。</p>
 </li>
@@ -1887,23 +2079,35 @@ null 和 undefined 是无效的对象，因此是不会有constructor存在的�
 </li>
 </ul>
 <h4 id="过滤：缩小搜索元素的范围"><a href="#过滤：缩小搜索元素的范围" class="headerlink" title="过滤：缩小搜索元素的范围"></a>过滤：缩小搜索元素的范围</h4><ul>
-<li><p>first() 返回被选元素的首个元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).first();</span><br></pre></td></tr></table></figure></li>
-<li><p>last() 返回被选元素的最后一个元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).last();</span><br></pre></td></tr></table></figure></li>
-<li><p>eq() 返回被选元素中带有指定索引号的元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).eq(1);</span><br><span class="line"></span><br><span class="line">//索引号从0开始，eq(1)选择的是第二个&lt;p&gt;元素</span><br></pre></td></tr></table></figure></li>
-<li><p>filter() 允许规定一个标准，返回匹配的元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).filter(&quot;.className&quot;);</span><br><span class="line"></span><br><span class="line">//返回带有类名className的所有&lt;p&gt;元素</span><br></pre></td></tr></table></figure></li>
-<li><p>not() 返回所有不匹配的元素，与filter()相反</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).not(&quot;.className&quot;);</span><br><span class="line"></span><br><span class="line">//返回所有不带有类名className的&lt;p&gt;元素</span><br></pre></td></tr></table></figure></li>
+<li>first() 返回被选元素的首个元素</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).first();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>last() 返回被选元素的最后一个元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).last();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>eq() 返回被选元素中带有指定索引号的元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).eq(1);</span><br><span class="line"></span><br><span class="line">//索引号从0开始，eq(1)选择的是第二个&lt;p&gt;元素</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>filter() 允许规定一个标准，返回匹配的元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).filter(&quot;.className&quot;);</span><br><span class="line"></span><br><span class="line">//返回带有类名className的所有&lt;p&gt;元素</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>not() 返回所有不匹配的元素，与 filter()相反</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).not(&quot;.className&quot;);</span><br><span class="line"></span><br><span class="line">//返回所有不带有类名className的&lt;p&gt;元素</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>javascript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
