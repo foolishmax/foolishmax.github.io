@@ -1157,7 +1157,82 @@
 </ul>
 </li>
 </ul>
-<h2 id="67"><a href="#67" class="headerlink" title="67."></a>67.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="67-如下代码，请问-div-的-offsetWidth-是多大？"><a href="#67-如下代码，请问-div-的-offsetWidth-是多大？" class="headerlink" title="67. 如下代码，请问 div 的 offsetWidth 是多大？"></a>67. 如下代码，请问 div 的 offsetWidth 是多大？</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">  <span class="selector-id">#div</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>offsetWidth = (内容宽度 + 内边距 + 边框)，无外边距</li>
+<li>答案： 100 + 10 + 1 * 2 = 122px</li>
+<li>可以通过：box-sizing: border-box; 使得 offsetWidth=100</li>
+</ul>
+<h2 id="67-margin-纵向重叠问题"><a href="#67-margin-纵向重叠问题" class="headerlink" title="67. margin 纵向重叠问题"></a>67. margin 纵向重叠问题</h2><ul>
+<li>如下代码，A 和 B 之间的距离是多少？</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">  <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">line-height</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin-bottom</span>: <span class="number">15px</span>;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>A<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>B<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>相邻元素的 margin-top 和 margin-bottom 会发生重叠</li>
+<li>空白内容 p 标签也会重叠</li>
+<li>答案：15px</li>
+</ul>
+<h2 id="68-margin-负值问题"><a href="#68-margin-负值问题" class="headerlink" title="68. margin 负值问题"></a>68. margin 负值问题</h2><ul>
+<li>margin-top 和 margin-left 负值，元素向上、向左移动</li>
+<li>margin-right 负值，右侧元素左移，自身不受影响</li>
+<li>margin-bottom 负值，下方元素上移，自身不受影响</li>
+</ul>
+<h2 id="69-BFC-理解与应用"><a href="#69-BFC-理解与应用" class="headerlink" title="69. BFC 理解与应用"></a>69. BFC 理解与应用</h2><ul>
+<li>Block format context，块级格式化上下文</li>
+<li>一块独立渲染区域，内部元素的渲染不会影响边界以外的元素</li>
+<li>形成 BFC 的常见条件<ul>
+<li>float 不是 none</li>
+<li>position 是 absolute 或 fixed</li>
+<li>overflow 不是 visible</li>
+<li>display 是 flex、inline-block 等</li>
+</ul>
+</li>
+<li>常见应用：<ul>
+<li>清除浮动</li>
+</ul>
+</li>
+</ul>
+<h2 id="69-float-布局"><a href="#69-float-布局" class="headerlink" title="69. float 布局"></a>69. float 布局</h2><ul>
+<li>实现圣杯布局和双飞翼布局<ul>
+<li>目的<ul>
+<li>三栏布局，中间一栏最先加载和渲染</li>
+<li>两侧内容固定，中间内容随着宽度自适应</li>
+<li>一般用于 PC 网页</li>
+</ul>
+</li>
+<li>实现<ul>
+<li>使用 float 布局</li>
+<li>两侧使用 margin 负值，以便和中间内容横向重叠</li>
+<li>防止中间内容被两侧覆盖，一个用 padding，一个用 margin</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="70-css-定位"><a href="#70-css-定位" class="headerlink" title="70. css 定位"></a>70. css 定位</h2><ul>
+<li><p>absolute 和 relative 定位</p>
+<ul>
+<li>relative 依据自身定位</li>
+<li>absolute 依据最近一层的定位元素定位<ul>
+<li>定位元素：absolute、relative、fied、body</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>居中对齐</p>
+<ul>
+<li>水平居中<ul>
+<li>inline 元素：text-align: center</li>
+<li>block 元素：margin: auto</li>
+<li>absolute 元素：left:50% + margin-left 负值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
