@@ -1223,16 +1223,71 @@
 </li>
 <li><p>居中对齐</p>
 <ul>
-<li>水平居中<ul>
+<li><p>水平居中</p>
+<ul>
 <li>inline 元素：text-align: center</li>
 <li>block 元素：margin: auto</li>
 <li>absolute 元素：left:50% + margin-left 负值</li>
 </ul>
 </li>
+<li><p>垂直居中</p>
+<ul>
+<li>inline 元素：line-height 的值等于 height 的值</li>
+<li>absolute 元素：top: 50% + margin-top 负值</li>
+<li>absolute 元素：transform(-50%, -50%)</li>
+<li>absolute 元素：top,left,bottom,right=0 + margin: auto</li>
 </ul>
 </li>
 </ul>
-<h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+</li>
+</ul>
+<h2 id="71-css-图文样式"><a href="#71-css-图文样式" class="headerlink" title="71. css-图文样式"></a>71. css-图文样式</h2><ul>
+<li><p>line-height 如何继承</p>
+<ul>
+<li>如下代码，p 标签的行高是多少？</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">  <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">font-size</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">line-height</span>: <span class="number">200%</span>; <span class="comment">/* 40px */</span></span></span><br><span class="line"><span class="css">    <span class="attribute">line-height</span>: <span class="number">1.5</span>; <span class="comment">/* 16 * 1.5 = 24 */</span></span></span><br><span class="line"><span class="css">    <span class="attribute">line-height</span>: <span class="number">30px</span>; <span class="comment">/* 30px */</span></span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css">  <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>AAA<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>答案： 40px</li>
+</ul>
+</li>
+<li><p>具体数值，如 30px，则继承该值</p>
+</li>
+<li><p>写比例，如 2/1.5，则继承当前元素 font-size 的比例</p>
+</li>
+<li><p>写百分比，如 200%，则继承计算出来的值</p>
+</li>
+</ul>
+<h2 id="72-css-响应式"><a href="#72-css-响应式" class="headerlink" title="72. css-响应式"></a>72. css-响应式</h2><ul>
+<li><p>常见长度单位</p>
+<ul>
+<li>px，绝对长度单位</li>
+<li>em，相对长度单位，相对于父元素</li>
+<li>rem，相对长度单位，相对于根元素，常用与响应式布局</li>
+</ul>
+</li>
+<li><p>响应式布局常用方案</p>
+<ul>
+<li>media-query，根据不同屏幕宽度设置根元素 font-size</li>
+<li>rem，基于根元素的相对单位</li>
+<li>rem 的弊端：“阶梯”性</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">  <span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">374px</span>) &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">html</span> &#123;</span></span><br><span class="line"><span class="css">      <span class="attribute">font-size</span>: <span class="number">86px</span>;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css">  <span class="keyword">@media</span> <span class="keyword">only</span> scrren <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">375px</span>) <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">413px</span>) &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">html</span> &#123;</span></span><br><span class="line"><span class="css">      <span class="attribute">font-size</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css">  <span class="keyword">@media</span> <span class="keyword">only</span> scrren <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">414px</span>) &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">html</span> &#123;</span></span><br><span class="line"><span class="css">      <span class="attribute">font-size</span>: <span class="number">110px</span>;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css">  <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">font-size</span>: <span class="number">0.16rem</span>;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css">  <span class="selector-id">#div</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">1rem</span>; <span class="comment">/* 100px */</span></span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div&quot;</span>&gt;</span>div<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>网页视口尺寸</p>
+<ul>
+<li>window.screen.height // 屏幕高度</li>
+<li>window.innerHeight // 网页视口高度<ul>
+<li>vh 网页视口高度的 1/100</li>
+<li>vw 网页视口宽度的 1/100</li>
+<li>vmax 取两者最大值；vmin 取两者最小值</li>
+</ul>
+</li>
+<li>document.body.clientHeight // body 高度</li>
+</ul>
+</li>
+</ul>
+<h2 id="73"><a href="#73" class="headerlink" title="73."></a>73.</h2><h2 id="74"><a href="#74" class="headerlink" title="74."></a>74.</h2><h2 id="75"><a href="#75" class="headerlink" title="75."></a>75.</h2><h2 id="76"><a href="#76" class="headerlink" title="76."></a>76.</h2><h2 id="77"><a href="#77" class="headerlink" title="77."></a>77.</h2><h2 id="78"><a href="#78" class="headerlink" title="78."></a>78.</h2><h2 id="79"><a href="#79" class="headerlink" title="79."></a>79.</h2><h2 id="80"><a href="#80" class="headerlink" title="80."></a>80.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
