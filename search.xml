@@ -1287,7 +1287,33 @@
 </ul>
 </li>
 </ul>
-<h2 id="73"><a href="#73" class="headerlink" title="73."></a>73.</h2><h2 id="74"><a href="#74" class="headerlink" title="74."></a>74.</h2><h2 id="75"><a href="#75" class="headerlink" title="75."></a>75.</h2><h2 id="76"><a href="#76" class="headerlink" title="76."></a>76.</h2><h2 id="77"><a href="#77" class="headerlink" title="77."></a>77.</h2><h2 id="78"><a href="#78" class="headerlink" title="78."></a>78.</h2><h2 id="79"><a href="#79" class="headerlink" title="79."></a>79.</h2><h2 id="80"><a href="#80" class="headerlink" title="80."></a>80.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="73-typeof-运算符"><a href="#73-typeof-运算符" class="headerlink" title="73. typeof 运算符"></a>73. typeof 运算符</h2><ul>
+<li>识别所有值类型<ul>
+<li>undefined</li>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>Symbol</li>
+</ul>
+</li>
+<li>识别函数、<ul>
+<li>function</li>
+</ul>
+</li>
+<li>判断是否是引用类型<ul>
+<li>object</li>
+</ul>
+</li>
+</ul>
+<h2 id="74-手写-call"><a href="#74-手写-call" class="headerlink" title="74. 手写 call"></a>74. 手写 call</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call = <span class="function"><span class="keyword">function</span> (<span class="params">context, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> ctx = context || <span class="built_in">window</span>;</span><br><span class="line">  <span class="keyword">const</span> fn = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line">  ctx[fn] = <span class="built_in">this</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> res = ctx[fn](...args);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> ctx[fn];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="75-手写-apply"><a href="#75-手写-apply" class="headerlink" title="75. 手写 apply"></a>75. 手写 apply</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.apply = <span class="function"><span class="keyword">function</span> (<span class="params">context, args = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> ctx = context || <span class="built_in">window</span>;</span><br><span class="line">  <span class="keyword">const</span> fn = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line">  ctx[fn] = <span class="built_in">this</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> res = ctx[fn](...args);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> ctx[fn];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="76-手写-bind"><a href="#76-手写-bind" class="headerlink" title="76. 手写 bind"></a>76. 手写 bind</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span> (<span class="params">context, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> fn = <span class="built_in">this</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">newFn</span>(<span class="params">...newFnArgs</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span> <span class="keyword">instanceof</span> newFn) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> fn(...args, ...newFnArgs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fn.apply(context, [...args, ...newFnArgs]);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="77-手写-instanceof"><a href="#77-手写-instanceof" class="headerlink" title="77. 手写 instanceof"></a>77. 手写 instanceof</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 1.通过left.__proto__.__proto__这种方式从下往上获取原型对象</span></span><br><span class="line"><span class="comment">* 2.通过Object.create(null)的实例是没有原型链</span></span><br><span class="line"><span class="comment">* 3.有原型链的实例的尽头都是Object</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">instanceof</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!left.__proto__) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">if</span> (right === <span class="built_in">Object</span> || left.__proto__ === right.protorype) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">instanceof</span>(left.__proto__, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="78"><a href="#78" class="headerlink" title="78."></a>78.</h2><h2 id="79"><a href="#79" class="headerlink" title="79."></a>79.</h2><h2 id="80"><a href="#80" class="headerlink" title="80."></a>80.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
