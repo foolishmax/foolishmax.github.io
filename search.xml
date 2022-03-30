@@ -1313,7 +1313,28 @@
 
 <h2 id="77-手写-instanceof"><a href="#77-手写-instanceof" class="headerlink" title="77. 手写 instanceof"></a>77. 手写 instanceof</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 1.通过left.__proto__.__proto__这种方式从下往上获取原型对象</span></span><br><span class="line"><span class="comment">* 2.通过Object.create(null)的实例是没有原型链</span></span><br><span class="line"><span class="comment">* 3.有原型链的实例的尽头都是Object</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">instanceof</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!left.__proto__) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">if</span> (right === <span class="built_in">Object</span> || left.__proto__ === right.protorype) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">instanceof</span>(left.__proto__, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="78"><a href="#78" class="headerlink" title="78."></a>78.</h2><h2 id="79"><a href="#79" class="headerlink" title="79."></a>79.</h2><h2 id="80"><a href="#80" class="headerlink" title="80."></a>80.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="78-异步和单线程"><a href="#78-异步和单线程" class="headerlink" title="78. 异步和单线程"></a>78. 异步和单线程</h2><ul>
+<li><p>js 是单线程语言，同时只能做一件事</p>
+</li>
+<li><p>浏览器和 nodejs 已支持启动进程，如 web worker</p>
+</li>
+<li><p>js 和 dom 渲染共用同一个线程，因为 js 可以修改 dom 结构，所以遇到等待（网络请求，定时任务）就会卡住</p>
+<ul>
+<li>网络请求，如 ajax 图片加载</li>
+<li>定时任务，如 setTimeout</li>
+</ul>
+</li>
+<li><p>所以需要异步（callback）</p>
+</li>
+<li><p>异步和同步的区别？</p>
+<ul>
+<li>基于 js 是单线程语言</li>
+<li>异步不会阻塞代码执行</li>
+<li>同步会阻塞代码执行</li>
+</ul>
+</li>
+</ul>
+<h2 id="79"><a href="#79" class="headerlink" title="79."></a>79.</h2><h2 id="80"><a href="#80" class="headerlink" title="80."></a>80.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
