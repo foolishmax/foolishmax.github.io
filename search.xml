@@ -1340,7 +1340,35 @@
 <li><p>for…of 常用于异步的遍历</p>
 </li>
 </ul>
-<h2 id="80"><a href="#80" class="headerlink" title="80."></a>80.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="80-从-event-loop-解释，为什么微任务执行更早？"><a href="#80-从-event-loop-解释，为什么微任务执行更早？" class="headerlink" title="80. 从 event loop 解释，为什么微任务执行更早？"></a>80. 从 event loop 解释，为什么微任务执行更早？</h2><ul>
+<li><p>宏任务：</p>
+</li>
+<li><p>setTimeout、setInterval、ajax、DOM 事件</p>
+</li>
+<li><p>微任务：</p>
+</li>
+<li><p>promise、async/await</p>
+</li>
+<li><p>微任务的执行时机要比宏任务要早</p>
+</li>
+<li><p>每次 call stack 清空，即每次轮询结束，即同步任务执行完成</p>
+</li>
+<li><p>如果 DOM 结构有改变，则会重新进行 DOM 渲染</p>
+</li>
+<li><p>宏任务：DOM 渲染后触发，如 setTimeout</p>
+</li>
+<li><p>微任务：DOM 渲染前触发，如 promise</p>
+</li>
+<li><p>所以：微任务先于宏任务先执行</p>
+</li>
+<li><p>补充：</p>
+<ul>
+<li>微任务都是 ES6 语法规定的</li>
+<li>宏任务都是由浏览器规定的</li>
+</ul>
+</li>
+</ul>
+<h2 id="81"><a href="#81" class="headerlink" title="81."></a>81.</h2><h2 id="82"><a href="#82" class="headerlink" title="82."></a>82.</h2><h2 id="83"><a href="#83" class="headerlink" title="83."></a>83.</h2><h2 id="84"><a href="#84" class="headerlink" title="84."></a>84.</h2><h2 id="85"><a href="#85" class="headerlink" title="85."></a>85.</h2><h2 id="86"><a href="#86" class="headerlink" title="86."></a>86.</h2><h2 id="87"><a href="#87" class="headerlink" title="87."></a>87.</h2><h2 id="88"><a href="#88" class="headerlink" title="88."></a>88.</h2><h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
