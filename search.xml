@@ -1368,7 +1368,13 @@
 </ul>
 </li>
 </ul>
-<h2 id="81"><a href="#81" class="headerlink" title="81."></a>81.</h2><h2 id="82"><a href="#82" class="headerlink" title="82."></a>82.</h2><h2 id="83"><a href="#83" class="headerlink" title="83."></a>83.</h2><h2 id="84"><a href="#84" class="headerlink" title="84."></a>84.</h2><h2 id="85"><a href="#85" class="headerlink" title="85."></a>85.</h2><h2 id="86"><a href="#86" class="headerlink" title="86."></a>86.</h2><h2 id="87"><a href="#87" class="headerlink" title="87."></a>87.</h2><h2 id="88"><a href="#88" class="headerlink" title="88."></a>88.</h2><h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="81-BOM-API"><a href="#81-BOM-API" class="headerlink" title="81. BOM API"></a>81. BOM API</h2><ul>
+<li>navigator</li>
+<li>screen</li>
+<li>location</li>
+<li>history</li>
+</ul>
+<h2 id="82"><a href="#82" class="headerlink" title="82."></a>82.</h2><h2 id="83"><a href="#83" class="headerlink" title="83."></a>83.</h2><h2 id="84"><a href="#84" class="headerlink" title="84."></a>84.</h2><h2 id="85"><a href="#85" class="headerlink" title="85."></a>85.</h2><h2 id="86"><a href="#86" class="headerlink" title="86."></a>86.</h2><h2 id="87"><a href="#87" class="headerlink" title="87."></a>87.</h2><h2 id="88"><a href="#88" class="headerlink" title="88."></a>88.</h2><h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
