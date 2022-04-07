@@ -1496,7 +1496,34 @@
 </ul>
 </li>
 </ul>
-<h2 id="87"><a href="#87" class="headerlink" title="87."></a>87.</h2><h2 id="88"><a href="#88" class="headerlink" title="88."></a>88.</h2><h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="87-http-缓存？"><a href="#87-http-缓存？" class="headerlink" title="87. http 缓存？"></a>87. http 缓存？</h2><ul>
+<li><p>强制缓存</p>
+<ul>
+<li><img src="/images/md_img/%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98.png" alt="强制缓存"></li>
+<li>强制缓存过期后会去服务端重新请求</li>
+</ul>
+</li>
+<li><p>协商缓存</p>
+<ul>
+<li>服务端缓存策略</li>
+<li>服务端判断客户端资源，是否和服务端资源一样</li>
+<li>一致则返回 304，否则返回 200 和最新的资源</li>
+<li>在 Response Headers 中，有两种：<ul>
+<li>Last-Modified 资源的最后修改时间<ul>
+<li><img src="/images/md_img/last_modified.png" alt="last_modified"></li>
+</ul>
+</li>
+<li>Etag 资源的唯一标识<ul>
+<li><img src="/images/md_img/etag.png" alt="etag"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img src="/images/md_img/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98.png" alt="协商缓存"></li>
+</ul>
+</li>
+</ul>
+<h2 id="88"><a href="#88" class="headerlink" title="88."></a>88.</h2><h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
