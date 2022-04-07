@@ -1461,7 +1461,42 @@
 </ul>
 </li>
 </ul>
-<h2 id="86-常见-http-headers？"><a href="#86-常见-http-headers？" class="headerlink" title="86. 常见 http headers？"></a>86. 常见 http headers？</h2><h2 id="87"><a href="#87" class="headerlink" title="87."></a>87.</h2><h2 id="88"><a href="#88" class="headerlink" title="88."></a>88.</h2><h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="86-常见-http-headers？"><a href="#86-常见-http-headers？" class="headerlink" title="86. 常见 http headers？"></a>86. 常见 http headers？</h2><ul>
+<li><p>Request Headers</p>
+<ul>
+<li>Accept 浏览器可接收的数据格式</li>
+<li>Accept-Encoding 浏览器可接收的压缩算法，如 gzip</li>
+<li>Accept-Languange 浏览器可接收的语言，如 zh-CN</li>
+<li>Connection: keep-alive 一次 TCP 连接重复使用</li>
+<li>cookie</li>
+<li>Host 如：<a href="http://www.baidu.com/">www.baidu.com</a></li>
+<li>Cache-Control</li>
+<li>User-Agent （简称 UA）浏览器信息</li>
+<li>Content-type 发送数据的格式，如 application/json</li>
+</ul>
+</li>
+<li><p>Response Headers</p>
+<ul>
+<li>Content-type 返回数据的格式，如 application/json</li>
+<li>Content-length 返回数据的大小，多少字节</li>
+<li>Content-Encoding 返回数据的压缩算法，如 gzip</li>
+<li>Set-Cookie</li>
+<li>Expires</li>
+<li>Etag</li>
+<li>date</li>
+</ul>
+</li>
+<li><p>自定义 header</p>
+</li>
+<li><p>缓存相关的 headers</p>
+<ul>
+<li>Cache-Control Expires</li>
+<li>Last-Modified If-Modified-Since</li>
+<li>Etag If-None-Match</li>
+</ul>
+</li>
+</ul>
+<h2 id="87"><a href="#87" class="headerlink" title="87."></a>87.</h2><h2 id="88"><a href="#88" class="headerlink" title="88."></a>88.</h2><h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
