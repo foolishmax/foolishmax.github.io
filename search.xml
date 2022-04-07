@@ -1520,10 +1520,35 @@
 </ul>
 </li>
 <li><img src="/images/md_img/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98.png" alt="协商缓存"></li>
+<li>Last-Modified 和 Etag<ul>
+<li>会优先使用 Etag</li>
+<li>Last-Modified 只能精确到秒级</li>
+<li>如果资源被重复生成，而内容不变，则 Etag 更精确</li>
 </ul>
 </li>
 </ul>
-<h2 id="88"><a href="#88" class="headerlink" title="88."></a>88.</h2><h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+</li>
+<li><p>综述</p>
+<ul>
+<li><img src="/images/md_img/http%E7%BC%93%E5%AD%98.png" alt="http缓存"></li>
+</ul>
+</li>
+</ul>
+<h2 id="88-刷新操作对缓存的影响？"><a href="#88-刷新操作对缓存的影响？" class="headerlink" title="88. 刷新操作对缓存的影响？"></a>88. 刷新操作对缓存的影响？</h2><ul>
+<li>正常操作：地址输入 url，跳转链接，前进后退等<ul>
+<li>强制缓存有效，协商缓存有效</li>
+</ul>
+</li>
+<li>手动刷新：F5，点击刷新按钮，右击菜单刷新<ul>
+<li>强制缓存失效，协商缓存有效</li>
+</ul>
+</li>
+<li>强制刷新：ctrl + F5<ul>
+<li>强制缓存失效，协商缓存失效</li>
+</ul>
+</li>
+</ul>
+<h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
