@@ -1374,7 +1374,94 @@
 <li>location</li>
 <li>history</li>
 </ul>
-<h2 id="82"><a href="#82" class="headerlink" title="82."></a>82.</h2><h2 id="83"><a href="#83" class="headerlink" title="83."></a>83.</h2><h2 id="84"><a href="#84" class="headerlink" title="84."></a>84.</h2><h2 id="85"><a href="#85" class="headerlink" title="85."></a>85.</h2><h2 id="86"><a href="#86" class="headerlink" title="86."></a>86.</h2><h2 id="87"><a href="#87" class="headerlink" title="87."></a>87.</h2><h2 id="88"><a href="#88" class="headerlink" title="88."></a>88.</h2><h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="82-ajax"><a href="#82-ajax" class="headerlink" title="82. ajax"></a>82. ajax</h2><ul>
+<li><p>xhr.readyState</p>
+<ul>
+<li>0 (未初始化)还没有调用 send()方法</li>
+<li>1 (载入)已调用 send()方法，正在发送请求</li>
+<li>2 (载入完成) send()方法执行完成，已经接收到全部响应内容</li>
+<li>3 (交互) 正在解析响应内容</li>
+<li>4 (完成) 响应内容解析完成，可以在客户端调用</li>
+</ul>
+</li>
+<li><p>xhr.status</p>
+<ul>
+<li>2xx 表示成功处理请求，如 200</li>
+<li>3xx 需要重定向，浏览器直接跳转，如 301、302、304</li>
+<li>4xx 客户端请求错误，如 404、403</li>
+<li>5xx 服务端错误</li>
+</ul>
+</li>
+</ul>
+<h2 id="83-常见状态码？"><a href="#83-常见状态码？" class="headerlink" title="83. 常见状态码？"></a>83. 常见状态码？</h2><ul>
+<li><p>200 成功</p>
+</li>
+<li><p>301 永久重定向（配合 location，浏览器自动处理）</p>
+</li>
+<li><p>302 临时重定向（配合 location，浏览器自动处理）</p>
+</li>
+<li><p>304 资源未被修改（协商缓存 ）</p>
+</li>
+<li><p>404 资源未找到</p>
+</li>
+<li><p>405 没有权限</p>
+</li>
+<li><p>500 服务器错误</p>
+</li>
+<li><p>504 网关超时</p>
+</li>
+<li><p>本身状态码就是一种约定，一种协议和规范，不要尝试违反规范，例如 IE 浏览器</p>
+</li>
+</ul>
+<h2 id="84-http-常见-methods？"><a href="#84-http-常见-methods？" class="headerlink" title="84. http 常见 methods？"></a>84. http 常见 methods？</h2><ul>
+<li><p>传统 methods</p>
+<ul>
+<li>get 获取服务器的数据</li>
+<li>post 向服务器提交数据</li>
+</ul>
+</li>
+<li><p>新的 methods</p>
+<ul>
+<li>get 获取数据</li>
+<li>post 新建数据</li>
+<li>patch/put 更新数据</li>
+<li>delete 删除数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="85-Restful-API"><a href="#85-Restful-API" class="headerlink" title="85. Restful API"></a>85. Restful API</h2><ul>
+<li><p>一种新的 API 设计方法</p>
+</li>
+<li><p>传统 API 设计：把每个 url 当作一个功能</p>
+</li>
+<li><p>Restful API 设计：把每个 url 当作一个唯一的资源</p>
+</li>
+<li><p>原则</p>
+<ul>
+<li>不使用 url 参数<ul>
+<li>传统 API 设计：/api/list?pageIndex=2</li>
+<li>Restful API 设计：/api/list/2</li>
+</ul>
+</li>
+<li>用 method 表示操作类型<ul>
+<li>传统 API 设计<ul>
+<li>post 请求 /api/create-blog</li>
+<li>post 请求 /api/update-blog?id=100</li>
+<li>get 请求 /api/get-blog?id=100</li>
+</ul>
+</li>
+<li>Restful API 请求<ul>
+<li>post 请求 /api/blog</li>
+<li>patch 请求 /api/blog/100</li>
+<li>get 请求 /api/blog/100</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="86"><a href="#86" class="headerlink" title="86."></a>86.</h2><h2 id="87"><a href="#87" class="headerlink" title="87."></a>87.</h2><h2 id="88"><a href="#88" class="headerlink" title="88."></a>88.</h2><h2 id="89"><a href="#89" class="headerlink" title="89."></a>89.</h2><h2 id="90"><a href="#90" class="headerlink" title="90."></a>90.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
