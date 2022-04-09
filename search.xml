@@ -1578,7 +1578,78 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&quot;load&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 页面的全部资源加载完成后才会执行，包括图片、视频等</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&quot;DOMContentLoaded&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// DOM 渲染完成后即可执行，此时图片、视频可能还没有加载完</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="92"><a href="#92" class="headerlink" title="92."></a>92.</h2><h2 id="93"><a href="#93" class="headerlink" title="93."></a>93.</h2><h2 id="94"><a href="#94" class="headerlink" title="94."></a>94.</h2><h2 id="95"><a href="#95" class="headerlink" title="95."></a>95.</h2><h2 id="96"><a href="#96" class="headerlink" title="96."></a>96.</h2><h2 id="97"><a href="#97" class="headerlink" title="97."></a>97.</h2><h2 id="98"><a href="#98" class="headerlink" title="98."></a>98.</h2><h2 id="99"><a href="#99" class="headerlink" title="99."></a>99.</h2><h2 id="100"><a href="#100" class="headerlink" title="100."></a>100.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="92-性能优化"><a href="#92-性能优化" class="headerlink" title="92.性能优化"></a>92.性能优化</h2><ul>
+<li>性能优化原则<ul>
+<li>多使用内存、缓存</li>
+<li>减少 CUP 计算，减少网络加载耗时</li>
+<li>适用于所有变成的性能优化-空间换时间</li>
+</ul>
+</li>
+<li>从何入手<ul>
+<li>让加载更快<ul>
+<li>减少资源体积：压缩代码</li>
+<li>减少访问次数：合并代码，SSR 服务器渲染，缓存，精灵图<ul>
+<li>缓存（webpack contenthash）<ul>
+<li>静态资源加 hash 后缀，根据文件内容计算 hash</li>
+<li>文件内容不变，则 hash 不变则 url 不变</li>
+<li>url 和文件不变，则会自动触发 http 的缓存机制，返回 304</li>
+</ul>
+</li>
+<li>SSR<ul>
+<li>服务器端渲染：将网页和数据一起加载，一起渲染</li>
+<li>非 SSR（前后端分离）：先加载网页，后加载数据，再渲染数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用更快的网络：CDN</li>
+</ul>
+</li>
+<li>让渲染更快<ul>
+<li>css 放在 head，js 放在 body 最下面</li>
+<li>尽早开始执行 js，用 DOMContentLoaded 触发</li>
+<li>懒加载（图片懒加载，下滑更多等）<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;img id=<span class="string">&quot;img&quot;</span> src=<span class="string">&quot;preview.png&quot;</span> data-realsrc=<span class="string">&quot;abc.png&quot;</span> /&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">  <span class="keyword">let</span> img = <span class="built_in">document</span>.getElementById(<span class="string">&quot;img&quot;</span>);</span></span></span><br><span class="line"><span class="javascript"><span class="xml">  img.src=img.getAttribute(<span class="string">&#x27;data-realsrc&#x27;</span>)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li>对 DOM 查询进行缓存</li>
+<li>合并频繁的 DOM 操作,document.createDocumentFragment()</li>
+<li>节流 throttle、防抖 debounce</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="93-安全"><a href="#93-安全" class="headerlink" title="93. 安全"></a>93. 安全</h2><ul>
+<li>XSS 跨站请求攻击<ul>
+<li>攻击方式<ul>
+<li>一个博客网站，我发表一篇博客，其中嵌入 script 脚本</li>
+<li>脚本内容：获取 cookie，发送到我的服务器</li>
+<li>发布这篇博客，有人查看，就可以回去到访问者的 cookie</li>
+</ul>
+</li>
+<li>预防方式<ul>
+<li>替换特殊字符</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>XSRF 跨站请求伪造<ul>
+<li>预防<ul>
+<li>增加验证，例如密码、短信验证、指纹等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="94-ES6-新增的声明方式"><a href="#94-ES6-新增的声明方式" class="headerlink" title="94. ES6 新增的声明方式"></a>94. ES6 新增的声明方式</h2><ul>
+<li>let<ul>
+<li>不属于顶层对象 window</li>
+<li>不允许重复声明</li>
+<li>不存在变量提升</li>
+<li>暂时性死区</li>
+<li>块级作用域</li>
+</ul>
+</li>
+</ul>
+<h2 id="95"><a href="#95" class="headerlink" title="95."></a>95.</h2><h2 id="96"><a href="#96" class="headerlink" title="96."></a>96.</h2><h2 id="97"><a href="#97" class="headerlink" title="97."></a>97.</h2><h2 id="98"><a href="#98" class="headerlink" title="98."></a>98.</h2><h2 id="99"><a href="#99" class="headerlink" title="99."></a>99.</h2><h2 id="100"><a href="#100" class="headerlink" title="100."></a>100.</h2><h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>javascript</category>
       </categories>
