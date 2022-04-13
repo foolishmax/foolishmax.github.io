@@ -1640,11 +1640,11 @@
 </li>
 </ul>
 <h2 id="94-ES6-新增的声明方式"><a href="#94-ES6-新增的声明方式" class="headerlink" title="94. ES6 新增的声明方式"></a>94. ES6 新增的声明方式</h2><ul>
-<li>let<ul>
+<li>let、const<ul>
 <li>不属于顶层对象 window</li>
 <li>不允许重复声明</li>
 <li>不存在变量提升</li>
-<li>暂时性死区</li>
+<li>暂时性死区（不能在变量声明之前去使用）</li>
 <li>块级作用域</li>
 </ul>
 </li>
