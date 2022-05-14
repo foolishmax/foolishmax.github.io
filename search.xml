@@ -8491,4 +8491,16 @@ shuffle(arr)
         <tag>javascript</tag>
       </tags>
   </entry>
+  <entry>
+    <title>每日积累</title>
+    <url>/2022/05/14/%E6%AF%8F%E6%97%A5%E7%A7%AF%E7%B4%AF/</url>
+    <content><![CDATA[<h2 id="node-package-version"><a href="#node-package-version" class="headerlink" title="node package version"></a>node package version</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 13.4.6</span></span><br><span class="line"><span class="comment">// major: 13, minor: 4, patch: 6</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
 </search>
