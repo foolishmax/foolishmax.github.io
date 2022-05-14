@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2022-05-14T06:24:09.990Z</updated>
+  <updated>2022-05-14T06:42:44.233Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://github.com/foolishmax/2022/05/14/%E6%AF%8F%E6%97%A5%E7%A7%AF%E7%B4%AF/"/>
     <id>https://github.com/foolishmax/2022/05/14/%E6%AF%8F%E6%97%A5%E7%A7%AF%E7%B4%AF/</id>
     <published>2022-05-14T06:23:02.000Z</published>
-    <updated>2022-05-14T06:24:09.990Z</updated>
+    <updated>2022-05-14T06:42:44.233Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="node-package-version"><a href="#node-package-version" class="headerlink" title="node package version"></a>node package version</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 13.4.6</span></span><br><span class="line"><span class="comment">// major: 13, minor: 4, patch: 6</span></span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h2 id="node-package-version"><a href="#node-package-version" class="headerlink" title="node package version"></a>node package version</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 举个例子：</span></span><br><span class="line"><span class="string">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;jquery&quot;</span>: <span class="string">&quot;^13.4.6&quot;</span>, <span class="comment">// 只锁定主版本号 major</span></span><br><span class="line">  <span class="string">&quot;jquery&quot;</span>: <span class="string">&quot;~13.4.6&quot;</span>, <span class="comment">// 锁定主版本号和次版本号 major + minor</span></span><br><span class="line">  <span class="string">&quot;jquery&quot;</span>: <span class="string">&quot;13.4.6&quot;</span>,  <span class="comment">// 锁定版本</span></span><br><span class="line">  <span class="string">&quot;jquery&quot;</span>: <span class="string">&quot;*&quot;</span>,       <span class="comment">// 最新版本</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// major: 13, minor: 4, patch: 6</span></span><br><span class="line"></span><br><span class="line">$ npm info jquery <span class="comment">// 查看 jquery 信息</span></span><br><span class="line">$ npm view jquery versions <span class="comment">// 查看 jquery 所有版本</span></span><br><span class="line">$ npm list | grep gulp <span class="comment">// 过滤 gulp</span></span><br><span class="line">$ npm outdated <span class="comment">// 查看过期版本</span></span><br><span class="line">$ npm update <span class="comment">//更新版本</span></span><br><span class="line">$ npm cache clean --force <span class="comment">// 清楚缓存</span></span><br></pre></td></tr></table></figure>]]></content>
     
     
       
