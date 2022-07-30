@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>本地存储 - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="客户端的本地存储：  localStorage"><meta property="og:type" content="blog"><meta property="og:title" content="本地存储"><meta property="og:url" content="https://github.com/foolishmax/2019/09/30/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="客户端的本地存储：  localStorage"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/img/og_image.png"><meta property="article:published_time" content="2019-09-30T08:02:46.000Z"><meta property="article:modified_time" content="2020-07-16T14:24:05.746Z"><meta property="article:author" content="foolishmax"><meta property="article:tag" content="本地存储"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://github.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2019/09/30/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/"},"headline":"本地存储","image":["https://github.com/img/og_image.png"],"datePublished":"2019-09-30T08:02:46.000Z","dateModified":"2020-07-16T14:24:05.746Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"客户端的本地存储：  localStorage"}</script><link rel="canonical" href="https://github.com/foolishmax/2019/09/30/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>本地存储 - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="客户端的本地存储："><meta property="og:type" content="blog"><meta property="og:title" content="本地存储"><meta property="og:url" content="https://github.com/foolishmax/2019/09/30/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="客户端的本地存储："><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/img/og_image.png"><meta property="article:published_time" content="2019-09-30T08:02:46.000Z"><meta property="article:modified_time" content="2022-07-30T04:14:02.440Z"><meta property="article:author" content="foolishmax"><meta property="article:tag" content="本地存储"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://github.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2019/09/30/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/"},"headline":"本地存储","image":["https://github.com/img/og_image.png"],"datePublished":"2019-09-30T08:02:46.000Z","dateModified":"2022-07-30T04:14:02.440Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"客户端的本地存储："}</script><link rel="canonical" href="https://github.com/foolishmax/2019/09/30/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -28,57 +28,52 @@
       window.addEventListener('hashchange', switchTab, false);
   })();
   </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
-</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-09-30T08:02:46.000Z" title="9/30/2019, 4:02:46 PM">2019-09-30</time>发表</span><span class="level-item"><time dateTime="2020-07-16T14:24:05.746Z" title="7/16/2020, 10:24:05 PM">2020-07-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/">本地存储</a></span><span class="level-item">4 分钟读完 (大约611个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">本地存储</h1><div class="content"><ul>
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-09-30T08:02:46.000Z" title="9/30/2019, 4:02:46 PM">2019-09-30</time>发表</span><span class="level-item"><time dateTime="2022-07-30T04:14:02.440Z" title="7/30/2022, 12:14:02 PM">2022-07-30</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/">本地存储</a></span><span class="level-item">4 分钟读完 (大约611个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">本地存储</h1><div class="content"><ul>
 <li><p>客户端的本地存储：</p>
+  <span id="more"></span>
+
 <ul>
-<li><p>localStorage</p>
-<span id="more"></span>
-<ul>
-<li>生命周期永久生效，除非手动删除，否则关闭页面也会存在</li>
-<li>可以在同一浏览器多窗口共享</li>
-<li>以键值对的形式存储使用</li>
-<li>方法：<ul>
-<li>存储数据：localStorage.setItem(key, value)</li>
-<li>获取数据：localStorage.getItem(key)</li>
-<li>删除数据：localStorage.removeItem(key)</li>
-<li>删除所有数据：localStorage.clear()</li>
-</ul>
+<li><p>localStorage - 生命周期永久生效，除非手动删除，否则关闭页面也会存在 - 可以在同一浏览器多窗口共享 - 以键值对的形式存储使用 - 方法： + 存储数据：localStorage.setItem(key, value) + 获取数据：localStorage.getItem(key) + 删除数据：localStorage.removeItem(key) + 删除所有数据：localStorage.clear()</p>
 </li>
-</ul>
-</li>
-<li><p>sessionStorage </p>
+<li><p>sessionStorage</p>
 <ul>
-<li>声明周期为关闭浏览器窗口</li>
-<li>在同一个窗口中数据可以共享</li>
-<li>以键值对的形式存储</li>
-<li>方法：<ul>
+<li><p>声明周期为关闭浏览器窗口</p>
+</li>
+<li><p>在同一个窗口中数据可以共享</p>
+</li>
+<li><p>以键值对的形式存储</p>
+</li>
+<li><p>方法：</p>
+<ul>
 <li>存储数据：sessionStorage.setItem(key, value)</li>
 <li>获取数据：sessionStorage.getItem(key)</li>
 <li>删除数据：sessionStorage.removeItem(key)</li>
 <li>删除所有数据：sessionStorage.clear()</li>
 </ul>
-  <a target="_blank" rel="noopener" href='https://www.cnblogs.com/pengc/p/8714475.html'>localStorage和sessionStorage</a>  <a target="_blank" rel="noopener" href='https://www.cnblogs.com/8023-CHD/p/11067141.html'>cookie和session</a></li>
+<p><a target="_blank" rel="noopener" href='https://www.cnblogs.com/pengc/p/8714475.html'>localStorage 和 sessionStorage</a></p>
+<p><a target="_blank" rel="noopener" href='https://www.cnblogs.com/8023-CHD/p/11067141.html'>cookie 和 session</a></p>
+</li>
 </ul>
 </li>
 <li><p>IndexDB 离线存储，当网络断开，可以从浏览器中读取数据，用来做一些离线应用</p>
 </li>
-<li><p>Cookie </p>
+<li><p>Cookie</p>
 <ul>
 <li>包含字段<ul>
-<li>name: cookie名称</li>
+<li>name: cookie 名称</li>
 <li>value: 值</li>
-<li>domain: cookie生效的域名</li>
-<li>path: cookie生效的路径</li>
-<li>expires/max-age: cookie过期时间</li>
+<li>domain: cookie 生效的域名</li>
+<li>path: cookie 生效的路径</li>
+<li>expires/max-age: cookie 过期时间</li>
 <li>size: 大小</li>
 <li>HttpOnly: 用户端不可更改</li>
 </ul>
 </li>
-<li>存储用户信息，通过在客户端记录信息确定用户身份，最大为4kb</li>
-<li>会话Cookie，若不设置过期时间，表示这个cookie的生命周期为浏览器会话期间，浏览器<br>关闭，cookie就消失，会话cookie会保存在内存中而不是硬盘上。</li>
-<li>持久Cookie，若设置了过期时间，浏览器会把cookie保存在硬盘上，关闭浏览器仍然有效直到<br>超过设定的过期时间。</li>
-<li>cookie数据始终在同源的http请求中携带(即使不需要)，即会在浏览器和服务器之间来回传递。</li>
-<li>Cookie具有不可跨域名性，例如浏览器访问百度不会带上谷歌的cookie</li>
+<li>存储用户信息，通过在客户端记录信息确定用户身份，最大为 4kb</li>
+<li>会话 Cookie，若不设置过期时间，表示这个 cookie 的生命周期为浏览器会话期间，浏览器<br>关闭，cookie 就消失，会话 cookie 会保存在内存中而不是硬盘上。</li>
+<li>持久 Cookie，若设置了过期时间，浏览器会把 cookie 保存在硬盘上，关闭浏览器仍然有效直到<br>超过设定的过期时间。</li>
+<li>cookie 数据始终在同源的 http 请求中携带(即使不需要)，即会在浏览器和服务器之间来回传递。</li>
+<li>Cookie 具有不可跨域名性，例如浏览器访问百度不会带上谷歌的 cookie</li>
 </ul>
 </li>
 </ul>
@@ -87,10 +82,10 @@
 <ul>
 <li>Session<ul>
 <li>Session 服务器端一种记录客户端状态的机制</li>
-<li>cookie数据存放在客户的浏览器上，session将数据存放在服务器端</li>
-<li>Session相对Cookie来说比较安全，别人可以分析本地存放的cookie进行cookie欺骗</li>
-<li>Session会在一定时间内保存在服务器上，访问量较多的时候会比较占用服务器的性能，<br>考虑到减轻服务器性能方面的时候，应当使用cookie</li>
-<li>可以将登陆等重要信息保存在session，其他信息放在cookie中</li>
+<li>cookie 数据存放在客户的浏览器上，session 将数据存放在服务器端</li>
+<li>Session 相对 Cookie 来说比较安全，别人可以分析本地存放的 cookie 进行 cookie 欺骗</li>
+<li>Session 会在一定时间内保存在服务器上，访问量较多的时候会比较占用服务器的性能，<br>考虑到减轻服务器性能方面的时候，应当使用 cookie</li>
+<li>可以将登陆等重要信息保存在 session，其他信息放在 cookie 中</li>
 </ul>
 </li>
 </ul>

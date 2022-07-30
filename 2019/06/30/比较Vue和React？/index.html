@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>比较Vue和React？ - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="比较Vue和React的相同点和不同点？"><meta property="og:type" content="blog"><meta property="og:title" content="比较Vue和React？"><meta property="og:url" content="https://github.com/foolishmax/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="比较Vue和React的相同点和不同点？"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/img/og_image.png"><meta property="article:published_time" content="2019-06-30T07:55:01.000Z"><meta property="article:modified_time" content="2019-10-24T12:34:01.123Z"><meta property="article:author" content="foolishmax"><meta property="article:tag" content="React"><meta property="article:tag" content="Vue"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://github.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/"},"headline":"比较Vue和React？","image":["https://github.com/img/og_image.png"],"datePublished":"2019-06-30T07:55:01.000Z","dateModified":"2019-10-24T12:34:01.123Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"比较Vue和React的相同点和不同点？"}</script><link rel="canonical" href="https://github.com/foolishmax/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>比较Vue和React？ - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="比较 Vue 和 React 的相同点和不同点？"><meta property="og:type" content="blog"><meta property="og:title" content="比较Vue和React？"><meta property="og:url" content="https://github.com/foolishmax/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="比较 Vue 和 React 的相同点和不同点？"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/img/og_image.png"><meta property="article:published_time" content="2019-06-30T07:55:01.000Z"><meta property="article:modified_time" content="2022-07-30T04:14:09.300Z"><meta property="article:author" content="foolishmax"><meta property="article:tag" content="React"><meta property="article:tag" content="Vue"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://github.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/"},"headline":"比较Vue和React？","image":["https://github.com/img/og_image.png"],"datePublished":"2019-06-30T07:55:01.000Z","dateModified":"2022-07-30T04:14:09.300Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"比较 Vue 和 React 的相同点和不同点？"}</script><link rel="canonical" href="https://github.com/foolishmax/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -28,85 +28,91 @@
       window.addEventListener('hashchange', switchTab, false);
   })();
   </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
-</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-06-30T07:55:01.000Z" title="6/30/2019, 3:55:01 PM">2019-06-30</time>发表</span><span class="level-item"><time dateTime="2019-10-24T12:34:01.123Z" title="10/24/2019, 8:34:01 PM">2019-10-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Vue%E3%80%81React/">Vue、React</a></span><span class="level-item">10 分钟读完 (大约1448个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">比较Vue和React？</h1><div class="content"><h2 id="比较Vue和React的相同点和不同点？"><a href="#比较Vue和React的相同点和不同点？" class="headerlink" title="比较Vue和React的相同点和不同点？"></a>比较Vue和React的相同点和不同点？</h2><span id="more"></span>
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-06-30T07:55:01.000Z" title="6/30/2019, 3:55:01 PM">2019-06-30</time>发表</span><span class="level-item"><time dateTime="2022-07-30T04:14:09.300Z" title="7/30/2022, 12:14:09 PM">2022-07-30</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Vue%E3%80%81React/">Vue、React</a></span><span class="level-item">10 分钟读完 (大约1447个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">比较Vue和React？</h1><div class="content"><h2 id="比较-Vue-和-React-的相同点和不同点？"><a href="#比较-Vue-和-React-的相同点和不同点？" class="headerlink" title="比较 Vue 和 React 的相同点和不同点？"></a>比较 Vue 和 React 的相同点和不同点？</h2><span id="more"></span>
+
 <ul>
-<li>相同点<ul>
-<li>都有组件化开发和Virtual DOM</li>
-<li>都支持props进行父子组件间的数据通信</li>
-<li>都支持数据驱动视图，不直接操作真实DOM，状态数据更新页面则自动更新</li>
-<li>都支持服务端渲染</li>
-<li>都支持原生应用的开发方案，React有React Native，Vue有Weex<!--more--></li>
-</ul>
-</li>
+<li>相同点 + 都有组件化开发和 Virtual DOM + 都支持 props 进行父子组件间的数据通信 + 都支持数据驱动视图，不直接操作真实 DOM，状态数据更新页面则自动更新 + 都支持服务端渲染 + 都支持原生应用的开发方案，React 有 React Native，Vue 有 Weex</li>
 <li>不同点<ul>
-<li>数据绑定： Vue实现了数据的双向绑定，React数据流动是单向的</li>
-<li>React推荐的组件写法为JSX，也就是把HTML和CSS全部写进Javascript中，即“all in js”<br>Vue推荐的组件写法是webpack+vue-loader的单文件组件格式，即html、css、js写在同一个<br>文件</li>
-<li>state对象在react应用中不可变，需要使用setState方法更新状态；在vue中state对象不是<br>必须的，数据由data属性在vue对象中管理</li>
-<li>virtual DOM不一样，vue会跟踪每一个组件的依赖关系，不需要重新渲染整个组件树，<br>而对于React而言，每当应用的状态被改变时，全部组件都会重新渲染，所以react会需要<br>shouldComponentUpdate这个生命周期函数方法进行控制。</li>
-<li>React严格上只针对MVC的view层，Vue则是MVVM模式。</li>
+<li>数据绑定： Vue 实现了数据的双向绑定，React 数据流动是单向的</li>
+<li>React 推荐的组件写法为 JSX，也就是把 HTML 和 CSS 全部写进 Javascript 中，即“all in js”<br>Vue 推荐的组件写法是 webpack+vue-loader 的单文件组件格式，即 html、css、js 写在同一个<br>文件</li>
+<li>state 对象在 react 应用中不可变，需要使用 setState 方法更新状态；在 vue 中 state 对象不是<br>必须的，数据由 data 属性在 vue 对象中管理</li>
+<li>virtual DOM 不一样，vue 会跟踪每一个组件的依赖关系，不需要重新渲染整个组件树，<br>而对于 React 而言，每当应用的状态被改变时，全部组件都会重新渲染，所以 react 会需要<br>shouldComponentUpdate 这个生命周期函数方法进行控制。</li>
+<li>React 严格上只针对 MVC 的 view 层，Vue 则是 MVVM 模式。</li>
 </ul>
 </li>
 </ul>
-<h2 id="前端框架使用Vue还是React？清晰比较两者差异"><a href="#前端框架使用Vue还是React？清晰比较两者差异" class="headerlink" title="前端框架使用Vue还是React？清晰比较两者差异"></a>前端框架使用Vue还是React？清晰比较两者差异</h2><h4 id="诞生"><a href="#诞生" class="headerlink" title="诞生"></a>诞生</h4><ul>
-<li>vue<ul>
-<li>vue由尤雨溪开发，独立团队维护，大部分子项目交给团队成员打理，Vue核心库依然<br>主要由尤雨溪亲自维护。</li>
+<h2 id="前端框架使用-Vue-还是-React？清晰比较两者差异"><a href="#前端框架使用-Vue-还是-React？清晰比较两者差异" class="headerlink" title="前端框架使用 Vue 还是 React？清晰比较两者差异"></a>前端框架使用 Vue 还是 React？清晰比较两者差异</h2><h4 id="诞生"><a href="#诞生" class="headerlink" title="诞生"></a>诞生</h4><ul>
+<li><p>vue</p>
+<ul>
+<li>vue 由尤雨溪开发，独立团队维护，大部分子项目交给团队成员打理，Vue 核心库依然<br>主要由尤雨溪亲自维护。</li>
 </ul>
 </li>
-<li>react<ul>
-<li>React起源于Facebook的内部项目，在建设instagram(图片分享)的时候，为了处理<br>数据流且考虑性能方面的问题，因该公司对市场上所有框架都不满意，就决定自己写一套，<br>用来架构Instagram的网站。并在2013年5月开源。</li>
+<li><p>react</p>
+<ul>
+<li>React 起源于 Facebook 的内部项目，在建设 instagram(图片分享)的时候，为了处理<br>数据流且考虑性能方面的问题，因该公司对市场上所有框架都不满意，就决定自己写一套，<br>用来架构 Instagram 的网站。并在 2013 年 5 月开源。</li>
 </ul>
 </li>
 </ul>
 <h4 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h4><ul>
-<li>vue<ul>
-<li>vue是一款渐进式框架，采用自底向上增量开发的设计。在声明式渲染(视图模板引擎)<br>的基础上，通过添加组件系统(component)、客户端路由(vue-router)、状态管理(vuex)<br>来构建一个完整的框架。</li>
+<li><p>vue</p>
+<ul>
+<li>vue 是一款渐进式框架，采用自底向上增量开发的设计。在声明式渲染(视图模板引擎)<br>的基础上，通过添加组件系统(component)、客户端路由(vue-router)、状态管理(vuex)<br>来构建一个完整的框架。</li>
 </ul>
 </li>
-<li>react<ul>
-<li>react主张函数式编程，所以推崇纯组件，数据不可变，单向数据流，</li>
+<li><p>react</p>
+<ul>
+<li>react 主张函数式编程，所以推崇纯组件，数据不可变，单向数据流，</li>
 </ul>
 </li>
 </ul>
 <h4 id="编写语法"><a href="#编写语法" class="headerlink" title="编写语法"></a>编写语法</h4><ul>
-<li>vue<ul>
-<li>vue推荐的做法是webpack + vue-loader的单文件格式，vue保留了html、css、js<br>分离的写法，数据绑定使用mustache风格，样式直接使用css，在<code>&lt;style&gt;</code>标签提供<br>了一个可选的scoped属性，用开控制css仅对当前组件生效还是全局生效。</li>
+<li><p>vue</p>
+<ul>
+<li>vue 推荐的做法是 webpack + vue-loader 的单文件格式，vue 保留了 html、css、js<br>分离的写法，数据绑定使用 mustache 风格，样式直接使用 css，在<code>&lt;style&gt;</code>标签提供<br>了一个可选的 scoped 属性，用开控制 css 仅对当前组件生效还是全局生效。</li>
 </ul>
 </li>
-<li>react<ul>
-<li>react推荐的做法是JSX + inline style，也就是把HTML和CSS全都写进JavaScript<br>中，即“all in js”，react没有模板，直接就是一个渲染函数，返回一个虚拟DOM树，<br>在render()编写的JSX语法最终会被编译成原生JavaScript。</li>
+<li><p>react</p>
+<ul>
+<li>react 推荐的做法是 JSX + inline style，也就是把 HTML 和 CSS 全都写进 JavaScript<br>中，即“all in js”，react 没有模板，直接就是一个渲染函数，返回一个虚拟 DOM 树，<br>在 render()编写的 JSX 语法最终会被编译成原生 JavaScript。</li>
 </ul>
 </li>
 </ul>
 <h4 id="构建工具"><a href="#构建工具" class="headerlink" title="构建工具"></a>构建工具</h4><ul>
-<li>vue<ul>
-<li>vue提供了CLI脚手架，可以帮助我们非常容易地构建项目，全局安装后用vue create<br>命令创建新项目，可以让用户自定义选择需要安装的模板。</li>
+<li><p>vue</p>
+<ul>
+<li>vue 提供了 CLI 脚手架，可以帮助我们非常容易地构建项目，全局安装后用 vue create<br>命令创建新项目，可以让用户自定义选择需要安装的模板。</li>
 </ul>
 </li>
-<li>react<ul>
-<li>react提供了create-react-app，但只提供一个构建单页面应用的默认选项。</li>
+<li><p>react</p>
+<ul>
+<li>react 提供了 create-react-app，但只提供一个构建单页面应用的默认选项。</li>
 </ul>
 </li>
 </ul>
 <h4 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h4><ul>
-<li>vue<ul>
-<li>vue实现双向数据绑定，view的变化能实时让model改变，而model的变化也能实时<br>更新到view</li>
-<li>vue采用数据劫持 + 发布-订阅模式，通过Object.defineProperty对数据进行操作，<br>为数据动态添加getter和setter方法，当获取数据的时候会触发对应的getter方法，<br>当设置数据的时候会触发对应的setter方法，从而进一步触发vm的watcher方法，然后<br>对数据进行更改，vm则进一步触发视图更新操作。</li>
+<li><p>vue</p>
+<ul>
+<li>vue 实现双向数据绑定，view 的变化能实时让 model 改变，而 model 的变化也能实时<br>更新到 view</li>
+<li>vue 采用数据劫持 + 发布-订阅模式，通过 Object.defineProperty 对数据进行操作，<br>为数据动态添加 getter 和 setter 方法，当获取数据的时候会触发对应的 getter 方法，<br>当设置数据的时候会触发对应的 setter 方法，从而进一步触发 vm 的 watcher 方法，然后<br>对数据进行更改，vm 则进一步触发视图更新操作。</li>
 </ul>
 </li>
-<li>react<ul>
-<li>react是单向数据流，react中属性是不允许更改的，状态是允许更改的。react中组件<br>不允许通过this.state这种方法直接更改组件的状态。自身设置的状态，可以通过setState<br>进行更改。</li>
-<li>setState是异步的，导致获取dom可能拿到的还是之前的内容，所以需要在setState<br>第二个参数(回调函数)中获取更新后的内容。</li>
+<li><p>react</p>
+<ul>
+<li>react 是单向数据流，react 中属性是不允许更改的，状态是允许更改的。react 中组件<br>不允许通过 this.state 这种方法直接更改组件的状态。自身设置的状态，可以通过 setState<br>进行更改。</li>
+<li>setState 是异步的，导致获取 dom 可能拿到的还是之前的内容，所以需要在 setState<br>第二个参数(回调函数)中获取更新后的内容。</li>
 </ul>
 </li>
 </ul>
 <h4 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h4><ul>
-<li>vue<ul>
-<li>vue中每个组件内部自动实现了shouldComponentUpdate的优化，在vue中里面由于<br>依赖追踪系统的存在，当任意数据变动的时候，Vue的每一个组件都能精确的知道自己是<br>否需要重绘。而在react中需要我们手动去优化其性能，但s是当数据特别多的时候vue中<br>的watcher也会特别多，从而造成页面卡顿，所以一般大西瓜项目会倾向于react。</li>
+<li><p>vue</p>
+<ul>
+<li>vue 中每个组件内部自动实现了 shouldComponentUpdate 的优化，在 vue 中里面由于<br>依赖追踪系统的存在，当任意数据变动的时候，Vue 的每一个组件都能精确的知道自己是<br>否需要重绘。而在 react 中需要我们手动去优化其性能，但 s 是当数据特别多的时候 vue 中<br>的 watcher 也会特别多，从而造成页面卡顿，所以一般大西瓜项目会倾向于 react。</li>
 </ul>
 </li>
-<li>react<ul>
-<li>当props或state发生改变的时候会触发shouldComponentUpdate生命周期函数，它<br>是用来控制组件是否被重新渲染的，如果它返回true，则执行render函数，更新组件；<br>如果它返回false，则不会触发重新渲染的过程。</li>
-<li>如果希望更新之前和之前的状态进行一个对比，这个时候需要重写shouldCompnentUpdate<br>来避免不必要的dom操作，对比当前的props或state和更新后的nextProps或nextState，<br>返回true时，组件更新；返回false，不更新，节省性能。</li>
+<li><p>react</p>
+<ul>
+<li>当 props 或 state 发生改变的时候会触发 shouldComponentUpdate 生命周期函数，它<br>是用来控制组件是否被重新渲染的，如果它返回 true，则执行 render 函数，更新组件；<br>如果它返回 false，则不会触发重新渲染的过程。</li>
+<li>如果希望更新之前和之前的状态进行一个对比，这个时候需要重写 shouldCompnentUpdate<br>来避免不必要的 dom 操作，对比当前的 props 或 state 和更新后的 nextProps 或 nextState，<br>返回 true 时，组件更新；返回 false，不更新，节省性能。</li>
 </ul>
 </li>
 </ul>
