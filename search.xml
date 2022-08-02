@@ -4698,6 +4698,7 @@ Vue.component(&#39;my-component&#39;, &#123;
 <li>查看服务 docker-compose ps (相比较 docker ps 等于多了层作用域)</li>
 <li>停止所有服务 docker-compose down</li>
 </ul>
+<p>注意：<br>经过以上操作之后需修改.gitignore 文件，增加一行 <em>.docker-volumes/</em></p>
 ]]></content>
       <tags>
         <tag>docker</tag>
