@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2022-08-01T03:42:06.141Z</updated>
+  <updated>2022-08-02T08:26:23.961Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>aliyun服务器实践</title>
+    <link href="https://github.com/foolishmax/2022/08/02/aliyun%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E8%B7%B5/"/>
+    <id>https://github.com/foolishmax/2022/08/02/aliyun%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E8%B7%B5/</id>
+    <published>2022-08-02T08:11:31.000Z</published>
+    <updated>2022-08-02T08:26:23.961Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="创建新的账号"><a href="#创建新的账号" class="headerlink" title="创建新的账号"></a>创建新的账号</h2><p>默认使用 root 登录，由于 root 权限太高，出于安全考虑，创建 foolishmax（自定义）账号</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新增账号foolishmax</span></span><br><span class="line">adduser foolishmax</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改foolishmax的密码</span></span><br><span class="line">passwd foolishmax</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">为foolishmax账号添加sudo权限</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">找到文件位置 /etc/sudoers</span></span><br><span class="line">whereis sudoers</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改权限</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">u 标识所有者、w 表示写权限 + 表示添加</span></span><br><span class="line">chmod u+w /etc/sudoers</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编辑 /etc/sudoers</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">找到 `root ALL=(ALL) ALL`</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">再加一行 `work ALL=(ALL) ALL`</span></span><br><span class="line">vim /etc/sudoers</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">还原权限</span></span><br><span class="line">chmod u-w /etc/sudoers</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换foolishmax用户</span></span><br><span class="line">su foolishmax</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换回root</span></span><br><span class="line">su</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入密码</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换成功</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;创建新的账号&quot;&gt;&lt;a href=&quot;#创建新的账号&quot; class=&quot;headerlink&quot; title=&quot;创建新的账号&quot;&gt;&lt;/a&gt;创建新的账号&lt;/h2&gt;&lt;p&gt;默认使用 root 登录，由于 root 权限太高，出于安全考虑，创建 foolishmax（自定义）账号&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="aliyun" scheme="https://github.com/foolishmax/tags/aliyun/"/>
+    
+  </entry>
   
   <entry>
     <title>docker常用命令</title>
@@ -417,27 +439,6 @@
     
     
     <category term="面经" scheme="https://github.com/foolishmax/tags/%E9%9D%A2%E7%BB%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浏览器关闭清除token</title>
-    <link href="https://github.com/foolishmax/2021/05/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%B3%E9%97%AD%E6%B8%85%E9%99%A4token/"/>
-    <id>https://github.com/foolishmax/2021/05/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%B3%E9%97%AD%E6%B8%85%E9%99%A4token/</id>
-    <published>2021-05-24T14:03:02.000Z</published>
-    <updated>2022-07-30T04:14:13.054Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><span id="more"></span><ul><li>浏览器关闭会出发 <strong>beforeunload</strong> ，<strong>unload</strong> 这两个事件。</li><li>浏览器刷新也会触发，还会触发<strong>load</strong>事件</li></ul><h2 id="如何清除-token"><a href="#如何清除-token" class="headerlink" title="如何清除 token"></a>如何清除 token</h2><ul><li><p>方案一</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.onbeforeunload = function () &#123;</span><br><span class="line">    localStorage.removeItem(&quot;token&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>缺点： 刷新也会清空 token</p></li><li><p>方案二</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">window.onunload = function() &#123;</span><br><span class="line">    localStorage.setItem(&quot;lastTime&quot;,new Date().getTime())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">window.onload = function() &#123;</span><br><span class="line">    let lastTime = localStorage.getItem(&quot;lastTime&quot;);</span><br><span class="line">    const interval = 3 * 1000;</span><br><span class="line">    // 如果时间间隔大于3s，则清除token</span><br><span class="line">    if (!lastTime || new Date().getTime() - lastTime &gt; interval) &#123;</span><br><span class="line">        localStorage.remove(&quot;token&quot;);</span><br><span class="line">        console.log(&quot;remove token&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log(&quot;time is less than not remove token&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>补充<br>可以使用 sessionStorage 代替 localStorage 来存储 token，当关闭浏览器时会自动清除 token，sessionStorage 不是持久化的本地存储，而是会话级别的存储，而 localStorage 是持久化的本地存储，除非主动删除数据，否则数据是不会过期的。</p></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="token" scheme="https://github.com/foolishmax/categories/token/"/>
-    
-    
-    <category term="token" scheme="https://github.com/foolishmax/tags/token/"/>
     
   </entry>
   
