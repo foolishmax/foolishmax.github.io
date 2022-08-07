@@ -8645,9 +8645,9 @@ shuffle(arr)
   <entry>
     <title>vue基础知识</title>
     <url>/2019/07/29/Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><span id="more"></span>
+    <content><![CDATA[<h4 id="vue-的特点（优点）"><a href="#vue-的特点（优点）" class="headerlink" title="vue 的特点（优点）"></a>vue 的特点（优点）</h4><span id="more"></span>
 
-<h4 id="vue-的特点（优点）"><a href="#vue-的特点（优点）" class="headerlink" title="vue 的特点（优点）"></a>vue 的特点（优点）</h4><ul>
+<ul>
 <li>vue 关注视图层，用数据操作的方式代替了 dom 操作</li>
 <li>vue 通过响应式的数据绑定实现了数据和视图之间的更新交互</li>
 <li>vue 通过组件化开发让工程结构更加明确，更易于维护</li>
