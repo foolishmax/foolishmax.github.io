@@ -1632,20 +1632,35 @@
 </ul>
 </li>
 </ul>
-<h2 id="常见状态码？"><a href="#常见状态码？" class="headerlink" title="常见状态码？"></a>常见状态码？</h2><ul>
-<li><p>200 成功</p>
-</li>
-<li><p>301 永久重定向（配合 location，浏览器自动处理）</p>
-</li>
-<li><p>302 临时重定向（配合 location，浏览器自动处理）</p>
-</li>
-<li><p>304 资源未被修改（协商缓存 ）</p>
-</li>
-<li><p>404 资源未找到</p>
-</li>
-<li><p>405 没有权限</p>
-</li>
+<h2 id="常见状态码？"><a href="#常见状态码？" class="headerlink" title="常见状态码？"></a>常见状态码？</h2><p>信息响应</p>
+<ul>
+<li>101 协议切换</li>
+</ul>
+<p>成功响应</p>
+<ul>
+<li>200 成功</li>
+<li>204 请求成功，不反悔任何内容</li>
+<li>206 分块请求成功</li>
+</ul>
+<p>重定向</p>
+<ul>
+<li>301 永久重定向（配合 location，浏览器自动处理）</li>
+<li>302 临时重定向（配合 location，浏览器自动处理）</li>
+<li>304 资源未被修改（协商缓存 ）</li>
+</ul>
+<p>客户端响应</p>
+<ul>
+<li>400 无法被服务器理解</li>
+<li>401 未授权</li>
+<li>403 禁止访问</li>
+<li>404 资源未找到</li>
+<li>405 没有权限</li>
+</ul>
+<p>服务端响应</p>
+<ul>
 <li><p>500 服务器错误</p>
+</li>
+<li><p>503 服务不可达</p>
 </li>
 <li><p>504 网关超时</p>
 </li>
@@ -2838,9 +2853,33 @@ null 和 undefined 是无效的对象，因此是不会有constructor存在的�
   <entry>
     <title>Node.js之http</title>
     <url>/2019/09/06/Node-js%E4%B9%8Bhttp/</url>
-    <content><![CDATA[<h3 id="创建一个简单的-http-服务"><a href="#创建一个简单的-http-服务" class="headerlink" title="创建一个简单的 http 服务"></a>创建一个简单的 http 服务</h3><span id="more"></span>
+    <content><![CDATA[<h2 id="HTTP-简介"><a href="#HTTP-简介" class="headerlink" title="HTTP 简介"></a>HTTP 简介</h2><span id="more"></span>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//加载http核心模块</span><br><span class="line">var http = require(&#x27;http&#x27;)</span><br><span class="line"></span><br><span class="line">var server = http.createServer()</span><br><span class="line"></span><br><span class="line">//服务器要做的处理事情</span><br><span class="line">server.on(&#x27;request&#x27;, function() &#123;</span><br><span class="line">    console.log(&#x27;收到客户端的请求了&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//绑定端口号，启动服务器</span><br><span class="line">server.listen(3000, function()&#123;</span><br><span class="line">    console.log(&#x27;server start.....&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>HTTP(HyperText Transfer Protocol)超文本传输协议，是万维网(World Wide Web)的基础协议</p>
+<p>HTTP/0.9 (1991)</p>
+<ul>
+<li>仅仅支持 GET 请求</li>
+<li>不包含 HTTP 头，只能传输 HTML 文件</li>
+<li>没有状态码和错误代码</li>
+</ul>
+<p>HTTP/1.0 (1996)</p>
+<ul>
+<li>发送时添加 协议版本信息 (/HTTP/1.1)</li>
+<li>添加响应状态码，如 200，404 等</li>
+<li>引入 HTTP 头，多了传递信息的手段，更加灵活和方便拓展</li>
+<li>HTTP 头引入 content-type 属性，具备了传输除纯文本 HTML 文件以外其他类型文档的能力</li>
+</ul>
+<p>HTTP/1.1 (1997)</p>
+<ul>
+<li>连接复用，长链接。多个请求复用同一个 tcp 连接，1.0 每次请求都需要重新建立连接(Connection: keep-alive Keep-Alive:timeout=5)</li>
+<li>管道化技术：多个连续的请求不用等待返回就可以被发送，减少网络延迟的耗时</li>
+<li>响应分块：单个请求返回部分内容(状态码 206)</li>
+<li>新的缓存控制机制，引入 cache-control,eTag</li>
+<li>新增 host 请求头，能够使不同域名配置在同一个 IP 地址服务器上</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Connection: keep-alive</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建一个简单的-http-服务"><a href="#创建一个简单的-http-服务" class="headerlink" title="创建一个简单的 http 服务"></a>创建一个简单的 http 服务</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//加载http核心模块</span><br><span class="line">var http = require(&#x27;http&#x27;)</span><br><span class="line"></span><br><span class="line">var server = http.createServer()</span><br><span class="line"></span><br><span class="line">//服务器要做的处理事情</span><br><span class="line">server.on(&#x27;request&#x27;, function() &#123;</span><br><span class="line">    console.log(&#x27;收到客户端的请求了&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//绑定端口号，启动服务器</span><br><span class="line">server.listen(3000, function()&#123;</span><br><span class="line">    console.log(&#x27;server start.....&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="请求处理"><a href="#请求处理" class="headerlink" title="请求处理"></a>请求处理</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var http = require(&#x27;http&#x27;)</span><br><span class="line"></span><br><span class="line">var server = http.createServer()</span><br><span class="line"></span><br><span class="line">//request 请求处理函数，需要接受两个参数</span><br><span class="line">server.on(&#x27;request&#x27;, function(request, response) &#123;</span><br><span class="line">//  request 请求对象</span><br><span class="line">//  请求对象可以获取客户端的一些请求信息，如请求路径</span><br><span class="line">    console.log(&#x27;收到客户端的请求了,路径是：&#x27;+ request.url)</span><br><span class="line"></span><br><span class="line">//  response 响应对象</span><br><span class="line">//  响应数据只能是二进制数据或者字符串</span><br><span class="line">//  响应对象可以用开给客户端发送响应消息</span><br><span class="line">//  response对象中：write给客户端发送响应数据，最后使用end结束</span><br><span class="line">    response.write(&#x27;hello&#x27;)</span><br><span class="line">    response.write(&#x27; nodejs &#x27;)</span><br><span class="line">    response.end(request.url)</span><br><span class="line"></span><br><span class="line">//  或者直接end的同时发送响应数据：</span><br><span class="line">//  response.end(&#x27;hello nodejs&#x27;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(3000, function()&#123;</span><br><span class="line">    console.log(&#x27;server start.....&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
