@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>集合 - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="什么是数据结构与算法？"><meta property="og:type" content="blog"><meta property="og:title" content="集合"><meta property="og:url" content="https://github.com/foolishmax/2019/06/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="什么是数据结构与算法？"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://raw.githubusercontent.com/foolishmax/static/master/blogPic/%E9%9B%86%E5%90%88%E5%85%B3%E7%B3%BB.png"><meta property="og:image" content="https://raw.githubusercontent.com/foolishmax/static/master/blogPic/%E9%98%9F%E5%88%97%E7%9A%84%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><meta property="og:image" content="http://vamknight.com/%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.png"><meta property="og:image" content="https://raw.githubusercontent.com/foolishmax/static/master/blogPic/%E6%A0%88%E7%9A%84%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><meta property="article:published_time" content="2019-06-26T04:29:55.000Z"><meta property="article:modified_time" content="2022-08-27T03:08:28.682Z"><meta property="article:author" content="foolishmax"><meta property="article:tag" content="数据结构与算法"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://raw.githubusercontent.com/foolishmax/static/master/blogPic/%E9%9B%86%E5%90%88%E5%85%B3%E7%B3%BB.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2019/06/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"},"headline":"集合","image":["https://raw.githubusercontent.com/foolishmax/static/master/blogPic/%E9%9B%86%E5%90%88%E5%85%B3%E7%B3%BB.png","https://raw.githubusercontent.com/foolishmax/static/master/blogPic/%E9%98%9F%E5%88%97%E7%9A%84%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png","http://vamknight.com/%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.png","https://raw.githubusercontent.com/foolishmax/static/master/blogPic/%E6%A0%88%E7%9A%84%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png"],"datePublished":"2019-06-26T04:29:55.000Z","dateModified":"2022-08-27T03:08:28.682Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"什么是数据结构与算法？"}</script><link rel="canonical" href="https://github.com/foolishmax/2019/06/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+          Array
+              .from(document.querySelectorAll('.tab-content'))
+              .forEach($tab => {
+                  $tab.classList.add('is-hidden');
+              });
+          Array
+              .from(document.querySelectorAll('.tabs li'))
+              .forEach($tab => {
+                  $tab.classList.remove('is-active');
+              });
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="detail column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-06-26T04:29:55.000Z" title="6/26/2019, 12:29:55 PM">2019-06-26</time>发表</span><span class="level-item"><time dateTime="2022-08-27T03:08:28.682Z" title="8/27/2022, 11:08:28 AM">2022-08-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span><span class="level-item">1 小时读完 (大约6717个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">集合</h1><div class="content"><h2 id="什么是数据结构与算法？"><a href="#什么是数据结构与算法？" class="headerlink" title="什么是数据结构与算法？"></a>什么是数据结构与算法？</h2><span id="more"></span>
+
+<ul>
+<li>数据结构就是在计算机中，存储和组织数据的方式。<!--more-->
+<pre><code>+ 常见的数据结构：
+&lt;img src=&quot;http://vamknight.com/%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png&quot;&gt;
+&lt;!--more--&gt;
+</code></pre>
+</li>
+<li>算法（Algorithm）的定义：<ul>
+<li>算法就是解决问题的方法/步骤，数据结构的实现离不开算法。<ul>
+<li>一个有限指令集，每条指令的描述不依赖于语言</li>
+<li>接受一些输入（有些情况不需要输入）</li>
+<li>产生输出</li>
+<li>一定在有限步骤之后终止</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><!--more-->
+
+<ul>
+<li><p>集合通常是由一组无序的，不能重复的元素构成。可以看成是一种特殊的数组，特殊之处在于里<br>面的元素没有顺序就意味着不能通过下标值进行访问，不能重复意味着相同的对象在同一个集合中只能存<br>在一份。</p>
+<!-- more --></li>
+<li><p>集合都有哪些常见的操作方法呢？</p>
+<ul>
+<li><p>add(value)：向集合添加一个新的项。</p>
+</li>
+<li><p>remove(value)：从集合移除一个值。</p>
+</li>
+<li><p>has(value)：如果值在集合中，返回 true，否则返回 false。</p>
+</li>
+<li><p>clear()：移除集合中的所有项。</p>
+</li>
+<li><p>size()：返回集合所包含元素的数量。与数组的 length 属性类似。</p>
+</li>
+<li><p>values()：返回一个包含集合中所有值的数组。</p>
+</li>
+</ul>
+</li>
+<li><p>集合之间都有哪些操作呢？</p>
+<ul>
+<li>并集：对于两个给定的集合，返回一个包含两个集合中所有元素的新集合。</li>
+<li>交集：对于两个给定的集合，返回一个包含两个集合中公有元素的新集合。</li>
+<li>差集：对于两个给定的集合，返回一个包含所有存在于第一个集合且不存在于第二个集合的新集合。</li>
+<li>子集：验证一个给定集合是否是另一个集合的子集。</li>
+</ul>
+</li>
+</ul>
+<img src="https://raw.githubusercontent.com/foolishmax/static/master/blogPic/%E9%9B%86%E5%90%88%E5%85%B3%E7%B3%BB.png">
+
+<ul>
+<li>集合封装的完整代码：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line">// 封装集合的构造函数</span><br><span class="line">function Set() &#123;</span><br><span class="line">    // 使用一个对象来保存集合的元素</span><br><span class="line">    this.items = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    // 集合的操作方法</span><br><span class="line">    // 判断集合中是否有某个元素</span><br><span class="line">    Set.prototype.has = function (value) &#123;</span><br><span class="line">        return this.items.hasOwnProperty(value)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 向集合中添加元素</span><br><span class="line">    Set.prototype.add = function (value) &#123;</span><br><span class="line">        // 1.判断集合中是否已经包含了该元素</span><br><span class="line">        if (this.has(value)) return false</span><br><span class="line"></span><br><span class="line">        // 2.将元素添加到集合中</span><br><span class="line">        this.items[value] = value</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 从集合中删除某个元素</span><br><span class="line">    Set.prototype.remove = function (value) &#123;</span><br><span class="line">        // 1.判断集合中是否包含该元素</span><br><span class="line">        if (!this.has(value)) return false</span><br><span class="line"></span><br><span class="line">        // 2.包含该元素, 那么将元素删除</span><br><span class="line">        delete this.items[value]</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 清空集合中所有的元素</span><br><span class="line">    Set.prototype.clear = function () &#123;</span><br><span class="line">        this.items = &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取集合的大小</span><br><span class="line">    Set.prototype.size = function () &#123;</span><br><span class="line">        return Object.keys(this.items).length</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">        考虑兼容性问题, 使用下面的代码</span><br><span class="line">        var count = 0</span><br><span class="line">        for (var value in this.items) &#123;</span><br><span class="line">            if (this.items.hasOwnProperty(value)) &#123;</span><br><span class="line">                count++</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count</span><br><span class="line">        */</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取集合中所有的值</span><br><span class="line">    Set.prototype.values = function () &#123;</span><br><span class="line">        return Object.keys(this.items)</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">        考虑兼容性问题, 使用下面的代码</span><br><span class="line">        var keys = []</span><br><span class="line">        for (var value in this.items) &#123;</span><br><span class="line">            keys.push(value)</span><br><span class="line">        &#125;</span><br><span class="line">        return keys</span><br><span class="line">        */</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //集合之间的操作</span><br><span class="line">    //并集</span><br><span class="line">    Set.prototype.union = function (otherSet) &#123;</span><br><span class="line">        //this:集合对象A</span><br><span class="line">        //otherSet:集合对象B</span><br><span class="line">        //1.创建新的集合</span><br><span class="line">        var unionSet = new Set()</span><br><span class="line"></span><br><span class="line">        //2.将A集合中所有的元素添加到新集合中</span><br><span class="line">        var values = this.values()</span><br><span class="line">        for(var i = 0; i &lt; values.length; i++) &#123;</span><br><span class="line">            unionSet.add(values[i])</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //3.取出B集合中的元素，判断是否需要添加到新集合</span><br><span class="line">        values = otherSet.values()</span><br><span class="line">        for(var i = 0; i &lt; values.length; i++) &#123;</span><br><span class="line">            unionSet.add(values[i])</span><br><span class="line">        &#125;</span><br><span class="line">        return unionSet</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //交集</span><br><span class="line">        Set.prototype.intersection = function (otherSet) &#123;</span><br><span class="line">            var intersectionSet = new Set()</span><br><span class="line">            var values = this.values()</span><br><span class="line">            //取出A集合一个个元素，判断是否同时存在于B中，存在B中，则添加到新集合中</span><br><span class="line">            for (var i = 0; i &lt; values.length; i++) &#123;</span><br><span class="line">                var item = values[i]</span><br><span class="line">                if (otherSet.has(item)) &#123;</span><br><span class="line">                    intersectionSet.add(item)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return intersectionSet</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    //差集</span><br><span class="line">    Set.prototype.difference = function (otherSet) &#123;</span><br><span class="line">        var differenceSet = new Set()</span><br><span class="line">        var values = this.values()</span><br><span class="line">        //取出A集合一个个元素，判断是否同时存在于B中，不存在B中，则添加到新集合中</span><br><span class="line">        for (var i = 0; i &lt; values.length; i++) &#123;</span><br><span class="line">            var item = values[i]</span><br><span class="line">            if (!otherSet.has(item)) &#123;</span><br><span class="line">                differenceSet.add(item)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return differenceSet</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 子集</span><br><span class="line">    Set.prototype.subset = function (otherSet) &#123;</span><br><span class="line">        var values = this.values()</span><br><span class="line">        for (var i = 0; i &lt; values.length; i++) &#123;</span><br><span class="line">            var item = values[i]</span><br><span class="line">            if (!otherSet.has(item)) &#123;</span><br><span class="line">                return false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">         return true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="队列（Queue）"><a href="#队列（Queue）" class="headerlink" title="队列（Queue）"></a>队列（Queue）</h2><!--more-->
+
+<ul>
+<li><p>队列是一种受限的线性表，先进先出（FIFO First In First Out）。</p>
+<ul>
+<li>它只允许在表的前端（front）进行删除操作</li>
+<li>在表的后端（rear）进行插入操作<!--more--></li>
+</ul>
+</li>
+<li><p>常见应用场景： + 队列主要用在和时间有关的地方，特别是操作系统中，队列是实现多任务的重要机制。 + 消息机制可以通过队列来实现，进程调度也是使用队列来实现。</p>
+<img src="https://raw.githubusercontent.com/foolishmax/static/master/blogPic/%E9%98%9F%E5%88%97%E7%9A%84%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png"></li>
+<li><p>队列有哪些常见的操作呢？</p>
+<ul>
+<li>enqueue(element): 向队列尾部添加一个（或多个）新的项。</li>
+<li>dequeue(): 移除队列的第一项，并返回被移除的元素。</li>
+<li>front(): 返回队列中第一个元素，队列不做任何改动。</li>
+<li>isEmpty(): 如果队列中不包含任何元素，返回 true，否则返回 false。</li>
+<li>size(): 返回队列包含的元素个数，与数组 length 类似。</li>
+<li>toString(): 将队列中的内容，转成字符串形式。</li>
+</ul>
+</li>
+<li><p>队列常见操作的封装：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">//封装队列</span><br><span class="line">function Queue() &#123;</span><br><span class="line">    //属性</span><br><span class="line">    this.items = []</span><br><span class="line">    //将元素加入到队列中</span><br><span class="line">    Queue.prototype.enqueue = function(element) &#123;</span><br><span class="line">        this.items.push(element)</span><br><span class="line">    &#125;</span><br><span class="line">    //从队列中删除前端元素</span><br><span class="line">    Queue.prototype.dequeue = function() &#123;</span><br><span class="line">        return this.items.shift()</span><br><span class="line">    &#125;</span><br><span class="line">    //查看前端的元素</span><br><span class="line">    Queue.prototype.front = function() &#123;</span><br><span class="line">        return this.items[0]</span><br><span class="line">    &#125;</span><br><span class="line">    //查看队列是否为空</span><br><span class="line">    Queue.prototype.isEmpty = function() &#123;</span><br><span class="line">        return this.items.length == 0</span><br><span class="line">    &#125;</span><br><span class="line">    //查看队列中元素的个数</span><br><span class="line">    Queue.prototype.size = function() &#123;</span><br><span class="line">        return this.items.length</span><br><span class="line">    &#125;</span><br><span class="line">    //toString方法</span><br><span class="line">    Queue.prototype.toString = function() &#123;</span><br><span class="line">        var resultString = &#x27;&#x27;</span><br><span class="line">        for (var i = 0; i&lt; this.items.length; i++) &#123;</span><br><span class="line">            resultString += this.items[i] + &#x27; &#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        return resultString</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//调用队列函数</span><br><span class="line">var queue = new Queue()</span><br><span class="line">queue.enqueue(20)</span><br><span class="line">alert(queue)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>面试题： 击鼓传花</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//面试题: 击鼓传花</span><br><span class="line">function passGame(nameList, num) &#123;</span><br><span class="line">    //创建一个队列结构</span><br><span class="line">    var queue = new Queue()</span><br><span class="line">    //将所有人加入到队列中</span><br><span class="line">    for(var i = 0; i &lt; nameList.length; i++) &#123;</span><br><span class="line">        queue.enqueue(nameList[i])</span><br><span class="line">    &#125;</span><br><span class="line">    //开始数数字</span><br><span class="line">    while (queue.size() &gt; 1) &#123;</span><br><span class="line">        //不是num重新加入队列末尾</span><br><span class="line">        //是num从队列中删除</span><br><span class="line">        for (var i = 0; i&lt; num - 1; i++) &#123;</span><br><span class="line">            queue.enqueue(queue.dequeue())</span><br><span class="line">        &#125;</span><br><span class="line">        queue.dequeue()</span><br><span class="line">    &#125;</span><br><span class="line">    return queque.front()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>封装优先队列</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">//封装优先级队列</span><br><span class="line">function PriorityQueue() &#123;</span><br><span class="line">    //内部创建一个构造类</span><br><span class="line">    function QueueElement(element, priority) &#123;</span><br><span class="line">        this.element = element</span><br><span class="line">        this.priority = priority</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //属性</span><br><span class="line">    this.items = []</span><br><span class="line"></span><br><span class="line">    //实现队列元素的插入</span><br><span class="line">    PriorityQueue.prototype.enqueue = function(element, priority) &#123;</span><br><span class="line">        //创建QueueElement对象</span><br><span class="line">        var queueElement = new QueueElement(element, priority)</span><br><span class="line"></span><br><span class="line">        //判断为队列是否为空</span><br><span class="line">        if (this.items.length == 0) &#123;</span><br><span class="line">            this.items.push(queueElement)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            var added = false</span><br><span class="line">            for (var i = 0; i &lt; this.items.length; i++) &#123;</span><br><span class="line">                if (queueElement.priority &lt; this.items[i].priority) &#123;</span><br><span class="line">                    this.items.splice(i, 0, queueElement)</span><br><span class="line">                    added = true</span><br><span class="line">                    break</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (!added) &#123;</span><br><span class="line">                this.items.push(queueElement)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        //从队列中删除前端元素</span><br><span class="line">    PriorityQueue.prototype.dequeue = function() &#123;</span><br><span class="line">        return this.items.shift()</span><br><span class="line">    &#125;</span><br><span class="line">    //查看前端的元素</span><br><span class="line">    PriorityQueue.prototype.front = function() &#123;</span><br><span class="line">        return this.items[0]</span><br><span class="line">    &#125;</span><br><span class="line">    //查看队列是否为空</span><br><span class="line">    PriorityQueue.prototype.isEmpty = function() &#123;</span><br><span class="line">        return this.items.length == 0</span><br><span class="line">    &#125;</span><br><span class="line">    //查看队列中元素的个数</span><br><span class="line">    PriorityQueue.prototype.size = function() &#123;</span><br><span class="line">        return this.items.length</span><br><span class="line">    &#125;</span><br><span class="line">    //toString方法</span><br><span class="line">    PriorityQueue.prototype.toString = function() &#123;</span><br><span class="line">        var resultString = &#x27;&#x27;</span><br><span class="line">        for (var i = 0; i&lt; this.items.length; i++) &#123;</span><br><span class="line">            resultString += this.items[i].element + &#x27;-&#x27; + this.items[i].priority + &#x27; &#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        return resultString</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//测试代码</span><br><span class="line">var pq = new PriorityQueue()</span><br><span class="line">pq.enqueue(&#x27;a&#x27;,10)</span><br><span class="line">pq.enqueue(&#x27;b&#x27;,100)</span><br><span class="line">pq.enqueue(&#x27;c&#x27;,50)</span><br><span class="line">alert(pq)</span><br></pre></td></tr></table></figure>
+
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><!--more-->
+
+<ul>
+<li><p>什么是链表？ + 链表的元素在内存中不必是连续的空间，链表的每个元素由一个存储元素本身的节点和一个指向下一个元素的引用组成。</p>
+<!--more--></li>
+<li><p>相对于数组，链表都有哪些优势？</p>
+<ul>
+<li>内存空间不是比是连续的. 可以充分利用计算机的内存. 实现灵活的内存动态管理。</li>
+<li>链表不必在创建时就确定大小, 并且大小可以无限的延伸下去。</li>
+<li>链表在插入和删除数据时, 时间复杂度可以达到 O(1). 相对数组效率高很多。</li>
+</ul>
+</li>
+<li><p>相对于数组，链表都有哪些缺点？ + 链表访问任何一个位置的元素时, 都需要从头开始访问.(无法跳过第一个元素访问任何一个元素)。 + 无法通过下标直接访问元素, 需要从头一个个访问, 直到找到对应的问题。</p>
+<!--more--></li>
+<li><p>链表的数据结构：</p>
+<img src="http://vamknight.com/%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.png"></li>
+<li><p>链表有哪些常见操作？ + append(element)：向列表尾部添加一个新的项</p>
+<pre><code>+ insert(position, element)：向列表的特定位置插入一个新的项。
+
++ update(position, element): 修改某一个位置上的元素。
+
++ remove(element)：从列表中移除一项。
+
++ indexOf(element)：返回元素在列表中的索引。如果列表中没有该元素则返回-1。
+
+// 链表中的属性
+this.length = 0
+this.head = null
+
+// 链表尾部追加元素方法
+LinkedList.prototype.append = function (element) &#123;
+    // 1.根据新元素创建节点
+    var newNode = new Node(element)
+
+    // 2.判断原来链表是否为空
+    if (this.head === null) &#123; /
++ removeAt(position)：从列表的特定位置移除一项。
+</code></pre>
+<p>this.next = null<br>}<br>/ 链表尾空<br>this.head = newNode<br>} else { // 链表不为空<br>// 2.1.定义变量, 保存当前找到的节点<br>var current = this.head<br>while (current.next) {<br>current = current.next<br>}</p>
+<pre><code>        // 2.2.找到最后一项, 将其next赋值为node
+        current.next = newNode
+    &#125;
+
+    // 3.链表长度增加1
+    this.length++
+&#125;
+
+// 链表的toString方法
+LinkedList.prototype.toString = function () &#123;
+    // 1.定义两个变量
+    var current = this.head
+    var listString = &quot;&quot;
+
+    // 2.循环获取链表中所有的元素
+    while (current) &#123;
+        listString += &quot;,&quot; + current.element
+        current = current.next
+    &#125;
+
+    // 3.返回最终结果
+    return listString.slice(1)
+&#125;
+
+// 根据下标删除元素
+LinkedList.prototype.insert = function (position, element) &#123;
+    // 1.检测越界问题: 越界插入失败
+    if (position &lt; 0 || position &gt; this.length) return false
+
+    // 2.定义变量, 保存信息
+    var newNode = new Node(element)
+    var current = this.head
+    var previous = null
+    index = 0
+
+    // 3.判断是否列表是否在第一个位置插入
+    if (position == 0) &#123;
+        newNode.next = current
+        this.head = newNode
+    &#125; else &#123;
+        while (index++ &lt; position) &#123;
+            previous = current
+            current = current.next
+        &#125;
+
+        newNode.next = current
+        previous.next = newNode
+    &#125;
+
+    // 4.length+1
+    this.length++
+
+    return true
+&#125;
+
+//update方法
+LinkedList.prototype.update = function (position, newData) &#123;
+    if (position &lt; 0 || position &gt;= this.length) return  null
+
+    var current = this.head
+    var index = 0
+    while (index++ &lt; position) &#123;
+        current = current.next
+    &#125;
+    current.data = newData
+    return true
+&#125;
+
+// 根据位置移除节点
+LinkedList.prototype.removeAt = function (position) &#123;
+    // 1.检测越界问题: 越界移除失败, 返回null
+    if (position &lt; 0 || position &gt;= this.length) return null
+
+    // 2.定义变量, 保存信息
+    var current = this.head
+    var previous = null
+    var index = 0
+
+    // 3.判断是否是移除第一项
+    if (position === 0) &#123;
+        this.head = current.next
+    &#125; else &#123;
+        while (index++ &lt; position) &#123;
+            previous = current
+            current = current.next
+        &#125;
+
+        previous.next = current.next
+    &#125;
+
+    // 4.length-1
+    this.length--
+
+    // 5.返回移除的数据
+    return current.element
+&#125;
+
+// 根据元素获取链表中的位置
+LinkedList.prototype.indexOf = function (element) &#123;
+    // 1.定义变量, 保存信息
+    var current = this.head
+    index = 0
+
+    // 2.找到元素所在的位置
+    while (current) &#123;
+        if (current.element === element) &#123;
+            return index
+        &#125;
+        index++
+        current = current.next
+    &#125;
+
+    // 3.来到这个位置, 说明没有找到, 则返回-1
+    return -1
+&#125;
+
+// 根据元素删除信息
+LinkedList.prototype.remove = function (element) &#123;
+    var index = this.indexOf(element)
+    return this.removeAt(index)
+&#125;
+
+// 判断链表是否为空
+LinkedList.prototype.isEmpty = function () &#123;
+    return this.length == 0
+&#125;
+
+// 获取链表的长度
+LinkedList.prototype.size = function () &#123;
+    return this.length
+&#125;
+
+// 获取第一个节点
+LinkedList.prototype.getFirst = function () &#123;
+    return this.head.element
+&#125;
+</code></pre>
+<p>}</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">- 以上操作的都是单向链表，下面来认识一下双向链表。</span><br><span class="line">- 单向链表的缺点：</span><br><span class="line">    + 只能从头遍历到尾，也就是链表的相连的过程是单向的，实现的原理是上一个链表中有一个指向下一个的引用。</span><br><span class="line">    + 我们可以轻松的到达下一个节点，但是回到上一个节点是很难的，只能从头遍历。</span><br><span class="line">    + 但是，实际开发中，经常会遇到回到上一个节点的情况。</span><br><span class="line">- 双向链表：</span><br><span class="line">    + 既可以从头遍历到尾，又可以从尾遍历到头。</span><br><span class="line">    + 也就是链表相连的过程是双向的。</span><br><span class="line">    + 实现的原理就是既有先前连接的引用，也有一个向后连接的引用。</span><br><span class="line">    + 双向链表可以有效的解决单向链表的问题。</span><br><span class="line">- 双向链表的一些缺点：</span><br><span class="line">    + 每次在插入或删除某一个节点时，需要处理四个引用，实现起来比较复杂。</span><br><span class="line">    + 相对于单向链表占用的内存更大一些。</span><br><span class="line"></span><br><span class="line">- 双向链表的结构图：</span><br><span class="line">&lt;img src=&quot;http://vamknight.com/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8.png&quot;&gt;</span><br><span class="line"></span><br><span class="line">- 双向链表的特点：</span><br><span class="line">    + 可以使用一个head和一个tail分别指向头部和尾部的节点。</span><br><span class="line">    + 每个节点都是由三部分组成：前一个节点的指针（prev）、保存的元素（item）、后一个节点的指针（next）。</span><br><span class="line">    + 双向链表的第一个节点的prev是null。</span><br><span class="line">    + 双向链表的最后一个节点的next是null。</span><br><span class="line"></span><br><span class="line">- 双向链表都有哪些常见操作？</span><br><span class="line">    + append(element)：向列表尾部添加一个新的项</span><br><span class="line"></span><br><span class="line">    + insert(position, element)：向列表的特定位置插入一个新的项。</span><br><span class="line"></span><br><span class="line">    + update(position, element): 修改某一个位置上的元素。</span><br><span class="line"></span><br><span class="line">    + get(position): 获取对应位置的元素。</span><br><span class="line"></span><br><span class="line">    + remove(element)：从列表中移除一项。</span><br><span class="line"></span><br><span class="line">    + indexOf(element)：返回元素在列表中的索引。如果列表中没有该元素则返回-1。</span><br><span class="line"></span><br><span class="line">    + removeAt(position)：从列表的特定位置移除一项。</span><br><span class="line"></span><br><span class="line">    + isEmpty()：如果链表中不包含任何元素，返回true，如果链表长度大于0则返回false。</span><br><span class="line"></span><br><span class="line">    + size()：返回链表包含的元素个数。与数组的length属性类似。</span><br><span class="line"></span><br><span class="line">    + toString()：由于列表项使用了Node类，就需要重写继承自JavaScript对象默认的toString方法，让其只输出元素的值。</span><br><span class="line"></span><br><span class="line">    + forwardString(): 返回正向遍历的节点字符串形式。</span><br><span class="line"></span><br><span class="line">    + backwardString(): 返回反向遍历的节点字符串形式。</span><br><span class="line"></span><br><span class="line">- 双向链表常见方法的封装：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>// 创建双向链表的构造函数<br>function DoublyLinkedList() {<br>// 创建节点构造函数<br>function Node(element) {<br>this.element = element<br>this.next = null<br>this.prev = null // 新添加的<br>}</p>
+<pre><code>// 定义属性
+this.length = 0
+this.head = null
+this.tail = null // 新添加的
+
+// 定义相关操作方法
+// 在尾部追加数据
+DoublyLinkedList.prototype.append = function (element) &#123;
+    // 1.根据元素创建节点
+    var newNode = new Node(element)
+
+    // 2.判断列表是否为空列表
+    if (this.head == null) &#123;
+        this.head = newNode
+        this.tail = newNode
+    &#125; else &#123;
+        this.tail.next = newNode
+        newNode.prev = this.tail
+        this.tail = newNode
+    &#125;
+
+    // 3.length+1
+    this.length++
+&#125;
+
+// 在任意位置插入数据
+DoublyLinkedList.prototype.insert = function (position, element) &#123;
+    // 1.判断越界的问题
+    if (position &lt; 0 || position &gt; this.length) return false
+
+    // 2.创建新的节点
+    var newNode = new Node(element)
+
+    // 3.判断插入的位置
+    if (position === 0) &#123; // 在第一个位置插入数据
+        // 判断链表是否为空
+        if (this.head == null) &#123;
+            this.head = newNode
+            this.tail = newNode
+        &#125; else &#123;
+            this.head.prev = newNode
+            newNode.next = this.head
+            this.head = newNode
+        &#125;
+    &#125; else if (position === this.length) &#123; // 插入到最后的情况
+        // 思考: 这种情况是否需要判断链表为空的情况呢? 答案是不需要, 为什么?
+        this.tail.next = newNode
+        newNode.prev = this.tail
+        this.tail = newNode
+    &#125; else &#123; // 在中间位置插入数据
+        // 定义属性
+        var index = 0
+        var current = this.head
+        var previous = null
+
+        // 查找正确的位置
+        while (index++ &lt; position) &#123;
+            previous = current
+            current = current.next
+        &#125;
+
+        // 交换节点的指向顺序
+        newNode.next = current
+        newNode.prev = previous
+        current.prev = newNode
+        previous.next = newNode
+    &#125;
+
+    // 4.length+1
+    this.length++
+
+    return true
+&#125;
+
+// 根据位置删除对应的元素
+DoublyLinkedList.prototype.removeAt = function (position) &#123;
+    // 1.判断越界的问题
+    if (position &lt; 0 || position &gt;= this.length) return null
+
+    // 2.判断移除的位置
+    var current = this.head
+    if (position === 0) &#123;
+        if (this.length == 1) &#123;
+            this.head = null
+            this.tail = null
+        &#125; else &#123;
+            this.head = this.head.next
+            this.head.prev = null
+        &#125;
+    &#125; else if (position === this.length -1) &#123;
+        current = this.tail
+        this.tail = this.tail.prev
+        this.tail.next = null
+    &#125; else &#123;
+        var index = 0
+        var previous = null
+
+        while (index++ &lt; position) &#123;
+            previous = current
+            current = current.next
+        &#125;
+
+        previous.next = current.next
+        current.next.prev = previous
+    &#125;
+
+    // 3.length-1
+    this.length--
+
+    return current.element
+&#125;
+
+// 根据元素获取在链表中的位置
+DoublyLinkedList.prototype.indexOf = function (element) &#123;
+    // 1.定义变量保存信息
+    var current = this.head
+    var index = 0
+
+    // 2.查找正确的信息
+    while (current) &#123;
+        if (current.element === element) &#123;
+            return index
+        &#125;
+        index++
+        current = current.next
+    &#125;
+
+    // 3.来到这个位置, 说明没有找到, 则返回-1
+    return -1
+&#125;
+
+// 根据元素删除
+DoublyLinkedList.prototype.remove = function (element) &#123;
+    var index = this.indexOf(element)
+    return this.removeAt(index)
+&#125;
+
+// 判断是否为空
+DoublyLinkedList.prototype.isEmpty = function () &#123;
+    return this.length === 0
+&#125;
+
+// 获取链表长度
+DoublyLinkedList.prototype.size = function () &#123;
+    return this.length
+&#125;
+
+// 获取第一个元素
+DoublyLinkedList.prototype.getHead = function () &#123;
+    return this.head.element
+&#125;
+
+// 获取最后一个元素
+DoublyLinkedList.prototype.getTail = function () &#123;
+    return this.tail.element
+&#125;
+
+// 遍历方法的实现
+// 正向遍历的方法
+DoublyLinkedList.prototype.forwardString = function () &#123;
+    var current = this.head
+    var forwardStr = &quot;&quot;
+
+    while (current) &#123;
+        forwardStr += &quot;,&quot; + current.element
+        current = current.next
+    &#125;
+
+    return forwardStr.slice(1)
+&#125;
+
+// 反向遍历的方法
+DoublyLinkedList.prototype.reverseString = function () &#123;
+    var current = this.tail
+    var reverseStr = &quot;&quot;
+
+    while (current) &#123;
+        reverseStr += &quot;,&quot; + current.element
+        current = current.prev
+    &#125;
+
+    return reverseStr.slice(1)
+&#125;
+
+// 实现toString方法
+DoublyLinkedList.prototype.toString = function () &#123;
+    return this.forwardString()
+&#125;
+</code></pre>
+<p>}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><!--more-->
+
+<ul>
+<li><p>我们知道数组是一种线性结构，可以在数组的任意位置插入或删除数据。但有些时候，我们为了实现某种功能，必须对这种 任意性 加以限制，而我们的栈和队列就是比较常见的 <strong>受限的线性结构</strong>。</p>
+</li>
+<li><p>栈是一种<strong>先进后出</strong>或**后进先出(LIFO Last In First Out)**的数据结构，栈内的元素只能通过列表的一端访问，这一端称为栈顶，因为<br>数据只能在栈顶添加或删除，所以只要数据的保存满足“先进后出或后进先出”的原理，都优先考虑使用栈。</p>
+</li>
+<li><p>栈的结构示意图：</p>
+<img src="https://raw.githubusercontent.com/foolishmax/static/master/blogPic/%E6%A0%88%E7%9A%84%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<!--more--></li>
+<li><p>栈常见有哪些操作？</p>
+</li>
+</ul>
+<ul>
+<li>push（element）：添加一个新元素到栈顶位置。</li>
+<li>pop（）：移除栈顶的元素，同时返回被移除的元素。</li>
+<li>peek（）：返回栈顶的元素，不对栈做任何修改。</li>
+<li>isEmpty（）：如果栈里没有任何元素返回 true，否则返回 false。</li>
+<li>size（）：返回栈里的元素个数，类似数组中的 length。</li>
+<li>toString（）：将栈结构的内容以字符形式返回。</li>
+</ul>
+<ul>
+<li>栈常见操作的封装：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">function Stack() &#123;</span><br><span class="line">    this.items = []</span><br><span class="line">    //将元素压入栈</span><br><span class="line">    Stack.prototype.push = function(element) &#123;</span><br><span class="line">        this.items.push(element)</span><br><span class="line">    &#125;</span><br><span class="line">    //从栈中移除元素</span><br><span class="line">    Stack.prototype.pop = function() &#123;</span><br><span class="line">        return this.items.pop()</span><br><span class="line">    &#125;</span><br><span class="line">    //查看栈顶元素</span><br><span class="line">    Stack.prototype.peek = function() &#123;</span><br><span class="line">        return this.items[this.items.length - 1]</span><br><span class="line">    &#125;</span><br><span class="line">    //判断栈是否为空</span><br><span class="line">    Stack.prototype.isEmpty = function() &#123;</span><br><span class="line">        return this.items.length == 0</span><br><span class="line">    &#125;</span><br><span class="line">    //判断栈中元素个数</span><br><span class="line">    Stack.prototype.size = function() &#123;</span><br><span class="line">        return this.items.length</span><br><span class="line">    &#125;</span><br><span class="line">    //toString方法</span><br><span class="line">    Stack.prototype.toString = function() &#123;</span><br><span class="line">        var resultString = &#x27;&#x27;</span><br><span class="line">        for (var i = 0; i&lt; this.items.length; i++) &#123;</span><br><span class="line">            resultString += this.items[i] + &#x27; &#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        return resultString</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//栈的使用</span><br><span class="line">var s = new Stack()</span><br><span class="line">s.push(23)</span><br><span class="line">alert(s)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//函数十进制转为二进制</span><br><span class="line">function dec2bin(decNumber) &#123;</span><br><span class="line">    //定义栈对象</span><br><span class="line">    var stack = new Stack()</span><br><span class="line">    while (decNumber &gt; 0) &#123;</span><br><span class="line">        //获取余数放入栈中</span><br><span class="line">        stack.push(decNumber % 2)</span><br><span class="line">        //获取除后的结果,作为下次操作的对象</span><br><span class="line">        decNumber = Math.floor(decNumber / 2)</span><br><span class="line">    &#125;</span><br><span class="line">    //从栈中取出0和1</span><br><span class="line">    var binaryString = &#x27;&#x27;</span><br><span class="line">    while (!stack.isEmpty()) &#123;</span><br><span class="line">        binaryString += stack.pop()</span><br><span class="line">    &#125;</span><br><span class="line">    return binaryString</span><br><span class="line">&#125;</span><br><span class="line">//调用函数</span><br><span class="line">alert(dec2bin(100))</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h2><!--more-->
+
+<h4 id="五大算法"><a href="#五大算法" class="headerlink" title="五大算法"></a>五大算法</h4><ul>
+<li><p>贪心算法</p>
+</li>
+<li><p>分治算法</p>
+</li>
+<li><p>动态规划</p>
+</li>
+<li><p>回溯法</p>
+</li>
+<li><p>分支限界法</p>
+</li>
+</ul>
+<!--more-->
+
+<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function bubleSort(arr) &#123;</span><br><span class="line">    var len = arr.length;</span><br><span class="line">    for (let outer = len ; outer &gt;= 2; outer--) &#123;</span><br><span class="line">        for(let inner = 0; inner &lt;=outer - 1; inner++) &#123;</span><br><span class="line">            if(arr[inner] &gt; arr[inner + 1]) &#123;</span><br><span class="line">                [arr[inner],arr[inner+1]] = [arr[inner+1],arr[inner]]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function selectSort(arr) &#123;</span><br><span class="line">    var len = arr.length;</span><br><span class="line">    for(let i = 0 ;i &lt; len - 1; i++) &#123;</span><br><span class="line">        for(let j = i ; j&lt;len; j++) &#123;</span><br><span class="line">            if(arr[j] &lt; arr[i]) &#123;</span><br><span class="line">                [arr[i],arr[j]] = [arr[j],arr[i]];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function insertSort(arr) &#123;</span><br><span class="line">    for(let i = 1; i &lt; arr.length; i++) &#123;  //外循环从1开始，默认arr[0]是有序段</span><br><span class="line">        for(let j = i; j &gt; 0; j--) &#123;  //j = i,将arr[j]依次插入有序段中</span><br><span class="line">            if(arr[j] &lt; arr[j-1]) &#123;</span><br><span class="line">                [arr[j],arr[j-1]] = [arr[j-1],arr[j]];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function quickSort(arr) &#123;</span><br><span class="line">    if(arr.length &lt;= 1) &#123;</span><br><span class="line">        return arr;  //递归出口</span><br><span class="line">    &#125;</span><br><span class="line">    var left = [],</span><br><span class="line">        right = [],</span><br><span class="line">        current = arr.splice(0,1);</span><br><span class="line">    for(let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">        if(arr[i] &lt; current) &#123;</span><br><span class="line">            left.push(arr[i])  //放在左边</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            right.push(arr[i]) //放在右边</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return quickSort(left).concat(current,quickSort(right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line">//创建列表类</span><br><span class="line">function ArrayList() &#123;</span><br><span class="line">    this.array = []</span><br><span class="line">    //方法</span><br><span class="line">    //插入方法</span><br><span class="line">    ArrayList.prototype.insert = function(item)&#123;</span><br><span class="line">        this.array.push(item)</span><br><span class="line">    &#125;</span><br><span class="line">    //toString 方便测试</span><br><span class="line">    ArrayList.prototype.toString = function()&#123;</span><br><span class="line">        return this.array.join(&#x27;-&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!--var arr = new ArrayList()--&gt;</span><br><span class="line">&lt;!--arr.insert(1)--&gt;</span><br><span class="line">&lt;!--arr.insert(2)--&gt;</span><br><span class="line">&lt;!--arr.insert(3)--&gt;</span><br><span class="line"></span><br><span class="line">//实现排序算法</span><br><span class="line">//冒泡排序</span><br><span class="line">ArrayList.prototype.bubbleSort = function () &#123;</span><br><span class="line">    // 1.获取数组的长度</span><br><span class="line">    var length = this.array.length</span><br><span class="line"></span><br><span class="line">    // 2.反向循环, 因此次数越来越少</span><br><span class="line">    for (var i = length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">        // 3.根据i的次数, 比较循环到i位置</span><br><span class="line">        for (var j = 0; j &lt; i; j++) &#123;</span><br><span class="line">            // 4.如果j位置比j+1位置的数据大, 那么就交换</span><br><span class="line">            if (this.array[j] &gt; this.array[j+1]) &#123;</span><br><span class="line">                // 交换</span><br><span class="line">                this.swap(j, j+1)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ArrayList.prototype.swap = function (m, n) &#123;</span><br><span class="line">    var temp = this.array[m]</span><br><span class="line">    this.array[m] = this.array[n]</span><br><span class="line">    this.array[n] = temp</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//选择排序</span><br><span class="line">ArrayList.prototype.selectionSort = function () &#123;</span><br><span class="line">    // 1.获取数组的长度</span><br><span class="line">    var length = this.array.length</span><br><span class="line"></span><br><span class="line">    // 2.外层循环: 从0位置开始取出数据, 直到length-2位置</span><br><span class="line">    for (var i = 0; i &lt; length - 1; i++) &#123;</span><br><span class="line">        // 3.内层循环: 从i+1位置开始, 和后面的内容比较</span><br><span class="line">        var min = i</span><br><span class="line">        for (var j = min + 1; j &lt; length; j++) &#123;</span><br><span class="line">            // 4.如果i位置的数据大于j位置的数据, 那么记录最小的位置</span><br><span class="line">            if (this.array[min] &gt; this.array[j]) &#123;</span><br><span class="line">                min = j</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 5.交换min和i位置的数据</span><br><span class="line">        this.swap(min, i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//插入排序</span><br><span class="line">ArrayList.prototype.insertionSort = function () &#123;</span><br><span class="line">    // 1.获取数组的长度</span><br><span class="line">    var length = this.array.length</span><br><span class="line"></span><br><span class="line">    // 2.外层循环: 外层循环是从1位置开始, 依次遍历到最后</span><br><span class="line">    for (var i = 1; i &lt; length; i++) &#123;</span><br><span class="line">        // 3.记录选出的元素, 放在变量temp中</span><br><span class="line">        var j = i</span><br><span class="line">        var temp = this.array[i]</span><br><span class="line"></span><br><span class="line">        // 4.内层循环: 内层循环不确定循环的次数, 最好使用while循环</span><br><span class="line">        while (j &gt; 0 &amp;&amp; this.array[j-1] &gt; temp) &#123;</span><br><span class="line">            this.array[j] = this.array[j-1]</span><br><span class="line">            j--</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 5.将选出的j位置, 放入temp元素</span><br><span class="line">        this.array[j] = temp</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//希尔排序</span><br><span class="line">ArrayList.prototype.shellSort = function () &#123;</span><br><span class="line">    // 1.获取数组的长度</span><br><span class="line">    var length = this.array.length</span><br><span class="line"></span><br><span class="line">    // 2.根据长度计算增量</span><br><span class="line">    var gap = Math.floor(length / 2)</span><br><span class="line"></span><br><span class="line">    // 3.增量不断变量小, 大于0就继续排序</span><br><span class="line">    while (gap &gt; 0) &#123;</span><br><span class="line">        // 4.实现插入排序</span><br><span class="line">        for (var i = gap; i &lt; length; i++) &#123;</span><br><span class="line">            // 4.1.保存临时变量</span><br><span class="line">            var j = i</span><br><span class="line">            var temp = this.array[i]</span><br><span class="line"></span><br><span class="line">            // 4.2.插入排序的内层循环</span><br><span class="line">            while (j &gt; gap - 1 &amp;&amp; this.array[j - gap] &gt; temp) &#123;</span><br><span class="line">                this.array[j] = this.array[j - gap]</span><br><span class="line">                j -= gap</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 4.3.将选出的j位置设置为temp</span><br><span class="line">            this.array[j] = temp</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 5.重新计算新的间隔</span><br><span class="line">        gap = Math.floor(gap / 2)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//快速排序</span><br><span class="line"> // 选择枢纽</span><br><span class="line"> ArrayList.prototype.median = function (left, right) &#123;</span><br><span class="line">     // 1.求出中间的位置</span><br><span class="line">     var center = Math.floor((left + right) / 2)</span><br><span class="line"></span><br><span class="line">     // 2.判断并且进行交换</span><br><span class="line">     if (this.array[left] &gt; this.array[center]) &#123;</span><br><span class="line">         this.swap(left, center)</span><br><span class="line">     &#125;</span><br><span class="line">     if (this.array[center] &gt; this.array[right]) &#123;</span><br><span class="line">         this.swap(center, right)</span><br><span class="line">     &#125;</span><br><span class="line">     if (this.array[left] &gt; this.array[right]) &#123;</span><br><span class="line">         this.swap(left, right)</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     // 3.巧妙的操作: 将center移动到right - 1的位置.</span><br><span class="line">     this.swap(center, right - 1)</span><br><span class="line"></span><br><span class="line">     // 4.返回pivot</span><br><span class="line">     return this.array[right - 1]</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> // 快速排序实现</span><br><span class="line"> ArrayList.prototype.quickSort = function () &#123;</span><br><span class="line">     this.quickSortRec(0, this.array.length - 1)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> ArrayList.prototype.quickSortRec = function (left, right) &#123;</span><br><span class="line">     // 0.递归结束条件</span><br><span class="line">     if (left &gt;= right) return</span><br><span class="line"></span><br><span class="line">     // 1.获取枢纽</span><br><span class="line">     var pivot = this.median(left, right)</span><br><span class="line"></span><br><span class="line">     // 2.开始进行交换</span><br><span class="line">     // 2.1.记录左边开始位置和右边开始位置</span><br><span class="line">     var i = left</span><br><span class="line">     var j = right - 1</span><br><span class="line">     // 2.2.循环查找位置</span><br><span class="line">     while (true) &#123;</span><br><span class="line">         while (this.array[++i] &lt; pivot) &#123; &#125;</span><br><span class="line">         while (this.array[--j] &gt; pivot) &#123; &#125;</span><br><span class="line">         if (i &lt; j) &#123;</span><br><span class="line">               // 2.3.交换两个数值</span><br><span class="line">             this.swap(i, j)</span><br><span class="line">         &#125; else &#123;</span><br><span class="line">             // 2.4.当i&lt;j的时候(一定不会=, 看下面解释中的序号3), 停止循环因为两边已经找到了相同的位置</span><br><span class="line">             break</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     // 3.将枢纽放在正确的位置</span><br><span class="line">     this.swap(i, right - 1)</span><br><span class="line"></span><br><span class="line">     // 4.递归调用左边</span><br><span class="line">     this.quickSortRec(left, i - 1)</span><br><span class="line">     this.quickSortRec(i + 1, right)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line">// 封装ArrayList</span><br><span class="line"> function ArrayList() &#123;</span><br><span class="line">     this.array = []</span><br><span class="line"></span><br><span class="line">     ArrayList.prototype.insert = function (item) &#123;</span><br><span class="line">         this.array.push(item)</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     ArrayList.prototype.toString = function () &#123;</span><br><span class="line">         return this.array.join()</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     ArrayList.prototype.bubbleSort = function () &#123;</span><br><span class="line">         // 1.获取数组的长度</span><br><span class="line">         var length = this.array.length</span><br><span class="line"></span><br><span class="line">         // 2.反向循环, 因此次数越来越少</span><br><span class="line">         for (var i = length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">             // 3.根据i的次数, 比较循环到i位置</span><br><span class="line">             for (var j = 0; j &lt; i; j++) &#123;</span><br><span class="line">                 // 4.如果j位置比j+1位置的数据大, 那么就交换</span><br><span class="line">                 if (this.array[j] &gt; this.array[j+1]) &#123;</span><br><span class="line">                     // 交换</span><br><span class="line">                     this.swap(j, j+1)</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     ArrayList.prototype.selectionSort = function () &#123;</span><br><span class="line">         // 1.获取数组的长度</span><br><span class="line">         var length = this.array.length</span><br><span class="line"></span><br><span class="line">         // 2.外层循环: 从0位置开始取出数据, 直到length-2位置</span><br><span class="line">         for (var i = 0; i &lt; length - 1; i++) &#123;</span><br><span class="line">             // 3.内层循环: 从i+1位置开始, 和后面的内容比较</span><br><span class="line">             var min = i</span><br><span class="line">             for (var j = min + 1; j &lt; length; j++) &#123;</span><br><span class="line">                 // 4.如果i位置的数据大于j位置的数据, 记录最小的位置</span><br><span class="line">                 if (this.array[min] &gt; this.array[j]) &#123;</span><br><span class="line">                     min = j</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">             this.swap(min, i)</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     ArrayList.prototype.insertionSort = function () &#123;</span><br><span class="line">         // 1.获取数组的长度</span><br><span class="line">         var length = this.array.length</span><br><span class="line"></span><br><span class="line">         // 2.外层循环: 外层循环是从1位置开始, 依次遍历到最后</span><br><span class="line">         for (var i = 1; i &lt; length; i++) &#123;</span><br><span class="line">             // 3.记录选出的元素, 放在变量temp中</span><br><span class="line">             var j = i</span><br><span class="line">             var temp = this.array[i]</span><br><span class="line"></span><br><span class="line">             // 4.内层循环: 内层循环不确定循环的次数, 最好使用while循环</span><br><span class="line">             while (j &gt; 0 &amp;&amp; this.array[j-1] &gt; temp) &#123;</span><br><span class="line">                 this.array[j] = this.array[j-1]</span><br><span class="line">                 j--</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">             // 5.将选出的j位置, 放入temp元素</span><br><span class="line">             this.array[j] = temp</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     ArrayList.prototype.shellSort = function () &#123;</span><br><span class="line">         // 1.获取数组的长度</span><br><span class="line">         var length = this.array.length</span><br><span class="line"></span><br><span class="line">         // 2.根据长度计算增量</span><br><span class="line">         var gap = Math.floor(length / 2)</span><br><span class="line"></span><br><span class="line">         // 3.增量不断变量小, 大于0就继续排序</span><br><span class="line">         while (gap &gt; 0) &#123;</span><br><span class="line">             // 4.实现插入排序</span><br><span class="line">             for (var i = gap; i &lt; length; i++) &#123;</span><br><span class="line">                 // 4.1.保存临时变量</span><br><span class="line">                 var j = i</span><br><span class="line">                 var temp = this.array[i]</span><br><span class="line"></span><br><span class="line">                 // 4.2.插入排序的内存循环</span><br><span class="line">                 while (j &gt; gap - 1 &amp;&amp; this.array[j - gap] &gt; temp) &#123;</span><br><span class="line">                     this.array[j] = this.array[j - gap]</span><br><span class="line">                     j -= gap</span><br><span class="line">                 &#125;</span><br><span class="line"></span><br><span class="line">                 // 4.3.将选出的j位置设置为temp</span><br><span class="line">                 this.array[j] = temp</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">             // 5.重新计算新的间隔</span><br><span class="line">             gap = Math.floor(gap / 2)</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     ArrayList.prototype.swap = function (m, n) &#123;</span><br><span class="line">         var temp = this.array[m]</span><br><span class="line">         this.array[m] = this.array[n]</span><br><span class="line">         this.array[n] = temp</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     // 选择枢纽</span><br><span class="line">     ArrayList.prototype.median = function (left, right) &#123;</span><br><span class="line">         // 1.求出中间的位置</span><br><span class="line">         var center = Math.floor((left + right) / 2)</span><br><span class="line"></span><br><span class="line">         // 2.判断并且进行交换</span><br><span class="line">         if (this.array[left] &gt; this.array[center]) &#123;</span><br><span class="line">             this.swap(left, center)</span><br><span class="line">         &#125;</span><br><span class="line">         if (this.array[center] &gt; this.array[right]) &#123;</span><br><span class="line">             this.swap(center, right)</span><br><span class="line">         &#125;</span><br><span class="line">         if (this.array[left] &gt; this.array[right]) &#123;</span><br><span class="line">             this.swap(left, right)</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         // 3.巧妙的操作: 将center移动到right - 1的位置.</span><br><span class="line">         this.swap(center, right - 1)</span><br><span class="line"></span><br><span class="line">         // 4.返回pivot</span><br><span class="line">         return this.array[right - 1]</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     // 快速排序实现</span><br><span class="line">     ArrayList.prototype.quickSort = function () &#123;</span><br><span class="line">         this.quickSortRec(0, this.array.length - 1)</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     ArrayList.prototype.quickSortRec = function (left, right) &#123;</span><br><span class="line">         // 0.递归结束条件</span><br><span class="line">         if (left &gt;= right) return</span><br><span class="line"></span><br><span class="line">         // 1.获取枢纽</span><br><span class="line">         var pivot = this.median(left, right)</span><br><span class="line"></span><br><span class="line">         // 2.开始进行交换</span><br><span class="line">         var i = left</span><br><span class="line">         var j = right - 1</span><br><span class="line">         while (true) &#123;</span><br><span class="line">             while (this.array[++i] &lt; pivot) &#123; &#125;</span><br><span class="line">             while (this.array[--j] &gt; pivot) &#123; &#125;</span><br><span class="line">             if (i &lt; j) &#123;</span><br><span class="line">                 this.swap(i, j)</span><br><span class="line">             &#125; else &#123;</span><br><span class="line">                 break</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         // 3.将枢纽放在正确的位置</span><br><span class="line">         this.swap(i, right - 1)</span><br><span class="line"></span><br><span class="line">         // 4.递归调用左边</span><br><span class="line">         this.quickSortRec(left, i - 1)</span><br><span class="line">         this.quickSortRec(i + 1, right)</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><!--more-->
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line">// 创建HashTable构造函数</span><br><span class="line">function HashTable() &#123;</span><br><span class="line">    // 定义属性</span><br><span class="line">    this.storage = []</span><br><span class="line">    this.count = 0</span><br><span class="line">    this.limit = 8</span><br><span class="line"></span><br><span class="line">    // 定义相关方法</span><br><span class="line">    // 判断是否是质数</span><br><span class="line">    HashTable.prototype.isPrime = function (num) &#123;</span><br><span class="line">        var temp = parseInt(Math.sqrt(num))</span><br><span class="line">        // 2.循环判断</span><br><span class="line">        for (var i = 2; i &lt;= temp; i++) &#123;</span><br><span class="line">            if (num % i == 0) &#123;</span><br><span class="line">                return false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取质数</span><br><span class="line">    HashTable.prototype.getPrime = function (num) &#123;</span><br><span class="line">        while (!isPrime(num)) &#123;</span><br><span class="line">            num++</span><br><span class="line">        &#125;</span><br><span class="line">        return num</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 哈希函数</span><br><span class="line">    HashTable.prototype.hashFunc = function(str, max) &#123;</span><br><span class="line">        // 1.初始化hashCode的值</span><br><span class="line">        var hashCode = 0</span><br><span class="line"></span><br><span class="line">        // 2.霍纳算法, 来计算hashCode的数值</span><br><span class="line">        for (var i = 0; i &lt; str.length; i++) &#123;</span><br><span class="line">            hashCode = 37 * hashCode + str.charCodeAt(i)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 3.取模运算</span><br><span class="line">        hashCode = hashCode % max</span><br><span class="line">        return hashCode</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 插入数据方法</span><br><span class="line">    HashTable.prototype.put = function (key, value) &#123;</span><br><span class="line">        // 1.获取key对应的index</span><br><span class="line">        var index = this.hashFunc(key, this.limit)</span><br><span class="line"></span><br><span class="line">        // 2.取出数组(也可以使用链表)</span><br><span class="line">        // 数组中放置数据的方式: [[ [k,v], [k,v], [k,v] ] , [ [k,v], [k,v] ]  [ [k,v] ] ]</span><br><span class="line">        var bucket = this.storage[index]</span><br><span class="line"></span><br><span class="line">        // 3.判断这个数组是否存在</span><br><span class="line">        if (bucket === undefined) &#123;</span><br><span class="line">            // 3.1创建桶</span><br><span class="line">            bucket = []</span><br><span class="line">            this.storage[index] = bucket</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 4.判断是新增还是修改原来的值.</span><br><span class="line">        var override = false</span><br><span class="line">        for (var i = 0; i &lt; bucket.length; i++) &#123;</span><br><span class="line">            var tuple = bucket[i]</span><br><span class="line">            if (tuple[0] === key) &#123;</span><br><span class="line">                tuple[1] = value</span><br><span class="line">                override = true</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 5.如果是新增, 前一步没有覆盖</span><br><span class="line">        if (!override) &#123;</span><br><span class="line">            bucket.push([key, value])</span><br><span class="line">            this.count++</span><br><span class="line"></span><br><span class="line">            if (this.count &gt; this.limit * 0.75) &#123;</span><br><span class="line">                var primeNum = this.getPrime(this.limit * 2)</span><br><span class="line">                this.resize(primeNum)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取存放的数据</span><br><span class="line">    HashTable.prototype.get = function (key) &#123;</span><br><span class="line">        // 1.获取key对应的index</span><br><span class="line">        var index = this.hashFunc(key, this.limit)</span><br><span class="line"></span><br><span class="line">        // 2.获取对应的bucket</span><br><span class="line">        var bucket = this.storage[index]</span><br><span class="line"></span><br><span class="line">        // 3.如果bucket为null, 那么说明这个位置没有数据</span><br><span class="line">        if (bucket == null) &#123;</span><br><span class="line">            return null</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 4.有bucket, 判断是否有对应的key</span><br><span class="line">        for (var i = 0; i &lt; bucket.length; i++) &#123;</span><br><span class="line">            var tuple = bucket[i]</span><br><span class="line">            if (tuple[0] === key) &#123;</span><br><span class="line">                return tuple[1]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 5.没有找到, return null</span><br><span class="line">        return null</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 删除数据</span><br><span class="line">    HashTable.prototype.remove = function (key) &#123;</span><br><span class="line">        // 1.获取key对应的index</span><br><span class="line">        var index = this.hashFunc(key, this.limit)</span><br><span class="line"></span><br><span class="line">        // 2.获取对应的bucket</span><br><span class="line">        var bucket = this.storage[index]</span><br><span class="line"></span><br><span class="line">        // 3.判断同是否为null, 为null则说明没有对应的数据</span><br><span class="line">        if (bucket == null) &#123;</span><br><span class="line">            return null</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 4.遍历bucket, 寻找对应的数据</span><br><span class="line">        for (var i = 0; i &lt; bucket.length; i++) &#123;</span><br><span class="line">            var tuple = bucket[i]</span><br><span class="line">            if (tuple[0] === key) &#123;</span><br><span class="line">                bucket.splice(i, 1)</span><br><span class="line">                this.count--</span><br><span class="line"></span><br><span class="line">                // 缩小数组的容量</span><br><span class="line">                if (this.limit &gt; 7 &amp;&amp; this.count &lt; this.limit * 0.25) &#123;</span><br><span class="line">                    var primeNum = this.getPrime(Math.floor(this.limit / 2))</span><br><span class="line">                    this.resize(primeNum)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return tuple[1]</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 5.来到该位置, 说明没有对应的数据, 那么返回null</span><br><span class="line">        return null</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // isEmpty方法</span><br><span class="line">    HashTable.prototype.isEmpty = function () &#123;</span><br><span class="line">        return this.count == 0</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // size方法</span><br><span class="line">    HashTable.prototype.size = function () &#123;</span><br><span class="line">        return this.count</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 哈希表扩容</span><br><span class="line">    HashTable.prototype.resize = function (newLimit) &#123;</span><br><span class="line">        // 1.保存旧的数组内容</span><br><span class="line">        var oldStorage = this.storage</span><br><span class="line"></span><br><span class="line">        // 2.重置属性</span><br><span class="line">        this.limit = newLimit</span><br><span class="line">        this.count = 0</span><br><span class="line">        this.storage = []</span><br><span class="line"></span><br><span class="line">        // 3.遍历旧数组中的所有数据项, 并且重新插入到哈希表中</span><br><span class="line">        oldStorage.forEach(function (bucket) &#123;</span><br><span class="line">            // 1.bucket为null, 说明这里面没有数据</span><br><span class="line">            if (bucket == null) &#123;</span><br><span class="line">                return</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 2.bucket中有数据, 那么将里面的数据重新哈希化插入</span><br><span class="line">            for (var i = 0; i &lt; bucket.length; i++) &#123;</span><br><span class="line">                var tuple = bucket[i]</span><br><span class="line">                this.put(tuple[0], tuple[1])</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).bind(this)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/06/30/%E6%AF%94%E8%BE%83Vue%E5%92%8CReact%EF%BC%9F/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">比较Vue和React？</span></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="content" id="valine-thread"></div><script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@1.4.16/dist/Valine.min.js"></script><script>new Valine({
+            el: '#valine-thread',
+            appId: "dvbU6cs8mO4tpam28kfkNFaI-gzGzoHsz",
+            appKey: "tfoqOv7jT6pDSo3Abm9K4Jok",
+            
+            avatar: "mm",
+            avatarForce: false,
+            meta: ["nick","mail","link"],
+            pageSize: 10,
+            lang: "zh-CN",
+            visitor: false,
+            highlight: true,
+            recordIP: false,
+            
+            
+            
+            enableQQ: false,
+            requiredFields: [],
+        });</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpeg" alt="foolishmax"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">foolishmax</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>上海</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">38</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">18</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">22</p></a></div></div></nav></div></div><!--!--><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a><p class="is-size-7"><span>&copy; 2022 foolishmax</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: ''
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
