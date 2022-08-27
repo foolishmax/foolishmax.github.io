@@ -4382,70 +4382,6 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
       </tags>
   </entry>
   <entry>
-    <title>说说你对闭包的理解？</title>
-    <url>/2019/07/17/%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9%E9%97%AD%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F/</url>
-    <content><![CDATA[<h2 id="说说你对闭包的理解？"><a href="#说说你对闭包的理解？" class="headerlink" title="说说你对闭包的理解？"></a>说说你对闭包的理解？</h2><span id="more"></span>
-
-<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><ul>
-<li><p>函数可以记住并访问所在的词法作用域，就产生了闭包。或简单理解为：定义在一个函数内部的<br>函数，内部函数持有外部函数内变量或参数的引用。</p>
-</li>
-<li><p>内部函数被保存在全局，内部函数依赖外部函数，外部函数参数和变量不会被垃圾回收机制回收，<br>这些变量会始终存在于内存中。</p>
-</li>
-</ul>
-<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><ul>
-<li>JavaScript 代码的整个执行过程，分为两个阶段，代码编译阶段与代码执行阶段。编译<br>阶段由编译器完成，将代码编译成可执行代码，这个阶段作用域规则会确定。执行阶段由 js<br>引擎完成，主要任务是执行可执行代码，执行期上下文在这个阶段创建。</li>
-<li>编译器<ul>
-<li>语法分析</li>
-<li>词法分析</li>
-<li>可执行代码生成</li>
-<li>作用域规则确定</li>
-<li>…</li>
-</ul>
-</li>
-<li>js 引擎<ul>
-<li>执行上下文</li>
-<li>代码执行</li>
-<li>垃圾回收</li>
-<li>…</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">    var a = 2</span><br><span class="line">    function bar() &#123;</span><br><span class="line">        console.log(2)</span><br><span class="line">    &#125;</span><br><span class="line">    return bar</span><br><span class="line">&#125;</span><br><span class="line">var baz = foo()</span><br><span class="line">baz() //2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//也可以是作为参数传递给外部函数</span><br><span class="line">function foo() &#123;</span><br><span class="line">    var a = 2</span><br><span class="line">    function bar() &#123;</span><br><span class="line">        console.log(a)</span><br><span class="line">    &#125;</span><br><span class="line">    baz(bar)</span><br><span class="line">&#125;</span><br><span class="line">function baz(fn) &#123;</span><br><span class="line">    fn()</span><br><span class="line">&#125;</span><br><span class="line">foo()</span><br><span class="line"></span><br><span class="line">//也可以间接的分配给全局变量</span><br><span class="line">var fn</span><br><span class="line">function foo() &#123;</span><br><span class="line">    var a = 2</span><br><span class="line">    function bar() &#123;</span><br><span class="line">        console.log(a)</span><br><span class="line">    &#125;</span><br><span class="line">    fn = bar</span><br><span class="line">&#125;</span><br><span class="line">function baz() &#123;</span><br><span class="line">    fn()</span><br><span class="line">&#125;</span><br><span class="line">foo()</span><br><span class="line">baz()</span><br></pre></td></tr></table></figure>
-
-<h4 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h4><ul>
-<li><p>可以读取函数内部的变量</p>
-</li>
-<li><p>柯里化</p>
-</li>
-<li><p>封装对象的私有属性和私有方法（收敛权限）,例如模块实例</p>
-</li>
-<li><p>模块的两个特征：</p>
-<ul>
-<li>为了创建一个内部作用域而调用了一个包装函数</li>
-<li>包装函数必须至少一个对内部函数的引用，这样就会创建涵盖整个函数内部作用域的闭包</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var foo = (function CoolModule()&#123;</span><br><span class="line">    var something = &quot;cool&quot;</span><br><span class="line">    var another = [1, 2, 3]</span><br><span class="line"></span><br><span class="line">    function doSomething() &#123;</span><br><span class="line">        console.log(something)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function doAnother() &#123;</span><br><span class="line">        console.log(another.join(&#x27;!&#x27;))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return &#123;</span><br><span class="line">        doSomething: doSomething,</span><br><span class="line">        doAnother: doAnother</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line">foo.doSomething()   //cool</span><br><span class="line">foo.doAnother()     //1!2!3</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>避免污染全局变量</li>
-</ul>
-<h4 id="坏处"><a href="#坏处" class="headerlink" title="坏处"></a>坏处</h4><ul>
-<li>会增大内存使用量，容易造成内存泄漏。</li>
-</ul>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul>
-<li>在退出函数前，将不使用的局部变量全部删除。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>面试优质手写题</title>
     <url>/2022/03/31/%E9%9D%A2%E8%AF%95%E4%BC%98%E8%B4%A8%E6%89%8B%E5%86%99%E9%A2%98/</url>
     <content><![CDATA[<h1 id="手写部分"><a href="#手写部分" class="headerlink" title="手写部分"></a>手写部分</h1><span id="more"></span>
@@ -6308,7 +6244,7 @@ Vue.component(&#39;my-component&#39;, &#123;
       </tags>
   </entry>
   <entry>
-    <title>Node.js之http</title>
+    <title>http深入浅出</title>
     <url>/2019/09/06/http%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/</url>
     <content><![CDATA[<h2 id="HTTP-简介"><a href="#HTTP-简介" class="headerlink" title="HTTP 简介"></a>HTTP 简介</h2><span id="more"></span>
 
@@ -6343,10 +6279,10 @@ Vue.component(&#39;my-component&#39;, &#123;
 <h3 id="Content-Type-设置编码"><a href="#Content-Type-设置编码" class="headerlink" title="Content-Type 设置编码"></a>Content-Type 设置编码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var http = require(&#x27;http&#x27;)</span><br><span class="line">var server = http.createServer()</span><br><span class="line"></span><br><span class="line">server.on(&#x27;request&#x27;,function (req,res) &#123;</span><br><span class="line">    //设置服务器响应内容的编码</span><br><span class="line">    res.setHeader(&#x27;Content-Type&#x27;,&#x27;text/plain;charset=utf-8&#x27;)</span><br><span class="line">    res.end(&#x27;hello 世界&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line">server.listen(3000, function () &#123;</span><br><span class="line">    console.log(&#x27;server is running...&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>Node.js</category>
+        <category>http</category>
       </categories>
       <tags>
-        <tag>Node.js</tag>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
