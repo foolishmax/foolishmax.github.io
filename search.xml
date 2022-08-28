@@ -6272,7 +6272,26 @@ Vue.component(&#39;my-component&#39;, &#123;
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Connection: keep-alive</span><br></pre></td></tr></table></figure>
 
-<h3 id="创建一个简单的-http-服务"><a href="#创建一个简单的-http-服务" class="headerlink" title="创建一个简单的 http 服务"></a>创建一个简单的 http 服务</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//加载http核心模块</span><br><span class="line">var http = require(&#x27;http&#x27;)</span><br><span class="line"></span><br><span class="line">var server = http.createServer()</span><br><span class="line"></span><br><span class="line">//服务器要做的处理事情</span><br><span class="line">server.on(&#x27;request&#x27;, function() &#123;</span><br><span class="line">    console.log(&#x27;收到客户端的请求了&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//绑定端口号，启动服务器</span><br><span class="line">server.listen(3000, function()&#123;</span><br><span class="line">    console.log(&#x27;server start.....&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><ul>
+<li><p>https(Hypertext Transfer Protocal Secure):超文本传输安全协议，在 http 基础上加了 secure 安全</p>
+</li>
+<li><p>https 是 http 协议的一种扩展，使用传输层安全性<strong>TLS</strong>或安全套接字层<strong>SSL</strong>对通信协议进行加密</p>
+</li>
+</ul>
+<h2 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h2><ul>
+<li><p>二进制帧</p>
+</li>
+<li><p>多路复用</p>
+</li>
+<li><p>头部压缩</p>
+</li>
+<li><p>服务端推送</p>
+</li>
+</ul>
+<h2 id="HTTP3"><a href="#HTTP3" class="headerlink" title="HTTP3"></a>HTTP3</h2><ul>
+<li>基于 UDP 的传输层下协议，特点快</li>
+</ul>
+<h2 id="创建一个简单的-http-服务"><a href="#创建一个简单的-http-服务" class="headerlink" title="创建一个简单的 http 服务"></a>创建一个简单的 http 服务</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//加载http核心模块</span><br><span class="line">var http = require(&#x27;http&#x27;)</span><br><span class="line"></span><br><span class="line">var server = http.createServer()</span><br><span class="line"></span><br><span class="line">//服务器要做的处理事情</span><br><span class="line">server.on(&#x27;request&#x27;, function() &#123;</span><br><span class="line">    console.log(&#x27;收到客户端的请求了&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//绑定端口号，启动服务器</span><br><span class="line">server.listen(3000, function()&#123;</span><br><span class="line">    console.log(&#x27;server start.....&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="请求处理"><a href="#请求处理" class="headerlink" title="请求处理"></a>请求处理</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var http = require(&#x27;http&#x27;)</span><br><span class="line"></span><br><span class="line">var server = http.createServer()</span><br><span class="line"></span><br><span class="line">//request 请求处理函数，需要接受两个参数</span><br><span class="line">server.on(&#x27;request&#x27;, function(request, response) &#123;</span><br><span class="line">//  request 请求对象</span><br><span class="line">//  请求对象可以获取客户端的一些请求信息，如请求路径</span><br><span class="line">    console.log(&#x27;收到客户端的请求了,路径是：&#x27;+ request.url)</span><br><span class="line"></span><br><span class="line">//  response 响应对象</span><br><span class="line">//  响应数据只能是二进制数据或者字符串</span><br><span class="line">//  响应对象可以用开给客户端发送响应消息</span><br><span class="line">//  response对象中：write给客户端发送响应数据，最后使用end结束</span><br><span class="line">    response.write(&#x27;hello&#x27;)</span><br><span class="line">    response.write(&#x27; nodejs &#x27;)</span><br><span class="line">    response.end(request.url)</span><br><span class="line"></span><br><span class="line">//  或者直接end的同时发送响应数据：</span><br><span class="line">//  response.end(&#x27;hello nodejs&#x27;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(3000, function()&#123;</span><br><span class="line">    console.log(&#x27;server start.....&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
