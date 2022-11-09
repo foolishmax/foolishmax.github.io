@@ -4108,9 +4108,26 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
   <entry>
     <title>常见设计模式</title>
     <url>/2019/09/27/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h3 id="常见的设计模式"><a href="#常见的设计模式" class="headerlink" title="常见的设计模式"></a>常见的设计模式</h3><span id="more"></span>
+    <content><![CDATA[<h2 id="SOLID-五大设计原则"><a href="#SOLID-五大设计原则" class="headerlink" title="SOLID 五大设计原则"></a>SOLID 五大设计原则</h2><span id="more"></span>
 
 <ul>
+<li><p>S 单一职责原则</p>
+<p>一个程序只做好一件事，如果功能过于复杂就拆分开，每个部分保持独立</p>
+</li>
+<li><p>O 开放封闭原则</p>
+<p>对修改封闭，对扩展开放</p>
+</li>
+<li><p>L 李氏置换原则</p>
+<p>子类能覆盖父类</p>
+</li>
+<li><p>I 接口独立原则</p>
+<p>保持接口的单一独立，避免出现胖接口</p>
+</li>
+<li><p>D 依赖倒置原则</p>
+<p>面向接口编程，依赖于抽象而不依赖于具体。写代码时用到具体类时，不与具体类交互，而与具体类的上层接口交互。</p>
+</li>
+</ul>
+<h2 id="常见的设计模式"><a href="#常见的设计模式" class="headerlink" title="常见的设计模式"></a>常见的设计模式</h2><ul>
 <li><p>单例模式</p>
 </li>
 <li><p>构造函数模式</p>
