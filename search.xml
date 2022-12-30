@@ -3235,6 +3235,20 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 
 <p><strong>解决方案</strong></p>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">ConsistsOnlyOf</span>&lt;<span class="title class_">LongString</span> <span class="keyword">extends</span> <span class="built_in">string</span>, <span class="title class_">SubString</span> <span class="keyword">extends</span> <span class="built_in">string</span>&gt; =</span><br><span class="line"><span class="title class_">LongString</span> <span class="keyword">extends</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">? <span class="literal">true</span></span><br><span class="line">: <span class="title class_">LongString</span> <span class="keyword">extends</span> <span class="string">`<span class="subst">$&#123;SubString&#125;</span><span class="subst">$&#123;infer R&#125;</span>`</span></span><br><span class="line">? <span class="title class_">ConsistsOnlyOf</span>&lt;R, <span class="title class_">SubString</span>&gt;</span><br><span class="line">: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">C0</span> = <span class="title class_">ConsistsOnlyOf</span>&lt;<span class="string">&#x27;aaa&#x27;</span>, <span class="string">&#x27;a&#x27;</span>&gt;; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">C1</span> = <span class="title class_">ConsistsOnlyOf</span>&lt;<span class="string">&#x27;ababab&#x27;</span>, <span class="string">&#x27;ab&#x27;</span>&gt;; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">C2</span> = <span class="title class_">ConsistsOnlyOf</span>&lt;<span class="string">&#x27;aBa&#x27;</span>, <span class="string">&#x27;a&#x27;</span>&gt;; <span class="comment">// false</span></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">C3</span> = <span class="title class_">ConsistsOnlyOf</span>&lt;<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;a&#x27;</span>&gt;; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第四十九题"><a href="#第四十九题" class="headerlink" title="第四十九题"></a>第四十九题</h2><ul>
+<li>项目中定义了接口返回的数据的类型，每层都能灵活扩展一些属性，怎么做呢？</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 接口返回数据结构</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Data</span> = &#123;</span><br><span class="line">  aaa?: <span class="built_in">number</span>;</span><br><span class="line">  <span class="attr">bbb</span>: &#123;</span><br><span class="line">    <span class="attr">ccc</span>: <span class="built_in">number</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">DeepRecord</span>&lt;<span class="title class_">Obj</span> <span class="keyword">extends</span> <span class="title class_">Record</span>&lt;keyof <span class="built_in">any</span>, <span class="built_in">unknown</span>&gt;&gt; = &#123;</span><br><span class="line">  [key <span class="keyword">in</span> keyof <span class="title class_">Obj</span>]: <span class="title class_">Obj</span>[key] <span class="keyword">extends</span> <span class="title class_">Record</span>&lt;keyof <span class="built_in">any</span>, <span class="built_in">unknown</span>&gt;</span><br><span class="line">    ? <span class="title class_">DeepRecord</span>&lt;<span class="title class_">Obj</span>[key]&gt; &amp; <span class="title class_">Record</span>&lt;keyof <span class="built_in">any</span>, <span class="built_in">unknown</span>&gt;</span><br><span class="line">    : <span class="title class_">Obj</span>[key];</span><br><span class="line">&#125; &amp; <span class="title class_">Record</span>&lt;keyof <span class="built_in">any</span>, <span class="built_in">unknown</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">IData</span> = <span class="title class_">DeepRecord</span>&lt;<span class="title class_">Data</span>&gt;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十五题-1"><a href="#第十五题-1" class="headerlink" title="第十五题"></a>第十五题</h2><ul>
+<li>当一个索引为 ‘desc’ | ‘asc’ 的时候，其他索引都是 false</li>
+</ul>
+<p><strong>解决方案</strong></p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">GenerateType</span>&lt;keys <span class="keyword">extends</span> keyof <span class="built_in">any</span>, <span class="variable constant_">V1</span>, <span class="variable constant_">V2</span>&gt; = &#123;</span><br><span class="line">  [key <span class="keyword">in</span> keys]: &#123;</span><br><span class="line">    [key1 <span class="keyword">in</span> key]: <span class="variable constant_">V1</span>;</span><br><span class="line">  &#125; &amp; &#123;</span><br><span class="line">    [key2 <span class="keyword">in</span> <span class="title class_">Exclude</span>&lt;keys, key&gt;]: <span class="variable constant_">V2</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;[keys];</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> R = <span class="title class_">GenerateType</span>&lt;<span class="string">&quot;a&quot;</span> | <span class="string">&quot;b&quot;</span> | <span class="string">&quot;c&quot;</span> | <span class="string">&quot;d&quot;</span>, <span class="string">&quot;desc&quot;</span> | <span class="string">&quot;asc&quot;</span>, <span class="literal">false</span>&gt;;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>typescript</category>
@@ -4128,13 +4142,22 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 </li>
 </ul>
 <h2 id="常见的设计模式"><a href="#常见的设计模式" class="headerlink" title="常见的设计模式"></a>常见的设计模式</h2><ul>
-<li><p>单例模式</p>
+<li><p>工厂模式</p>
+<p>jquery、react createElement</p>
 </li>
+<li><p>单例模式</p>
+<ul>
+<li>自定义事件 EventBus 全局唯一</li>
+<li>Vuex Redux 的 store 全局唯一</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SingleTon</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">constructor</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="attr">instance</span>: <span class="title class_">SingleTon</span> | <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">getInstance</span>(): <span class="title class_">SingleTon</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">SingleTon</span>.<span class="property">instance</span> === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="title class_">SingleTon</span>.<span class="property">instance</span> = <span class="keyword">new</span> <span class="title class_">SingleTon</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">SingleTon</span>.<span class="property">instance</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">SingleTon</span>.<span class="title function_">getInstance</span>(); <span class="comment">// 正确</span></span><br><span class="line"><span class="title class_">SingleTon</span>.<span class="property">instance</span>; <span class="comment">// 报错</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">SingleTon</span>(); <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+
+<ul>
 <li><p>构造函数模式</p>
 </li>
 <li><p>建造者模式</p>
-</li>
-<li><p>工厂模式</p>
 </li>
 <li><p>代理模式</p>
 </li>
