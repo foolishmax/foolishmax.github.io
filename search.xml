@@ -5686,8 +5686,7 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 5.向客户端返回资源
 6.解析HTML文档，构建DOM树，CSSOM树，下载资源，执行js脚本等。
 </code></pre>
-<!--more-->
-
+<p>扩展：<br><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NDY4NDgyOQ==&mid=2247491757&idx=1&sn=a956c6c62c98e2d5ee71c8ed8d3a3eb8&chksm=cecfa85ff9b82149a3e50e81789b29cc0923745cf8a8f7713619aa2499753a3de760f24e6f93&scene=132#wechat_redirect">收到的 HTML 如果包含几十个图片标签，这些图片是以什么方式、什么顺序、建立了多少连接、使用什么协议被下载下来的呢？</a></p>
 <h2 id="DNS-负载均衡"><a href="#DNS-负载均衡" class="headerlink" title="DNS 负载均衡"></a>DNS 负载均衡</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">当一个网站有足够多的用户的时候，假如每次请求的资源都位于同一台机器上面，那么这台机器随时可能会蹦掉。处理办法就是用DNS负载均衡技术，它的原理是在DNS服务器中为同一个域名配置多个IP地址,在应答DNS查询时,DNS服务器对每个查询将以DNS文件中主机记录的IP地址按顺序返回不同的解析结果,将客户端的访问引导到不同的机器上去,使得不同的客户端访问不同的服务器,从而达到负载均衡的目的｡例如可以根据每台机器的负载量，该机器离用户地理位置的距离等等。</span><br></pre></td></tr></table></figure>
 
 <h2 id="强缓存和协商缓存"><a href="#强缓存和协商缓存" class="headerlink" title="强缓存和协商缓存"></a>强缓存和协商缓存</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">强缓存：（expires、Cache-Control）在过期时间内，浏览器再次加载资源时，不会向服务器发起请求，直接从缓存中读取资源</span><br><span class="line"></span><br><span class="line">协商缓存：向服务器发送请求，服务器会根据请求头（request header）的一些参数（Etag、last-modified）来判断是否命中协商缓存，首先根据Etag的值判断请求的文件有没有被修改，如果Etag一致则没有被修改，命中协商缓存返回304，如果不一致则返回新的资源并带上新的Etag返回200状态码。如果没有Etag值，则对比If-Modified-Since和请求文件的最后修改时间，一致则命中协商缓存返回304，不一致则返回新的last-modified和200状态码</span><br></pre></td></tr></table></figure>
