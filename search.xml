@@ -5865,7 +5865,7 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 
 <h2 id="es6-新特性"><a href="#es6-新特性" class="headerlink" title="es6 新特性"></a>es6 新特性</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.let和const</span><br><span class="line">2.模版字符串</span><br><span class="line">3.箭头函数</span><br><span class="line">4.函数可以设置默认参数值</span><br><span class="line">5.扩展运算符</span><br><span class="line">6.对象和数组的解构</span><br><span class="line">7.class</span><br></pre></td></tr></table></figure>
 
-<h2 id="图片懒加载原理"><a href="#图片懒加载原理" class="headerlink" title="图片懒加载原理"></a>图片懒加载原理</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 浏览器是否发起请求是根据&lt;img /&gt;标签的src属性</span><br><span class="line">2. 所以懒加载的关键是：在图片没有进入可视区域时，</span><br><span class="line">先不给&lt;img /&gt;的src属性赋值，等到图片进入可是区域再给src赋值。</span><br><span class="line"></span><br><span class="line">当图片底边距离页面的偏移（图片高度+图片距离顶部偏移高度）</span><br><span class="line">小于等于</span><br><span class="line">浏览器底边距离页面顶部高度（浏览器一屏高度 + 滚动区域）</span><br></pre></td></tr></table></figure>
+<h2 id="图片懒加载原理"><a href="#图片懒加载原理" class="headerlink" title="图片懒加载原理"></a>图片懒加载原理</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 浏览器是否发起请求是根据&lt;img /&gt;标签的src属性</span><br><span class="line">2. 所以懒加载的关键是：在图片没有进入可视区域时，</span><br><span class="line">先不给&lt;img /&gt;的src属性赋值，等到图片进入可是区域再给data-src -&gt; src赋值。</span><br><span class="line"></span><br><span class="line">当图片底边距离页面的偏移（图片高度+图片距离顶部偏移高度）</span><br><span class="line">小于等于</span><br><span class="line">浏览器底边距离页面顶部高度（浏览器一屏高度 + 滚动区域）</span><br></pre></td></tr></table></figure>
 
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="H5-新增了哪些标签？"><a href="#H5-新增了哪些标签？" class="headerlink" title="H5 新增了哪些标签？"></a>H5 新增了哪些标签？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">article、aside、audio、video、footer、header、nav、section</span><br></pre></td></tr></table></figure>
 
@@ -6785,6 +6785,46 @@ dt.getDay()     //星期几（0-6）
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">根据内容的结构化，选择合适的标签，便于开发者阅读和写出更优雅的代码的同时利于SEO的优化。</span><br></pre></td></tr></table></figure>
 
 <h3 id="为什么要语义化？"><a href="#为什么要语义化？" class="headerlink" title="为什么要语义化？"></a>为什么要语义化？</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 为了在没有CSS的情况下，页面也能呈现出很好地内容结构、代码结构:为了裸奔时好看；</span><br><span class="line">-  用户体验：例如title、alt用于解释名词或解释图片信息、label标签的活用；</span><br><span class="line">- 有利于SEO ：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息： 爬虫依赖于</span><br><span class="line">标签来确定上下文和各个关键字的权重；</span><br><span class="line">- 方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页；</span><br><span class="line">- 便于团队开发和维护，语义化更具可读性，是下一步网页的重要动向，遵循W3C标准的</span><br><span class="line">团队都遵循这个标准，可以减少差异化。</span><br></pre></td></tr></table></figure>
+
+<h3 id="构建打包优化（webpack-bundle-analyzer-分析各个打包文件）"><a href="#构建打包优化（webpack-bundle-analyzer-分析各个打包文件）" class="headerlink" title="构建打包优化（webpack-bundle-analyzer 分析各个打包文件）"></a>构建打包优化（webpack-bundle-analyzer 分析各个打包文件）</h3><p>速度优化:</p>
+<ul>
+<li><p>exclude/include</p>
+<p>通过 exclude、include 配置来确保转译尽可能少的文件</p>
+</li>
+<li><p>cache</p>
+</li>
+<li><p>thread-loader</p>
+</li>
+<li><p>resolve.alias</p>
+<p>webpack 直接根据对应别名的目录查找模块，减少搜索时间</p>
+</li>
+<li><p>模块懒加载</p>
+</li>
+<li><p>externals + CDN</p>
+</li>
+</ul>
+<h3 id="V8-垃圾回收机制"><a href="#V8-垃圾回收机制" class="headerlink" title="V8 垃圾回收机制"></a>V8 垃圾回收机制</h3><ul>
+<li><p>V8 会把堆分为新生代和老生代</p>
+</li>
+<li><p>新生代（副垃圾回收器）</p>
+<ul>
+<li>存放生存时间短的对象</li>
+<li>通常只支持 1 ～ 8M 的容量</li>
+<li>分为对象区和空闲区<ul>
+<li>对对象区域中的垃圾做标记，标记完成进入垃圾清理阶段，把存活的对象复制到空闲区域，把这些对象有序的排列起来</li>
+<li>完成复制后，对象区和空闲区进行角色翻转</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>老生代（主垃圾回收器）</p>
+<ul>
+<li>存放生存时间久的对象</li>
+</ul>
+</li>
+<li><p>副垃圾回收器采用对象晋升策略：移动那些经过两次垃圾回收依然还存活的对象到老生代中</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>面经</category>
