@@ -6819,12 +6819,16 @@ dt.getDay()     //星期几（0-6）
 </li>
 <li><p>老生代（主垃圾回收器）</p>
 <ul>
-<li>存放生存时间久的对象</li>
+<li>对象存放生存时间久</li>
+<li>对象占用空间大</li>
 </ul>
 </li>
 <li><p>副垃圾回收器采用对象晋升策略：移动那些经过两次垃圾回收依然还存活的对象到老生代中</p>
 </li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">V8实现了精准式GC，GC算法采用了分代式垃圾回收机制。因此，V8将内存（堆）分为新生代和老生代两部分。</span><br><span class="line"></span><br><span class="line">新生代算法</span><br><span class="line">新生代中的对象一般存活时间较短，使用Scavenge GC算法。</span><br><span class="line">在新生代空间中，内存空间分为两部分，分别为From空间和To空间。</span><br><span class="line">在这两个空间中，必定有一个空间是使用的，另一个空间是空闲的。</span><br><span class="line">新分配的对象会被放入From空间中，当From空间被占满时，新生代GC就会启动。</span><br><span class="line">算法会检查From空间中存活的对象并复制到To空间中，如果失活的对象就会销毁。</span><br><span class="line">当复制完成后将From空间和To空间互换，这样GC就结束了。</span><br><span class="line"></span><br><span class="line">老生代算法</span><br><span class="line">老生代中的对象一般存活时间较长且数量也多，使用了两个算法，分别是 标记清除算法 和 标记压缩算法。</span><br><span class="line">在将算法前，先来说下什么情况下对象会出现在老生代空间中：</span><br><span class="line">● 新生代中的对象是否已经经历过一次Scavenge算法，如果经历过的话，会将对象从新生代空间移到老生代空间。</span><br><span class="line">● To空间的对象占比大于25%。在这种情况下，为了不影响到内存分配，会将对象从新生代空间移到老生代空间中。</span><br><span class="line"></span><br><span class="line">以下情况会启动 标记清除算法：</span><br><span class="line">● 某一空间没有分块的时候</span><br><span class="line">● 空间中对象超过一定限制</span><br><span class="line">● 空间不能保证新生代中的对象移动时</span><br><span class="line"></span><br><span class="line">清除对象后会造成堆内存出现碎片的情况，当碎片超过一定限制后会启动 压缩算法。在压缩过程中，将活的对象像一端移动，直到所有对象都移动完成然后清除不需要的内存。</span><br></pre></td></tr></table></figure>
+
+<h3 id="浏览器在渲染时遇到-javascript-文件要怎么处理？"><a href="#浏览器在渲染时遇到-javascript-文件要怎么处理？" class="headerlink" title="浏览器在渲染时遇到 javascript 文件要怎么处理？"></a>浏览器在渲染时遇到 javascript 文件要怎么处理？</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script&gt; 中没有 defer 或 async ，浏览器会立即加载并执行指定的脚本，也就是说不等待后续载入的文档元素，读到就加载并执行。</span><br><span class="line">&lt;script&gt; 中有 async 属性表示异步执行引入的 JavaScript ，与 defer 的区别在于，如果已经加载好，就会开始执行——无论此刻是 HTML 解析阶段还是 DOMContentLoaded 触发之后。需要注意的是，这种方式加载的 JavaScript 依然会阻塞 load 事件。换句话说，async-script 可能在 DOMContentLoaded 触发之前或之后执行，但一定在 load 触发之前执行。</span><br><span class="line">&lt;script&gt; 中有 defer 属性表示延迟执行引入的 JavaScript ，即这段 JavaScript 加载时 HTML 并未停止解析，这两个过程是并行的。整个 document 解析完毕且 defer-script 也加载完成之后（这两件事情的顺序无关），会执行所有由 defer-script 加载的 JavaScript 代码，然后触发 DOMContentLoaded 事件。</span><br><span class="line">有 defer 属性的 &lt;script&gt; 相比普通 &lt;script&gt; ，有两点区别：载入 JavaScript 文件时不阻塞 HTML 的解析，执行阶段被放到 HTML 标签解析完成之后。 在加载多个JS脚本的时候， async 是无顺序的加载，而 defer 是有顺序的加载。</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>面经</category>
