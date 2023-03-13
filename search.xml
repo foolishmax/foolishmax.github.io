@@ -6839,6 +6839,10 @@ dt.getDay()     //星期几（0-6）
 <h2 id="使用-git-commit-后，如何修改-commit-的信息？"><a href="#使用-git-commit-后，如何修改-commit-的信息？" class="headerlink" title="使用 git commit 后，如何修改 commit 的信息？"></a>使用 git commit 后，如何修改 commit 的信息？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
 
 <h2 id="在-less-中如何将-px-转换为-vw？"><a href="#在-less-中如何将-px-转换为-vw？" class="headerlink" title="在 less 中如何将 px 转换为 vw？"></a>在 less 中如何将 px 转换为 vw？</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.pxToVW</span> (<span class="keyword">@px</span>, @<span class="attribute">attr</span>: <span class="attribute">width</span>) &#123;</span><br><span class="line">  <span class="keyword">@vw</span>: (@px / <span class="number">750</span>) * <span class="number">100</span>;</span><br><span class="line">  @&#123;attr&#125;:~<span class="string">&quot;@&#123;vw&#125;vw&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title</span>&#123;</span><br><span class="line">	<span class="selector-class">.pxToVW</span>(<span class="number">300</span>,<span class="attribute">width</span>)</span><br><span class="line">	<span class="selector-class">.pxToVW</span>(<span class="number">32</span>,<span class="attribute">font-size</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">这里是指，设计图是按照<span class="number">750px</span>的宽度进行设计的,</span><br><span class="line">title 中所有的值都是直接取的设计图的值，通过函数进行统一换算</span><br></pre></td></tr></table></figure>
+
+<h2 id="js-请说说写一个拖拽组件的思路及注意事项"><a href="#js-请说说写一个拖拽组件的思路及注意事项" class="headerlink" title="[js] 请说说写一个拖拽组件的思路及注意事项?"></a>[js] 请说说写一个拖拽组件的思路及注意事项?</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">首先，其实拖拽效果的思路是很简单的。主要就是三个步骤：</span><br><span class="line"></span><br><span class="line">1.onmousedown的时候，启动可拖拽事件，记录被拖拽元素的原始坐标参数。</span><br><span class="line"></span><br><span class="line">2.onmousemove的时候，实时记录鼠标移动的距离，结合被拖拽元素第一阶段的坐标参数，计算并设置新的坐标值。</span><br><span class="line"></span><br><span class="line">3.onmouseup的时候，关闭可拖拽事件，记录新的坐标值。</span><br><span class="line"></span><br><span class="line">注意：这里主要是通过绝对定位的top和left来确定元素的位置的，因此被拖拽元素的css一定要设置绝对定位。</span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么-try-catch-不能捕获到-promise-的错误？"><a href="#为什么-try-catch-不能捕获到-promise-的错误？" class="headerlink" title="为什么 try/catch 不能捕获到 promise 的错误？"></a>为什么 try/catch 不能捕获到 promise 的错误？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">try-catch 主要用于捕获同步函数的异常，如果 try 里面的异步方法出现了异常，此时catch 是无法捕获到异常的。ES6 中 Promise 对象的实例提供了 catch() 方法，表示异步捕获异常。</span><br><span class="line"></span><br><span class="line">原因：当异步函数抛出异常时，对于宏任务而言，执行函数时已经将该函数推入栈，此时并不在 try-catch 所在的栈，所以 try-catch 并不能捕获到错误。对于微任务而言，比如 promise，promise 的构造函数的异常只能被自带的 reject 也就是.catch 函数捕获到。</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>面经</category>
@@ -7020,6 +7024,20 @@ shuffle(arr)
       </categories>
       <tags>
         <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>全面解读React v18全部Api</title>
+    <url>/2023/03/13/%E5%85%A8%E9%9D%A2%E8%A7%A3%E8%AF%BBReact-v18%E5%85%A8%E9%83%A8Api/</url>
+    <content><![CDATA[<h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><p>React 提供 <em>类组件</em> 和 <em>函数式组件</em> 两种方式，类组件需要使用 <em>Component</em> 继承，主要做一些初始化工作</p>
+<h2 id="PureComponent"><a href="#PureComponent" class="headerlink" title="PureComponent"></a>PureComponent</h2><p>会对 <em>props</em> 和 <em>state</em> 进行浅比较（可能会因为深层的数据不一致而产生错误的否定判断），跳过不比较的更新，提高组件性能</p>
+<h2 id="PureComponent-和-shouldComponentUpdate-的关系"><a href="#PureComponent-和-shouldComponentUpdate-的关系" class="headerlink" title="PureComponent 和 shouldComponentUpdate 的关系"></a>PureComponent 和 shouldComponentUpdate 的关系</h2><p><strong>PureComponent</strong>通过自带的 <em>props</em> 和 <em>state</em> 浅比较实现了<strong>shouldComponentUpdate()</strong></p>
+]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
       </tags>
   </entry>
 </search>
