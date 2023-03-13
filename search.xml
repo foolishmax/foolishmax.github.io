@@ -7020,11 +7020,58 @@ shuffle(arr)
 <span id="more"></span>
 
 <h2 id="PureComponent"><a href="#PureComponent" class="headerlink" title="PureComponent"></a>PureComponent</h2><p>会对 <em>props</em> 和 <em>state</em> 进行浅比较（可能会因为深层的数据不一致而产生错误的否定判断），跳过不比较的更新，提高组件性能</p>
-<h2 id="PureComponent-和-shouldComponentUpdate-的关系"><a href="#PureComponent-和-shouldComponentUpdate-的关系" class="headerlink" title="PureComponent 和 shouldComponentUpdate 的关系"></a>PureComponent 和 shouldComponentUpdate 的关系</h2><p><strong>PureComponent</strong>通过自带的 <em>props</em> 和 <em>state</em> 浅比较实现了<strong>shouldComponentUpdate()</strong></p>
+<h2 id="PureComponent-和-shouldComponentUpdate-的关系"><a href="#PureComponent-和-shouldComponentUpdate-的关系" class="headerlink" title="PureComponent 和 shouldComponentUpdate 的关系"></a>PureComponent 和 shouldComponentUpdate 的关系</h2><p><strong>PureComponent</strong>通过自带的 <em>props</em> 和 <em>state</em> 浅比较实现了<strong>shouldComponentUpdate(nextProps, nextState)</strong></p>
 <h2 id="memo"><a href="#memo" class="headerlink" title="memo"></a>memo</h2><p><strong>memo</strong>接收两个参数：</p>
 <ul>
 <li>第一个参数：组件本身，也就是要优化的组件</li>
 <li>第二个参数：(preProps, nextProps)=&gt;boolean, 若为 <strong>true</strong> 则不更新，为 <strong>false</strong> 则更新</li>
+</ul>
+<h2 id="生命周期-v16-0-前"><a href="#生命周期-v16-0-前" class="headerlink" title="生命周期 v16.0 前"></a>生命周期 v16.0 前</h2><p>四大阶段：Initialization（初始化）、Mounting（挂载）、Update（更新）、Unmounting（卸载）</p>
+<p>Initailization：</p>
+<ul>
+<li>constructor()：初始化操作，定义 this.state 的初始内容，只会执行一次</li>
+<li>super 的作用：调用基类构造方法，将父组件的 props 注入子组件，供子组件读取（props 只读不可变，state 可变）</li>
+</ul>
+<p>Mounting</p>
+<ul>
+<li>componentWillMount：组件挂载到 DOM 前调用，只调用一次不会引起组件重渲染</li>
+<li>render：渲染</li>
+<li>componentDidMount：组件挂载到 DOM 后调用，只调用一次</li>
+</ul>
+<p>Update</p>
+<ul>
+<li>componentWillReceiveProps(nextProps): 调用与 props 引起的组件更新过程中</li>
+<li>shouldComponentUpdate(nextProps, nextState): 性能优化组件，返回 false 停止更新，减少组件的不必要渲染，优化性能</li>
+<li>componentWillUpdate(nextProps, nextState):组件更新前调用</li>
+<li>componentDidUpdate(prevProps, prevState):组件更新后调用</li>
+</ul>
+<p>Unmounting</p>
+<ul>
+<li>componentWillUnmount：组件被卸载前调用，执行一些清理工作，避免内存泄漏</li>
+</ul>
+<h2 id="React-v16-4-后"><a href="#React-v16-4-后" class="headerlink" title="React v16.4 后"></a>React v16.4 后</h2><p>移除了：componentWillMount、componentWillReceiveProps、componentWillUpdate<br>新增了：static getDerivedStateFromProps、getSnapshotBeforeUpdate</p>
+<p>getDerivedStateFromProps(prevProps, prevState):组件创建和更新时调用<br>getSnapshotBeforeUpdate(prevProps, prevState):更新时 DOM 节点渲染前，获取 DOM 信息（如滚动位置），返回值作为参数传递给 componentDidUpdate</p>
+<h2 id="React-v16-8-的-hooks"><a href="#React-v16-8-的-hooks" class="headerlink" title="React v16.8 的 hooks"></a>React v16.8 的 hooks</h2><ul>
+<li>useState</li>
+<li>useEffect</li>
+<li>useLayoutEffect：同步，useLayoutEffect 在 DOM 更新之后，浏览器绘制之前，浏览器只会绘制一次，useLayoutEffect 先于 useEffect 前执行，如果在 useEffect 中改变 DOM，可能会导致浏览器再次回流和重绘，useLayoutEffect 的 callback 中代码执行会阻塞浏览器绘制</li>
+<li>useReducer</li>
+<li>useMemo</li>
+<li>useCallback</li>
+<li>useRef</li>
+<li>useImperativeHandle(ref, createHandle, [deps]):createHandle 返回值作为暴露给付组件的 ref 对象</li>
+<li>useDebugValue：可用于在 React 开发者工具中显示自定义 hook 的标签</li>
+</ul>
+<h2 id="React-v18-的-hooks"><a href="#React-v18-的-hooks" class="headerlink" title="React v18 的 hooks"></a>React v18 的 hooks</h2><ul>
+<li>useSyncExternalStore：是一个推荐用于读取和订阅外部数据源的 hook，其方式与选择性的 hydration 和时间切片等并发渲染功能兼容</li>
+<li>useTransition：返回一个状态值表示过渡任务的等待状态，以及一个启动该过渡任务的函数。</li>
+<li>useDeferredValue：接受一个值，并返回该值的新副本，该副本将推迟到更紧急地更新之后。</li>
+<li>useId ： 是一个用于生成横跨服务端和客户端的稳定的唯一 ID 的同时避免 hydration 不匹配的 hook。</li>
+</ul>
+<h2 id="react-dom"><a href="#react-dom" class="headerlink" title="react-dom"></a>react-dom</h2><ul>
+<li>createPortal: 在 Portal 中提供了一种将子节点渲染到已 DOM 节点中的方式，该节点存在于 DOM 组件的层次结构之外。</li>
+<li>flushSync：可以将回调函数中的更新任务，放到一个较高级的优先级中，适用于强制刷新，同时确保了 DOM 会被立即更新</li>
+<li>unstable_batchedUpdates :可用于手动批量更新 state，可以指定多个 setState 合并为一个更新请求</li>
 </ul>
 ]]></content>
       <categories>
