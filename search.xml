@@ -7030,6 +7030,8 @@ shuffle(arr)
     <title>全面解读React v18全部Api</title>
     <url>/2023/03/13/%E5%85%A8%E9%9D%A2%E8%A7%A3%E8%AF%BBReact-v18%E5%85%A8%E9%83%A8Api/</url>
     <content><![CDATA[<h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><p>React 提供 <em>类组件</em> 和 <em>函数式组件</em> 两种方式，类组件需要使用 <em>Component</em> 继承，主要做一些初始化工作</p>
+<span id="more"></span>
+
 <h2 id="PureComponent"><a href="#PureComponent" class="headerlink" title="PureComponent"></a>PureComponent</h2><p>会对 <em>props</em> 和 <em>state</em> 进行浅比较（可能会因为深层的数据不一致而产生错误的否定判断），跳过不比较的更新，提高组件性能</p>
 <h2 id="PureComponent-和-shouldComponentUpdate-的关系"><a href="#PureComponent-和-shouldComponentUpdate-的关系" class="headerlink" title="PureComponent 和 shouldComponentUpdate 的关系"></a>PureComponent 和 shouldComponentUpdate 的关系</h2><p><strong>PureComponent</strong>通过自带的 <em>props</em> 和 <em>state</em> 浅比较实现了<strong>shouldComponentUpdate()</strong></p>
 <h2 id="memo"><a href="#memo" class="headerlink" title="memo"></a>memo</h2><p><strong>memo</strong>接收两个参数：</p>
