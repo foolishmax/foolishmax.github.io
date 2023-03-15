@@ -5854,6 +5854,9 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 
 <h2 id="图片懒加载原理"><a href="#图片懒加载原理" class="headerlink" title="图片懒加载原理"></a>图片懒加载原理</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 浏览器是否发起请求是根据&lt;img /&gt;标签的src属性</span><br><span class="line">2. 所以懒加载的关键是：在图片没有进入可视区域时，</span><br><span class="line">先不给&lt;img /&gt;的src属性赋值，等到图片进入可是区域再给data-src -&gt; src赋值。</span><br><span class="line"></span><br><span class="line">当图片底边距离页面的偏移（图片高度+图片距离顶部偏移高度）</span><br><span class="line">小于等于</span><br><span class="line">浏览器底边距离页面顶部高度（浏览器一屏高度 + 滚动区域）</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><img src="/images/md_img/%E6%87%92%E5%8A%A0%E8%BD%BD.webp" alt="图片懒加载"></li>
+</ul>
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="H5-新增了哪些标签？"><a href="#H5-新增了哪些标签？" class="headerlink" title="H5 新增了哪些标签？"></a>H5 新增了哪些标签？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">article、aside、audio、video、footer、header、nav、section</span><br></pre></td></tr></table></figure>
 
 <h2 id="SVG-和-Canvas-的区别？"><a href="#SVG-和-Canvas-的区别？" class="headerlink" title="SVG 和 Canvas 的区别？"></a>SVG 和 Canvas 的区别？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.svg:表示以XML格式定义图像的可伸缩矢量图形。</span><br><span class="line">2.canvas：通过js来绘制2D图形</span><br><span class="line"></span><br><span class="line">svg通过标签fill属性可以调整颜色</span><br></pre></td></tr></table></figure>
