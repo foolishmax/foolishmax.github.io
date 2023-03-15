@@ -6368,9 +6368,13 @@ dt.getDay()     //星期几（0-6）
 </ul>
 </li>
 <li>window.onerror<ul>
-<li>由于 try…catch 只能捕获块里面的错误，全局的一些错误可以用 window.onerror 来捕获</li>
+<li>由于 try…catch 只能捕获块里面的错误，全局的一些错误可以用 window.onerror</li>
 </ul>
 </li>
+<li>window.addEventListener(‘error’,callback):捕获资源错误</li>
+<li>window.addEventListener(‘unhandledrejection’,callback):捕获 promise 类型错误</li>
+<li>vue.config.errorHandler: vue 错误</li>
+<li>componentDidCatch：错误边界函数</li>
 </ul>
 <h3 id="http-和-https-的区别-1"><a href="#http-和-https-的区别-1" class="headerlink" title="http 和 https 的区别"></a>http 和 https 的区别</h3><ul>
 <li>http 是一种一种广泛使用的网络协议，是一个客户端和服务器请求和应答的标准。</li>
@@ -6448,6 +6452,8 @@ dt.getDay()     //星期几（0-6）
 <ul>
 <li>行内样式 &gt; 外链式 &gt; 内联式 &gt; @import 导入式</li>
 </ul>
+</li>
+<li><p>选择器优先原则：!important &gt; 行间样式 &gt; ID 选择器 &gt;class 选择器｜伪类选择器｜属性选择器 &gt;元素选择器｜伪元素选择器 &gt; 通配符选择器｜子选择器选择器｜相邻兄弟选择器</p>
 </li>
 </ul>
 <h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><p>BFC(block formatting context)翻译为“块级格式化上下文”，它会生成独立的渲染区域<br>(不影响外面的元素，同时也不受外部元素的影响)，它有一下规则：</p>
@@ -6563,7 +6569,7 @@ dt.getDay()     //星期几（0-6）
 </li>
 </ul>
 </li>
-<li><p>http-equiv 属性</p>
+<li><p>http-equiv 属性(http 协议的响应头报文)</p>
 <ul>
 <li><p><code>1.&lt;meta http-equiv=”Set-Cookie” content=”cookievalue=xxx; expires=Friday,12-Jan-2001 18:18:18 GMT; path=/”&gt;:如果网页过期， 那么存盘的cookie将被删除。必须使用GMT的时间格式。</code></p>
 </li>
@@ -6709,46 +6715,34 @@ dt.getDay()     //星期几（0-6）
 <ul>
 <li><p>创建 Document 对象，开始解析 web 页面，这个阶段 document.readyState = ‘loading’</p>
 </li>
-<li><p>遇见 link 外部 css，创建线程 加载，并继续解析文档</p>
+<li><p>遇见 link 外部 css，css 资源异步下载，并继续解析文档，下载和解析都不会阻塞构建 dom 树</p>
 </li>
-<li><p>遇见 script 外部 js，并且没有设置 async、defer，浏览器加载，并阻塞，等待 js 加载完成</p>
+<li><p>遇见 script 外部 js，并且没有设置 async、defer，浏览器同步加载，并阻塞构建 dom 树，等待 js 加载完成并执行该脚本，然后继续解析文档</p>
 </li>
-</ul>
-<p>并执行该脚本，然后继续解析文档</p>
-<ul>
-<li>遇见 script 外部 js，并且设置了 async、defer，浏览器创建线程 加载，并继续解析文档，对于</li>
-</ul>
-<p>async 属性的脚本，加载完成后立即执行。（异步加载禁止使用 document.write(),它会清除文档流）</p>
-<ul>
+<li><p>遇见 script 外部 js，并且设置了 async、defer，浏览器创建线程 加载，并继续解析文档，对于 async 属性的脚本，加载完成后立即执行。（异步加载禁止使用 document.write(),它会清除文档流）</p>
+</li>
 <li><p>遇见 img 等，先正常解析 dom 结构，然后浏览器异步加载 src，并继续解析文档</p>
 </li>
 <li><p>文档解析完成，document.readyState = ‘interactive’</p>
 </li>
 <li><p>文档解析完成后，所有设置 defer 的脚本会按照顺序执行。（也禁止使用 document.write()）</p>
 </li>
-<li><p>之后 document 对象触发 DOMContentLoaded 事件，标志程序执行从同步脚本执行阶段，转化为</p>
+<li><p>之后 document 对象触发 DOMContentLoaded 事件，标志程序执行从同步脚本执行阶段，转化为事件驱动阶段</p>
 </li>
-</ul>
-<p>事件驱动阶段</p>
-<ul>
-<li>当所有 async 的脚本加载并执行后、img 等加载完成后，document.readyState = ‘complete’,</li>
-</ul>
-<p>这是 window 对象触发 load 事件。</p>
-<ul>
-<li>…</li>
+<li><p>当所有 async 的脚本加载并执行后、img 等加载完成后，document.readyState = ‘complete’,这是 window 对象触发 load 事件。</p>
+</li>
+<li><p>…</p>
+</li>
 </ul>
 <h2 id="异步加载-js"><a href="#异步加载-js" class="headerlink" title="异步加载 js"></a>异步加载 js</h2><pre><code>javascript 异步加载的三种方案:
 </code></pre>
 <ul>
-<li>defer 异步加载，但要等到 dom 文档全部解析完成才会被执行，只有 IE 能用，可以将 js 代码写在</li>
-</ul>
-<p>script 标签内部。</p>
-<ul>
-<li>async 异步加载，加载完就执行，async 只能加载 外部脚本，不能把 js 写在 script 标签中，执行</li>
-</ul>
-<p>时也不会阻塞页面。</p>
-<ul>
-<li>动态创建 script，插入到 dom 中，加载完毕后 callback。<br>简单实例：</li>
+<li><p>defer 异步加载，但要等到 dom 文档全部解析完成才会被执行，只有 IE 能用(w3cSchool 错误，主流浏览器都可以使用)</p>
+</li>
+<li><p>async 异步加载，加载完就执行，async 只能加载 外部脚本，不能把 js 写在 script 标签中，执行时也不会阻塞页面</p>
+</li>
+<li><p>动态创建 script，插入到 dom 中，加载完毕后 callback。<br>简单实例：</p>
+</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var script = document.createElement(&#x27;script&#x27;)</span><br><span class="line"></span><br><span class="line">script.type = &#x27;text/javascript&#x27;</span><br><span class="line"></span><br><span class="line">script.src = demo.js</span><br><span class="line"></span><br><span class="line">script.onload = function() &#123; //兼容性很好，除了IE</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">document.head.appendChild(script)</span><br></pre></td></tr></table></figure>
 
@@ -6771,7 +6765,7 @@ dt.getDay()     //星期几（0-6）
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">根据内容的结构化，选择合适的标签，便于开发者阅读和写出更优雅的代码的同时利于SEO的优化。</span><br></pre></td></tr></table></figure>
 
-<h2 id="为什么要语义化？"><a href="#为什么要语义化？" class="headerlink" title="为什么要语义化？"></a>为什么要语义化？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 为了在没有CSS的情况下，页面也能呈现出很好地内容结构、代码结构:为了裸奔时好看；</span><br><span class="line">-  用户体验：例如title、alt用于解释名词或解释图片信息、label标签的活用；</span><br><span class="line">- 有利于SEO ：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息： 爬虫依赖于</span><br><span class="line">标签来确定上下文和各个关键字的权重；</span><br><span class="line">- 方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页；</span><br><span class="line">- 便于团队开发和维护，语义化更具可读性，是下一步网页的重要动向，遵循W3C标准的</span><br><span class="line">团队都遵循这个标准，可以减少差异化。</span><br></pre></td></tr></table></figure>
+<h2 id="为什么要语义化？"><a href="#为什么要语义化？" class="headerlink" title="为什么要语义化？"></a>为什么要语义化？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 为了在没有CSS的情况下，页面也能呈现出很好地内容结构、代码结构:为了裸奔时好看；</span><br><span class="line">- 用户体验：例如title、alt用于解释名词或解释图片信息、label标签的活用；</span><br><span class="line">- 有利于SEO ：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息： 爬虫依赖于</span><br><span class="line">标签来确定上下文和各个关键字的权重；</span><br><span class="line">- 方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页</span><br><span class="line">- 便于团队开发和维护，语义化更具可读性，是下一步网页的重要动向，遵循W3C标准的</span><br><span class="line">团队都遵循这个标准，可以减少差异化。</span><br></pre></td></tr></table></figure>
 
 <h2 id="构建打包优化（webpack-bundle-analyzer-分析各个打包文件）"><a href="#构建打包优化（webpack-bundle-analyzer-分析各个打包文件）" class="headerlink" title="构建打包优化（webpack-bundle-analyzer 分析各个打包文件）"></a>构建打包优化（webpack-bundle-analyzer 分析各个打包文件）</h2><p>速度优化:</p>
 <ul>
@@ -6830,6 +6824,8 @@ dt.getDay()     //星期几（0-6）
 <h2 id="js-请说说写一个拖拽组件的思路及注意事项"><a href="#js-请说说写一个拖拽组件的思路及注意事项" class="headerlink" title="[js] 请说说写一个拖拽组件的思路及注意事项?"></a>[js] 请说说写一个拖拽组件的思路及注意事项?</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">首先，其实拖拽效果的思路是很简单的。主要就是三个步骤：</span><br><span class="line"></span><br><span class="line">1.onmousedown的时候，启动可拖拽事件，记录被拖拽元素的原始坐标参数。</span><br><span class="line"></span><br><span class="line">2.onmousemove的时候，实时记录鼠标移动的距离，结合被拖拽元素第一阶段的坐标参数，计算并设置新的坐标值。</span><br><span class="line"></span><br><span class="line">3.onmouseup的时候，关闭可拖拽事件，记录新的坐标值。</span><br><span class="line"></span><br><span class="line">注意：这里主要是通过绝对定位的top和left来确定元素的位置的，因此被拖拽元素的css一定要设置绝对定位。</span><br></pre></td></tr></table></figure>
 
 <h2 id="为什么-try-catch-不能捕获到-promise-的错误？"><a href="#为什么-try-catch-不能捕获到-promise-的错误？" class="headerlink" title="为什么 try/catch 不能捕获到 promise 的错误？"></a>为什么 try/catch 不能捕获到 promise 的错误？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">try-catch 主要用于捕获同步函数的异常，如果 try 里面的异步方法出现了异常，此时catch 是无法捕获到异常的。ES6 中 Promise 对象的实例提供了 catch() 方法，表示异步捕获异常。</span><br><span class="line"></span><br><span class="line">原因：当异步函数抛出异常时，对于宏任务而言，执行函数时已经将该函数推入栈，此时并不在 try-catch 所在的栈，所以 try-catch 并不能捕获到错误。对于微任务而言，比如 promise，promise 的构造函数的异常只能被自带的 reject 也就是.catch 函数捕获到。</span><br></pre></td></tr></table></figure>
+
+<h2 id="gitlab-CI-CD-流程"><a href="#gitlab-CI-CD-流程" class="headerlink" title="gitlab CI/CD 流程"></a>gitlab CI/CD 流程</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">生产环境</span><br><span class="line">1、推送代码-&gt;编译-&gt;生成的jar包发布到私服-&gt;打包为docker镜像-&gt;推送到Harbor镜像仓库（成功，微信通知，c结束返回成功|失败，微信通知，ci结束返回失败）</span><br><span class="line">2、运维人员 触发部署到k8s集群-&gt;健康检查（成功，微信通知，c结束返回成功|失败，微信通知，ci结束返回失败）</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>面经</category>
