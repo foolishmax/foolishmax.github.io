@@ -5857,7 +5857,7 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 <ul>
 <li><img src="/images/md_img/%E6%87%92%E5%8A%A0%E8%BD%BD.webp" alt="图片懒加载"></li>
 </ul>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="H5-新增了哪些标签？"><a href="#H5-新增了哪些标签？" class="headerlink" title="H5 新增了哪些标签？"></a>H5 新增了哪些标签？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">article、aside、audio、video、footer、header、nav、section</span><br></pre></td></tr></table></figure>
+<h2 id="H5-新增了哪些标签？"><a href="#H5-新增了哪些标签？" class="headerlink" title="H5 新增了哪些标签？"></a>H5 新增了哪些标签？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">article、aside、audio、video、footer、header、nav、section</span><br></pre></td></tr></table></figure>
 
 <h2 id="SVG-和-Canvas-的区别？"><a href="#SVG-和-Canvas-的区别？" class="headerlink" title="SVG 和 Canvas 的区别？"></a>SVG 和 Canvas 的区别？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.svg:表示以XML格式定义图像的可伸缩矢量图形。</span><br><span class="line">2.canvas：通过js来绘制2D图形</span><br><span class="line"></span><br><span class="line">svg通过标签fill属性可以调整颜色</span><br></pre></td></tr></table></figure>
 
@@ -5896,7 +5896,7 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 
 <h2 id="React-中创建组件的方式"><a href="#React-中创建组件的方式" class="headerlink" title="React 中创建组件的方式"></a>React 中创建组件的方式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">React.createClass()、ES6 class组件 无无状态函数式组件</span><br></pre></td></tr></table></figure>
 
-<h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><h2 id="react-中-key-的作用"><a href="#react-中-key-的作用" class="headerlink" title="react 中 key 的作用"></a>react 中 key 的作用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">key在react中用于追踪哪些列表中元素被修改、添加或者移除的辅助标识。</span><br><span class="line"></span><br><span class="line">在开发中，需要保证某个元素的key在同级元素中具有唯一性。</span><br><span class="line"></span><br><span class="line">diff算法会借助元素的key值来判断元素是新创建的还是被移动而来的元素，从而减少不必要的元素重渲染</span><br></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="react-中-key-的作用"><a href="#react-中-key-的作用" class="headerlink" title="react 中 key 的作用"></a>react 中 key 的作用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">key在react中用于追踪哪些列表中元素被修改、添加或者移除的辅助标识。</span><br><span class="line"></span><br><span class="line">在开发中，需要保证某个元素的key在同级元素中具有唯一性。</span><br><span class="line"></span><br><span class="line">diff算法会借助元素的key值来判断元素是新创建的还是被移动而来的元素，从而减少不必要的元素重渲染</span><br></pre></td></tr></table></figure>
 
 <h2 id="react-优势"><a href="#react-优势" class="headerlink" title="react 优势"></a>react 优势</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 速度快：不直接操作dom，采用虚拟dom的概念</span><br><span class="line">2.跨浏览器兼容，兼容性好</span><br><span class="line">3.一切都是component，代码更加模块化，可维护性高</span><br><span class="line">4.单向数据流，采用Flux单向数据层架构</span><br></pre></td></tr></table></figure>
 
