@@ -1177,20 +1177,18 @@
 </ul>
 </li>
 </ul>
-<h2 id="requestIdleCallback-和-requestAnimationFrame-有什么区别？"><a href="#requestIdleCallback-和-requestAnimationFrame-有什么区别？" class="headerlink" title="requestIdleCallback 和 requestAnimationFrame 有什么区别？"></a>requestIdleCallback 和 requestAnimationFrame 有什么区别？</h2><ul>
-<li><p>区别</p>
-<ul>
-<li>requestAnimationFrame 每次渲染完都会执行，高优先级</li>
-<li>requestIdleCallback 空闲时候才执行，低优先级</li>
-<li>requestAnimationFrame 比 requestIdleCallback 先执行，因为优先级高</li>
-</ul>
-</li>
-<li><p>补充</p>
-<ul>
-<li>两者都是宏任务</li>
-</ul>
-</li>
-</ul>
+<h2 id="requestIdleCallback-和-requestAnimationFrame-有什么区别？"><a href="#requestIdleCallback-和-requestAnimationFrame-有什么区别？" class="headerlink" title="requestIdleCallback 和 requestAnimationFrame 有什么区别？"></a>requestIdleCallback 和 requestAnimationFrame 有什么区别？</h2><pre><code>requestIdleCallback(callback, timeout):
+· 低优先级
+· 兼容性不好
+· 执行时机：浏览器空闲时被调用
+· 指定timeout，回调任务就会被放进事件循环队列，强制执行，但是会影响性能
+requestAnimationFrame(callback):
+· 高优先级
+· 执行时机：下次重绘前执行传入的回调函数
+
+- 补充
+  - 两者都是宏任务(其实也算不上，重要的是执行时机)
+</code></pre>
 <h2 id="vue-生命周期？"><a href="#vue-生命周期？" class="headerlink" title="vue 生命周期？"></a>vue 生命周期？</h2><ul>
 <li><p>befroeCreate</p>
 <ul>
@@ -6845,9 +6843,7 @@ async和defer的区别：
 · 同时存在async和defer时，defer不起作用
 · DOMContentLoaded事件会等待defer的脚本执行完才触发
 </code></pre>
-<h2 id="getomputedstyle-和-style-的区别？"><a href="#getomputedstyle-和-style-的区别？" class="headerlink" title="getomputedstyle 和 style 的区别？"></a>getomputedstyle 和 style 的区别？</h2><!--more-->
-
-<ul>
+<h2 id="getomputedstyle-和-style-的区别？"><a href="#getomputedstyle-和-style-的区别？" class="headerlink" title="getomputedstyle 和 style 的区别？"></a>getomputedstyle 和 style 的区别？</h2><ul>
 <li><p>getComputedStyle 方法是只读的，只能获取样式，不能设置；而 element.style 能读写。</p>
 </li>
 <li><p>getComputedStyle 方法获取的是最终应用在元素上的所有 Css 属性样式(即使没有 css 代码)，<br>而 element.style 只能获取元素 style 属性中的 css 样式。</p>
