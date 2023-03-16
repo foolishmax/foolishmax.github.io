@@ -2181,58 +2181,6 @@
 </ul>
 </li>
 </ul>
-<h2 id="http-缓存？"><a href="#http-缓存？" class="headerlink" title="http 缓存？"></a>http 缓存？</h2><ul>
-<li><p>强制缓存</p>
-<ul>
-<li><img src="/images/md_img/%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98.png" alt="强制缓存"></li>
-<li>强制缓存过期后会去服务端重新请求</li>
-</ul>
-</li>
-<li><p>协商缓存</p>
-<ul>
-<li>服务端缓存策略</li>
-<li>服务端判断客户端资源，是否和服务端资源一样</li>
-<li>一致则返回 304，否则返回 200 和最新的资源</li>
-<li>在 Response Headers 中，有两种：<ul>
-<li>Last-Modified 资源的最后修改时间<ul>
-<li><img src="/images/md_img/last_modified.png" alt="last_modified"></li>
-</ul>
-</li>
-<li>Etag 资源的唯一标识<ul>
-<li><img src="/images/md_img/etag.png" alt="etag"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><img src="/images/md_img/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98.png" alt="协商缓存"></li>
-<li>Last-Modified 和 Etag<ul>
-<li>会优先使用 Etag</li>
-<li>Last-Modified 只能精确到秒级</li>
-<li>如果资源被重复生成，而内容不变，则 Etag 更精确</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>综述</p>
-<ul>
-<li><img src="/images/md_img/http%E7%BC%93%E5%AD%98.png" alt="http缓存"></li>
-</ul>
-</li>
-</ul>
-<h2 id="刷新操作对缓存的影响？"><a href="#刷新操作对缓存的影响？" class="headerlink" title="刷新操作对缓存的影响？"></a>刷新操作对缓存的影响？</h2><ul>
-<li>正常操作：地址输入 url，跳转链接，前进后退等<ul>
-<li>强制缓存有效，协商缓存有效</li>
-</ul>
-</li>
-<li>手动刷新：F5，点击刷新按钮，右击菜单刷新<ul>
-<li>强制缓存失效，协商缓存有效</li>
-</ul>
-</li>
-<li>强制刷新：ctrl + F5<ul>
-<li>强制缓存失效，协商缓存失效</li>
-</ul>
-</li>
-</ul>
 <h2 id="访问浏览器网页过程？"><a href="#访问浏览器网页过程？" class="headerlink" title="访问浏览器网页过程？"></a>访问浏览器网页过程？</h2><ul>
 <li><p>加载过程</p>
 <ul>
@@ -5623,6 +5571,58 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 那么代表该请求的缓存失效，返回200，重新返回资源和缓存标识，再存入浏览器缓存中；
 生效则返回304，继续使用缓存
 </code></pre>
+<h2 id="http-缓存？"><a href="#http-缓存？" class="headerlink" title="http 缓存？"></a>http 缓存？</h2><ul>
+<li><p>强制缓存</p>
+<ul>
+<li><img src="/images/md_img/%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98.png" alt="强制缓存"></li>
+<li>强制缓存过期后会去服务端重新请求</li>
+</ul>
+</li>
+<li><p>协商缓存</p>
+<ul>
+<li>服务端缓存策略</li>
+<li>服务端判断客户端资源，是否和服务端资源一样</li>
+<li>一致则返回 304，否则返回 200 和最新的资源</li>
+<li>在 Response Headers 中，有两种：<ul>
+<li>Last-Modified 资源的最后修改时间<ul>
+<li><img src="/images/md_img/last_modified.png" alt="last_modified"></li>
+</ul>
+</li>
+<li>Etag 资源的唯一标识<ul>
+<li><img src="/images/md_img/etag.png" alt="etag"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img src="/images/md_img/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98.png" alt="协商缓存"></li>
+<li>Last-Modified 和 Etag<ul>
+<li>会优先使用 Etag</li>
+<li>Last-Modified 只能精确到秒级</li>
+<li>如果资源被重复生成，而内容不变，则 Etag 更精确</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>综述</p>
+<ul>
+<li><img src="/images/md_img/http%E7%BC%93%E5%AD%98.png" alt="http缓存"></li>
+</ul>
+</li>
+</ul>
+<h2 id="刷新操作对缓存的影响？"><a href="#刷新操作对缓存的影响？" class="headerlink" title="刷新操作对缓存的影响？"></a>刷新操作对缓存的影响？</h2><ul>
+<li>正常操作：地址输入 url，跳转链接，前进后退等<ul>
+<li>强制缓存有效，协商缓存有效</li>
+</ul>
+</li>
+<li>手动刷新：F5，点击刷新按钮，右击菜单刷新<ul>
+<li>强制缓存失效，协商缓存有效</li>
+</ul>
+</li>
+<li>强制刷新：ctrl + F5<ul>
+<li>强制缓存失效，协商缓存失效</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>浏览器</category>
