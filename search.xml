@@ -959,7 +959,7 @@
 </ol>
 </li>
 </ul>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (timer) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      timer = <span class="number">0</span>;</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn, delay</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (timer) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      timer = <span class="number">0</span>;</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="px-em-rem-vw-vh有什么区别？"><a href="#px-em-rem-vw-vh有什么区别？" class="headerlink" title="px % em rem vw/vh有什么区别？"></a><em>px % em rem vw/vh</em>有什么区别？</h2><ul>
 <li><p>px 基本单位，是绝对单位（其他的都是相对单位）</p>
@@ -2263,17 +2263,18 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 页面的全部资源加载完成后才会执行，包括图片、视频等</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// DOM 渲染完成后即可执行，此时图片、视频可能还没有加载完</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><ul>
-<li>性能优化原则<ul>
+<h2 id="性能优化（空间换时间）"><a href="#性能优化（空间换时间）" class="headerlink" title="性能优化（空间换时间）"></a>性能优化（空间换时间）</h2><ul>
+<li><p>性能优化原则</p>
+<ul>
 <li>多使用内存、缓存</li>
 <li>减少 CUP 计算，减少网络加载耗时</li>
-<li>适用于所有变成的性能优化-空间换时间</li>
+<li>适用于所有编程的性能优化-空间换时间</li>
 </ul>
 </li>
-<li>从何入手<ul>
-<li>让加载更快<ul>
-<li>减少资源体积：压缩代码</li>
-<li>减少访问次数：合并代码，SSR 服务器渲染，缓存，精灵图<ul>
+<li><p>减少资源体积：压缩代码</p>
+</li>
+<li><p>减少访问次数：合并代码，SSR 服务器渲染，缓存，精灵图</p>
+<ul>
 <li>缓存（webpack contenthash）<ul>
 <li>静态资源加 hash 后缀，根据文件内容计算 hash</li>
 <li>文件内容不变，则 hash 不变则 url 不变</li>
@@ -2287,16 +2288,36 @@
 </li>
 </ul>
 </li>
-<li>使用更快的网络：CDN</li>
-</ul>
+<li><p>DNS 预解析</p>
 </li>
-<li>让渲染更快<ul>
+<li><p>减少 cookie 大小，http 请求会携带 cookie</p>
+</li>
+<li><p>使用 http2 头部压缩</p>
+</li>
+<li><p>避免重定向：当页面发生了重定向，就会延迟整个 HTML 文档的传输。在 HTML 文档到达之前，页面中不会呈现任何东西，也没有任何组件会被下载。</p>
+</li>
+<li><p>渲染优化</p>
+<ul>
 <li>css 放在 head，js 放在 body 最下面</li>
 <li>尽早开始执行 js，用 DOMContentLoaded 触发</li>
-<li>懒加载（图片懒加载，下滑更多等）<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;img id=<span class="string">&quot;img&quot;</span> src=<span class="string">&quot;preview.png&quot;</span> data-realsrc=<span class="string">&quot;abc.png&quot;</span> /&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">let</span> img = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;img&quot;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  img.<span class="property">src</span>=img.<span class="title function_">getAttribute</span>(<span class="string">&#x27;data-realsrc&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li>懒加载（图片懒加载-IntersectionObserver，下滑更多等）</li>
 <li>对 DOM 查询进行缓存</li>
-<li>合并频繁的 DOM 操作,document.createDocumentFragment()</li>
+<li>减少 DOM 数量，大数据量分页、虚拟列表</li>
+<li>合并频繁的 DOM 操作,document.createDocumentFragment()，减少 dom 操作次数</li>
 <li>节流 throttle、防抖 debounce</li>
+<li>使用 loading 图，提高用户视觉体验</li>
+<li>使用 GPU 加速：使用 transform、opacity，要慎用低端机 GPU 差，占用较多内存，因此是否开启硬件加速，要用测试结果决定</li>
+<li>使用 requestAnimationFrame 来实现视觉变化</li>
+</ul>
+</li>
+<li><p>三方资源</p>
+<ul>
+<li>第三方资源、库使用 CDN</li>
+<li>压缩图片体积，减少图片大小</li>
+<li>图片使用 webp 格式，减少图片体积</li>
+<li>preload 预先加载 css 文件或者字体文件、js 文件等<ul>
+<li>浏览器需要先把 html 页面加载回来，才能知道下一步去加载那些 js、css 或字体文件，中间时间就被浪费掉了</li>
+<li>可以在等待 html 响应的同时把重要的静态资源文件也加载回来</li>
 </ul>
 </li>
 </ul>
@@ -5629,6 +5650,7 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 <h2 id="前端路由的原理"><a href="#前端路由的原理" class="headerlink" title="前端路由的原理"></a>前端路由的原理</h2><p>前端路由的原理本质上就是通过不刷新浏览器的请求下修改 url、检测 url 的变化，截获 url 的地址，通过解析、匹配路由规则从而实现 UI 的更新，路由的实现通常有两种实现：hash 模式、history 模式</p>
 <h3 id="hash-路由的原理"><a href="#hash-路由的原理" class="headerlink" title="hash 路由的原理"></a>hash 路由的原理</h3><p>在 hash 模式下，在 url 中#后面的部分表示的是一个客户端状态，当这部分发生变化的时候，浏览器本身就不会刷新，这样就满足了第一个条件，即在不刷新浏览器的情况下修改浏览器链接，同事通过监听 hashChange 事件来监听 url 中 hash 值的变化，触发相关函数，改变相关组件。</p>
 <h3 id="history-路由的原理"><a href="#history-路由的原理" class="headerlink" title="history 路由的原理"></a>history 路由的原理</h3><p>history 模式利用 html5 中 history API，history.pushState 和 history.replaceState 这两个方法可以在不刷新页面的情况下，操作浏览器的历史记录，然后通过 popState 事件来监听 url 的变化，从而触发相关函数，改变相关组件。</p>
+<p>history.back()、history.forward()、history.go()会触发 popstate 事件<br>history.pushState()、history.replaceState 不会出发 popstate 事件，需要对 replaceState 和 pushState 创建全局 Event 事件，然后 window.addEventListener 监听我们加的 event 事件</p>
 ]]></content>
       <categories>
         <category>javascript</category>
