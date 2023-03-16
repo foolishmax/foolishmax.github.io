@@ -5580,9 +5580,9 @@ Push Cache（推送缓存）是 HTTP/2 中的内容，当以上三种
 <h2 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h2><pre><code>强缓存：不会向服务器发送请求，直接从缓存中读取资源，可以通过HTTP Header实现：Expires
 和Cache-Control。
 + Expires：缓存过期时间，用来指定资源到期的时间，是服务端的具体的时间点，结合Last-modified
-使用，Expires是HTTP/1的产物，受限于本地时间，如果修改了本地时间，可能会造成缓存失效。
+使用，Expires是HTTP/1.0的产物，受限于本地时间，如果修改了本地时间，可能会造成缓存失效。
 
-+ Cache-Control：和多个指令配合使用，实现资源缓存。
++ Cache-Control(http/1.1)：和多个指令(private、no-store、no-cache)配合使用，实现资源缓存。
 
 + Expires和Cache-Control同时存在，Cache-Control优先级高于Expires。
 </code></pre>
@@ -5751,6 +5751,14 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 4.TCP传输报文（三次握手四次挥手）
 5.向客户端返回资源
 6.解析HTML文档，构建DOM树，CSSOM树，下载资源，执行js脚本等。
+
+dns-prefetch:前端网络性能优化的一种措施，提前解析之后可能遇到的域名，使解析结果缓存到系统缓存中，缩短DNS解析时间，进而提高网站的访问速度
+dns-prefetch原理：
+浏览器缓存-&gt;系统缓存-&gt;路由器缓存-&gt;ISP(运行商)DNS缓存-&gt;根域名服务器-&gt;顶级域名服务器-&gt;主域名服务器
+dns-prefetch将解析后的IP缓存放在系统缓存中
+dns-prefetch与preconnect预连接提示配对
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com/&quot; crossorigin&gt;</span><br><span class="line">&lt;link rel=&quot;dns-prefetch&quot; href=&quot;https://fonts.gstatic.com/&quot;&gt;</span><br></pre></td></tr></table></figure>
+Note：如果页面需要建立与许多第三方域的连接，则将它们预先连接会适得其反。 preconnect 提示最好仅用于最关键的连接。对于其他的，只需使用 &lt;link rel=&quot;dns-prefetch&quot;&gt; 即可节省第一步的时间DNS查找。
 </code></pre>
 <p>扩展：<br><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NDY4NDgyOQ==&mid=2247491757&idx=1&sn=a956c6c62c98e2d5ee71c8ed8d3a3eb8&chksm=cecfa85ff9b82149a3e50e81789b29cc0923745cf8a8f7713619aa2499753a3de760f24e6f93&scene=132#wechat_redirect">收到的 HTML 如果包含几十个图片标签，这些图片是以什么方式、什么顺序、建立了多少连接、使用什么协议被下载下来的呢？</a></p>
 <h2 id="DNS-负载均衡"><a href="#DNS-负载均衡" class="headerlink" title="DNS 负载均衡"></a>DNS 负载均衡</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">当一个网站有足够多的用户的时候，假如每次请求的资源都位于同一台机器上面，那么这台机器随时可能会蹦掉。处理办法就是用DNS负载均衡技术，它的原理是在DNS服务器中为同一个域名配置多个IP地址,在应答DNS查询时,DNS服务器对每个查询将以DNS文件中主机记录的IP地址按顺序返回不同的解析结果,将客户端的访问引导到不同的机器上去,使得不同的客户端访问不同的服务器,从而达到负载均衡的目的｡例如可以根据每台机器的负载量，该机器离用户地理位置的距离等等。</span><br></pre></td></tr></table></figure>
@@ -6811,26 +6819,32 @@ dt.getDay()     //星期几（0-6）
 </li>
 <li><p>之后 document 对象触发 DOMContentLoaded 事件，标志程序执行从同步脚本执行阶段，转化为事件驱动阶段</p>
 </li>
-<li><p>当所有 async 的脚本加载并执行后、img 等加载完成后，document.readyState = ‘complete’,这是 window 对象触发 load 事件。</p>
+<li><p>当所有 async 的脚本加载并执行后、img 等加载完成后，document.readyState = ‘complete’,这时 window 对象触发 load 事件。</p>
 </li>
 <li><p>…</p>
 </li>
 </ul>
 <h2 id="异步加载-js"><a href="#异步加载-js" class="headerlink" title="异步加载 js"></a>异步加载 js</h2><pre><code>javascript 异步加载的三种方案:
+- defer
+- async
+- 动态创建 script，插入到 dom 中，加载完毕后 callback。
+  简单实例：
 </code></pre>
-<ul>
-<li><p>defer 异步加载，但要等到 dom 文档全部解析完成才会被执行，只有 IE 能用(w3cSchool 错误，主流浏览器都可以使用)</p>
-</li>
-<li><p>async 异步加载，加载完就执行，async 只能加载 外部脚本，不能把 js 写在 script 标签中，执行时也不会阻塞页面</p>
-</li>
-<li><p>动态创建 script，插入到 dom 中，加载完毕后 callback。<br>简单实例：</p>
-</li>
-</ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var script = document.createElement(&#x27;script&#x27;)</span><br><span class="line"></span><br><span class="line">script.type = &#x27;text/javascript&#x27;</span><br><span class="line"></span><br><span class="line">script.src = demo.js</span><br><span class="line"></span><br><span class="line">script.onload = function() &#123; //兼容性很好，除了IE</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">document.head.appendChild(script)</span><br></pre></td></tr></table></figure>
 
-<p>动态加载函数封装</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function asyncLoaded(url,callback)&#123;</span><br><span class="line">    var script = document.createElement(&quot;script&quot;);</span><br><span class="line">//  script.src = url;   假如说网速非常好，直接执行完成了，后面就监听不到状态的改变了</span><br><span class="line">    if(script.readyState)&#123;</span><br><span class="line">        script.onreadystatechange = function()&#123;</span><br><span class="line">            if(script.readyState == &quot;complete&quot; || script.readyState ==&quot;loaded&quot;)&#123;</span><br><span class="line">//  执行某个函数</span><br><span class="line">                callback()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        script.onload = function()&#123;</span><br><span class="line">//  执行某个函数</span><br><span class="line">            callback()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    script.src = url;    //异步的过程</span><br><span class="line">    document.head.appendChild(script)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">asyncLoaded(&#x27;demo.js&#x27;, function()&#123;</span><br><span class="line">    test();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//动态加载函数封装</span><br><span class="line">function asyncLoaded(url,callback)&#123;</span><br><span class="line">    var script = document.createElement(&quot;script&quot;);</span><br><span class="line">//  script.src = url;   假如说网速非常好，直接执行完成了，后面就监听不到状态的改变了</span><br><span class="line">    if(script.readyState)&#123;</span><br><span class="line">        script.onreadystatechange = function()&#123;</span><br><span class="line">            if(script.readyState == &quot;complete&quot; || script.readyState ==&quot;loaded&quot;)&#123;</span><br><span class="line">//  执行某个函数</span><br><span class="line">                callback()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        script.onload = function()&#123;</span><br><span class="line">//  执行某个函数</span><br><span class="line">            callback()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    script.src = url;    //异步的过程</span><br><span class="line">    document.head.appendChild(script)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">asyncLoaded(&#x27;demo.js&#x27;, function()&#123;</span><br><span class="line">    test();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+<h2 id="async-和-defer-对比？"><a href="#async-和-defer-对比？" class="headerlink" title="async 和 defer 对比？"></a>async 和 defer 对比？</h2><pre><code>async和defer的解析过程：
+· 浏览器解析到async的script标签，不会中断html解析，并行下载脚本，下载完成后中断html解析并执行脚本
+· 浏览器解析到defer的script标签，不会中断html解析，并下下载脚本，当浏览器解析完html、DOMContentLoaded事件即将触发时执行脚本
+
+async和defer的区别：
+· async和defer仅对外部脚本有效
+· async加载完立即执行，defer在html解析完成且dom构建完毕后延迟执行
+· 如果存在多个js脚本，async那个先下载完成哪个先执行（无序），defer按照js脚本的书写顺序执行
+· 同时存在async和defer时，defer不起作用
+· DOMContentLoaded事件会等待defer的脚本执行完才触发
+</code></pre>
 <h2 id="getomputedstyle-和-style-的区别？"><a href="#getomputedstyle-和-style-的区别？" class="headerlink" title="getomputedstyle 和 style 的区别？"></a>getomputedstyle 和 style 的区别？</h2><!--more-->
 
 <ul>
