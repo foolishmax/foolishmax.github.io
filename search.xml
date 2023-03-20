@@ -5752,22 +5752,22 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 * 服务端返回响应：服务端收到请求后，根据请求头中缓存标识来判断缓存是否生效，生效返回304状态码，未命中缓存返回200状态码
 * 浏览器接收到http响应后，根据connection: keep-alive判断保持连接或者四次挥手断开TCP连接
 * 浏览器缓存响应头中缓存标识字段
-* 解析HTML文档
+* 解析HTML文档，此时document.readystate为loading
 * 构建DOM树，浏览器从上到下解析html文档生成DOM节点树
 * 构建CSSOM树，浏览器解析遇到样式，进行异步下载，下载完成后构建CSSOM树（不会阻塞DOM树构建，但是会阻塞渲染，防止css规则不断变化）
-* 遇到图片异步下载，遇到不带async和defer的script时，阻塞html的解析并下载且执行
 * 构建渲染树，根据DOM节点树和CSSOM树构建渲染树Render
+* 遇到图片异步下载，遇到不带async和defer的script时，阻塞html的解析并下载且执行
+* 遇到带async的script标签，不会中断html解析并行下载脚本，下载完成后中断html解析并执行脚本，优先级高于defer
+* 遇到带defer的script标签，不会中断html解析并行下载脚本，当浏览器解析完html时，DOMContentLoaded事件即将触发时执行脚本
+* 文档解析完成，document.readystate变为interactive,触发DOMContentLoaded事件
+* 等待图片加载或所有异步脚本加载执行完成，document.readystate变为complete,window触发load事件
 * 布局Layout，根据Render树计算每个节点在屏幕上的位置布局
 * 绘制Paint，绘制节点到屏幕上，涉及到构建图层树、绘制列表、光栅化（合成线程）和显示等。
-
-dns-prefetch:前端网络性能优化的一种措施，提前解析之后可能遇到的域名，使解析结果缓存到系统缓存中，缩短DNS解析时间，进而提高网站的访问速度
-dns-prefetch原理：
-浏览器缓存-&gt;系统缓存-&gt;路由器缓存-&gt;ISP(运行商)DNS缓存-&gt;根域名服务器-&gt;顶级域名服务器-&gt;主域名服务器
-dns-prefetch将解析后的IP缓存放在系统缓存中
-dns-prefetch与preconnect预连接提示配对
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com/&quot; crossorigin&gt;</span><br><span class="line">&lt;link rel=&quot;dns-prefetch&quot; href=&quot;https://fonts.gstatic.com/&quot;&gt;</span><br></pre></td></tr></table></figure>
-Note：如果页面需要建立与许多第三方域的连接，则将它们预先连接会适得其反。 preconnect 提示最好仅用于最关键的连接。对于其他的，只需使用 &lt;link rel=&quot;dns-prefetch&quot;&gt; 即可节省第一步的时间DNS查找。
 </code></pre>
+<p>其他：<br>dns-prefetch:前端网络性能优化的一种措施，提前解析之后可能遇到的域名，使解析结果缓存到系统缓存中，缩短 DNS 解析时间，进而提高网站的访问速度<br>dns-prefetch 原理：<br>浏览器缓存-&gt;系统缓存-&gt;路由器缓存-&gt;ISP(运行商)DNS 缓存-&gt;根域名服务器-&gt;顶级域名服务器-&gt;主域名服务器<br>dns-prefetch 将解析后的 IP 缓存放在系统缓存中<br>dns-prefetch 与 preconnect 预连接提示配对</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com/&quot; crossorigin&gt;</span><br><span class="line">&lt;link rel=&quot;dns-prefetch&quot; href=&quot;https://fonts.gstatic.com/&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Note：如果页面需要建立与许多第三方域的连接，则将它们预先连接会适得其反。 preconnect 提示最好仅用于最关键的连接。对于其他的，只需使用 <link rel="dns-prefetch"> 即可节省第一步的时间 DNS 查找。</p>
 <p>扩展：<br><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NDY4NDgyOQ==&mid=2247491757&idx=1&sn=a956c6c62c98e2d5ee71c8ed8d3a3eb8&chksm=cecfa85ff9b82149a3e50e81789b29cc0923745cf8a8f7713619aa2499753a3de760f24e6f93&scene=132#wechat_redirect">收到的 HTML 如果包含几十个图片标签，这些图片是以什么方式、什么顺序、建立了多少连接、使用什么协议被下载下来的呢？</a></p>
 <h2 id="DNS-负载均衡"><a href="#DNS-负载均衡" class="headerlink" title="DNS 负载均衡"></a>DNS 负载均衡</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">当一个网站有足够多的用户的时候，假如每次请求的资源都位于同一台机器上面，那么这台机器随时可能会蹦掉。处理办法就是用DNS负载均衡技术，它的原理是在DNS服务器中为同一个域名配置多个IP地址,在应答DNS查询时,DNS服务器对每个查询将以DNS文件中主机记录的IP地址按顺序返回不同的解析结果,将客户端的访问引导到不同的机器上去,使得不同的客户端访问不同的服务器,从而达到负载均衡的目的｡例如可以根据每台机器的负载量，该机器离用户地理位置的距离等等。</span><br></pre></td></tr></table></figure>
 
