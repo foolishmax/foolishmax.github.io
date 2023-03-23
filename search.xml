@@ -5858,8 +5858,6 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 <li>TCP 通信类似打电话，接通后需要确认身份，才可以开始通信</li>
 <li>UDP 类似广播直接进行通信</li>
 </ul>
-<h2 id="TCP-IP-模型"><a href="#TCP-IP-模型" class="headerlink" title="TCP/IP 模型"></a>TCP/IP 模型</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">应用层（应用层就是向用户提供通信服务的活动，提供用户程序接口HTTP、DNS）</span><br><span class="line">传输层（传输层为两台主机上的应用程序提供端到端的通信TCP，UDP）</span><br><span class="line">网络层（网络层实现数据包的选路和转发）</span><br><span class="line">数据链路层（ARP地址解析协议、RARP逆地址解析协议，使用物理地址寻找一台机器）</span><br></pre></td></tr></table></figure>
-
 <h2 id="正向代理和反向代理"><a href="#正向代理和反向代理" class="headerlink" title="正向代理和反向代理"></a>正向代理和反向代理</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正向代理是客户端代理，服务端不知道是哪个客户端发起的请求</span><br><span class="line">反向代理是服务端代理，客户端不知道是哪个服务端提供的资源</span><br></pre></td></tr></table></figure>
 
 <h2 id="OSI-模型"><a href="#OSI-模型" class="headerlink" title="OSI 模型"></a>OSI 模型</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">应用层</span><br><span class="line">表示层</span><br><span class="line">会话层</span><br><span class="line"></span><br><span class="line">传输层</span><br><span class="line"></span><br><span class="line">网络层</span><br><span class="line"></span><br><span class="line">数据链路层</span><br><span class="line">物理层</span><br></pre></td></tr></table></figure>
@@ -7277,6 +7275,62 @@ shuffle(arr)
       </categories>
       <tags>
         <tag>微前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络</title>
+    <url>/2023/03/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>OSI(open system interconnect)参考模型</p>
+<ul>
+<li>应用层（为应用程序提供网络服务）</li>
+<li>表示层（数据格式化，加密等）</li>
+<li>会话层（建立、维护管理会话连接）</li>
+<li>传输层（建立、维护管理到端连接）</li>
+<li>网络层（IP 寻址和路由选择）<ul>
+<li>寻址就是根据 IP 地址找到具体的设备</li>
+<li>路由就是选择数据传输的线路</li>
+</ul>
+</li>
+<li>数据链路层（控制网络层和物理层之间通信）</li>
+<li>物理层（通过光缆、无线电波等方式连接组网）</li>
+</ul>
+<p>TCP/IP 模型</p>
+<ul>
+<li>应用层（应用层就是向用户提供通信服务的活动，提供用户程序接口 HTTP、FTP、DNS）</li>
+<li>传输层（传输层为两台主机上的应用程序提供端到端的通信 TCP，UDP）</li>
+<li>网络层（网络层实现数据包的选路和转发）</li>
+<li>数据链路层（ARP 地址解析协议、RARP 逆地址解析协议，使用物理地址寻找一台机器）</li>
+</ul>
+<h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><pre><code>WebSocket是html5定义的新协议，特点是即时通信、替代轮训
+
+与传统http协议不同，实现了浏览器和服务器的全双工通信
+</code></pre>
+<p>HTTP 和 WebSocket</p>
+<p>相同点：</p>
+<ul>
+<li>都是基于 TCP 可靠传输协议</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>WebSocket 是全双工通信协议，通信双方可以同时发送和接收消息，http 是单向的</li>
+<li>WebSocket 没有 Request 和 Response 概念</li>
+<li>WebSocket 需要依赖 http 协议进行一次握手，握手成功后直接从 TCP 通道传输，与 http 无关</li>
+<li>WebSocket 数据格式较轻量，数据包头部较小，http 协议每次通信需要携带完成头部信息</li>
+<li>WebSocket 无跨域问题</li>
+<li>WebSocket 多了两个属性 Upgrade: webSocket、Connection: Upgrade，服务端返回 101 成功状态码</li>
+</ul>
+<p>单工、半双工和全双工通信</p>
+<ul>
+<li>单工通信：指消息只能单向传输的工作方式，数据信息从一端到另一端是单向的。例如：广播</li>
+<li>半双工通信：可以双向通信，但必须交替进行。例如：对讲机</li>
+<li>全双工通信：指在通信的任意时刻，都允许数据同时在两个方向上传输，通讯双方都设置了发送器和接收器。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+      <tags>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
 </search>
