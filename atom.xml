@@ -60,27 +60,6 @@
   
   <entry>
     <title>全面解读React v18全部Api</title>
-    <link href="https://github.com/foolishmax/2023/03/13/%E5%85%A8%E9%9D%A2%E8%A7%A3%E8%AF%BBreact-v18%E5%85%A8%E9%83%A8Api/"/>
-    <id>https://github.com/foolishmax/2023/03/13/%E5%85%A8%E9%9D%A2%E8%A7%A3%E8%AF%BBreact-v18%E5%85%A8%E9%83%A8Api/</id>
-    <published>2023-03-13T02:08:34.000Z</published>
-    <updated>2023-03-13T07:35:05.603Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><p>React 提供 <em>类组件</em> 和 <em>函数式组件</em> 两种方式，类组件需要使用 <em>Component</em> 继承，主要做一些初始化工作</p><span id="more"></span><h2 id="PureComponent"><a href="#PureComponent" class="headerlink" title="PureComponent"></a>PureComponent</h2><p>会对 <em>props</em> 和 <em>state</em> 进行浅比较（可能会因为深层的数据不一致而产生错误的否定判断），跳过不比较的更新，提高组件性能</p><h2 id="PureComponent-和-shouldComponentUpdate-的关系"><a href="#PureComponent-和-shouldComponentUpdate-的关系" class="headerlink" title="PureComponent 和 shouldComponentUpdate 的关系"></a>PureComponent 和 shouldComponentUpdate 的关系</h2><p><strong>PureComponent</strong>通过自带的 <em>props</em> 和 <em>state</em> 浅比较实现了<strong>shouldComponentUpdate(nextProps, nextState)</strong></p><h2 id="memo"><a href="#memo" class="headerlink" title="memo"></a>memo</h2><p><strong>memo</strong>接收两个参数：</p><ul><li>第一个参数：组件本身，也就是要优化的组件</li><li>第二个参数：(preProps, nextProps)=&gt;boolean, 若为 <strong>true</strong> 则不更新，为 <strong>false</strong> 则更新</li></ul><h2 id="生命周期-v16-0-前"><a href="#生命周期-v16-0-前" class="headerlink" title="生命周期 v16.0 前"></a>生命周期 v16.0 前</h2><p>四大阶段：Initialization（初始化）、Mounting（挂载）、Update（更新）、Unmounting（卸载）</p><p>Initailization：</p><ul><li>constructor()：初始化操作，定义 this.state 的初始内容，只会执行一次</li><li>super 的作用：调用基类构造方法，将父组件的 props 注入子组件，供子组件读取（props 只读不可变，state 可变）</li></ul><p>Mounting</p><ul><li>componentWillMount：组件挂载到 DOM 前调用，只调用一次不会引起组件重渲染</li><li>render：渲染</li><li>componentDidMount：组件挂载到 DOM 后调用，只调用一次</li></ul><p>Update</p><ul><li>componentWillReceiveProps(nextProps): 调用与 props 引起的组件更新过程中</li><li>shouldComponentUpdate(nextProps, nextState): 性能优化组件，返回 false 停止更新，减少组件的不必要渲染，优化性能</li><li>componentWillUpdate(nextProps, nextState):组件更新前调用</li><li>componentDidUpdate(prevProps, prevState):组件更新后调用</li></ul><p>Unmounting</p><ul><li>componentWillUnmount：组件被卸载前调用，执行一些清理工作，避免内存泄漏</li></ul><h2 id="React-v16-4-后"><a href="#React-v16-4-后" class="headerlink" title="React v16.4 后"></a>React v16.4 后</h2><p>移除了：componentWillMount、componentWillReceiveProps、componentWillUpdate<br>新增了：static getDerivedStateFromProps、getSnapshotBeforeUpdate</p><p>getDerivedStateFromProps(prevProps, prevState):组件创建和更新时调用<br>getSnapshotBeforeUpdate(prevProps, prevState):更新时 DOM 节点渲染前，获取 DOM 信息（如滚动位置），返回值作为参数传递给 componentDidUpdate</p><h2 id="React-v16-8-的-hooks"><a href="#React-v16-8-的-hooks" class="headerlink" title="React v16.8 的 hooks"></a>React v16.8 的 hooks</h2><ul><li>useState</li><li>useEffect</li><li>useLayoutEffect：同步，useLayoutEffect 在 DOM 更新之后，浏览器绘制之前，浏览器只会绘制一次，useLayoutEffect 先于 useEffect 前执行，如果在 useEffect 中改变 DOM，可能会导致浏览器再次回流和重绘，useLayoutEffect 的 callback 中代码执行会阻塞浏览器绘制</li><li>useReducer</li><li>useMemo</li><li>useCallback</li><li>useRef</li><li>useImperativeHandle(ref, createHandle, [deps]):createHandle 返回值作为暴露给付组件的 ref 对象</li><li>useDebugValue：可用于在 React 开发者工具中显示自定义 hook 的标签</li></ul><h2 id="React-v18-的-hooks"><a href="#React-v18-的-hooks" class="headerlink" title="React v18 的 hooks"></a>React v18 的 hooks</h2><ul><li>useSyncExternalStore：是一个推荐用于读取和订阅外部数据源的 hook，其方式与选择性的 hydration 和时间切片等并发渲染功能兼容</li><li>useTransition：返回一个状态值表示过渡任务的等待状态，以及一个启动该过渡任务的函数。</li><li>useDeferredValue：接受一个值，并返回该值的新副本，该副本将推迟到更紧急地更新之后。</li><li>useId ： 是一个用于生成横跨服务端和客户端的稳定的唯一 ID 的同时避免 hydration 不匹配的 hook。</li></ul><h2 id="react-dom"><a href="#react-dom" class="headerlink" title="react-dom"></a>react-dom</h2><ul><li>createPortal: 在 Portal 中提供了一种将子节点渲染到已 DOM 节点中的方式，该节点存在于 DOM 组件的层次结构之外。</li><li>flushSync：可以将回调函数中的更新任务，放到一个较高级的优先级中，适用于强制刷新，同时确保了 DOM 会被立即更新</li><li>unstable_batchedUpdates :可用于手动批量更新 state，可以指定多个 setState 合并为一个更新请求</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;Component&quot;&gt;&lt;a href=&quot;#Component&quot; class=&quot;headerlink&quot; title=&quot;Component&quot;&gt;&lt;/a&gt;Component&lt;/h2&gt;&lt;p&gt;React 提供 &lt;em&gt;类组件&lt;/em&gt; 和 &lt;em&gt;函数式组件&lt;/em&gt; 两种方式，类组件需要使用 &lt;em&gt;Component&lt;/em&gt; 继承，主要做一些初始化工作&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="react" scheme="https://github.com/foolishmax/categories/react/"/>
-    
-    
-    <category term="react" scheme="https://github.com/foolishmax/tags/react/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>全面解读React v18全部Api</title>
     <link href="https://github.com/foolishmax/2023/03/13/%E5%85%A8%E9%9D%A2%E8%A7%A3%E8%AF%BBreact-v18%E5%85%A8%E9%83%A8api/"/>
     <id>https://github.com/foolishmax/2023/03/13/%E5%85%A8%E9%9D%A2%E8%A7%A3%E8%AF%BBreact-v18%E5%85%A8%E9%83%A8api/</id>
     <published>2023-03-13T02:08:34.000Z</published>
@@ -431,6 +410,27 @@
     
     
     <category term="javascript" scheme="https://github.com/foolishmax/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS垃圾回收机制</title>
+    <link href="https://github.com/foolishmax/2019/10/19/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/"/>
+    <id>https://github.com/foolishmax/2019/10/19/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</id>
+    <published>2019-10-19T09:24:19.000Z</published>
+    <updated>2022-07-30T04:11:01.571Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="谈谈-JS-垃圾回收机制？"><a href="#谈谈-JS-垃圾回收机制？" class="headerlink" title="谈谈 JS 垃圾回收机制？"></a>谈谈 JS 垃圾回收机制？</h2> <span id="more"></span><h4 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h4><pre><code>Javascript中的内存管理是自动执行的，而且是不可见的。在我们创建基本类型、对象、函数时，这些都需要内存，当不需要某样东西时，JavaScript引擎会利用垃圾回收机制清除它。在局部作用域中，当函数执行完毕，局部变量也就没必要存在了，因此垃圾收集器很容易做出判断回收。但是全局变量什么时候需要自动释放内存空间很难判断，因此在开发中，需要尽量避免使用全局变量。</code></pre><h4 id="可达性"><a href="#可达性" class="headerlink" title="可达性"></a>可达性</h4><p>JavaScript 中内存管理的主要概念是可达性。</p><p>当一些值以某种方式可访问或可用，它们会被存储在内存中，叫做可达值。</p><ul><li>一些固有可达值，由于显而易见的原因无法删除。例如：<ul><li>本地函数的局部变量或参数</li><li>当前嵌套调用链上的其他函数的变量和参数</li><li>全局变量等</li></ul></li></ul><p>这些值 称为 根</p><ul><li>如果引用或引用链 可以从根访问任何其他值，则认为该值是可访问的。<ul><li>一个对象引用另一个对象的属性，则该对象是为可达性。</li></ul></li></ul><p>JavaScript 引擎中有一个后台进程称为垃圾回收器，它监视所有对象，并删除哪些不可访问的对象。</p><h4 id="内部算法"><a href="#内部算法" class="headerlink" title="内部算法"></a>内部算法</h4><p>v8 的垃圾回收策略基于分代式垃圾回收机制。将内存分为新生代和老生代，分别采用不同<br>的算法。</p><p>新生代采用 Scavenge 算法(赋值算法)</p><ul><li><p>Scavenge 为新生代采用的算法，是一种采用复制的方式实现的垃圾回收算法。它将内存分<br>为 from 和 to 两个空间。每次 gc,会将 from 空间的存活对象复制到 to 空间。然后两个空间角色<br>对换(又称反转)。</p></li><li><p>该算法是牺牲空间换时间，所以适合新生代，因为它的对象生存周期较短。</p></li></ul><p>老生代采用 Mark-Sweep(标记清除)和 Mark-Compact(标记整理)</p><ul><li>标记-清除算法，定期执行一下“垃圾回收”步骤：<ul><li>垃圾回收器获取根并“标记”它们</li><li>然后访问并标记所有来自它们的引用</li><li>然后访问标记的对象 并 标记它们的引用</li><li>以此类推，知道有为访问的引用为止</li><li>除了标记的对象外，所有对象都被删除。</li></ul></li></ul><p>Mark-Compact 算法(标记整理)</p><ul><li>标记清除存在一个问题，清除死亡对象后会造成内存空间不连续，这时候 v8 会使用<br>Mark-Compact 算法(标记整理)，它会在标记完成之后将活着的对象往一端移动，移动完成<br>后直接清理掉边界外的内存。</li></ul><p>Reference Counting(引用计数算法)</p><ul><li>引用计数，就是记录每个对象被引用的次数，每次新建对象、赋值引用和删除引用的同时<br>更新计数器，如果计数器值为 0 则直接回收内存。 很明显，引用计数最大的优势是暂停时间短</li></ul><h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><ul><li><p>增量回收：如果有很多对象，并且我们试图一次遍历并标记整个对象集，那么可能会花费<br>一些时间，并在执行中会有一定的延迟。因此，引擎试图将垃圾回收分解为多个部分，然后<br>各个部分分别执行，这需要额外的标记来跟踪变化，这样有很多微小的延迟，而不是很大的延迟。</p></li><li><p>空闲时间收集：垃圾回收器只在 CPU 空闲时运行，以减少对执行的可能影响。</p></li></ul><h4 id="v8-的内存限制"><a href="#v8-的内存限制" class="headerlink" title="v8 的内存限制"></a>v8 的内存限制</h4><ul><li>64 位系统最大约为 1.4G</li><li>32 位系统最大约为 0.7G</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;谈谈-JS-垃圾回收机制？&quot;&gt;&lt;a href=&quot;#谈谈-JS-垃圾回收机制？&quot; class=&quot;headerlink&quot; title=&quot;谈谈 JS 垃圾回收机制？&quot;&gt;&lt;/a&gt;谈谈 JS 垃圾回收机制？&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="浏览器" scheme="https://github.com/foolishmax/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+    
+    <category term="浏览器" scheme="https://github.com/foolishmax/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     
   </entry>
   
