@@ -6857,14 +6857,24 @@ async和defer的区别：
 </li>
 </ul>
 <h2 id="defineProperty-和-Proxy-的区别？"><a href="#defineProperty-和-Proxy-的区别？" class="headerlink" title="defineProperty 和 Proxy 的区别？"></a>defineProperty 和 Proxy 的区别？</h2><ul>
-<li>Object.defineProperty 是 Es5 的方法，Proxy 是 Es6 的方法</li>
-<li>defineProperty 是劫持对象属性，Proxy 是代理整个对象；</li>
-<li>defineProperty 监听对象和数组时，需要迭代对象的每个属性；</li>
-<li>defineProperty 不能监听到对象新增属性，Proxy 可以</li>
-<li>defineProperty 不兼容 IE8，Proxy 不兼容 IE11</li>
-<li>defineProperty 不支持 Map、Set 等数据结构</li>
-<li>defineProperty 只能监听 get、set，而 Proxy 可以拦截多达 13 种方法；</li>
-<li>Proxy 兼容性相对较差，且无法通过 pollyfill 解决；所以 Vue3 不支持 IE；</li>
+<li><p>Object.defineProperty 是 Es5 的方法，Proxy 是 Es6 的方法</p>
+</li>
+<li><p>defineProperty 是劫持对象属性，Proxy 是代理整个对象；</p>
+</li>
+<li><p>defineProperty 不能监听到对象<strong>新增</strong>属性和<strong>修改</strong>新增属性的变化，Proxy 可以</p>
+</li>
+<li><p>defineProperty 不能监听根据自身数组下标<strong>修改</strong>数组元素的变化（所以 vue2 提供了 Vue.$set和Vue.$delete）</p>
+</li>
+<li><p>defineProperty 不兼容 IE8，Proxy 不兼容 IE11</p>
+</li>
+<li><p>defineProperty 不支持 Map、Set 等数据结构</p>
+</li>
+<li><p>defineProperty 只能监听 get、set，而 Proxy 可以拦截多达 13 种方法；</p>
+</li>
+<li><p>Proxy 兼容性相对较差，且无法通过 pollyfill 解决；所以 Vue3 不支持 IE11 以下；</p>
+</li>
+<li><p>Proxy 返回的是一个新对象</p>
+</li>
 </ul>
 <h2 id="v-if-和-v-for-的优先级？"><a href="#v-if-和-v-for-的优先级？" class="headerlink" title="v-if 和 v-for 的优先级？"></a>v-if 和 v-for 的优先级？</h2><p>v-if 的优先级高于 v-for</p>
 <h2 id="ref-和-reactive-定义响应式数据"><a href="#ref-和-reactive-定义响应式数据" class="headerlink" title="ref 和 reactive 定义响应式数据"></a>ref 和 reactive 定义响应式数据</h2><p>ref 原理</p>
@@ -6879,7 +6889,58 @@ async和defer的区别：
 <li>使用 Proxy 代理传入对象实现响应式</li>
 <li>Proxy 拦截数据的更新和获取操作，使用 Reflect 完成原本的操作（get/set）</li>
 </ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createReactiveObject</span>(<span class="params">target, isReadonly, baseHandlers, collectionHandlers, proxyMap</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!shared.<span class="title function_">isObject</span>(target)) &#123;</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">`value cannot be made reactive: <span class="subst">$&#123;<span class="built_in">String</span>(target)&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> target;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// target is already a Proxy, return it.</span></span><br><span class="line">    <span class="comment">// exception: calling readonly() on a reactive object</span></span><br><span class="line">    <span class="keyword">if</span> (target[<span class="string">&quot;__v_raw&quot;</span> <span class="comment">/* RAW */</span>] &amp;&amp;</span><br><span class="line">        !(isReadonly &amp;&amp; target[<span class="string">&quot;__v_isReactive&quot;</span> <span class="comment">/* IS_REACTIVE */</span>])) &#123;</span><br><span class="line">        <span class="keyword">return</span> target;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// target already has corresponding Proxy</span></span><br><span class="line">    <span class="keyword">const</span> existingProxy = proxyMap.<span class="title function_">get</span>(target);</span><br><span class="line">    <span class="keyword">if</span> (existingProxy) &#123;</span><br><span class="line">        <span class="keyword">return</span> existingProxy;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// only specific value types can be observed.</span></span><br><span class="line">    <span class="keyword">const</span> targetType = <span class="title function_">getTargetType</span>(target);</span><br><span class="line">    <span class="keyword">if</span> (targetType === <span class="number">0</span> <span class="comment">/* INVALID */</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> target;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="title class_">Proxy</span>(target, targetType === <span class="number">2</span> <span class="comment">/* COLLECTION */</span> ? collectionHandlers : baseHandlers);</span><br><span class="line">    proxyMap.<span class="title function_">set</span>(target, proxy);</span><br><span class="line">    <span class="keyword">return</span> proxy;</span><br><span class="line">&#125;<span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createReactiveObject</span>(<span class="params"></span></span><br><span class="line"><span class="params">  target,</span></span><br><span class="line"><span class="params">  isReadonly,</span></span><br><span class="line"><span class="params">  baseHandlers,</span></span><br><span class="line"><span class="params">  collectionHandlers,</span></span><br><span class="line"><span class="params">  proxyMap</span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!shared.<span class="title function_">isObject</span>(target)) &#123;</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">`value cannot be made reactive: <span class="subst">$&#123;<span class="built_in">String</span>(target)&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// target is already a Proxy, return it.</span></span><br><span class="line">  <span class="comment">// exception: calling readonly() on a reactive object</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    target[<span class="string">&#x27;__v_raw&#x27;</span> <span class="comment">/* RAW */</span>] &amp;&amp;</span><br><span class="line">    !(isReadonly &amp;&amp; target[<span class="string">&#x27;__v_isReactive&#x27;</span> <span class="comment">/* IS_REACTIVE */</span>])</span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// target already has corresponding Proxy</span></span><br><span class="line">  <span class="keyword">const</span> existingProxy = proxyMap.<span class="title function_">get</span>(target);</span><br><span class="line">  <span class="keyword">if</span> (existingProxy) &#123;</span><br><span class="line">    <span class="keyword">return</span> existingProxy;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// only specific value types can be observed.</span></span><br><span class="line">  <span class="keyword">const</span> targetType = <span class="title function_">getTargetType</span>(target);</span><br><span class="line">  <span class="keyword">if</span> (targetType === <span class="number">0</span> <span class="comment">/* INVALID */</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="title class_">Proxy</span>(</span><br><span class="line">    target,</span><br><span class="line">    targetType === <span class="number">2</span> <span class="comment">/* COLLECTION */</span> ? collectionHandlers : baseHandlers</span><br><span class="line">  );</span><br><span class="line">  proxyMap.<span class="title function_">set</span>(target, proxy);</span><br><span class="line">  <span class="keyword">return</span> proxy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vue2-响应式原理"><a href="#vue2-响应式原理" class="headerlink" title="vue2 响应式原理"></a>vue2 响应式原理</h2><ul>
+<li><p>给<strong>data</strong>创建 Observer 实例</p>
+</li>
+<li><p>Observer 类给对象添加 get/set 方法、getter 收集依赖、setter 通知依赖更新</p>
+</li>
+<li><p>针对数组类型数据，自定义封装 array 原生方法，实现拦截执行并通知依赖更新</p>
+</li>
+</ul>
+<h2 id="vue3-响应式原理"><a href="#vue3-响应式原理" class="headerlink" title="vue3 响应式原理"></a>vue3 响应式原理</h2><ul>
+<li>activeEffect 解决匿名函数问题</li>
+<li>WeakMap、Map、Set 存储对象属性的相关副作用函数</li>
+<li>track()实现依赖收集、层级依赖追踪、依赖清理（解决嵌套副作用）</li>
+<li>trigger()当某个依赖值发生变化时，通过执行副作用函数获得与依赖变化后对应的最新值</li>
+</ul>
+<h2 id="vue3-中-watch-和-watchEffect-有什么区别？"><a href="#vue3-中-watch-和-watchEffect-有什么区别？" class="headerlink" title="vue3 中 watch 和 watchEffect 有什么区别？"></a>vue3 中 watch 和 watchEffect 有什么区别？</h2><ul>
+<li><p>watch 显式指定依赖源，依赖源变化时执行回调函数</p>
+<ul>
+<li>第一个参数为不同形式的数据源<ul>
+<li>单个 ref</li>
+<li>计算属性</li>
+<li>getter 函数（要有返回值）</li>
+<li>响应式对象，不能直接侦听响应式对象的属性，应该用一个返回该属性的 getter 函数</li>
+<li>以上类型的值组成的数组</li>
+</ul>
+</li>
+<li>第二个参数是数据发生变化时执行的回调函数<ul>
+<li>接收三个参数：新值、旧值、清理副作用的回调函数（例如清除无效的副作用，等待中的异步请求）</li>
+</ul>
+</li>
+<li>第三个参数是一个可选对象<ul>
+<li>immediate：在侦听器创建时立即触发回调</li>
+<li>deep：深度遍历</li>
+<li>flush：回调的触发时机<ul>
+<li>pre：默认，dom 更新前调用</li>
+<li>post：dom 更新后调用</li>
+<li>sync：sync 同步调用</li>
+</ul>
+</li>
+<li>onTrack/onTrigger: 用于调试的钩子，在依赖收集和回调函数触发时被调用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>watchEffect 自动收集依赖源，依赖源变化时重新执行自身</p>
+<ul>
+<li>watchEffect 的回调函数会立即执行，即{immediate: true}</li>
+<li>computed 其实类似一个带输出的同步版本 watchEffect</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>vue3</category>
