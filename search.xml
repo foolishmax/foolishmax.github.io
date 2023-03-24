@@ -6942,9 +6942,27 @@ async和defer的区别：
 </li>
 <li><p>watchEffect 自动收集依赖源，依赖源变化时重新执行自身</p>
 <ul>
+<li>接收两个参数<ul>
+<li>第一个参数是一个回调函数<ul>
+<li>回调函数的参数为一个 onCleanup 函数，用来清除副作用</li>
+</ul>
+</li>
+<li>第二个参数是一个可选对象<ul>
+<li>flush：回调的触发时机<ul>
+<li>pre：默认，dom 更新前调用</li>
+<li>post：dom 更新后调用</li>
+<li>sync：sync 同步调用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>watchEffect 的回调函数会立即执行，即{immediate: true}</li>
 <li>computed 其实类似一个带输出的同步版本 watchEffect</li>
 <li>watchEffect 仅会在同步执行期间才会追踪依赖，使用异步回调时，只有在第一个 await 之前访问到的依赖才会被追踪</li>
+<li>watchEffect 无法访问侦听数据的新值和旧值</li>
+<li>动态新增的依赖也会被收集</li>
 </ul>
 </li>
 </ul>
