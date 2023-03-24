@@ -6932,12 +6932,19 @@ async和defer的区别：
 <li>onTrack/onTrigger: 用于调试的钩子，在依赖收集和回调函数触发时被调用</li>
 </ul>
 </li>
+<li>其他：<ul>
+<li>watch 的返回值是一个用来停止该副作用的函数</li>
+<li>使用同步语句创建的侦听器，会自动绑定到宿主组件实例实例上，并在宿主组件卸载时自动停止</li>
+<li>异步回调（setTimeout 等）创建的侦听器，则不会绑定到当前组件上，必须手动停止，以防止内存泄漏</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>watchEffect 自动收集依赖源，依赖源变化时重新执行自身</p>
 <ul>
 <li>watchEffect 的回调函数会立即执行，即{immediate: true}</li>
 <li>computed 其实类似一个带输出的同步版本 watchEffect</li>
+<li>watchEffect 仅会在同步执行期间才会追踪依赖，使用异步回调时，只有在第一个 await 之前访问到的依赖才会被追踪</li>
 </ul>
 </li>
 </ul>
