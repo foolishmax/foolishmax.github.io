@@ -1699,6 +1699,19 @@ console.clear()  //用于清除当前控制台的所有输出，将光标回置�
 <li>vue 通过虚拟 DOM，优化了 DOM 操作，实现了性能提高</li>
 <li>vue 拥有自己的 vue-cli/vite 脚手架工具，对良好的工程化性能</li>
 </ul>
+<h2 id="vue3-生命周期"><a href="#vue3-生命周期" class="headerlink" title="vue3 生命周期"></a>vue3 生命周期</h2><ul>
+<li>onBeforMount -&gt; vue 实例挂载之前执行</li>
+<li>onMounted -&gt; vue 实例挂载完成执行</li>
+<li>onBeforeUpdate -&gt; 组件内数据发生变化之前执行</li>
+<li>onUpdated -&gt; 组件内数据发生变化之后执行</li>
+<li>onBeforeUnmount -&gt; 组件销毁之前</li>
+<li>onUnmounted -&gt; 组件销毁之后</li>
+<li>onActivated -&gt; keep-alive 组件激活时执行</li>
+<li>onDeactivated -&gt; keep-alive 组件销毁时执行</li>
+<li>onErrorCaptured -&gt; 捕获错误</li>
+<li>onRenderTracked -&gt; dev 组件更新时跟踪所有变量和方法</li>
+<li>onRenderTriggered -&gt; dev 触发渲染时调用，返回变化新旧值</li>
+</ul>
 <h2 id="vue3-相比于-vue2-有哪些不同？"><a href="#vue3-相比于-vue2-有哪些不同？" class="headerlink" title="vue3 相比于 vue2 有哪些不同？"></a>vue3 相比于 vue2 有哪些不同？</h2><ul>
 <li>组合式（composition）api<ul>
 <li>vue2 是选项式（option）api</li>
