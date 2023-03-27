@@ -2716,7 +2716,10 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <p>面向接口编程，依赖于抽象而不依赖于具体。写代码时用到具体类时，不与具体类交互，而与具体类的上层接口交互。</p>
 </li>
 </ul>
-<h2 id="常见的设计模式"><a href="#常见的设计模式" class="headerlink" title="常见的设计模式"></a>常见的设计模式</h2><ul>
+<h2 id="常见的设计模式"><a href="#常见的设计模式" class="headerlink" title="常见的设计模式"></a>常见的设计模式</h2><blockquote>
+<p>工厂模式、单例模式、构造函数模式、建造者模式、代理模式、命令模式、观察者模式、适配器模式、职责链模式、装饰器模式、策略模式等</p>
+</blockquote>
+<ul>
 <li><p>工厂模式</p>
 <p>jquery、react createElement</p>
 </li>
@@ -2730,19 +2733,14 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SingleTon</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">constructor</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="attr">instance</span>: <span class="title class_">SingleTon</span> | <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">getInstance</span>(): <span class="title class_">SingleTon</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">SingleTon</span>.<span class="property">instance</span> === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="title class_">SingleTon</span>.<span class="property">instance</span> = <span class="keyword">new</span> <span class="title class_">SingleTon</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">SingleTon</span>.<span class="property">instance</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">SingleTon</span>.<span class="title function_">getInstance</span>(); <span class="comment">// 正确</span></span><br><span class="line"><span class="title class_">SingleTon</span>.<span class="property">instance</span>; <span class="comment">// 报错</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">SingleTon</span>(); <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>构造函数模式</p>
+<li>策略模式<ul>
+<li>定义一系列算法，将它们封装起来，目的就是将算法的使用和算法的实现分离开来</li>
+<li>策略类的实现由两部分组成<ul>
+<li>策略类：封装具体算法实现</li>
+<li>环境类：接收请求，并把请求委托给一个策略类</li>
+</ul>
 </li>
-<li><p>建造者模式</p>
-</li>
-<li><p>代理模式</p>
-</li>
-<li><p>命令模式</p>
-</li>
-<li><p>观察者模式</p>
-</li>
-<li><p>适配器模式</p>
-</li>
-<li><p>职责链模式</p>
+</ul>
 </li>
 </ul>
 ]]></content>
@@ -3851,7 +3849,10 @@ DoublyLinkedList.prototype.toString = function () &#123;
 
 <h2 id="节流函数"><a href="#节流函数" class="headerlink" title="节流函数"></a>节流函数</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">func, wait</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> previous = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> now = +<span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">    <span class="keyword">if</span> (now - previous &gt; wait) &#123;</span><br><span class="line">      func.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line"></span><br><span class="line">      previous = now;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 鼠标不断点击触发，可以使其单位时间内只触发一次</span></span><br><span class="line"><span class="comment">// 监听滚动事件</span></span><br><span class="line"><span class="comment">// 防止高频点击提交</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="函数柯里化"><a href="#函数柯里化" class="headerlink" title="函数柯里化"></a>函数柯里化</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">curry</span>(<span class="params">fn, ...args</span>) &#123;</span><br><span class="line">  <span class="comment">// 需要柯里化的函数fn，也可以支持初始参数的传入</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//参数缓存在args里面,合并上次参数和本次参数</span></span><br><span class="line">    args = [...args, ...<span class="variable language_">arguments</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断参数个数，不够继续递归</span></span><br><span class="line">    <span class="keyword">if</span> (args.<span class="property">length</span> &lt; fn.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">curry</span>(fn, ...args);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//参数足够返回函数执行结果</span></span><br><span class="line">      <span class="keyword">return</span> fn.<span class="title function_">apply</span>(<span class="literal">null</span>, args);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params">a, b, c</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b + c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> f = <span class="title function_">curry</span>(bar);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">f</span>(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>), <span class="title function_">f</span>(<span class="number">1</span>, <span class="number">2</span>)(<span class="number">3</span>), <span class="title function_">f</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="函数柯里化"><a href="#函数柯里化" class="headerlink" title="函数柯里化"></a>函数柯里化</h2><blockquote>
+<p>函数柯里化就是让我们传递参数的方式不在局限于一次传完，可以分步，所以柯里化的核心就在于等到接收到的参数等于函数参数时再调用函数把所有参数传递进去</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">curry</span>(<span class="params">fn, ...args</span>) &#123;</span><br><span class="line">  <span class="comment">// 需要柯里化的函数fn，也可以支持初始参数的传入</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//参数缓存在args里面,合并上次参数和本次参数</span></span><br><span class="line">    args = [...args, ...<span class="variable language_">arguments</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断参数个数，不够继续递归</span></span><br><span class="line">    <span class="keyword">if</span> (args.<span class="property">length</span> &lt; fn.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">curry</span>(fn, ...args);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//参数足够返回函数执行结果</span></span><br><span class="line">      <span class="keyword">return</span> fn.<span class="title function_">apply</span>(<span class="literal">null</span>, args);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params">a, b, c</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b + c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> f = <span class="title function_">curry</span>(bar);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">f</span>(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">f</span>(<span class="number">1</span>, <span class="number">2</span>)(<span class="number">3</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">f</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>));</span><br></pre></td></tr></table></figure>
 
 <h2 id="如何把字符串中大小写取反"><a href="#如何把字符串中大小写取反" class="headerlink" title="如何把字符串中大小写取反"></a>如何把字符串中大小写取反</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;LiBoShi&#x27;</span>;</span><br><span class="line"></span><br><span class="line">str = str.<span class="title function_">replace</span>(<span class="regexp">/[a-zA-Z]/g</span>, <span class="function">(<span class="params">content</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> content.<span class="title function_">toUpperCase</span>() === content</span><br><span class="line">    ? content.<span class="title function_">toLowerCase</span>()</span><br><span class="line">    : content.<span class="title function_">toUpperCase</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
@@ -4527,8 +4528,39 @@ shuffle(arr)
 <p>mobx 底层对数据的观察是使用 Object.defineProperty(mobx4)或 Proxy(mobx5)<br>observer 这个装饰器，对 react 组件的 render 方法进行跟踪，将 render 方法加入到各个 observable 的依赖中，当 observale 发生变化的时候，就会调用 forceUpdate 更新组件<br>（mobx4 将 Array 用类数组对象来模拟的，通过包装类封装为一个对象）</p>
 <h2 id="webpack-常用-loader"><a href="#webpack-常用-loader" class="headerlink" title="webpack 常用 loader"></a>webpack 常用 loader</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">样式：style-loader、css-loader、less-loader、sass-loader</span><br><span class="line">文件：file-loader、url-loader</span><br><span class="line">编译：babel-loader、ts-loader</span><br><span class="line">校验：eslint-loader</span><br><span class="line"></span><br><span class="line">常用的plugin</span><br><span class="line">html-webpack-plugin</span><br><span class="line">webpack-bundle-analyzer 打包分析</span><br><span class="line">HotModuleReplacementPlugin 热更新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">自己写webpack插件：</span><br><span class="line">主要就是通过访问compliler和compilation拦截webpack的执行</span><br></pre></td></tr></table></figure>
 
-<h2 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">垃圾收集器会定期（周期性）的找出那些不再继续使用的变量，释放其内存，因为开销比较大，所以会按照固定的时间间隔周期性的执行</span><br><span class="line"></span><br><span class="line">最常用的两种方法：标记清除（常用）和引用计数</span><br><span class="line"></span><br><span class="line">标记清除：变量进入作用域，进行标记，离开作用域进行清除回收</span><br><span class="line"></span><br><span class="line">引用计数：就是跟踪记录每个值被引用的次数，引用一次加1，删除减1，引用计数为0时，进行回收，（循环引用可能会导致内存泄漏）</span><br><span class="line"></span><br><span class="line">常见的内存泄漏原因：</span><br><span class="line">全局变量过多引起内存泄漏</span><br><span class="line">闭包</span><br><span class="line">dom事件未清除</span><br><span class="line">循环引用</span><br></pre></td></tr></table></figure>
-
+<h2 id="V8-垃圾回收机制"><a href="#V8-垃圾回收机制" class="headerlink" title="V8 垃圾回收机制"></a>V8 垃圾回收机制</h2><p>垃圾收集器会定期（周期性）的找出那些不再继续使用的变量，释放其内存，因为开销比较大，所以会按照固定的时间间隔周期性的执行</p>
+<p>最常用的两种方法：标记清除（常用）和引用计数</p>
+<p>标记清除：变量进入作用域，进行标记，离开作用域进行清除回收</p>
+<p>引用计数：就是跟踪记录每个值被引用的次数，引用一次加 1，删除减 1，引用计数为 0 时，进行回收，（循环引用可能会导致内存泄漏）</p>
+<p>常见的内存泄漏原因：<br>全局变量过多引起内存泄漏<br>闭包<br>dom 事件未清除<br>循环引用</p>
+<ul>
+<li><p>V8 会把堆分为新生代和老生代</p>
+</li>
+<li><p>新生代（副垃圾回收器）</p>
+<ul>
+<li>存放生存时间短的对象</li>
+<li>通常只支持 1 ～ 8M 的容量</li>
+<li>分为对象区和空闲区<ul>
+<li>对对象区域中的垃圾做标记，标记完成进入垃圾清理阶段，把存活的对象复制到空闲区域，把这些对象有序的排列起来</li>
+<li>完成复制后，对象区和空闲区进行角色翻转</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>老生代（主垃圾回收器）</p>
+<ul>
+<li>对象存放生存时间久</li>
+<li>对象占用空间大</li>
+</ul>
+</li>
+<li><p>副垃圾回收器采用对象晋升策略：移动那些经过两次垃圾回收依然还存活的对象到老生代中</p>
+</li>
+</ul>
+<p>V8 实现了精准式 GC，GC 算法采用了分代式垃圾回收机制。因此，V8 将内存（堆）分为新生代和老生代两部分。</p>
+<p>新生代算法<br>新生代中的对象一般存活时间较短，使用 Scavenge GC 算法。<br>在新生代空间中，内存空间分为两部分，分别为 From 空间和 To 空间。<br>在这两个空间中，必定有一个空间是使用的，另一个空间是空闲的。<br>新分配的对象会被放入 From 空间中，当 From 空间被占满时，新生代 GC 就会启动。<br>算法会检查 From 空间中存活的对象并复制到 To 空间中，如果失活的对象就会销毁。<br>当复制完成后将 From 空间和 To 空间互换，这样 GC 就结束了。</p>
+<p>老生代算法<br>老生代中的对象一般存活时间较长且数量也多，使用了两个算法，分别是 标记清除算法 和 标记压缩算法。<br>在将算法前，先来说下什么情况下对象会出现在老生代空间中：<br>● 新生代中的对象是否已经经历过一次 Scavenge 算法，如果经历过的话，会将对象从新生代空间移到老生代空间。<br>● To 空间的对象占比大于 25%。在这种情况下，为了不影响到内存分配，会将对象从新生代空间移到老生代空间中。</p>
+<p>以下情况会启动 标记清除算法：<br>● 某一空间没有分块的时候<br>● 空间中对象超过一定限制<br>● 空间不能保证新生代中的对象移动时</p>
+<p>清除对象后会造成堆内存出现碎片的情况，当碎片超过一定限制后会启动 压缩算法。在压缩过程中，将活的对象像一端移动，直到所有对象都移动完成然后清除不需要的内存。</p>
 <h2 id="谈谈你对-webpack-的理解？"><a href="#谈谈你对-webpack-的理解？" class="headerlink" title="谈谈你对 webpack 的理解？"></a>谈谈你对 webpack 的理解？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">webpack是一个打包模块化js的工具，在webpack里一切文件皆模块</span><br><span class="line">，通过loader转换，通过plugin注入钩子，最后输出由多个</span><br><span class="line">模块组合成的文件，webpack专注构建模块化。WebPack可</span><br><span class="line">以看做是模块的打包机器：它做的事情是，分析你的项目</span><br><span class="line">结构，找到js模块及其它的一些浏览器不能直接运行的</span><br><span class="line">拓展语言，例如：Scss，TS等，并将其打包为合适的格式</span><br><span class="line">以供浏览器使用。</span><br></pre></td></tr></table></figure>
 
 <h2 id="说说-webpack-与-grunt、gulp-的不同？"><a href="#说说-webpack-与-grunt、gulp-的不同？" class="headerlink" title="说说 webpack 与 grunt、gulp 的不同？"></a>说说 webpack 与 grunt、gulp 的不同？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">三者都是前端构建工具，grunt和gulp在早期比较流行，</span><br><span class="line">现在webpack相对来说比较主，不过一些轻量化的任务</span><br><span class="line">还是会用gulp来处理，比如单独打包CSS文件等。</span><br><span class="line"></span><br><span class="line">grunt和gulp是基于任务和流（Task、Stream）的。</span><br><span class="line">类似jQuery，找到一个（或一类）文件，对其做一</span><br><span class="line">系列链式操作，更新流上的数据，整条链式操作</span><br><span class="line">构成了一个任务，多个任务就构成了web的构建流程。</span><br><span class="line"></span><br><span class="line">webpack是基于入口的。webpack会自动地递归解析</span><br><span class="line">入口所需要加载的所有资源文件，然后用不同的</span><br><span class="line">Loader来处理不同的文件，用Plugin来扩展webpack功能。</span><br><span class="line"></span><br><span class="line">所以，从构建来说，gulp和grunt需要开发者将整个</span><br><span class="line">前端构建过程拆分成多个`Task`，并合理控制所有`Task`的</span><br><span class="line">调用关系；webpack需要开发者找到入口，并需要清楚对</span><br><span class="line">于不同的资源应该使什么Loader做何种解析和加工对</span><br><span class="line">于知识背景来说，gulp更像后端开发者的思路，</span><br><span class="line">需要对于整个流程了如指掌webpack更倾向于前端开发者的思路</span><br></pre></td></tr></table></figure>
@@ -4550,14 +4582,6 @@ shuffle(arr)
 <h2 id="描述一下编写-loader-或-plugin-的思路？"><a href="#描述一下编写-loader-或-plugin-的思路？" class="headerlink" title="描述一下编写 loader 或 plugin 的思路？"></a>描述一下编写 loader 或 plugin 的思路？</h2><p>Loader 像一个”翻译官”把读到的源文件内容转义成新的文件内容，<br>并且每个 Loader 通过链式操作，将源文件一步步翻译成想要的样子。<br>编写 Loader 时要遵循单一原则，每个 Loader 只做一种”转义”工作。 每个 Loader 的拿到的是源文件内容（source），可以通过返回值的方式将处理后的内容输出，也可以调用 this.callback()方法，将内容返回给 webpack。 还可以通过 this.async()生成一个 callback 函数，再用这个 callback 将处理后的内容输出出去。 此外 webpack 还为开发者准备了开发 loader 的工具函数集——loader-utils。<br>相对于 Loader 而言，Plugin 的编写就灵活了许多。 webpack 在运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。</p>
 <h2 id="如何利用-webpack-来优化前端性能？"><a href="#如何利用-webpack-来优化前端性能？" class="headerlink" title="如何利用 webpack 来优化前端性能？"></a>如何利用 webpack 来优化前端性能？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用webpack优化前端性能是指优化webpack的输出结果，</span><br><span class="line">让打包的最终结果在浏览器运行快速高效。</span><br><span class="line"></span><br><span class="line">压缩代码。删除多余的代码、注释、简化代码的写法等等方式。</span><br><span class="line">可以利用webpack的UglifyJsPlugin和ParallelUglifyPlugin来压缩JS文件</span><br><span class="line">，利用cssnano（css-loader?minimize）来压缩css</span><br><span class="line"></span><br><span class="line">利用CDN加速。在构建过程中，将引用的静态资源路径修改为CDN上对</span><br><span class="line">应的路径。可以利用webpack对于output参数和各loader的publicPath</span><br><span class="line">参数来修改资源路径</span><br><span class="line"></span><br><span class="line">删除死代码（Tree Shaking）。将代码中永远不会走到的片段删除掉。</span><br><span class="line"></span><br><span class="line">可以通过在启动webpack时追加参数--optimize-minimize来</span><br><span class="line">实现提取公共代码。</span><br></pre></td></tr></table></figure>
 
-<h2 id="如何提高-webpack-的构建速度？"><a href="#如何提高-webpack-的构建速度？" class="headerlink" title="如何提高 webpack 的构建速度？"></a>如何提高 webpack 的构建速度？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">多入口情况下，使用CommonsChunkPlugin来提取公共代码</span><br><span class="line">通过externals配置来提取常用库</span><br><span class="line">利用DllPlugin和DllReferencePlugin预编译资源模块 通过DllPlugin来对那些我们引用但是绝对不会修改的npm包来进行预编译，</span><br><span class="line">再通过DllReferencePlugin将预编译的模块加载进来。</span><br><span class="line">使用Happypack 实现多线程加速编译</span><br><span class="line">使用webpack-uglify-parallel来提升uglifyPlugin的压缩速度。 原理上webpack-uglify-parallel采用了多核并行压缩来提升压缩速度</span><br><span class="line">使用Tree-shaking和Scope Hoisting来剔除多余代码</span><br></pre></td></tr></table></figure>
-
-<h2 id="怎么配置单页应用？怎么配置多页应用？"><a href="#怎么配置单页应用？怎么配置多页应用？" class="headerlink" title="怎么配置单页应用？怎么配置多页应用？"></a>怎么配置单页应用？怎么配置多页应用？</h2><p>单页应用可以理解为 webpack 的标准模式，直接在 entry 中指定单页应用的入口即可，这里不再赘述多页应用的话，可以使用 webpack 的 AutoWebPlugin 来完成简单自动化的构建，但是前提是项目的目录结构必须遵守他预设的规范。<br>多页应用中要注意的是：每个页面都有公共的代码，可以将这些代码抽离出来，避免重复的加载。比如，每个页面都引用了同一套 css 样式表,随着业务的不断扩展，页面可能会不断的追加，所以一定要让入口的配置足够灵活，避免每次添加新页面还需要修改构建配置</p>
-<h2 id="vue-项目中实现按需加载？"><a href="#vue-项目中实现按需加载？" class="headerlink" title="vue 项目中实现按需加载？"></a>vue 项目中实现按需加载？</h2><p>为了快速开发前端项目，经常会引入现成的 UI 组件库如 ElementUI、iView 等，但是他们的体积和他们所提供的功能一样，是很庞大的。 而通常情况下，我们仅仅需要少量的几个组件就足够了，但是我们却将庞大的组件库打包到我们的源码中，造成了不必要的开销。<br>不过很多组件库已经提供了现成的解决方案，如 Element 出品的 babel-plugin-component 和 AntDesign 出品的 babel-plugin-import 安装以上插件后，在.babelrc 配置中或 babel-loader 的参数中进行设置，即可实现组件按需加载了。</p>
-<p>单页应用的按需加载   现在很多前端项目都是通过单页应用的方式开发的，但是随着业务的不断扩展，会面临一个严峻的问题——首次加载的代码量会越来越多，影响用户的体验。</p>
-<p>通过 import(<em>)语句来控制加载时机，webpack 内置了对于 import(</em>)的解析，会将 import(<em>)中引入的模块作为一个新的入口在生成一个 chunk。当代码执行到 import(</em>)语句时，会去加载 Chunk 对应生成的文件。import()会返回一个 Promise 对象，所以为了让浏览器支持，需要事先注入 Promise polyfill</p>
-<p>自主搭建、灵活定制、高效复用</p>
-<p>1.单向链表的创建、插入和反转 2.二叉搜索树的查找、插入、删除思想，写伪代码<br>3.tcp 链接和释放过程，http，https，tcp 和 udp 比较 4.链表顺序翻转</p>
 <h2 id="如何阻止冒泡"><a href="#如何阻止冒泡" class="headerlink" title="如何阻止冒泡?"></a>如何阻止冒泡?</h2><pre><code>W3C的方法e.stopPropagation(),IE使用e.cancelBubble = true;
 
 封装：
@@ -4602,7 +4626,7 @@ shuffle(arr)
 <li><p>dom.getBoundingClientRect().width/height</p>
 </li>
 </ul>
-<h4 id="如何判断一个对象是否为数组"><a href="#如何判断一个对象是否为数组" class="headerlink" title="如何判断一个对象是否为数组"></a>如何判断一个对象是否为数组</h4><pre><code>1. Array.prototype.isPrototypeOf(obj)方法，判断Array.prototype是不是在obj的原型链中，
+<h2 id="如何判断一个对象是否为数组"><a href="#如何判断一个对象是否为数组" class="headerlink" title="如何判断一个对象是否为数组"></a>如何判断一个对象是否为数组</h2><pre><code>1. Array.prototype.isPrototypeOf(obj)方法，判断Array.prototype是不是在obj的原型链中，
 如果在，则返回true，否则返回false。
 
 2. obj instanceof Array
@@ -4611,10 +4635,10 @@ shuffle(arr)
 
 4.Array.isArray(obj)
 </code></pre>
-<h4 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h4><pre><code>1.macro-task(宏任务)：包括整体代码script、setTimeout、setInterval
+<h2 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h2><pre><code>1.macro-task(宏任务)：包括整体代码script、setTimeout、setInterval
 2.micro-task(微任务)：Promise.then、process.nextTick
 </code></pre>
-<h4 id="Http-的持久连接和管线化"><a href="#Http-的持久连接和管线化" class="headerlink" title="Http 的持久连接和管线化"></a>Http 的持久连接和管线化</h4><pre><code>1. 什么是持久连接？
+<h2 id="Http-的持久连接和管线化"><a href="#Http-的持久连接和管线化" class="headerlink" title="Http 的持久连接和管线化"></a>Http 的持久连接和管线化</h2><pre><code>1. 什么是持久连接？
     HTTP1.1规定了默认保持持久连接，数据传输完成也保持TCP连接不断开，等待同域名下
     继续使用这个通道传输数据,在一个TCP连接上传输多个HTTP请求和响应。
 
@@ -4637,7 +4661,7 @@ shuffle(arr)
 
     初次建立连接不应启动管线机制，因为对方服务器不一定支持HTTP1.1版本的协议。
 </code></pre>
-<h4 id="为什么利用多个域名来存储网站资源会更有效？"><a href="#为什么利用多个域名来存储网站资源会更有效？" class="headerlink" title="为什么利用多个域名来存储网站资源会更有效？"></a>为什么利用多个域名来存储网站资源会更有效？</h4><pre><code>1.CDN 是构建在网络之上的内容分发网络，可以使用户就近获取资源，减低网络拥塞，提高用户
+<h2 id="为什么利用多个域名来存储网站资源会更有效？"><a href="#为什么利用多个域名来存储网站资源会更有效？" class="headerlink" title="为什么利用多个域名来存储网站资源会更有效？"></a>为什么利用多个域名来存储网站资源会更有效？</h2><pre><code>1.CDN 是构建在网络之上的内容分发网络，可以使用户就近获取资源，减低网络拥塞，提高用户
 访问的响应效率以及命中率。
 
 2.突破浏览器的并发限制，同一时间针对同一域名下的请求有一定的数量限制，超过限定数目
@@ -4649,7 +4673,7 @@ shuffle(arr)
 
 5.防止不必要的安全问题
 </code></pre>
-<h4 id="CSS-权重（156-进制）"><a href="#CSS-权重（156-进制）" class="headerlink" title="CSS 权重（156 进制）"></a>CSS 权重（156 进制）</h4><pre><code>1. ！import  权值：infinite 无穷大
+<h2 id="CSS-权重（156-进制）"><a href="#CSS-权重（156-进制）" class="headerlink" title="CSS 权重（156 进制）"></a>CSS 权重（156 进制）</h2><pre><code>1. ！import  权值：infinite 无穷大
 
 2. 内联样式， 权值1000
 
@@ -4663,7 +4687,7 @@ shuffle(arr)
 
 权值相等，后来居上
 </code></pre>
-<h4 id="html5-的新特性"><a href="#html5-的新特性" class="headerlink" title="html5 的新特性"></a>html5 的新特性</h4><pre><code>1. 添加了video、radio标签
+<h2 id="html5-的新特性"><a href="#html5-的新特性" class="headerlink" title="html5 的新特性"></a>html5 的新特性</h2><pre><code>1. 添加了video、radio标签
 2. 添加了canvas画布和svg渲染矢量图片
 3. 添加了一些语义化的标签 header、footer、main、section...
 4. input的type值新添加了很多属性（email，search，color，number...）
@@ -4673,7 +4697,7 @@ shuffle(arr)
 8. web worker创造多线程环境，是运行在后台的javaScript。
 9。 服务端推送（EventSource用于接受服务端发送事件通知）
 </code></pre>
-<h4 id="CSS3-新添加的特性？"><a href="#CSS3-新添加的特性？" class="headerlink" title="CSS3 新添加的特性？"></a>CSS3 新添加的特性？</h4><pre><code>1. 媒体查询
+<h2 id="CSS3-新添加的特性？"><a href="#CSS3-新添加的特性？" class="headerlink" title="CSS3 新添加的特性？"></a>CSS3 新添加的特性？</h2><pre><code>1. 媒体查询
 2. transform，transition，translate，scale，rotate等相关动画效果
 3. box-shadow，text-shadow等特效
 4. CSS3 @font-face规则，可以引入任意字体
@@ -4682,7 +4706,7 @@ shuffle(arr)
 7. 添加了border-radius、border-image、column-count、resize、box-sizing
 、outline-offset等属性
 </code></pre>
-<h4 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h4><pre><code>基本数据类型：Null、Undefined、String、Boolean、Number
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><pre><code>基本数据类型：Null、Undefined、String、Boolean、Number
 ES6：Symbol
 ES10：Bigint（可以突破安全整数限制，安全的存储和操作最大整数之外的整数，不会损失精度）
 </code></pre>
@@ -5010,7 +5034,7 @@ dt.getMinutes() //分钟（0-59）
 dt.getSeconds() //秒（0-59）
 dt.getDay()     //星期几（0-6）
 </code></pre>
-<h3 id="如何监听未处理的异常"><a href="#如何监听未处理的异常" class="headerlink" title="如何监听未处理的异常"></a>如何监听未处理的异常</h3><ul>
+<h2 id="如何监听未处理的异常"><a href="#如何监听未处理的异常" class="headerlink" title="如何监听未处理的异常"></a>如何监听未处理的异常</h2><ul>
 <li>try…catch<ul>
 <li>无法捕捉到语法错误，只能捕捉运行时错误</li>
 <li>可以拿到出错的信息(出错的文件，行号，列号)</li>
@@ -5025,20 +5049,20 @@ dt.getDay()     //星期几（0-6）
 <li>vue.config.errorHandler: vue 错误</li>
 <li>componentDidCatch：错误边界函数</li>
 </ul>
-<h3 id="http-和-https-的区别-1"><a href="#http-和-https-的区别-1" class="headerlink" title="http 和 https 的区别"></a>http 和 https 的区别</h3><ul>
+<h2 id="http-和-https-的区别-1"><a href="#http-和-https-的区别-1" class="headerlink" title="http 和 https 的区别"></a>http 和 https 的区别</h2><ul>
 <li>http 是一种一种广泛使用的网络协议，是一个客户端和服务器请求和应答的标准。</li>
 <li>http 工作在 TCP 协议的 80 端口，https 工作在 TCP 协议的 443 端口</li>
 <li>http 协议运行在 TCP 协议之上，所有的传输内容都是明文，https 运行在 SSL/TLS 之上，<br>SSL/TLS 运行在 TCP 之上，所有的传输内容都是经过加密的。</li>
 <li>https 是以安全为目标的 http 通道，是 http 的安全版。是 http 加上 SSL 层对传输的信息和 url 做了一些加密处理，更加安全</li>
 </ul>
-<h3 id="为什么-https-不会被截取信息"><a href="#为什么-https-不会被截取信息" class="headerlink" title="为什么 https 不会被截取信息"></a>为什么 https 不会被截取信息</h3><ul>
+<h2 id="为什么-https-不会被截取信息"><a href="#为什么-https-不会被截取信息" class="headerlink" title="为什么 https 不会被截取信息"></a>为什么 https 不会被截取信息</h2><ul>
 <li>完成 TCP 三次同步握手</li>
 <li>客户端验证服务器数字证书，通过，进入步骤 3</li>
 <li>DH 算法协商对称加密算法的密钥、hash 算法的密钥</li>
 <li>SSL 安全加密隧道协商完成</li>
 <li>网页以加密的方式传输，用协商的对称加密算法和密钥加密，保证数据机密性；<br>用协商的 hash 算法进行数据完整性保护，保证数据不被篡改</li>
 </ul>
-<h3 id="浏览器如何缓存"><a href="#浏览器如何缓存" class="headerlink" title="浏览器如何缓存"></a>浏览器如何缓存</h3><ul>
+<h2 id="浏览器如何缓存"><a href="#浏览器如何缓存" class="headerlink" title="浏览器如何缓存"></a>浏览器如何缓存</h2><ul>
 <li>html meta 标签控制缓存<ul>
 <li><code>&lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cahce&quot;&gt;</code> //告诉浏览器当前页面不被缓存</li>
 </ul>
@@ -5049,7 +5073,7 @@ dt.getDay()     //星期几（0-6）
 </ul>
 </li>
 </ul>
-<h3 id="TCP-协议如何保证传输的可靠性"><a href="#TCP-协议如何保证传输的可靠性" class="headerlink" title="TCP 协议如何保证传输的可靠性"></a>TCP 协议如何保证传输的可靠性</h3><ul>
+<h2 id="TCP-协议如何保证传输的可靠性"><a href="#TCP-协议如何保证传输的可靠性" class="headerlink" title="TCP 协议如何保证传输的可靠性"></a>TCP 协议如何保证传输的可靠性</h2><ul>
 <li>校验和</li>
 <li>确认应答 + 序列号</li>
 <li>超时重传</li>
@@ -5058,7 +5082,7 @@ dt.getDay()     //星期几（0-6）
 <li>TCP 的连接管理</li>
 <li>滑动窗口</li>
 </ul>
-<h3 id="UDP-amp-TCP-的区别"><a href="#UDP-amp-TCP-的区别" class="headerlink" title="UDP &amp; TCP 的区别"></a>UDP &amp; TCP 的区别</h3><ul>
+<h2 id="UDP-amp-TCP-的区别"><a href="#UDP-amp-TCP-的区别" class="headerlink" title="UDP &amp; TCP 的区别"></a>UDP &amp; TCP 的区别</h2><ul>
 <li><p>相同点：</p>
 <ul>
 <li>UDP 协议 和 TCP 协议 都是运输层协议</li>
@@ -5088,7 +5112,7 @@ dt.getDay()     //星期几（0-6）
 <li><p>UDP 一般用在网络负担非常重，但对响应速度要求高，数据类型都是短消息的情况下</p>
 </li>
 </ul>
-<h3 id="样式导入方式及优先级？"><a href="#样式导入方式及优先级？" class="headerlink" title="样式导入方式及优先级？"></a>样式导入方式及优先级？</h3><ul>
+<h2 id="样式导入方式及优先级？"><a href="#样式导入方式及优先级？" class="headerlink" title="样式导入方式及优先级？"></a>样式导入方式及优先级？</h2><ul>
 <li><p>引入方式</p>
 <ul>
 <li>行内样式</li>
@@ -5105,7 +5129,7 @@ dt.getDay()     //星期几（0-6）
 <li><p>选择器优先原则：!important &gt; 行间样式 &gt; ID 选择器 &gt;class 选择器｜伪类选择器｜属性选择器 &gt;元素选择器｜伪元素选择器 &gt; 通配符选择器｜子选择器选择器｜相邻兄弟选择器</p>
 </li>
 </ul>
-<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><p>BFC(block formatting context)翻译为“块级格式化上下文”，它会生成独立的渲染区域<br>(不影响外面的元素，同时也不受外部元素的影响)，它有一下规则：</p>
+<h2 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h2><p>BFC(block formatting context)翻译为“块级格式化上下文”，它会生成独立的渲染区域<br>(不影响外面的元素，同时也不受外部元素的影响)，它有一下规则：</p>
 <ul>
 <li>内部的 box 会在垂直方向上一个接一个的放置。</li>
 <li>内部 box 在垂直方向上的距离由 margin 决定，同属一个 BFC 内的相邻 box 会发生 margin 重叠。</li>
@@ -5119,7 +5143,7 @@ dt.getDay()     //星期几（0-6）
 <li>display 为 inline-block、table-cell、table-caption、flex、inline-flex</li>
 <li>overflow 不为 visible</li>
 </ul>
-<h2 id="字符串去重"><a href="#字符串去重" class="headerlink" title="字符串去重"></a>字符串去重</h2><h4 id="for-遍历"><a href="#for-遍历" class="headerlink" title="for 遍历"></a>for 遍历</h4><pre><code>function removeRepeatStr(str)&#123;
+<h2 id="字符串去重"><a href="#字符串去重" class="headerlink" title="字符串去重"></a>字符串去重</h2><h2 id="for-遍历"><a href="#for-遍历" class="headerlink" title="for 遍历"></a>for 遍历</h2><pre><code>function removeRepeatStr(str)&#123;
     var newStr = &#39;&#39;;
     var flag;
     var len = str.length;
@@ -5139,7 +5163,7 @@ dt.getDay()     //星期几（0-6）
     return newStr;
 &#125;
 </code></pre>
-<h4 id="indexOf-方法"><a href="#indexOf-方法" class="headerlink" title="indexOf 方法"></a>indexOf 方法</h4><pre><code>function removeRepeatStr(str)&#123;
+<h2 id="indexOf-方法"><a href="#indexOf-方法" class="headerlink" title="indexOf 方法"></a>indexOf 方法</h2><pre><code>function removeRepeatStr(str)&#123;
     var newStr = &#39;&#39;;
     var len = str.length;
     for(var i=0; i&lt;len; i++)&#123;
@@ -5150,7 +5174,7 @@ dt.getDay()     //星期几（0-6）
     return newStr;
 &#125;
 </code></pre>
-<h4 id="search-方法"><a href="#search-方法" class="headerlink" title="search 方法"></a>search 方法</h4><pre><code>function removeRepeatStr(str)&#123;
+<h2 id="search-方法"><a href="#search-方法" class="headerlink" title="search 方法"></a>search 方法</h2><pre><code>function removeRepeatStr(str)&#123;
     var newStr = &#39;&#39;;
     var len = str.length;
     for(var i=0; i&lt;len; i++)&#123;
@@ -5161,7 +5185,7 @@ dt.getDay()     //星期几（0-6）
     return newStr;
 &#125;
 </code></pre>
-<h4 id="对象属性法"><a href="#对象属性法" class="headerlink" title="对象属性法"></a>对象属性法</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">removeRepeatStr</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> newStr = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="keyword">var</span> len = str.<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!obj[str[i]]) &#123;</span><br><span class="line">      newStr = newStr + str[i];</span><br><span class="line">      <span class="comment">//注意，这里的1是给对象属性赋值，这个值可以任意取。意思是把每个遍历的字符作为对象属性并赋值保存，保证该属性的唯一性</span></span><br><span class="line">      obj[str[i]] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="对象属性法"><a href="#对象属性法" class="headerlink" title="对象属性法"></a>对象属性法</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">removeRepeatStr</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> newStr = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="keyword">var</span> len = str.<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!obj[str[i]]) &#123;</span><br><span class="line">      newStr = newStr + str[i];</span><br><span class="line">      <span class="comment">//注意，这里的1是给对象属性赋值，这个值可以任意取。意思是把每个遍历的字符作为对象属性并赋值保存，保证该属性的唯一性</span></span><br><span class="line">      obj[str[i]] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="同步和异步的区别，怎么异步加载-javascript"><a href="#同步和异步的区别，怎么异步加载-javascript" class="headerlink" title="同步和异步的区别，怎么异步加载 javascript?"></a>同步和异步的区别，怎么异步加载 javascript?</h2><!--more-->
 
@@ -5229,14 +5253,14 @@ dt.getDay()     //星期几（0-6）
 </ul>
 <h2 id="什么是-FOUC？如何避免？"><a href="#什么是-FOUC？如何避免？" class="headerlink" title="什么是 FOUC？如何避免？"></a>什么是 FOUC？如何避免？</h2><!--more-->
 
-<h4 id="一、为什么会有白屏和-FOUC-呢？"><a href="#一、为什么会有白屏和-FOUC-呢？" class="headerlink" title="一、为什么会有白屏和 FOUC 呢？"></a>一、为什么会有白屏和 FOUC 呢？</h4><blockquote>
+<h2 id="一、为什么会有白屏和-FOUC-呢？"><a href="#一、为什么会有白屏和-FOUC-呢？" class="headerlink" title="一、为什么会有白屏和 FOUC 呢？"></a>一、为什么会有白屏和 FOUC 呢？</h2><blockquote>
 <p>浏览器再渲染的时候没有请求到或请求时间过长造成的，那么浏览器怎么应对的呢？</p>
 <ul>
 <li>白屏：CSS 全部载入解析完成后渲染展示页面，如果没有加载完，就会出现白屏。</li>
 <li>FOUC(Flash of Unstyled Content)无样式内容闪烁：用户定义样式表加载之前浏览器<br>使用默认样式显示文档，用户样式表加载渲染之后，再重新显示文档，造成页面闪烁。</li>
 </ul>
 </blockquote>
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><blockquote>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><blockquote>
 <ul>
 <li>使用 link 标签将样式表放在顶部<head>标签中，防止白屏问题出现。</li>
 <li>将 JS 放在<body>标签底部，原因如下：<ul>
@@ -5270,11 +5294,11 @@ dt.getDay()     //星期几（0-6）
 <h2 id="CSS-清除浮动"><a href="#CSS-清除浮动" class="headerlink" title="CSS-清除浮动"></a>CSS-清除浮动</h2><!--more-->
 
 <p><a href="https://segmentfault.com/a/1190000004865198">原文链接</a></p>
-<h3 id="什么是-CSS-清除浮动"><a href="#什么是-CSS-清除浮动" class="headerlink" title="什么是 CSS 清除浮动?"></a>什么是 CSS 清除浮动?</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">在非IE浏览器（如Firefox）下，当容器的高度为auto，且容器的内容中有浮动（float为left</span><br><span class="line">或right）的元素，在这种情况下，容器的高度不能自动伸长以适应内容的高度，使得内容溢出到</span><br><span class="line">容器外面而影响（甚至破坏）布局的现象。这个现象叫浮动溢出，为了防止这个现象的出现而进行</span><br><span class="line">的CSS处理，就叫CSS清除浮动。</span><br></pre></td></tr></table></figure>
+<h2 id="什么是-CSS-清除浮动"><a href="#什么是-CSS-清除浮动" class="headerlink" title="什么是 CSS 清除浮动?"></a>什么是 CSS 清除浮动?</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">在非IE浏览器（如Firefox）下，当容器的高度为auto，且容器的内容中有浮动（float为left</span><br><span class="line">或right）的元素，在这种情况下，容器的高度不能自动伸长以适应内容的高度，使得内容溢出到</span><br><span class="line">容器外面而影响（甚至破坏）布局的现象。这个现象叫浮动溢出，为了防止这个现象的出现而进行</span><br><span class="line">的CSS处理，就叫CSS清除浮动。</span><br></pre></td></tr></table></figure>
 
 <!--more-->
 
-<h3 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h3><ul>
+<h2 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h2><ul>
 <li>方法一：使用带 clear 属性的空元素</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">在浮动元素后使用一个空元素如&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;，并在CSS中赋予</span><br><span class="line">.clear&#123;clear:both;&#125;属性即可清理浮动。亦可使用&lt;br class=&quot;clear&quot; /&gt;或&lt;hr class=&quot;clear&quot; /&gt;</span><br><span class="line">来进行清理。</span><br><span class="line">优点：简单，代码少，浏览器兼容好。</span><br><span class="line">缺点：需要添加大量的无语义的html元素，代码不够优雅，后期不容易维护。</span><br></pre></td></tr></table></figure>
@@ -5426,34 +5450,6 @@ async和defer的区别：
 <li><p>externals + CDN</p>
 </li>
 </ul>
-<h2 id="V8-垃圾回收机制"><a href="#V8-垃圾回收机制" class="headerlink" title="V8 垃圾回收机制"></a>V8 垃圾回收机制</h2><ul>
-<li><p>V8 会把堆分为新生代和老生代</p>
-</li>
-<li><p>新生代（副垃圾回收器）</p>
-<ul>
-<li>存放生存时间短的对象</li>
-<li>通常只支持 1 ～ 8M 的容量</li>
-<li>分为对象区和空闲区<ul>
-<li>对对象区域中的垃圾做标记，标记完成进入垃圾清理阶段，把存活的对象复制到空闲区域，把这些对象有序的排列起来</li>
-<li>完成复制后，对象区和空闲区进行角色翻转</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>老生代（主垃圾回收器）</p>
-<ul>
-<li>对象存放生存时间久</li>
-<li>对象占用空间大</li>
-</ul>
-</li>
-<li><p>副垃圾回收器采用对象晋升策略：移动那些经过两次垃圾回收依然还存活的对象到老生代中</p>
-</li>
-</ul>
-<p>V8 实现了精准式 GC，GC 算法采用了分代式垃圾回收机制。因此，V8 将内存（堆）分为新生代和老生代两部分。</p>
-<p>新生代算法<br>新生代中的对象一般存活时间较短，使用 Scavenge GC 算法。<br>在新生代空间中，内存空间分为两部分，分别为 From 空间和 To 空间。<br>在这两个空间中，必定有一个空间是使用的，另一个空间是空闲的。<br>新分配的对象会被放入 From 空间中，当 From 空间被占满时，新生代 GC 就会启动。<br>算法会检查 From 空间中存活的对象并复制到 To 空间中，如果失活的对象就会销毁。<br>当复制完成后将 From 空间和 To 空间互换，这样 GC 就结束了。</p>
-<p>老生代算法<br>老生代中的对象一般存活时间较长且数量也多，使用了两个算法，分别是 标记清除算法 和 标记压缩算法。<br>在将算法前，先来说下什么情况下对象会出现在老生代空间中：<br>● 新生代中的对象是否已经经历过一次 Scavenge 算法，如果经历过的话，会将对象从新生代空间移到老生代空间。<br>● To 空间的对象占比大于 25%。在这种情况下，为了不影响到内存分配，会将对象从新生代空间移到老生代空间中。</p>
-<p>以下情况会启动 标记清除算法：<br>● 某一空间没有分块的时候<br>● 空间中对象超过一定限制<br>● 空间不能保证新生代中的对象移动时</p>
-<p>清除对象后会造成堆内存出现碎片的情况，当碎片超过一定限制后会启动 压缩算法。在压缩过程中，将活的对象像一端移动，直到所有对象都移动完成然后清除不需要的内存。</p>
 <h2 id="如何处理-TCP-的粘包"><a href="#如何处理-TCP-的粘包" class="headerlink" title="如何处理 TCP 的粘包?"></a>如何处理 TCP 的粘包?</h2><p>发生 TCP 粘包或拆包有很多原因，现列出常见的几点：</p>
 <p>要发送的数据大于 TCP 发送缓冲区剩余空间大小，将会发生拆包。<br>待发送数据大于 MSS（最大报文长度），TCP 在传输前将进行拆包。<br>要发送的数据小于 TCP 发送缓冲区的大小，TCP 将多次写入缓冲区的数据一次发送出去，将会发生粘包。<br>接收数据端的应用层没有及时读取接收缓冲区中的数据，将发生粘包。</p>
 <p>关键点：如何给每个数据包添加边界信息</p>
@@ -6821,6 +6817,7 @@ requestAnimationFrame(callback):
 </ul>
 </li>
 </ul>
+<h2 id="css-穿参给-js-的方法"><a href="#css-穿参给-js-的方法" class="headerlink" title="css 穿参给 js 的方法"></a>css 穿参给 js 的方法</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">any-hover</span>: none) &#123;</span><br><span class="line">    <span class="selector-tag">body</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">        <span class="attribute">content</span>: <span class="string">&#x27;hoverNone&#x27;</span>;</span><br><span class="line">        <span class="attribute">display</span>: none;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// js获取</span><br><span class="line">const hover = getComputedStyle(document<span class="selector-class">.body</span>, &#x27;<span class="selector-pseudo">::before</span>&#x27;)<span class="selector-class">.content</span>;</span><br><span class="line">hover就是<span class="attribute">content</span>对应的值</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>面经</category>
