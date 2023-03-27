@@ -1273,84 +1273,6 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
       </tags>
   </entry>
   <entry>
-    <title>TypeScript</title>
-    <url>/2019/08/23/typescript/</url>
-    <content><![CDATA[<h3 id="什么是-TypeScript？"><a href="#什么是-TypeScript？" class="headerlink" title="什么是 TypeScript？"></a>什么是 TypeScript？</h3><span id="more"></span>
-
-<ul>
-<li><p>TypeScript 是 JavaScript 的超集，任何合法的 js 程序都是合法的 TypeScript 程序</p>
-</li>
-<li><p>TypeScript 通过向 JavaScript 增加可选的静态类型声明把 JavaScript 变成强类型程序<br>语言</p>
-</li>
-<li><p>提供静态类型声明可约束函数、变量、属性等程序实体</p>
-</li>
-</ul>
-<h3 id="为什么要使用-TypeScript？"><a href="#为什么要使用-TypeScript？" class="headerlink" title="为什么要使用 TypeScript？"></a>为什么要使用 TypeScript？</h3><ol>
-<li><p>提供了静态类型系统，大大增强了代码的可读性以及可维护性</p>
-</li>
-<li><p>提供最新和不断发展的 javascript 特性，能让我们建立 更健壮的组件</p>
-</li>
-<li><p>TS 具有防患于未然的静态检查，以及干净利落的只能提示</p>
-</li>
-</ol>
-<h3 id="TypeScript-中的数据类型"><a href="#TypeScript-中的数据类型" class="headerlink" title="TypeScript 中的数据类型"></a>TypeScript 中的数据类型</h3><blockquote>
-<p>typescript 中为了使编写的代码更规范，更利于维护，增加了类型校验，在 typescript 中<br>主要提供了以下数据类型：</p>
-</blockquote>
-<ul>
-<li>布尔类型 bolean</li>
-<li>数字类型 number</li>
-<li>字符串类型 string</li>
-<li>数组类型 array</li>
-<li>元组类型 tuple</li>
-<li>枚举类型 enum</li>
-<li>任意类型 any</li>
-<li>null 和 undefined</li>
-<li>void 类型</li>
-<li>never 类型</li>
-</ul>
-<blockquote>
-<p>typescript 中为了使编写的代码更规范，更有利于维护，增加了类型校验，写 ts 代码必须指定类型</p>
-</blockquote>
-<h3 id="未声明类型的变量-如果变量在声明的时候，未指定其类型，那么他会被识别为任意类"><a href="#未声明类型的变量-如果变量在声明的时候，未指定其类型，那么他会被识别为任意类" class="headerlink" title="未声明类型的变量: 如果变量在声明的时候，未指定其类型，那么他会被识别为任意类"></a>未声明类型的变量: 如果变量在声明的时候，未指定其类型，那么他会被识别为任意类</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> something;</span><br><span class="line"></span><br><span class="line">something = <span class="string">&quot;seven&quot;</span>;</span><br><span class="line"></span><br><span class="line">something = <span class="number">7</span>;</span><br><span class="line"><span class="comment">//不会报错</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="如果没有明确的指定类型，那么-typescript-会依照类型推论的规则推导出一个规则"><a href="#如果没有明确的指定类型，那么-typescript-会依照类型推论的规则推导出一个规则" class="headerlink" title="如果没有明确的指定类型，那么 typescript 会依照类型推论的规则推导出一个规则"></a>如果没有明确的指定类型，那么 typescript 会依照类型推论的规则推导出一个规则</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="string">&quot;seven&quot;</span>;</span><br><span class="line">num = <span class="number">7</span>;</span><br><span class="line"><span class="comment">//会报错</span></span><br><span class="line"><span class="comment">//上面代码等价于：</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">num</span>: <span class="built_in">string</span> = <span class="string">&quot;seven&quot;</span>;</span><br><span class="line">num = <span class="number">7</span>;</span><br><span class="line"><span class="comment">//typescript自动推测出num属于string类型</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="联合类型：表示取值可以为多种类型中的一种"><a href="#联合类型：表示取值可以为多种类型中的一种" class="headerlink" title="联合类型：表示取值可以为多种类型中的一种"></a>联合类型：表示取值可以为多种类型中的一种</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">flag</span>:<span class="built_in">string</span> | <span class="built_in">number</span></span><br><span class="line">flag = <span class="string">&#x27;seven&#x27;</span></span><br><span class="line">flag = <span class="number">7</span></span><br><span class="line"><span class="comment">//联合类型使用 | 分隔每个类型，表示允许flag为string类型或者number类型</span></span><br><span class="line">---------------------------------------</span><br><span class="line"><span class="comment">//访问联合类型的属性或者方法</span></span><br><span class="line"><span class="comment">//当typescript不确定一个联合类型的变量到底是哪个类型的时候，</span></span><br><span class="line">我们只能访问联合类型的所有类型中共有的属性和方法</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getLength</span>(<span class="params">something:<span class="built_in">string</span>|<span class="built_in">number</span></span>):<span class="built_in">number</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> something.<span class="property">length</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//上面代码会报错，因为length不是string和number共有的属性</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//可以访问共有属性toString()</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getString</span>(<span class="params">something:<span class="built_in">string</span>|<span class="built_in">number</span></span>):<span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> something.<span class="title function_">toString</span>()</span><br><span class="line">&#125;</span><br><span class="line">---------------------------------------</span><br><span class="line"><span class="comment">//联合属性在赋值的时候，会根据类型推论的规则推断出一个类型</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">a</span>:<span class="built_in">string</span>|<span class="built_in">number</span></span><br><span class="line">a = <span class="string">&#x27;seven&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">length</span>) <span class="comment">//5，a被推断为string，有length属性</span></span><br><span class="line">a = <span class="number">7</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">length</span>) <span class="comment">//编译时报错，被推断为number，无length属性</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//数组类型定义(不允许出现其他类型，数组方法参数也有限制，</span></span><br><span class="line">如<span class="title function_">push</span>(<span class="string">&#x27;7&#x27;</span>)会报错，不能为字符串)</span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr</span>:<span class="built_in">number</span>[] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr</span>:(<span class="built_in">number</span> | <span class="built_in">string</span>)[] = [<span class="number">1</span>,<span class="string">&#x27;1&#x27;</span>,<span class="number">2</span>]</span><br><span class="line">---------------------------------</span><br><span class="line"><span class="comment">//数组泛型</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr</span>:<span class="title class_">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">----------------------------------</span><br><span class="line"><span class="comment">//用接口表示数组</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">NumberArray</span> &#123;</span><br><span class="line">    [<span class="attr">index</span>:<span class="built_in">number</span>]:<span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr</span>:<span class="title class_">NumberArray</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="comment">//NumberArray表示，只要index的类型时number，那么值的类型也必须时number</span></span><br><span class="line">-----------------------------------</span><br><span class="line"><span class="comment">//any在数组中的应用</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr</span>:<span class="built_in">any</span>[] = [<span class="string">&#x27;hello&#x27;</span>, <span class="number">24</span>, &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数声明（不允许输入多余或者少于要求的参数）</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">x:<span class="built_in">number</span>, y: <span class="built_in">number</span></span>):<span class="built_in">number</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">sum</span>(<span class="number">1</span>,<span class="number">2</span>) <span class="comment">//right</span></span><br><span class="line"><span class="title function_">sum</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) <span class="comment">//false</span></span><br><span class="line"><span class="title function_">sum</span>(<span class="number">1</span>) <span class="comment">//false</span></span><br><span class="line">----------------------------------------------</span><br><span class="line"><span class="comment">//函数表达式</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">sum</span>:<span class="function">(<span class="params">x:<span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">number</span> = <span class="keyword">function</span>(<span class="params">x:<span class="built_in">number</span>, y:<span class="built_in">number</span></span>):<span class="built_in">number</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line">-----------------------------------------------</span><br><span class="line"><span class="comment">//可选参数（使用 ? 表示可选的参数，只能放在参数的最后，后面不允许出现必须参数）</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">buildName</span>(<span class="params">firstName:<span class="built_in">string</span>, lastName?:<span class="built_in">string</span></span>):<span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (lastName) &#123;</span><br><span class="line">        <span class="keyword">return</span> firstName + <span class="string">&#x27; &#x27;</span> + lastName</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> firstName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> tomcat = <span class="title function_">buildName</span>(<span class="string">&#x27;tom&#x27;</span>, <span class="string">&#x27;cat&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> tom = <span class="title function_">buildName</span>(<span class="string">&#x27;tom&#x27;</span>)</span><br><span class="line">--------------------------------------------------</span><br><span class="line"><span class="comment">//参数默认值（typescript会将添加了默认值的参数识别为可选参数）</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">buildName</span>(<span class="params">firstName:<span class="built_in">string</span>, lastName:<span class="built_in">string</span> = <span class="string">&#x27;cat&#x27;</span></span>):<span class="built_in">string</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (lastName) &#123;</span><br><span class="line">            <span class="keyword">return</span> firstName + <span class="string">&#x27; &#x27;</span> + lastName</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> firstName</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> tomcat = <span class="title function_">buildName</span>(<span class="string">&#x27;tom&#x27;</span>, <span class="string">&#x27;cat&#x27;</span>)</span><br><span class="line">    <span class="keyword">let</span> tom = <span class="title function_">buildName</span>(<span class="string">&#x27;tom&#x27;</span>)</span><br><span class="line">----------------------------------------------------</span><br><span class="line"><span class="comment">//剩余参数，可以使用...rest的方式获取函数中的剩余参数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">push</span>(<span class="params">array: <span class="built_in">any</span>[], ...items:<span class="built_in">any</span>[]</span>) &#123;</span><br><span class="line">    items.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item</span>) &#123;</span><br><span class="line">        array.<span class="title function_">push</span>(item)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> a = []</span><br><span class="line"><span class="title function_">push</span>(a, <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">-------------------------------------------------------</span><br><span class="line"><span class="comment">//重载：允许一个函数接受不同数量或者类型的参数时，做出不同的处理</span></span><br><span class="line"><span class="comment">//例如，数字或者字符串的反转输出</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">reverse</span>(<span class="params">x: <span class="built_in">number</span></span>): <span class="built_in">number</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">reverse</span>(<span class="params">x: <span class="built_in">string</span></span>): <span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">reverse</span>(<span class="params">x: <span class="built_in">number</span> | <span class="built_in">string</span></span>): <span class="built_in">number</span> | <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> x === <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Number</span>(x.<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> x === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> x.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="泛型（注意点）"><a href="#泛型（注意点）" class="headerlink" title="泛型（注意点）"></a>泛型（注意点）</h2><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="variable constant_">A1</span> = <span class="string">&quot;x&quot;</span> <span class="keyword">extends</span> <span class="string">&quot;x&quot;</span> ? <span class="built_in">string</span> : <span class="built_in">number</span>; <span class="comment">// string</span></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">A2</span> = <span class="string">&quot;x&quot;</span> | <span class="string">&quot;y&quot;</span> <span class="keyword">extends</span> <span class="string">&quot;x&quot;</span> ? <span class="built_in">string</span> : <span class="built_in">number</span>; <span class="comment">// number</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> P&lt;T&gt; = T <span class="keyword">extends</span> <span class="string">&quot;x&quot;</span> ? <span class="built_in">string</span> : <span class="built_in">number</span>;</span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">A3</span> = P&lt;<span class="string">&quot;x&quot;</span> | <span class="string">&quot;y&quot;</span>&gt;; <span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
-
-<p>这里的<em>extends</em>是指<strong>类型 A 可以分配给类型 B，而不是说类型 A 是类型 B 的子集</strong>。<br>P 是带参数 T 的泛型类型，A1 和 A2 的形式一样，结果也很好理解，A3 是泛型类型 P 传入参数<br>**’x’ | ‘y’**得到的类型，如果将 <strong>‘x’ | ‘Y’</strong> 代入泛型类的表达式，那应该会得到和 A2 类型的形式完全一样的结果，这里直接给结论了</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type P&lt;T&gt; = T extends &#x27;x&#x27; ? string : number;</span><br><span class="line">type A3 = P&lt;&#x27;x&#x27; | &#x27;y&#x27;&gt; // A3的类型是 string ｜ number</span><br></pre></td></tr></table></figure>
-
-<p>结果是不是出人意料？原因就是<strong>分配条件类型</strong>,在 TS 中对于 extends 关键字的条件类型（即上面的三元表达式类型），如果<em>extends</em>前面的参数是一个(裸类型)泛型类型，当传入该参数的是联合类型，则使用分配律计算最终结果。</p>
-<p><em>分配律</em>是指，将联合型类的联合项拆分成单项，分别代入条件类型，然后将每个单项代入，再将得到的结果联合起来，得到最终的结果。</p>
-<ul>
-<li>特殊的 never</li>
-</ul>
-<p>那么，我们在看一个例子：</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="variable constant_">A1</span> = <span class="built_in">never</span> <span class="keyword">extends</span> <span class="string">&quot;x&quot;</span> ? <span class="built_in">string</span> : <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> P&lt;T&gt; = T <span class="keyword">extends</span> <span class="string">&quot;x&quot;</span> ? <span class="built_in">string</span> : <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">A2</span> = P&lt;<span class="built_in">never</span>&gt;; <span class="comment">// never</span></span><br></pre></td></tr></table></figure>
-
-<p>上面的例子中，A2 和 A1 的结果竟然不一样，看起来<em>never</em>并不是一个联合类型啊，所以直接代入条件类型获取的结果应该和 A1 相同才对啊？</p>
-<p>实际上，<strong>never 被认为是空的联合类型</strong>，never 是一个没有联合项的联合类型，所以还是满足上面的分配律，又因为没有联合项可以分配，所以*P<T>*的表达式根本就没有执行，所以 A2 的定义就类似于永远没有返回的函数一样，是 never 类型。</p>
-<ul>
-<li>如何防止条件判断中的分配</li>
-</ul>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> P&lt;T&gt; = [T] <span class="keyword">extends</span> [<span class="string">&quot;x&quot;</span>] ? <span class="built_in">string</span> : <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">A1</span> = P&lt;<span class="string">&quot;x&quot;</span> | <span class="string">&quot;y&quot;</span>&gt;; <span class="comment">// number</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">A2</span> = P&lt;<span class="built_in">never</span>&gt;; <span class="comment">// string</span></span><br></pre></td></tr></table></figure>
-
-<p>在条件判断类型的定义中，将泛型参数使用 <strong>[]</strong> 括起来，即可阻断条件判断类型的分配，此时，传入的 T 的类型就会被当作一个整体，不再分配。</p>
-]]></content>
-      <categories>
-        <category>typescript</category>
-      </categories>
-      <tags>
-        <tag>typescript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Node.js之特性</title>
     <url>/2019/08/29/node.js%E4%B9%8B%E7%89%B9%E6%80%A7/</url>
     <content><![CDATA[<h3 id="Node-js-是什么"><a href="#Node-js-是什么" class="headerlink" title="Node.js 是什么?"></a>Node.js 是什么?</h3><span id="more"></span>
@@ -4225,6 +4147,10 @@ shuffle(arr)
 </ul>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn, delay</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (timer) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      timer = <span class="number">0</span>;</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="「扁平数组」转「树形结构」"><a href="#「扁平数组」转「树形结构」" class="headerlink" title="「扁平数组」转「树形结构」"></a>「扁平数组」转「树形结构」</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">treeing</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> tree = [];</span><br><span class="line">  <span class="keyword">let</span> map = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="keyword">const</span> newItem = (map[item.<span class="property">id</span>] = &#123;</span><br><span class="line">      ...item,</span><br><span class="line">      <span class="attr">children</span>: [],</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (map[item.<span class="property">pid</span>]) &#123;</span><br><span class="line">      <span class="keyword">const</span> parent = map[item.<span class="property">pid</span>];</span><br><span class="line">      parent.<span class="property">children</span>.<span class="title function_">push</span>(newItem);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      tree.<span class="title function_">push</span>(newItem);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> tree;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="「树形结构」转「扁平结构」"><a href="#「树形结构」转「扁平结构」" class="headerlink" title="「树形结构」转「扁平结构」"></a>「树形结构」转「扁平结构」</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">flatten</span>(<span class="params">tree, arr = []</span>) &#123;</span><br><span class="line">  tree.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; children, ...rest &#125; = item;</span><br><span class="line">    arr.<span class="title function_">push</span>(rest);</span><br><span class="line">    <span class="keyword">if</span> (children.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="title function_">flatten</span>(children, arr);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
         <category>面经</category>
@@ -4546,10 +4472,10 @@ shuffle(arr)
 <h2 id="如何实现-js-倒计时的纠偏？"><a href="#如何实现-js-倒计时的纠偏？" class="headerlink" title="如何实现 js 倒计时的纠偏？"></a>如何实现 js 倒计时的纠偏？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 第一种通过前端定时向服务端发送请求获取最新的时间差，以此来校准倒计时时间。</span><br><span class="line">2. 通过前端根据偏差时间来自动调整下次间隔的时间来实现，首先以setTimeout递归的方式来实现倒计时，</span><br><span class="line">通过一个变量记录倒计时的秒数，根据秒数和间隔时间计算出此时无偏差时应该显示的时间，</span><br><span class="line">然后拿当前真实时间与这个时间相减，就可以得到时间的偏差大小，因此在设置下一个定时器的时候，</span><br><span class="line">间隔时间减去这个偏差大小就可以纠正时间误差。</span><br></pre></td></tr></table></figure>
 
 <h2 id="js-的执行机制"><a href="#js-的执行机制" class="headerlink" title="js 的执行机制"></a>js 的执行机制</h2><p>js 是单线程的，处理 js 任务只能一个一个顺序执行，js 中把任务分为了同步任务和异步任务，<br>同步任务进入主线程先执行，异步任务进入 Event Table 并注册函数，指定事情完成后，Event Table 就会将函数移入到事件队列 Event Queque 中，等待主线程任务执行完毕，<br>就会从事件队列中取出对应事件进入主线程执行。</p>
-<p>macro-task（宏任务）：包括整体代码 script、setTimeout、setInterval<br>micro-task（微任务）：Promise.then、process.nextTick<br>微任务先于宏任务先执行（除了 script）执行过程不同任务进入不同的 event quue</p>
-<p>js 先执行整体的同步任务代码，遇到微任务就会将其放入到微任务事件队列，<br>遇到宏任务放到宏任务事件队列中。</p>
+<p>macro-task（宏任务）：包括整体代码 script、setTimeout、setInterval、IO 操作、UI 交互、postMessage 等<br>micro-task（微任务）：Promise.then、process.nextTick、MutationObserve 等<br>微任务先于宏任务先执行（除了 script）执行过程不同任务进入不同的 event queue</p>
+<p>js 先执行整体的同步任务代码，遇到微任务就会将其放入到微任务事件队列，遇到宏任务放到宏任务事件队列中。</p>
 <p>然后整体的同步任务代码执行完之后，就会先执行微任务队列中的任务，<br>等待微任务队列中的所有任务执行完毕之后，再去从宏任务队列中找到第一个任务进行执行，<br>执行过程中，如果遇到微任务就会放到微任务队列中，等到该宏任务执行完毕之后，<br>就会查看微任务队列中有没有微任务，如果有就先执行微任务队列中的任务，否则执行第二个宏任务，<br>以此类推。</p>
-<h2 id="请说一下你对-React-的理解？"><a href="#请说一下你对-React-的理解？" class="headerlink" title="请说一下你对 React 的理解？"></a>请说一下你对 React 的理解？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. react是一个网页的UI框架，通过组件化的方式解决视图层开发复用的问题，本质是一个组件化框架。</span><br><span class="line">2. react的核心设计思路有三个：</span><br><span class="line">声明式</span><br><span class="line">    命令式：命令程序一步一步的执行操作</span><br><span class="line">    声明式：只需告诉程序我们想要的结果，其他的交给程序去做。</span><br><span class="line">组件化</span><br><span class="line">    将视图拆分和模块复用，做到高内聚低耦合</span><br><span class="line"></span><br><span class="line">通用性</span><br><span class="line">    一次学习，随处编写。RN，react360等，跨平台底层靠虚拟DOM实现</span><br><span class="line"></span><br><span class="line">3. 缺点</span><br><span class="line">1.没有官方系统解决方案，在开发大型应用时需要向社区寻找并整合解决方案。</span><br><span class="line">2.过于灵活，需要注意代码规范</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="请说一下你对-React-的理解？"><a href="#请说一下你对-React-的理解？" class="headerlink" title="请说一下你对 React 的理解？"></a>请说一下你对 React 的理解？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. react是一个用于构建用户界面的JavaScript库</span><br><span class="line">2. react的核心设计思路有三个：</span><br><span class="line">声明式</span><br><span class="line">    命令式：命令程序一步一步的执行操作</span><br><span class="line">    声明式：只需告诉程序我们想要的结果，其他的交给程序去做。</span><br><span class="line">组件化</span><br><span class="line">    将视图拆分和模块复用，做到高内聚低耦合</span><br><span class="line"></span><br><span class="line">通用性</span><br><span class="line">    一次学习，随处编写。RN，react360等，跨平台底层靠虚拟DOM实现</span><br><span class="line"></span><br><span class="line">3. 缺点</span><br><span class="line">1.没有官方系统解决方案，在开发大型应用时需要向社区寻找并整合解决方案。</span><br><span class="line">2.过于灵活，需要注意代码规范</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="React-lazy-懒加载"><a href="#React-lazy-懒加载" class="headerlink" title="React.lazy 懒加载"></a>React.lazy 懒加载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// React.lazy方法可以异步加载组件</span><br><span class="line">const Foo = React.lazy(() =&gt; import(&#x27;../components/Foo&#x27;)</span><br><span class="line"></span><br><span class="line">// React.lazy不能单独使用，需要配合React.suspense,用来包裹异步组件，添加loading效果等。</span><br><span class="line">&lt;React.Suspense fallback=&#123;&lt;div&gt;loading...&lt;/div&gt;&#125;&gt;</span><br><span class="line">    &lt;Foo /&gt;</span><br><span class="line">&lt;/React.Suspense&gt;</span><br><span class="line"></span><br><span class="line">React.lazy原理</span><br><span class="line">React.lazy使用import来懒加载组件，import在webpack中最终会调用requireEnsure方法，</span><br><span class="line">动态插入script来请求js文件，类似jsonp的形式。</span><br></pre></td></tr></table></figure>
 
@@ -5036,6 +4962,39 @@ ES10：Bigint（可以突破安全整数限制，安全的存储和操作最大�
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+<h2 id="localStorage-超过最大限制（5M）怎么处理？"><a href="#localStorage-超过最大限制（5M）怎么处理？" class="headerlink" title="localStorage 超过最大限制（5M）怎么处理？"></a>localStorage 超过最大限制（5M）怎么处理？</h2><ul>
+<li><p>localstorage 一般最大容量为 5M，意思是每个域名（假如为 a.com）下最大 localstorage 容量为 5M，我们可以通过 iframe 创建 b.com 域框架用于存储 a.com 剩下的数据，然后通过 postMessage 读写数据。</p>
+<ul>
+<li>通常对于不同页面的脚本，只有在同源策略下才能通信，但是 window.postMessage(message,targetOrigin)方法提供了一种受控机制来规避次限制。</li>
+<li>而且 localStorage 本身定位也不是大数据量的存储方案</li>
+</ul>
+</li>
+<li><p>浏览器提供了大数据量的本地存储的方案：IndexedDB</p>
+<ul>
+<li>一般存储数据大小在 250M 以上</li>
+<li>可以使用 localforage 插件（yarn add localforage），api 基本和 localStorage 类似，学习成本低</li>
+</ul>
+</li>
+</ul>
+<h2 id="URI-和-URL-有什么区别？"><a href="#URI-和-URL-有什么区别？" class="headerlink" title="URI 和 URL 有什么区别？"></a>URI 和 URL 有什么区别？</h2><ul>
+<li><p>URL(Uniform Resource Identifier): 统一资源定位符</p>
+<ul>
+<li>如：<a href="https://upos-sz-staticks3.bilivideo.com/cmaskboss/164203142_30_1.jpg">https://upos-sz-staticks3.bilivideo.com/cmaskboss/164203142_30_1.jpg</a></li>
+</ul>
+</li>
+<li><p>URI(Uniform Resource Locator): 统一资源标识符</p>
+<ul>
+<li>如：164203142_30_1.jpg</li>
+</ul>
+</li>
+<li><p>URN(Uniform Resource Name): 统一资源名称</p>
+<ul>
+<li>如：urn:isbn:9787115318893 (国际标准图书编号)，类似身份证</li>
+</ul>
+</li>
+<li><p>URL 是 URI 的子集</p>
 </li>
 </ul>
 <h2 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h2><!--more-->
@@ -7019,6 +6978,74 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
       </categories>
       <tags>
         <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>typescript知识浅析</title>
+    <url>/2019/08/23/typescript%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="什么是-TypeScript？"><a href="#什么是-TypeScript？" class="headerlink" title="什么是 TypeScript？"></a>什么是 TypeScript？</h2><span id="more"></span>
+
+<ul>
+<li><p>TypeScript 是 JavaScript 的超集，任何合法的 js 程序都是合法的 TypeScript 程序</p>
+</li>
+<li><p>TypeScript 通过向 JavaScript 增加可选的静态类型声明把 JavaScript 变成强类型程序<br>语言</p>
+</li>
+<li><p>提供静态类型声明可约束函数、变量、属性等程序实体</p>
+</li>
+</ul>
+<h2 id="为什么要使用-TypeScript？"><a href="#为什么要使用-TypeScript？" class="headerlink" title="为什么要使用 TypeScript？"></a>为什么要使用 TypeScript？</h2><ol>
+<li><p>提供了静态类型系统，大大增强了代码的可读性以及可维护性</p>
+</li>
+<li><p>提供最新和不断发展的 javascript 特性，能让我们建立 更健壮的组件</p>
+</li>
+<li><p>TS 具有防患于未然的静态检查，以及干净利落的只能提示</p>
+</li>
+</ol>
+<h2 id="TypeScript-中的数据类型"><a href="#TypeScript-中的数据类型" class="headerlink" title="TypeScript 中的数据类型"></a>TypeScript 中的数据类型</h2><blockquote>
+<p>typescript 中为了使编写的代码更规范，更利于维护，增加了类型校验，在 typescript 中主要提供了以下数据类型：</p>
+</blockquote>
+<ul>
+<li>布尔类型 bolean</li>
+<li>数字类型 number</li>
+<li>字符串类型 string</li>
+<li>数组类型 array</li>
+<li>元组类型 tuple</li>
+<li>枚举类型 enum</li>
+<li>任意类型 any</li>
+<li>null 和 undefined</li>
+<li>void 类型</li>
+<li>never 类型</li>
+</ul>
+<blockquote>
+<p>typescript 中为了使编写的代码更规范，更有利于维护，增加了类型校验，写 ts 代码必须指定类型</p>
+</blockquote>
+<h2 id="泛型（注意点）"><a href="#泛型（注意点）" class="headerlink" title="泛型（注意点）"></a>泛型（注意点）</h2><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> P&lt;T&gt; = T <span class="keyword">extends</span> <span class="string">&#x27;x&#x27;</span> ? <span class="built_in">string</span> : <span class="built_in">number</span>;</span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">A3</span> = P&lt;<span class="string">&#x27;x&#x27;</span> | <span class="string">&#x27;y&#x27;</span>&gt;; <span class="comment">// A3的类型是 string ｜ number</span></span><br></pre></td></tr></table></figure>
+
+<p>结果是不是出人意料？原因就是<strong>分配条件类型</strong>,在 TS 中对于 extends 关键字的条件类型（即上面的三元表达式类型），如果<em>extends</em>前面的参数是一个(裸类型)泛型类型，当传入该参数的是联合类型，则使用分配律计算最终结果。</p>
+<p><em>分配律</em>是指，将联合型类的联合项拆分成单项，分别代入条件类型，然后将每个单项代入，再将得到的结果联合起来，得到最终的结果。</p>
+<ul>
+<li>特殊的 never</li>
+</ul>
+<p>那么，我们在看一个例子：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="variable constant_">A1</span> = <span class="built_in">never</span> <span class="keyword">extends</span> <span class="string">&#x27;x&#x27;</span> ? <span class="built_in">string</span> : <span class="built_in">number</span>; <span class="comment">// string</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> P&lt;T&gt; = T <span class="keyword">extends</span> <span class="string">&#x27;x&#x27;</span> ? <span class="built_in">string</span> : <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">A2</span> = P&lt;<span class="built_in">never</span>&gt;; <span class="comment">// never</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的例子中，A2 和 A1 的结果竟然不一样，看起来<em>never</em>并不是一个联合类型啊，所以直接代入条件类型获取的结果应该和 A1 相同才对啊？</p>
+<p>实际上，<strong>never 被认为是空的联合类型</strong>，never 是一个没有联合项的联合类型，所以还是满足上面的分配律，又因为没有联合项可以分配，所以*P<T>*的表达式根本就没有执行，所以 A2 的定义就类似于永远没有返回的函数一样，是 never 类型。</p>
+<ul>
+<li>如何防止条件判断中的分配</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> P&lt;T&gt; = [T] <span class="keyword">extends</span> [<span class="string">&#x27;x&#x27;</span>] ? <span class="built_in">string</span> : <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">A1</span> = P&lt;<span class="string">&#x27;x&#x27;</span> | <span class="string">&#x27;y&#x27;</span>&gt;; <span class="comment">// number</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">A2</span> = P&lt;<span class="built_in">never</span>&gt;; <span class="comment">// string</span></span><br></pre></td></tr></table></figure>
+
+<p>在条件判断类型的定义中，将泛型参数使用 <strong>[]</strong> 括起来，即可阻断条件判断类型的分配，此时，传入的 T 的类型就会被当作一个整体，不再分配。</p>
+<h2 id="ts-中-Object-和-object-这两个类型的区别？"><a href="#ts-中-Object-和-object-这两个类型的区别？" class="headerlink" title="ts 中 Object 和 object 这两个类型的区别？"></a>ts 中 Object 和 object 这两个类型的区别？</h2><blockquote>
+<p>Object 可以被赋值为原始类型，但是 object 只能赋值为复杂数据类型</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>typescript</category>
+      </categories>
+      <tags>
+        <tag>typescript</tag>
       </tags>
   </entry>
 </search>
