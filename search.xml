@@ -2252,7 +2252,7 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 </li>
 <li><p>defineProperty 是劫持对象属性，Proxy 是代理整个对象；</p>
 </li>
-<li><p>defineProperty 不能监听到对象<strong>新增</strong>属性和<strong>修改</strong>新增属性的变化，Proxy 可以</p>
+<li><p>defineProperty 不能监听(重置可以)到对象<strong>新增</strong>属性和<strong>修改</strong>新增属性的变化，Proxy 可以</p>
 </li>
 <li><p>defineProperty 不能监听根据自身数组下标<strong>修改</strong>数组元素的变化（所以 vue2 提供了 Vue.$set和Vue.$delete）</p>
 </li>
@@ -2277,6 +2277,8 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <li><p>Proxy 兼容性相对较差，且无法通过 pollyfill 解决；所以 Vue3 不支持 IE11 以下；</p>
 </li>
 <li><p>Proxy 返回的是一个新对象</p>
+</li>
+<li><p>Proxy 也是不能对对象进行深层次响应的，实现动态递归响应式，只有在使用（get）的时候才会做响应式处理</p>
 </li>
 </ul>
 <h2 id="v-if-和-v-for-的优先级？"><a href="#v-if-和-v-for-的优先级？" class="headerlink" title="v-if 和 v-for 的优先级？"></a>v-if 和 v-for 的优先级？</h2><p>v-if 的优先级高于 v-for</p>
@@ -3964,22 +3966,27 @@ var arr = [1,2,3,4,5,6,7]
 shuffle(arr)
 </code></pre>
 <h2 id="封装函数使字符串以驼峰式命名"><a href="#封装函数使字符串以驼峰式命名" class="headerlink" title="封装函数使字符串以驼峰式命名"></a>封装函数使字符串以驼峰式命名</h2><ul>
-<li>已知字符串 foo = ‘get-element-by-id’,写一个函数将其转换为驼峰式命名“getElementById”<!--more--></li>
+<li>已知字符串 foo = ‘get-element-by-id’,写一个函数将其转换为驼峰式命名“getElementById”</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//详细过程分析：</span><br><span class="line">var foo = &#x27;get-element-by-id&#x27;;</span><br><span class="line"></span><br><span class="line">//根据某个字符进行分割</span><br><span class="line">var arr = foo.split(&#x27;-&#x27;);</span><br><span class="line"></span><br><span class="line">//分割成四个片段保存在数组内</span><br><span class="line">console.log(arr) // (4) [&quot;get&quot;, &quot;element&quot;, &quot;by&quot;, &quot;id&quot;]</span><br><span class="line"></span><br><span class="line">//将下标为1的数组元素第一个字符元素转为大写</span><br><span class="line">console.log(arr[1].charAt(0).toUpperCase()) //E</span><br><span class="line"></span><br><span class="line">//截取后面字符元素</span><br><span class="line">console.log(arr[1].substr(1, arr[1].length - 1)) //lement</span><br><span class="line"></span><br><span class="line">//遍历</span><br><span class="line">for(var i = 1; i &lt; arr.length; i++) &#123;</span><br><span class="line">    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substr(1, arr[i].length - 1)</span><br><span class="line">&#125;</span><br><span class="line">console.log(arr) //(4) [&quot;get&quot;, &quot;Element&quot;, &quot;By&quot;, &quot;Id&quot;]</span><br><span class="line"></span><br><span class="line">//根据某一个字符将数组转换为字符串</span><br><span class="line">console.log(arr.join(&#x27;&#x27;));</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">&#x27;get-element-by-id&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> arr = foo.<span class="title function_">split</span>(<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  arr[i] = arr[i].<span class="title function_">charAt</span>(<span class="number">0</span>).<span class="title function_">toUpperCase</span>() + arr[i].<span class="title function_">substring</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>));</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//封装</span><br><span class="line">function toString(foo) &#123;</span><br><span class="line">    var arr = foo.split(&#x27;-&#x27;);</span><br><span class="line"></span><br><span class="line">    for(var i = 1; i &lt; arr.length; i++) &#123;</span><br><span class="line">        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substr(1, arr[i].length - 1)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return arr.join(&#x27;&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(toString(&#x27;get-element-by-id&#x27;))</span><br></pre></td></tr></table></figure>
 
-<p>把 the-first-name 变成 theFirstName</p>
+<ul>
+<li>把 the-first-name 变成 theFirstName</li>
+</ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var reg = /-(\w)/g</span><br><span class="line">var str = &quot;the-first-name&quot;</span><br><span class="line">console.log(str.replace(reg, function($, $1)&#123;</span><br><span class="line">    return $1.toUpperCase()</span><br><span class="line">&#125;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
 <p>把 aabb 换成 bbaa</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var reg = /(\w)\1(\w)\2/g;</span><br><span class="line">var str = &quot;aabb&quot;;</span><br><span class="line">// console.log(str.replace(reg,&quot;$2$2$1$1&quot;));//&quot;bbaa&quot;</span><br><span class="line">console.log(str.replace(reg,function($,$1,$2)&#123;</span><br><span class="line">  return $2+$2+$1+$1;</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(\w)\1(\w)\2/g</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;aabb&#x27;</span>;</span><br><span class="line"><span class="comment">// console.log(str.replace(reg,&quot;$2$2$1$1&quot;));//&quot;bbaa&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">  str.<span class="title function_">replace</span>(reg, <span class="keyword">function</span> (<span class="params">$, $<span class="number">1</span>, $<span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> $<span class="number">2</span> + $<span class="number">2</span> + $<span class="number">1</span> + $<span class="number">1</span>;</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
 <p>正则简单的去重</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var str = &quot;aaaabbbbbccccc&quot;;</span><br><span class="line">var reg = /(\w)\1*/g;</span><br><span class="line">console.log.replace(reg,&quot;$1&quot;));//abc</span><br><span class="line">           ~~~</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">           把&quot;1000000000&quot;变成&quot;100.000.000&quot;这种写法，把后面往前面查，三位加个点</span><br><span class="line">           ~~~</span><br><span class="line">           var str = &quot;100000000&quot;;</span><br><span class="line">           var reg = /(?=(\B)(\d&#123;3&#125;)+$)/g;</span><br><span class="line">           console.log(str.replace(reg,&quot;.&quot;))//&quot;100.000.000&quot;</span><br><span class="line">           ||</span><br><span class="line">           string.replace(/\B(?=(\d&#123;3&#125;)+(?!\d))/g, &quot;.&quot;) //先行断言?=,后行断言(?!\d)</span><br><span class="line">           ||</span><br><span class="line">           (25435345.22).toLocaleString(str(&#x27;en-US&#x27;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&quot;aaaabbbbbccccc&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(\w)\1*/g</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="property">log</span>.<span class="title function_">replace</span>(reg,<span class="string">&quot;$1&quot;</span>));<span class="comment">//abc</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="js-前端面试题，js-实现最多发送三个并发请求，后续有多个请求在等待发送，请设计思路"><a href="#js-前端面试题，js-实现最多发送三个并发请求，后续有多个请求在等待发送，请设计思路" class="headerlink" title="js 前端面试题，js 实现最多发送三个并发请求，后续有多个请求在等待发送，请设计思路?"></a>js 前端面试题，js 实现最多发送三个并发请求，后续有多个请求在等待发送，请设计思路?</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> tokensRequest = &#123;</span><br><span class="line">  <span class="attr">state</span>: [<span class="string">&#x27;token1&#x27;</span>, <span class="string">&#x27;token2&#x27;</span>, <span class="string">&#x27;token3&#x27;</span>], <span class="comment">// 默认三个令牌 最多可并发发送三次请求</span></span><br><span class="line">  <span class="attr">queue</span>: [], <span class="comment">// 请求队列</span></span><br><span class="line">  <span class="attr">waitqueue</span>: [], <span class="comment">//  等待队列</span></span><br><span class="line">  <span class="comment">// 获取令牌</span></span><br><span class="line">  <span class="attr">getToken</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">state</span>.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 归还令牌</span></span><br><span class="line">  <span class="attr">backToken</span>: <span class="keyword">function</span> (<span class="params">token</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span>.<span class="title function_">push</span>(token);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 请求队列</span></span><br><span class="line">  <span class="attr">pushQueue</span>: <span class="keyword">function</span> (<span class="params">args, type = <span class="string">&#x27;first&#x27;</span></span>) &#123;</span><br><span class="line">    type == <span class="string">&#x27;second&#x27;</span> &amp;&amp; (<span class="variable language_">this</span>.<span class="property">queue</span> = []); <span class="comment">// 每次push新请求的时候  队列清空</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; args.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 看是否有令牌</span></span><br><span class="line">        <span class="keyword">var</span> token = <span class="variable language_">this</span>.<span class="title function_">getToken</span>(); <span class="comment">// 取令牌</span></span><br><span class="line">        <span class="keyword">var</span> obj = &#123;</span><br><span class="line">          token,</span><br><span class="line">          <span class="attr">request</span>: args[i],</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">queue</span>.<span class="title function_">push</span>(obj);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否则推入等待队列</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">waitqueue</span>.<span class="title function_">push</span>(args[i]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 开始执行</span></span><br><span class="line">  <span class="attr">start</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> <span class="variable language_">this</span>.<span class="property">queue</span>) &#123;</span><br><span class="line">      item.<span class="title function_">request</span>().<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">backToken</span>(item.<span class="property">token</span>); <span class="comment">// 令牌归还</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">waitqueue</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">var</span> wait = <span class="variable language_">this</span>.<span class="property">waitqueue</span>.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">          <span class="variable language_">this</span>.<span class="title function_">pushQueue</span>(wait, <span class="string">&#x27;second&#x27;</span>); <span class="comment">// 从等待队列进去的话 就是第二中的push情况了</span></span><br><span class="line">          <span class="variable language_">this</span>.<span class="title function_">start</span>(); <span class="comment">// 重新开始执行队列</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>把”1000000000”变成”100.000.000”这种写法，把后面往前面查，三位加个点</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;100000000&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(?=(\B)(\d&#123;3&#125;)+$)/g</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">replace</span>(reg, <span class="string">&#x27;.&#x27;</span>)) || <span class="comment">//&quot;100.000.000&quot;</span></span><br><span class="line">  string.<span class="title function_">replace</span>(<span class="regexp">/\B(?=(\d&#123;3&#125;)+(?!\d))/g</span>, <span class="string">&#x27;.&#x27;</span>) || <span class="comment">//先行断言?=,后行断言(?!\d)</span></span><br><span class="line">  (<span class="number">25435345.22</span>).<span class="title function_">toLocaleString</span>(<span class="string">&#x27;en-US&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="js-前端面试题，js-实现最多发送三个并发请求，后续有多个请求在等待发送，请设计思路"><a href="#js-前端面试题，js-实现最多发送三个并发请求，后续有多个请求在等待发送，请设计思路" class="headerlink" title="js 前端面试题，js 实现最多发送三个并发请求，后续有多个请求在等待发送，请设计思路?"></a>js 前端面试题，js 实现最多发送三个并发请求，后续有多个请求在等待发送，请设计思路?</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> tokensRequest = &#123;</span><br><span class="line">  <span class="attr">state</span>: [<span class="string">&#x27;token1&#x27;</span>, <span class="string">&#x27;token2&#x27;</span>, <span class="string">&#x27;token3&#x27;</span>], <span class="comment">// 默认三个令牌 最多可并发发送三次请求</span></span><br><span class="line">  <span class="attr">queue</span>: [], <span class="comment">// 请求队列</span></span><br><span class="line">  <span class="attr">waitqueue</span>: [], <span class="comment">//  等待队列</span></span><br><span class="line">  <span class="comment">// 获取令牌</span></span><br><span class="line">  <span class="attr">getToken</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">state</span>.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 归还令牌</span></span><br><span class="line">  <span class="attr">backToken</span>: <span class="keyword">function</span> (<span class="params">token</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span>.<span class="title function_">push</span>(token);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 请求队列</span></span><br><span class="line">  <span class="attr">pushQueue</span>: <span class="keyword">function</span> (<span class="params">args, type = <span class="string">&#x27;first&#x27;</span></span>) &#123;</span><br><span class="line">    type == <span class="string">&#x27;second&#x27;</span> &amp;&amp; (<span class="variable language_">this</span>.<span class="property">queue</span> = []); <span class="comment">// 每次push新请求的时候  队列清空</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; args.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 看是否有令牌</span></span><br><span class="line">        <span class="keyword">var</span> token = <span class="variable language_">this</span>.<span class="title function_">getToken</span>(); <span class="comment">// 取令牌</span></span><br><span class="line">        <span class="keyword">var</span> obj = &#123;</span><br><span class="line">          token,</span><br><span class="line">          <span class="attr">request</span>: args[i],</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">queue</span>.<span class="title function_">push</span>(obj);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否则推入等待队列</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">waitqueue</span>.<span class="title function_">push</span>(args[i]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 开始执行</span></span><br><span class="line">  <span class="attr">start</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> <span class="variable language_">this</span>.<span class="property">queue</span>) &#123;</span><br><span class="line">      item.<span class="title function_">request</span>().<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">backToken</span>(item.<span class="property">token</span>); <span class="comment">// 令牌归还</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">waitqueue</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">var</span> wait = <span class="variable language_">this</span>.<span class="property">waitqueue</span>.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">          <span class="variable language_">this</span>.<span class="title function_">pushQueue</span>(wait, <span class="string">&#x27;second&#x27;</span>); <span class="comment">// 从等待队列进去的话 就是第二种的push情况了</span></span><br><span class="line">          <span class="variable language_">this</span>.<span class="title function_">start</span>(); <span class="comment">// 重新开始执行队列</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h2 id="定制化输出特定数组"><a href="#定制化输出特定数组" class="headerlink" title="定制化输出特定数组"></a>定制化输出特定数组</h2><ul>
 <li>随机生成一个长度为 10 的整数类型的数据</li>
@@ -4139,16 +4146,15 @@ shuffle(arr)
 </li>
 </ul>
 <h2 id="节流和防抖：两者有什么区别？分别用于什么场景？"><a href="#节流和防抖：两者有什么区别？分别用于什么场景？" class="headerlink" title="节流和防抖：两者有什么区别？分别用于什么场景？"></a>节流和防抖：两者有什么区别？分别用于什么场景？</h2><ul>
-<li><p>防抖</p>
-<ol>
-<li>例如：一个搜索输入框，等输入停止后，再出发搜索</li>
+<li>防抖：高频触发事件如果再次触发则清除上一次的，只在最后响应一次<ol>
+<li>例如：一个搜索输入框，等输入停止后，再出发搜索、window 触发 resize 不断调整浏览器窗口时</li>
 </ol>
 </li>
 </ul>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 防抖</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn, delay = <span class="number">200</span></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (timer) <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line"></span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>节流<ol>
+<li>节流：控制事件触发的频率，将频繁触发限制为每隔一段时间执行<ol>
 <li>drag 或 scroll 期间出发某个回调，要设置一个时间间隔</li>
 </ol>
 </li>
@@ -6825,6 +6831,64 @@ requestAnimationFrame(callback):
 </li>
 </ul>
 <h2 id="css-穿参给-js-的方法"><a href="#css-穿参给-js-的方法" class="headerlink" title="css 穿参给 js 的方法"></a>css 穿参给 js 的方法</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">any-hover</span>: none) &#123;</span><br><span class="line">    <span class="selector-tag">body</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">        <span class="attribute">content</span>: <span class="string">&#x27;hoverNone&#x27;</span>;</span><br><span class="line">        <span class="attribute">display</span>: none;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// js获取</span><br><span class="line">const hover = getComputedStyle(document<span class="selector-class">.body</span>, &#x27;<span class="selector-pseudo">::before</span>&#x27;)<span class="selector-class">.content</span>;</span><br><span class="line">hover就是<span class="attribute">content</span>对应的值</span><br></pre></td></tr></table></figure>
+
+<h2 id="前端模块化"><a href="#前端模块化" class="headerlink" title="前端模块化"></a>前端模块化</h2><blockquote>
+<p>把复杂的代码按照功能的不同划分成不同的模块单独维护，提高开发效率，降低维护成本。模块化只是思想理论，不包含具体实现</p>
+</blockquote>
+<p>模块化的演进：</p>
+<ol>
+<li>基于文件划分模块的方式</li>
+<li>每个模块暴露一个全局对象，所有模块成员都挂载在这个对象中</li>
+<li>使用 IIFE 为模块提供私有空间</li>
+<li>利用 IIFE 的参数作为依赖声明使用</li>
+<li>模块化规范（AMD、CMD、CommonJS、ESM 等）</li>
+</ol>
+<h2 id="如何给所有-async-函数添加-try-catch？"><a href="#如何给所有-async-函数添加-try-catch？" class="headerlink" title="如何给所有 async 函数添加 try/catch？"></a>如何给所有 async 函数添加 try/catch？</h2><p>babel 插件：</p>
+<ol>
+<li><p>借助 AST 抽象语法树，遍历查找代码中的 await 关键字<br>· 词法分析、语法分析生成 AST 抽象语法树</p>
+</li>
+<li><p>找到 await 节点后，从父路径中查找声明的 async 函数，获取该函数的 body（函数中包含的代码）</p>
+</li>
+<li><p>创建 try/catch 语句，将原来的 async 的 body 放入其中<br>· 通过 bebel-template 插件以字符串形式的代码构建 AST 树节点，生成 try/catch 节点</p>
+</li>
+<li><p>最后将 try/catch 语句替换 async 的 body</p>
+</li>
+</ol>
+<p>全局捕获 Promise 类型错误：</p>
+<ol>
+<li>window.addEventListener(‘unhandledrejection’, callback)</li>
+</ol>
+<h2 id="捕获错误都有哪些方式？"><a href="#捕获错误都有哪些方式？" class="headerlink" title="捕获错误都有哪些方式？"></a>捕获错误都有哪些方式？</h2><ol>
+<li>try/catch：捕获常规运行错误、语法错误，异步错误捕获不到</li>
+<li>window.onerror:js 运行时错误</li>
+<li>window.addEventListener(‘error’, callback):捕获资源错误</li>
+<li>window.addEventListener(‘unhandledrejection’, callback):捕获 promise 类型错误</li>
+<li>vue.config.errorHandler: vue 错误</li>
+<li>componentDidCatch: react 错误</li>
+</ol>
+<h2 id="inline、block-和-inline-block-的区别？"><a href="#inline、block-和-inline-block-的区别？" class="headerlink" title="inline、block 和 inline-block 的区别？"></a>inline、block 和 inline-block 的区别？</h2><ul>
+<li><p>block 块级元素</p>
+<ul>
+<li>单独占一行，宽度自动填充父元素宽度</li>
+<li>可以设置 width、height</li>
+<li>可以设置 padding、margin</li>
+</ul>
+</li>
+<li><p>inline 内联元素（行内元素）</p>
+<ul>
+<li>不会单独占一行，多个元素并排一行，宽度随内容变化</li>
+<li>设置 width、height 无效</li>
+<li>可以设置水平方向的 padding、margin，但是垂直方向设置无效（如 padding-top）无效</li>
+</ul>
+</li>
+<li><p>inline-block 行内块元素</p>
+<ul>
+<li>不会单独占一行</li>
+<li>可以设置 width、height</li>
+<li>可以设置 padding、margin，垂直方向也可以设置生效</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>面经</category>
