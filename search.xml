@@ -444,81 +444,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JS垃圾回收机制</title>
-    <url>/2019/10/19/js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<h2 id="谈谈-JS-垃圾回收机制？"><a href="#谈谈-JS-垃圾回收机制？" class="headerlink" title="谈谈 JS 垃圾回收机制？"></a>谈谈 JS 垃圾回收机制？</h2> <span id="more"></span>
-
-<h4 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h4><pre><code>Javascript中的内存管理是自动执行的，而且是不可见的。在我们创建基本类型、对象、函数
-时，这些都需要内存，当不需要某样东西时，JavaScript引擎会利用垃圾回收机制清除它。
-
-在局部作用域中，当函数执行完毕，局部变量也就没必要存在了，因此垃圾收集器很容易
-做出判断回收。但是全局变量什么时候需要自动释放内存空间很难判断，因此在开发中，
-需要尽量避免使用全局变量。
-</code></pre>
-<h4 id="可达性"><a href="#可达性" class="headerlink" title="可达性"></a>可达性</h4><p>JavaScript 中内存管理的主要概念是可达性。</p>
-<p>当一些值以某种方式可访问或可用，它们会被存储在内存中，叫做可达值。</p>
-<ul>
-<li>一些固有可达值，由于显而易见的原因无法删除。例如：<ul>
-<li>本地函数的局部变量或参数</li>
-<li>当前嵌套调用链上的其他函数的变量和参数</li>
-<li>全局变量等</li>
-</ul>
-</li>
-</ul>
-<p>这些值 称为 根</p>
-<ul>
-<li>如果引用或引用链 可以从根访问任何其他值，则认为该值是可访问的。<ul>
-<li>一个对象引用另一个对象的属性，则该对象是为可达性。</li>
-</ul>
-</li>
-</ul>
-<p>JavaScript 引擎中有一个后台进程称为垃圾回收器，它监视所有对象，并删除哪些不可访问的对象。</p>
-<h4 id="内部算法"><a href="#内部算法" class="headerlink" title="内部算法"></a>内部算法</h4><p>v8 的垃圾回收策略基于分代式垃圾回收机制。将内存分为新生代和老生代，分别采用不同<br>的算法。</p>
-<p>新生代采用 Scavenge 算法(赋值算法)</p>
-<ul>
-<li><p>Scavenge 为新生代采用的算法，是一种采用复制的方式实现的垃圾回收算法。它将内存分<br>为 from 和 to 两个空间。每次 gc,会将 from 空间的存活对象复制到 to 空间。然后两个空间角色<br>对换(又称反转)。</p>
-</li>
-<li><p>该算法是牺牲空间换时间，所以适合新生代，因为它的对象生存周期较短。</p>
-</li>
-</ul>
-<p>老生代采用 Mark-Sweep(标记清除)和 Mark-Compact(标记整理)</p>
-<ul>
-<li>标记-清除算法，定期执行一下“垃圾回收”步骤：<ul>
-<li>垃圾回收器获取根并“标记”它们</li>
-<li>然后访问并标记所有来自它们的引用</li>
-<li>然后访问标记的对象 并 标记它们的引用</li>
-<li>以此类推，知道有为访问的引用为止</li>
-<li>除了标记的对象外，所有对象都被删除。</li>
-</ul>
-</li>
-</ul>
-<p>Mark-Compact 算法(标记整理)</p>
-<ul>
-<li>标记清除存在一个问题，清除死亡对象后会造成内存空间不连续，这时候 v8 会使用<br>Mark-Compact 算法(标记整理)，它会在标记完成之后将活着的对象往一端移动，移动完成<br>后直接清理掉边界外的内存。</li>
-</ul>
-<p>Reference Counting(引用计数算法)</p>
-<ul>
-<li>引用计数，就是记录每个对象被引用的次数，每次新建对象、赋值引用和删除引用的同时<br>更新计数器，如果计数器值为 0 则直接回收内存。 很明显，引用计数最大的优势是暂停时间短</li>
-</ul>
-<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><ul>
-<li><p>增量回收：如果有很多对象，并且我们试图一次遍历并标记整个对象集，那么可能会花费<br>一些时间，并在执行中会有一定的延迟。因此，引擎试图将垃圾回收分解为多个部分，然后<br>各个部分分别执行，这需要额外的标记来跟踪变化，这样有很多微小的延迟，而不是很大的延迟。</p>
-</li>
-<li><p>空闲时间收集：垃圾回收器只在 CPU 空闲时运行，以减少对执行的可能影响。</p>
-</li>
-</ul>
-<h4 id="v8-的内存限制"><a href="#v8-的内存限制" class="headerlink" title="v8 的内存限制"></a>v8 的内存限制</h4><ul>
-<li>64 位系统最大约为 1.4G</li>
-<li>32 位系统最大约为 0.7G</li>
-</ul>
-]]></content>
-      <categories>
-        <category>浏览器</category>
-      </categories>
-      <tags>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DOM基本操作</title>
     <url>/2019/08/11/dom%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h2 id="一、节点"><a href="#一、节点" class="headerlink" title="一、节点"></a>一、节点</h2><h3 id="节点属性"><a href="#节点属性" class="headerlink" title="节点属性"></a>节点属性</h3><span id="more"></span>
@@ -4746,149 +4671,6 @@ shuffle(arr)
       </tags>
   </entry>
   <entry>
-    <title>说一下浏览器的缓存机制</title>
-    <url>/2019/07/10/%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><span id="more"></span>
-
-<pre><code>缓存可以简单高效的提高性能优化，对于一个数据请求来说，分为网络请求、后端处理、浏览器
-响应三个步骤，浏览器缓存可以优化网络请求和响应部分。比如：直接换用缓存而不发起请求，
-或者发起请求但后端存储的数据和前端一致，就没有必要将数据回传，这样就减少的响应数据，
-使得缓存文件可以重复利用，减少带宽，减低网络负荷。
-</code></pre>
-<h2 id="缓存位置"><a href="#缓存位置" class="headerlink" title="缓存位置"></a>缓存位置</h2><pre><code>网络请求会先从缓存位置上面查找缓存，如果都没有命中，才会去请求网络资源，从缓存位置
-分为四种，并且各自有优先级：
-- Service Worker
-- Memory Cache
-- Disk Cache
-- Push Cache
-
-Service Worker:
-Service Worker 是运行在浏览器背后的独立线程，一般可以用
-来实现缓存功能。使用 Service Worker 的话，传输协议必须为 HTTPS。因为
-Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。
-Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、
-如何匹配缓存、如何读取缓存，并且缓存是持续性的。
-
-Service Worker 实现缓存功能一般分为三个步骤：首先需要先注册
-Service Worker，然后监听到 install 事件以后就可以缓存需要的文件，那么在下次用户访问
-的时候就可以通过拦截请求的方式查询是否存在缓存，存在缓存的话就可以直接读取缓存文件，
-否则就去请求数据。
-
-当 Service Worker 没有命中缓存的时候，我们需要去调用 fetch 函数
-获取数据。也就是说，如果我们没有在 Service Worker 命中缓存的话，会根据缓存查找优先级
-去查找数据。但是不管我们是从 Memory Cache 中还是从网络请求中获取的数据，浏览器都会显
-示我们是从 Service Worker 中获取的内容。
-
-Memory Cache:
-Memory Cache 也就是内存中的缓存，主要包含的是当前中页面中已经抓取到的资源,例如页面
-上已经下载的样式、脚本、图片等。读取内存中的数据肯定比磁盘快,内存缓存虽然读取高效，
-可是缓存持续性很短，会随着进程的释放而释放。 一旦我们关闭 Tab 页面，内存中的缓存也就
-被释放了。
-
-Disk Cache:
-Disk Cache 也就是存储在硬盘中的缓存，读取速度慢点，但是什么都能存储到磁盘中，比之
-Memory Cache 胜在容量和存储时效性上。
-
-在所有浏览器缓存中，Disk Cache 覆盖面基本是最大的。它会
-根据 HTTP Herder 中的字段判断哪些资源需要缓存，哪些资源可以不请求直接使用，哪些资源
-已经过期需要重新请求。并且即使在跨站点的情况下，相同地址的资源一旦被硬盘缓存下来，就不
-会再次去请求数据。
-
-Push Cache:
-Push Cache（推送缓存）是 HTTP/2 中的内容，当以上三种
-缓存都没有命中时，它才会被使用。它只在会话（Session）中存在，一旦会话结束就被释放，
-并且缓存时间也很短暂，在 Chrome 浏览器中只有 5 分钟左右，同时它也并非严格执行 HTTP 头中
-的缓存指令。
-
-`如果以上四种缓存都没有命中的话，只能发起网络请求来获取资源了。 为了性能上的考虑，大部分接口都应该选择好缓存策略， 浏览器缓存策略分为两种：强缓存和协商缓存，并且缓存策略都是通过设置HTTP Header来实现的。`
-</code></pre>
-<h2 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h2><pre><code>强缓存：不会向服务器发送请求，直接从缓存中读取资源，可以通过HTTP Header实现：Expires
-和Cache-Control。
-+ Expires：缓存过期时间，用来指定资源到期的时间，是服务端的具体的时间点，结合Last-modified
-使用，Expires是HTTP/1.0的产物，受限于本地时间，如果修改了本地时间，可能会造成缓存失效。
-
-+ Cache-Control(http/1.1)：和多个指令(private、no-store、no-cache)配合使用，实现资源缓存。
-
-+ Expires和Cache-Control同时存在，Cache-Control优先级高于Expires。
-</code></pre>
-<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><pre><code>协商缓存就是强缓存失效后，浏览器携带缓存表示向服务器发起请求，由服务器根据缓存表示决定
-是否使用缓存的过程，主要有以下两种情况：
-+ 协商缓存生效，返回304和Not Modified
-
-+ 协商缓存失效，返回200和请求结果。
-
-+ 协商缓存可以通过设置两种HTTP Header实现：Last-Modified和ETag。
-
-+ ETag是服务器响应请求时，返回当前资源文件的一个唯一标识（有服务器生成），只要资源有变化
-，ETag就会重新生成。
-</code></pre>
-<h2 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h2><pre><code>强制缓存优先于协商缓存进行，若强制缓存(Expires和Cache-Control)生效则直接使用
-缓存，若不生效则进行协商缓存(Last-Modified / If-Modified-Since和
-Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若协商缓存失效，
-那么代表该请求的缓存失效，返回200，重新返回资源和缓存标识，再存入浏览器缓存中；
-生效则返回304，继续使用缓存
-</code></pre>
-<h2 id="http-缓存？"><a href="#http-缓存？" class="headerlink" title="http 缓存？"></a>http 缓存？</h2><ul>
-<li><p>强制缓存</p>
-<ul>
-<li><img src="/images/md_img/fourceCache.png" alt="强制缓存"></li>
-<li>强制缓存过期后会去服务端重新请求</li>
-</ul>
-</li>
-<li><p>协商缓存</p>
-<ul>
-<li>服务端缓存策略</li>
-<li>服务端判断客户端资源，是否和服务端资源一样</li>
-<li>一致则返回 304，否则返回 200 和最新的资源</li>
-<li>在 Response Headers 中，有两种：<ul>
-<li>Last-Modified 资源的最后修改时间<ul>
-<li><img src="/images/md_img/last_modified.png" alt="last_modified"></li>
-</ul>
-</li>
-<li>Etag 资源的唯一标识<ul>
-<li><img src="/images/md_img/etag.png" alt="etag"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><img src="/images/md_img/negotiationCache.png" alt="协商缓存"></li>
-<li>Last-Modified 和 Etag<ul>
-<li>会优先使用 Etag</li>
-<li>Last-Modified 只能精确到秒级</li>
-<li>如果资源被重复生成，而内容不变，则 Etag 更精确</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>综述</p>
-<ul>
-<li><img src="/images/md_img/http%E7%BC%93%E5%AD%98.png" alt="http缓存"></li>
-</ul>
-</li>
-</ul>
-<h2 id="刷新操作对缓存的影响？"><a href="#刷新操作对缓存的影响？" class="headerlink" title="刷新操作对缓存的影响？"></a>刷新操作对缓存的影响？</h2><ul>
-<li>正常操作：地址输入 url，跳转链接，前进后退等<ul>
-<li>强制缓存有效，协商缓存有效</li>
-</ul>
-</li>
-<li>手动刷新：F5，点击刷新按钮，右击菜单刷新<ul>
-<li>强制缓存失效，协商缓存有效</li>
-</ul>
-</li>
-<li>强制刷新：ctrl + F5<ul>
-<li>强制缓存失效，协商缓存失效</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>浏览器</category>
-      </categories>
-      <tags>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>typescript知识浅析</title>
     <url>/2019/08/23/typescript%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/</url>
     <content><![CDATA[<h2 id="什么是-TypeScript？"><a href="#什么是-TypeScript？" class="headerlink" title="什么是 TypeScript？"></a>什么是 TypeScript？</h2><span id="more"></span>
@@ -5111,39 +4893,6 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 <p>macro-task（宏任务）：包括整体代码 script、setTimeout、setInterval、IO 操作、UI 交互、postMessage 等<br>micro-task（微任务）：Promise.then、process.nextTick、MutationObserve 等<br>微任务先于宏任务先执行（除了 script）执行过程不同任务进入不同的 event queue</p>
 <p>js 先执行整体的同步任务代码，遇到微任务就会将其放入到微任务事件队列，遇到宏任务放到宏任务事件队列中。</p>
 <p>然后整体的同步任务代码执行完之后，就会先执行微任务队列中的任务，<br>等待微任务队列中的所有任务执行完毕之后，再去从宏任务队列中找到第一个任务进行执行，<br>执行过程中，如果遇到微任务就会放到微任务队列中，等到该宏任务执行完毕之后，<br>就会查看微任务队列中有没有微任务，如果有就先执行微任务队列中的任务，否则执行第二个宏任务，<br>以此类推。</p>
-<h2 id="V8-垃圾回收机制"><a href="#V8-垃圾回收机制" class="headerlink" title="V8 垃圾回收机制"></a>V8 垃圾回收机制</h2><p>垃圾收集器会定期（周期性）的找出那些不再继续使用的变量，释放其内存，因为开销比较大，所以会按照固定的时间间隔周期性的执行</p>
-<p>最常用的两种方法：标记清除（常用）和引用计数</p>
-<p>标记清除：变量进入作用域，进行标记，离开作用域进行清除回收</p>
-<p>引用计数：就是跟踪记录每个值被引用的次数，引用一次加 1，删除减 1，引用计数为 0 时，进行回收，（循环引用可能会导致内存泄漏）</p>
-<p>常见的内存泄漏原因：<br>全局变量过多引起内存泄漏<br>闭包<br>dom 事件未清除<br>循环引用</p>
-<ul>
-<li><p>V8 会把堆分为新生代和老生代</p>
-</li>
-<li><p>新生代（副垃圾回收器）</p>
-<ul>
-<li>存放生存时间短的对象</li>
-<li>通常只支持 1 ～ 8M 的容量</li>
-<li>分为对象区和空闲区<ul>
-<li>对对象区域中的垃圾做标记，标记完成进入垃圾清理阶段，把存活的对象复制到空闲区域，把这些对象有序的排列起来</li>
-<li>完成复制后，对象区和空闲区进行角色翻转</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>老生代（主垃圾回收器）</p>
-<ul>
-<li>对象存放生存时间久</li>
-<li>对象占用空间大</li>
-</ul>
-</li>
-<li><p>副垃圾回收器采用对象晋升策略：移动那些经过两次垃圾回收依然还存活的对象到老生代中</p>
-</li>
-</ul>
-<p>V8 实现了精准式 GC，GC 算法采用了分代式垃圾回收机制。因此，V8 将内存（堆）分为新生代和老生代两部分。</p>
-<p>新生代算法<br>新生代中的对象一般存活时间较短，使用 Scavenge GC 算法。<br>在新生代空间中，内存空间分为两部分，分别为 From 空间和 To 空间。<br>在这两个空间中，必定有一个空间是使用的，另一个空间是空闲的。<br>新分配的对象会被放入 From 空间中，当 From 空间被占满时，新生代 GC 就会启动。<br>算法会检查 From 空间中存活的对象并复制到 To 空间中，如果失活的对象就会销毁。<br>当复制完成后将 From 空间和 To 空间互换，这样 GC 就结束了。</p>
-<p>老生代算法<br>老生代中的对象一般存活时间较长且数量也多，使用了两个算法，分别是 标记清除算法 和 标记压缩算法。<br>在将算法前，先来说下什么情况下对象会出现在老生代空间中：<br>● 新生代中的对象是否已经经历过一次 Scavenge 算法，如果经历过的话，会将对象从新生代空间移到老生代空间。<br>● To 空间的对象占比大于 25%。在这种情况下，为了不影响到内存分配，会将对象从新生代空间移到老生代空间中。</p>
-<p>以下情况会启动 标记清除算法：<br>● 某一空间没有分块的时候<br>● 空间中对象超过一定限制<br>● 空间不能保证新生代中的对象移动时</p>
-<p>清除对象后会造成堆内存出现碎片的情况，当碎片超过一定限制后会启动 压缩算法。在压缩过程中，将活的对象像一端移动，直到所有对象都移动完成然后清除不需要的内存。</p>
 <h2 id="如何阻止冒泡"><a href="#如何阻止冒泡" class="headerlink" title="如何阻止冒泡?"></a>如何阻止冒泡?</h2><pre><code>W3C的方法e.stopPropagation(),IE使用e.cancelBubble = true;
 
 封装：
@@ -6914,6 +6663,257 @@ requestAnimationFrame(callback):
       </categories>
       <tags>
         <tag>面经</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>垃圾回收机制</title>
+    <url>/2019/10/19/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<h2 id="谈谈-JS-垃圾回收机制？"><a href="#谈谈-JS-垃圾回收机制？" class="headerlink" title="谈谈 JS 垃圾回收机制？"></a>谈谈 JS 垃圾回收机制？</h2> <span id="more"></span>
+
+<h4 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h4><pre><code>Javascript中的内存管理是自动执行的，而且是不可见的。在我们创建基本类型、对象、函数
+时，这些都需要内存，当不需要某样东西时，JavaScript引擎会利用垃圾回收机制清除它。
+
+在局部作用域中，当函数执行完毕，局部变量也就没必要存在了，因此垃圾收集器很容易
+做出判断回收。但是全局变量什么时候需要自动释放内存空间很难判断，因此在开发中，
+需要尽量避免使用全局变量。
+</code></pre>
+<h4 id="可达性"><a href="#可达性" class="headerlink" title="可达性"></a>可达性</h4><p>JavaScript 中内存管理的主要概念是可达性。</p>
+<p>当一些值以某种方式可访问或可用，它们会被存储在内存中，叫做可达值。</p>
+<ul>
+<li>一些固有可达值，由于显而易见的原因无法删除。例如：<ul>
+<li>本地函数的局部变量或参数</li>
+<li>当前嵌套调用链上的其他函数的变量和参数</li>
+<li>全局变量等</li>
+</ul>
+</li>
+</ul>
+<p>这些值 称为 根</p>
+<ul>
+<li>如果引用或引用链 可以从根访问任何其他值，则认为该值是可访问的。<ul>
+<li>一个对象引用另一个对象的属性，则该对象是为可达性。</li>
+</ul>
+</li>
+</ul>
+<p>JavaScript 引擎中有一个后台进程称为垃圾回收器，它监视所有对象，并删除哪些不可访问的对象。</p>
+<h4 id="内部算法"><a href="#内部算法" class="headerlink" title="内部算法"></a>内部算法</h4><p>v8 的垃圾回收策略基于分代式垃圾回收机制。将内存分为新生代和老生代，分别采用不同<br>的算法。</p>
+<p>新生代采用 Scavenge 算法(赋值算法)</p>
+<ul>
+<li><p>Scavenge 为新生代采用的算法，是一种采用复制的方式实现的垃圾回收算法。它将内存分<br>为 from 和 to 两个空间。每次 gc,会将 from 空间的存活对象复制到 to 空间。然后两个空间角色<br>对换(又称反转)。</p>
+</li>
+<li><p>该算法是牺牲空间换时间，所以适合新生代，因为它的对象生存周期较短。</p>
+</li>
+</ul>
+<p>老生代采用 Mark-Sweep(标记清除)和 Mark-Compact(标记整理)</p>
+<ul>
+<li>标记-清除算法，定期执行一下“垃圾回收”步骤：<ul>
+<li>垃圾回收器获取根并“标记”它们</li>
+<li>然后访问并标记所有来自它们的引用</li>
+<li>然后访问标记的对象 并 标记它们的引用</li>
+<li>以此类推，知道有为访问的引用为止</li>
+<li>除了标记的对象外，所有对象都被删除。</li>
+</ul>
+</li>
+</ul>
+<p>Mark-Compact 算法(标记整理)</p>
+<ul>
+<li>标记清除存在一个问题，清除死亡对象后会造成内存空间不连续，这时候 v8 会使用<br>Mark-Compact 算法(标记整理)，它会在标记完成之后将活着的对象往一端移动，移动完成<br>后直接清理掉边界外的内存。</li>
+</ul>
+<p>Reference Counting(引用计数算法)</p>
+<ul>
+<li>引用计数，就是记录每个对象被引用的次数，每次新建对象、赋值引用和删除引用的同时<br>更新计数器，如果计数器值为 0 则直接回收内存。 很明显，引用计数最大的优势是暂停时间短</li>
+</ul>
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><ul>
+<li><p>增量回收：如果有很多对象，并且我们试图一次遍历并标记整个对象集，那么可能会花费<br>一些时间，并在执行中会有一定的延迟。因此，引擎试图将垃圾回收分解为多个部分，然后<br>各个部分分别执行，这需要额外的标记来跟踪变化，这样有很多微小的延迟，而不是很大的延迟。</p>
+</li>
+<li><p>空闲时间收集：垃圾回收器只在 CPU 空闲时运行，以减少对执行的可能影响。</p>
+</li>
+</ul>
+<h4 id="v8-的内存限制"><a href="#v8-的内存限制" class="headerlink" title="v8 的内存限制"></a>v8 的内存限制</h4><ul>
+<li>64 位系统最大约为 1.4G</li>
+<li>32 位系统最大约为 0.7G</li>
+</ul>
+<h2 id="V8-垃圾回收机制"><a href="#V8-垃圾回收机制" class="headerlink" title="V8 垃圾回收机制"></a>V8 垃圾回收机制</h2><p>垃圾收集器会定期（周期性）的找出那些不再继续使用的变量，释放其内存，因为开销比较大，所以会按照固定的时间间隔周期性的执行</p>
+<p>最常用的两种方法：标记清除（常用）和引用计数</p>
+<p>标记清除：变量进入作用域，进行标记，离开作用域进行清除回收</p>
+<p>引用计数：就是跟踪记录每个值被引用的次数，引用一次加 1，删除减 1，引用计数为 0 时，进行回收，（循环引用可能会导致内存泄漏）</p>
+<p>常见的内存泄漏原因：<br>全局变量过多引起内存泄漏<br>闭包<br>dom 事件未清除<br>循环引用</p>
+<ul>
+<li><p>V8 会把堆分为新生代和老生代</p>
+</li>
+<li><p>新生代（副垃圾回收器）</p>
+<ul>
+<li>存放生存时间短的对象</li>
+<li>通常只支持 1 ～ 8M 的容量</li>
+<li>分为对象区和空闲区<ul>
+<li>对对象区域中的垃圾做标记，标记完成进入垃圾清理阶段，把存活的对象复制到空闲区域，把这些对象有序的排列起来</li>
+<li>完成复制后，对象区和空闲区进行角色翻转</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>老生代（主垃圾回收器）</p>
+<ul>
+<li>对象存放生存时间久</li>
+<li>对象占用空间大</li>
+</ul>
+</li>
+<li><p>副垃圾回收器采用对象晋升策略：移动那些经过两次垃圾回收依然还存活的对象到老生代中</p>
+</li>
+</ul>
+<p>V8 实现了精准式 GC，GC 算法采用了分代式垃圾回收机制。因此，V8 将内存（堆）分为新生代和老生代两部分。</p>
+<p>新生代算法<br>新生代中的对象一般存活时间较短，使用 Scavenge GC 算法。<br>在新生代空间中，内存空间分为两部分，分别为 From 空间和 To 空间。<br>在这两个空间中，必定有一个空间是使用的，另一个空间是空闲的。<br>新分配的对象会被放入 From 空间中，当 From 空间被占满时，新生代 GC 就会启动。<br>算法会检查 From 空间中存活的对象并复制到 To 空间中，如果失活的对象就会销毁。<br>当复制完成后将 From 空间和 To 空间互换，这样 GC 就结束了。</p>
+<p>老生代算法<br>老生代中的对象一般存活时间较长且数量也多，使用了两个算法，分别是 标记清除算法 和 标记压缩算法。<br>在将算法前，先来说下什么情况下对象会出现在老生代空间中：<br>● 新生代中的对象是否已经经历过一次 Scavenge 算法，如果经历过的话，会将对象从新生代空间移到老生代空间。<br>● To 空间的对象占比大于 25%。在这种情况下，为了不影响到内存分配，会将对象从新生代空间移到老生代空间中。</p>
+<p>以下情况会启动 标记清除算法：<br>● 某一空间没有分块的时候<br>● 空间中对象超过一定限制<br>● 空间不能保证新生代中的对象移动时</p>
+<p>清除对象后会造成堆内存出现碎片的情况，当碎片超过一定限制后会启动 压缩算法。在压缩过程中，将活的对象像一端移动，直到所有对象都移动完成然后清除不需要的内存。</p>
+]]></content>
+      <categories>
+        <category>浏览器</category>
+      </categories>
+      <tags>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浏览器的缓存机制</title>
+    <url>/2019/07/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><span id="more"></span>
+
+<pre><code>缓存可以简单高效的提高性能优化，对于一个数据请求来说，分为网络请求、后端处理、浏览器
+响应三个步骤，浏览器缓存可以优化网络请求和响应部分。比如：直接换用缓存而不发起请求，
+或者发起请求但后端存储的数据和前端一致，就没有必要将数据回传，这样就减少的响应数据，
+使得缓存文件可以重复利用，减少带宽，减低网络负荷。
+</code></pre>
+<h2 id="缓存位置"><a href="#缓存位置" class="headerlink" title="缓存位置"></a>缓存位置</h2><pre><code>网络请求会先从缓存位置上面查找缓存，如果都没有命中，才会去请求网络资源，从缓存位置
+分为四种，并且各自有优先级：
+- Service Worker
+- Memory Cache
+- Disk Cache
+- Push Cache
+
+Service Worker:
+Service Worker 是运行在浏览器背后的独立线程，一般可以用
+来实现缓存功能。使用 Service Worker 的话，传输协议必须为 HTTPS。因为
+Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。
+Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、
+如何匹配缓存、如何读取缓存，并且缓存是持续性的。
+
+Service Worker 实现缓存功能一般分为三个步骤：首先需要先注册
+Service Worker，然后监听到 install 事件以后就可以缓存需要的文件，那么在下次用户访问
+的时候就可以通过拦截请求的方式查询是否存在缓存，存在缓存的话就可以直接读取缓存文件，
+否则就去请求数据。
+
+当 Service Worker 没有命中缓存的时候，我们需要去调用 fetch 函数
+获取数据。也就是说，如果我们没有在 Service Worker 命中缓存的话，会根据缓存查找优先级
+去查找数据。但是不管我们是从 Memory Cache 中还是从网络请求中获取的数据，浏览器都会显
+示我们是从 Service Worker 中获取的内容。
+
+Memory Cache:
+Memory Cache 也就是内存中的缓存，主要包含的是当前中页面中已经抓取到的资源,例如页面
+上已经下载的样式、脚本、图片等。读取内存中的数据肯定比磁盘快,内存缓存虽然读取高效，
+可是缓存持续性很短，会随着进程的释放而释放。 一旦我们关闭 Tab 页面，内存中的缓存也就
+被释放了。
+
+Disk Cache:
+Disk Cache 也就是存储在硬盘中的缓存，读取速度慢点，但是什么都能存储到磁盘中，比之
+Memory Cache 胜在容量和存储时效性上。
+
+在所有浏览器缓存中，Disk Cache 覆盖面基本是最大的。它会
+根据 HTTP Herder 中的字段判断哪些资源需要缓存，哪些资源可以不请求直接使用，哪些资源
+已经过期需要重新请求。并且即使在跨站点的情况下，相同地址的资源一旦被硬盘缓存下来，就不
+会再次去请求数据。
+
+Push Cache:
+Push Cache（推送缓存）是 HTTP/2 中的内容，当以上三种
+缓存都没有命中时，它才会被使用。它只在会话（Session）中存在，一旦会话结束就被释放，
+并且缓存时间也很短暂，在 Chrome 浏览器中只有 5 分钟左右，同时它也并非严格执行 HTTP 头中
+的缓存指令。
+
+`如果以上四种缓存都没有命中的话，只能发起网络请求来获取资源了。 为了性能上的考虑，大部分接口都应该选择好缓存策略， 浏览器缓存策略分为两种：强缓存和协商缓存，并且缓存策略都是通过设置HTTP Header来实现的。`
+</code></pre>
+<h2 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h2><pre><code>强缓存：不会向服务器发送请求，直接从缓存中读取资源，可以通过HTTP Header实现：Expires
+和Cache-Control。
++ Expires：缓存过期时间，用来指定资源到期的时间，是服务端的具体的时间点，结合Last-modified
+使用，Expires是HTTP/1.0的产物，受限于本地时间，如果修改了本地时间，可能会造成缓存失效。
+
++ Cache-Control(http/1.1)：和多个指令(private、no-store、no-cache)配合使用，实现资源缓存。
+
++ Expires和Cache-Control同时存在，Cache-Control优先级高于Expires。
+</code></pre>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><pre><code>协商缓存就是强缓存失效后，浏览器携带缓存表示向服务器发起请求，由服务器根据缓存表示决定
+是否使用缓存的过程，主要有以下两种情况：
++ 协商缓存生效，返回304和Not Modified
+
++ 协商缓存失效，返回200和请求结果。
+
++ 协商缓存可以通过设置两种HTTP Header实现：Last-Modified和ETag。
+
++ ETag是服务器响应请求时，返回当前资源文件的一个唯一标识（有服务器生成），只要资源有变化
+，ETag就会重新生成。
+</code></pre>
+<h2 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h2><pre><code>强制缓存优先于协商缓存进行，若强制缓存(Expires和Cache-Control)生效则直接使用
+缓存，若不生效则进行协商缓存(Last-Modified / If-Modified-Since和
+Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若协商缓存失效，
+那么代表该请求的缓存失效，返回200，重新返回资源和缓存标识，再存入浏览器缓存中；
+生效则返回304，继续使用缓存
+</code></pre>
+<h2 id="http-缓存？"><a href="#http-缓存？" class="headerlink" title="http 缓存？"></a>http 缓存？</h2><ul>
+<li><p>强制缓存</p>
+<ul>
+<li><img src="/images/md_img/fourceCache.png" alt="强制缓存"></li>
+<li>强制缓存过期后会去服务端重新请求</li>
+</ul>
+</li>
+<li><p>协商缓存</p>
+<ul>
+<li>服务端缓存策略</li>
+<li>服务端判断客户端资源，是否和服务端资源一样</li>
+<li>一致则返回 304，否则返回 200 和最新的资源</li>
+<li>在 Response Headers 中，有两种：<ul>
+<li>Last-Modified 资源的最后修改时间<ul>
+<li><img src="/images/md_img/last_modified.png" alt="last_modified"></li>
+</ul>
+</li>
+<li>Etag 资源的唯一标识<ul>
+<li><img src="/images/md_img/etag.png" alt="etag"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img src="/images/md_img/negotiationCache.png" alt="协商缓存"></li>
+<li>Last-Modified 和 Etag<ul>
+<li>会优先使用 Etag</li>
+<li>Last-Modified 只能精确到秒级</li>
+<li>如果资源被重复生成，而内容不变，则 Etag 更精确</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>综述</p>
+<ul>
+<li><img src="/images/md_img/http%E7%BC%93%E5%AD%98.png" alt="http缓存"></li>
+</ul>
+</li>
+</ul>
+<h2 id="刷新操作对缓存的影响？"><a href="#刷新操作对缓存的影响？" class="headerlink" title="刷新操作对缓存的影响？"></a>刷新操作对缓存的影响？</h2><ul>
+<li>正常操作：地址输入 url，跳转链接，前进后退等<ul>
+<li>强制缓存有效，协商缓存有效</li>
+</ul>
+</li>
+<li>手动刷新：F5，点击刷新按钮，右击菜单刷新<ul>
+<li>强制缓存失效，协商缓存有效</li>
+</ul>
+</li>
+<li>强制刷新：ctrl + F5<ul>
+<li>强制缓存失效，协商缓存失效</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>浏览器</category>
+      </categories>
+      <tags>
+        <tag>浏览器</tag>
       </tags>
   </entry>
 </search>
