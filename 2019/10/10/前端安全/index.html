@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>前端安全 - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="前端安全"><meta property="og:type" content="blog"><meta property="og:title" content="前端安全"><meta property="og:url" content="https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="前端安全"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/img/og_image.png"><meta property="article:published_time" content="2019-10-10T05:50:51.000Z"><meta property="article:modified_time" content="2022-07-30T04:13:02.574Z"><meta property="article:author" content="foolishmax"><meta property="article:tag" content="前端安全"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://github.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"},"headline":"前端安全","image":["https://github.com/img/og_image.png"],"datePublished":"2019-10-10T05:50:51.000Z","dateModified":"2022-07-30T04:13:02.574Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"前端安全"}</script><link rel="canonical" href="https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>前端安全 - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="前端安全"><meta property="og:type" content="blog"><meta property="og:title" content="前端安全"><meta property="og:url" content="https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="前端安全"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/img/og_image.png"><meta property="article:published_time" content="2019-10-10T05:50:51.000Z"><meta property="article:modified_time" content="2023-03-29T06:53:48.871Z"><meta property="article:author" content="foolishmax"><meta property="article:tag" content="前端安全"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://github.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"},"headline":"前端安全","image":["https://github.com/img/og_image.png"],"datePublished":"2019-10-10T05:50:51.000Z","dateModified":"2023-03-29T06:53:48.871Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"前端安全"}</script><link rel="canonical" href="https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -28,7 +28,7 @@
       window.addEventListener('hashchange', switchTab, false);
   })();
   </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
-</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="detail column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-10-10T05:50:51.000Z" title="10/10/2019, 1:50:51 PM">2019-10-10</time>发表</span><span class="level-item"><time dateTime="2022-07-30T04:13:02.574Z" title="7/30/2022, 12:13:02 PM">2022-07-30</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/">前端安全</a></span><span class="level-item">8 分钟读完 (大约1189个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">前端安全</h1><div class="content"><h2 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h2><span id="more"></span>
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="detail column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-10-10T05:50:51.000Z" title="10/10/2019, 1:50:51 PM">2019-10-10</time>发表</span><span class="level-item"><time dateTime="2023-03-29T06:53:48.871Z" title="3/29/2023, 2:53:48 PM">2023-03-29</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/">前端安全</a></span><span class="level-item">11 分钟读完 (大约1580个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">前端安全</h1><div class="content"><h2 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h2><span id="more"></span>
 
 <h4 id="sql-注入"><a href="#sql-注入" class="headerlink" title="sql 注入"></a>sql 注入</h4><ul>
 <li>就是通过把 SQL 命令插入到 Web 表单递交或输入域名或页面请求的查询字符串，<br>最终达到欺骗服务器执行恶意的 SQL 命令</li>
@@ -120,7 +120,63 @@
 </ul>
 </li>
 </ul>
-<h5 id="控制台注入代码"><a href="#控制台注入代码" class="headerlink" title="控制台注入代码"></a>控制台注入代码</h5><h3 id="附：优化请求头（使用-helmet-协议规范）"><a href="#附：优化请求头（使用-helmet-协议规范）" class="headerlink" title="附：优化请求头（使用 helmet 协议规范）"></a>附：优化请求头（使用 helmet 协议规范）</h3></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/">前端安全</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/10/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">微信小程序</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/09/27/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="level-item">常见设计模式</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="content" id="valine-thread"></div><script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@1.4.16/dist/Valine.min.js"></script><script>new Valine({
+<h2 id="你知道哪些前端攻击？该如何预防？"><a href="#你知道哪些前端攻击？该如何预防？" class="headerlink" title="你知道哪些前端攻击？该如何预防？"></a>你知道哪些前端攻击？该如何预防？</h2><ul>
+<li><p>xss</p>
+<ul>
+<li>Cross Site Script 跨站脚本攻击</li>
+<li>手段：将 js 代码插入到网页内容中，渲染时执行 js 代码</li>
+<li>预防：特殊字符替换（前端或后端）</li>
+</ul>
+</li>
+<li><p>csrf</p>
+<ul>
+<li><p>Cross Site Request Forgery 跨站请求伪造</p>
+</li>
+<li><p>手段：诱导用户去访问另一个网站的接口，伪造请求</p>
+</li>
+<li><p>预防：严格的跨域限制 + 验证码机制</p>
+</li>
+<li><p>csrf 详细过程</p>
+<ul>
+<li>用户登录 A 网站，有了 A 网站的 cookie</li>
+<li>诱导用户到 B 网站，并发起 A 网站的请求</li>
+<li>A 网站的 API 发现有 cookie，认为是用户自己操作的</li>
+</ul>
+</li>
+<li><p>csrf 预防手段</p>
+<ul>
+<li>严格的跨域请求限制，如判断 referer（请求来源）</li>
+<li>为 cookie 设置 SameSite，禁止跨域传递 cookie<ul>
+<li>Chrome 51 开始，浏览器的 Cookie 新增加了一个 SameSite 属性，用来防止 CSRF 攻击 和用户追踪（第三方恶意获取 cookie），限制第三方 Cookie，从而减少安全风险。</li>
+</ul>
+</li>
+<li>关键接口使用短信验证码</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>点击劫持</p>
+<ul>
+<li>click jacing</li>
+<li>手段：诱导界面上蒙一个透明 iframe，诱导用户点击</li>
+<li>预防：让 iframe 不能跨域加载</li>
+</ul>
+</li>
+<li><p>DDos</p>
+<ul>
+<li>Distribute denial-of-service 分布式拒绝服务</li>
+<li>手段：分布式的、大规模的流量访问，使服务器瘫痪</li>
+<li>预防：软件层不好做，需硬件预防（如阿里云 WAF）</li>
+</ul>
+</li>
+<li><p>SQL 注入</p>
+<ul>
+<li>手段：提交内容时写入 SQL 语句，破环数据库</li>
+<li>预防：处理输入的内容，替换特殊字符</li>
+</ul>
+</li>
+</ul>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/">前端安全</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/10/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">微信小程序</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/09/27/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="level-item">常见设计模式</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="content" id="valine-thread"></div><script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@1.4.16/dist/Valine.min.js"></script><script>new Valine({
             el: '#valine-thread',
             appId: "dvbU6cs8mO4tpam28kfkNFaI-gzGzoHsz",
             appKey: "tfoqOv7jT6pDSo3Abm9K4Jok",
