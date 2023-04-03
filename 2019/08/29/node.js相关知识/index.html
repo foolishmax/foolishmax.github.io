@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Node.js相关知识 - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Node.js 是什么?"><meta property="og:type" content="blog"><meta property="og:title" content="Node.js相关知识"><meta property="og:url" content="https://github.com/foolishmax/2019/08/29/node.js%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="Node.js 是什么?"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/img/og_image.png"><meta property="article:published_time" content="2019-08-29T08:04:36.000Z"><meta property="article:modified_time" content="2023-04-03T06:58:33.528Z"><meta property="article:author" content="foolishmax"><meta property="article:tag" content="node"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://github.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2019/08/29/node.js%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"},"headline":"Node.js相关知识","image":["https://github.com/img/og_image.png"],"datePublished":"2019-08-29T08:04:36.000Z","dateModified":"2023-04-03T06:58:33.528Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"Node.js 是什么?"}</script><link rel="canonical" href="https://github.com/foolishmax/2019/08/29/node.js%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+          Array
+              .from(document.querySelectorAll('.tab-content'))
+              .forEach($tab => {
+                  $tab.classList.add('is-hidden');
+              });
+          Array
+              .from(document.querySelectorAll('.tabs li'))
+              .forEach($tab => {
+                  $tab.classList.remove('is-active');
+              });
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="detail column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-08-29T08:04:36.000Z" title="8/29/2019, 4:04:36 PM">2019-08-29</time>发表</span><span class="level-item"><time dateTime="2023-04-03T06:58:33.528Z" title="4/3/2023, 2:58:33 PM">2023-04-03</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/node/">node</a></span><span class="level-item">11 分钟读完 (大约1716个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">Node.js相关知识</h1><div class="content"><h3 id="Node-js-是什么"><a href="#Node-js-是什么" class="headerlink" title="Node.js 是什么?"></a>Node.js 是什么?</h3><span id="more"></span>
+
+<ul>
+<li>Node.js 是一个 JavaScript 运行时环境，可以解析和执行 js 代码。</li>
+<li>构建于 Chrome 的 V8 引擎之上</li>
+<li>没有 BOM、DOM，有 EcmaScript 语法。</li>
+<li>node 中有很多具名的核心模块<ul>
+<li>fs 文件操作模块</li>
+<li>http 服务器构建模块</li>
+<li>path 路径模块</li>
+<li>os 操作系统信息模块</li>
+</ul>
+</li>
+<li>在核心模块中提供了一些服务器级别的操作 API - 文件读写 - 网络服务的构建 - 网络通信 - http 服务器<!--more--></li>
+</ul>
+<h3 id="node-都有哪些特性？"><a href="#node-都有哪些特性？" class="headerlink" title="node 都有哪些特性？"></a>node 都有哪些特性？</h3><ul>
+<li><p>单线程</p>
+<ul>
+<li>不会为每个用户连接创建一个新的线程，仅仅使用一个线程，减少了操作系统的线程创建<br>和销毁的时间开销。缺点就是一个用户造成线程的崩溃会导致整个服务的崩溃。</li>
+<li>减少内存的开销</li>
+</ul>
+</li>
+<li><p>事件驱动 event-driven</p>
+<ul>
+<li>node 中一个时刻只能执行一个事件回调函数，但是执行过程中，可以转而处理<br>其他事件，然后返回继续执行原事件的回调函数，这种处理机制，称为“事件环”机制。</li>
+</ul>
+</li>
+<li><p>非阻塞 I/O</p>
+<ul>
+<li>I/O 数据传输操作会阻塞代码的执行，极大降低了程序的执行效率,因为一个线程只能处理<br>一项任务，要想提高吞吐量必须通过多线程。非阻塞 I/O 机制，可以将异步操作的处理<br>代码放在回调函数中，从而提高了程序的执行效率。</li>
+</ul>
+</li>
+</ul>
+<h3 id="浏览器的进程和线程"><a href="#浏览器的进程和线程" class="headerlink" title="浏览器的进程和线程"></a>浏览器的进程和线程</h3><ul>
+<li>一个程序可以有多个进程</li>
+<li>一个进程可以有多个线程</li>
+<li>进程在执行 u 欧城中拥有独立的内存单元，而多个线程共享内存。</li>
+<li>多个线程之间可以相互通信</li>
+<li>每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口</li>
+<li>线程不能独立执行，必须依存在应用程序中</li>
+</ul>
+<h3 id="Node-js-适合开发什么？"><a href="#Node-js-适合开发什么？" class="headerlink" title="Node.js 适合开发什么？"></a>Node.js 适合开发什么？</h3><ul>
+<li>善于 I/O,不善于计算，因为 Node.js 最擅长的就是任务调度，不适合于利用 CPU 进行过多的运算的程序。</li>
+<li>当应用程序需要处理大量并发的 I/O,而在向客户端发出响应之前，应用程序内部不需要<br>进行非常复杂处理的时候，Node.js 非常合适。</li>
+<li>Node.js 也非常适合与 web socket 配合，开发长连接的实时交互应用程序。<ul>
+<li>用户表单</li>
+<li>考试系统</li>
+<li>聊天室</li>
+<li>图文直播</li>
+</ul>
+</li>
+</ul>
+<h3 id="nodejs-能做什么？"><a href="#nodejs-能做什么？" class="headerlink" title="nodejs 能做什么？"></a>nodejs 能做什么？</h3><ul>
+<li>Node.js 可以生成动态页面内容</li>
+<li>Node.js 可以创建，打开，读取，写入，删除和关闭服务器上的文件</li>
+<li>Node.js 可以收集表单数据</li>
+<li>Node.js 可以添加，删除，修改数据库中的数据</li>
+</ul>
+<h3 id="服务端渲染和客户端渲染的区别"><a href="#服务端渲染和客户端渲染的区别" class="headerlink" title="服务端渲染和客户端渲染的区别"></a>服务端渲染和客户端渲染的区别</h3><ul>
+<li>客户端渲染不利于 SEO 搜索引擎优化</li>
+<li>服务器渲染可以被爬虫抓取</li>
+<li>例如：京东商品列表是服务端渲染，用户评论是客户端渲染（提高用户体验）</li>
+</ul>
+<h4 id="小补充：使用-cnpm"><a href="#小补充：使用-cnpm" class="headerlink" title="小补充：使用 cnpm"></a>小补充：使用 cnpm</h4><ul>
+<li><p>方法一 安装 cnpm</p>
+<ul>
+<li><code>npm install --global cnpm</code></li>
+</ul>
+</li>
+<li><p>方法二 改变 registry</p>
+<ul>
+<li><code>npm install jquery --registry=https://registry.npm.taobao.org</code></li>
+</ul>
+</li>
+<li><p>方法三 加入配置选项</p>
+<ul>
+<li><code>npm config set registry https://registry.npm.taobao.org</code></li>
+<li><code>npm config list</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="用-nodejs-实现读取文件操作"><a href="#用-nodejs-实现读取文件操作" class="headerlink" title="用 nodejs 实现读取文件操作"></a>用 nodejs 实现读取文件操作</h2><!--more-->
+
+<pre><code> const fs = require(&quot;fs&quot;)
+
+//fs 核心模块提供了一个fs.readFile方法，用来读取指定目录下的文件
+
+//fs.readFile有三个参数
+// 1. 读取文件的路径
+// 2. 读取文件的编码格式
+// 3. 当文件读取完成，调用这个callback回调函数来读取文件的结果
+
+fs.readFile(&#39;./data/hello.txt&#39;,&#39;utf-8&#39;,function(err,data)&#123;
+    if(err)&#123;
+        console.log(err)    //第一个参数是err对象
+        return
+    &#125; else &#123;
+        console.log(data)   //第二个参数才是data数据
+    &#125;
+&#125;)
+</code></pre>
+<h2 id="用-nodejs-实现写入文件操作"><a href="#用-nodejs-实现写入文件操作" class="headerlink" title="用 nodejs 实现写入文件操作"></a>用 nodejs 实现写入文件操作</h2><pre><code>const fs = require(&#39;fs&#39;)
+
+let msg = &#39;hello world&#39;
+
+//fs.writeFile有三个参数
+// 1. 第一个参数为写入的文件路径
+// 2. 第二个参数为写入的内容
+// 3. 第三个参数为可选参数，表示写文件的编码格式
+// 4. 第四个参数为回调函数，回调函数只有一个参数err，判断是否写入成功。
+
+fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
+    if(err)&#123;
+        console.log(&#39;写入错误&#39; + err)
+    &#125; else &#123;
+        console.log(&#39;ok&#39;)
+    &#125;
+&#125;)
+</code></pre>
+<h2 id="nodejs-如何开启进程，进程如何通讯？"><a href="#nodejs-如何开启进程，进程如何通讯？" class="headerlink" title="nodejs 如何开启进程，进程如何通讯？"></a>nodejs 如何开启进程，进程如何通讯？</h2><ul>
+<li><p>进程 process VS 线程 thread</p>
+<ol>
+<li>进程： 进行资源分配和调度的最小单元，有独立内存空间</li>
+<li>线程： 进行运算调度的最小单元，共享进程内存空间</li>
+<li>js 是单线程的，但可以多进行执行，如 、WebWorker</li>
+</ol>
+</li>
+<li><p>为何需要多进程？</p>
+<ul>
+<li>多核 CPU，更适合处理多进程</li>
+<li>内存较大，多个进程才能更好的利用（单进程有内存上线）</li>
+</ul>
+</li>
+<li><p>开启进程两种方法 child_process.fork， cluster.fork</p>
+</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// parent.js</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fork = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>).<span class="property">fork</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (req.<span class="property">url</span> === <span class="string">&#x27;/xxx&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// 开启子进程</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> computeProcess = <span class="title function_">fork</span>(<span class="string">&#x27;./compute.js&#x27;</span>);</span><br><span class="line">    computeProcess.<span class="title function_">send</span>(<span class="string">&#x27;start&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    computeProcess.<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">      res.<span class="title function_">end</span>(<span class="string">&#x27;sum is&#x27;</span> + data);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    computeProcess.<span class="title function_">on</span>(<span class="string">&#x27;close&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;子进程因报错而退出&#x27;</span>);</span><br><span class="line">      computeProcess.<span class="title function_">kill</span>();</span><br><span class="line">      res.<span class="title function_">end</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;localhost: 3000 starting...&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// compute.js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getSum</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">    sum += i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">process.<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;子进程id&#x27;</span>, process.<span class="property">pid</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;子进程接收到的数据&#x27;</span>, data);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> sum = <span class="title function_">getSum</span>();</span><br><span class="line"></span><br><span class="line">  process.<span class="title function_">send</span>(sum);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> cpuCoreLength = <span class="built_in">require</span>(<span class="string">&#x27;os&#x27;</span>).<span class="title function_">cpus</span>().<span class="property">length</span>;</span><br><span class="line"><span class="keyword">const</span> cluster = <span class="built_in">require</span>(<span class="string">&#x27;cluster&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (cluster.<span class="property">isMaster</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; cpuCoreLength; i++) &#123;</span><br><span class="line">    cluster.<span class="title function_">fork</span>(); <span class="comment">// 开启子进程</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  cluster.<span class="title function_">on</span>(<span class="string">&#x27;exit&#x27;</span>, <span class="function">(<span class="params">worker</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;子进程退出&#x27;</span>);</span><br><span class="line">    cluster.<span class="title function_">fork</span>(); <span class="comment">// 进程守护</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> server = http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>);</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;done&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="CommonJS-解析"><a href="#CommonJS-解析" class="headerlink" title="CommonJS 解析"></a>CommonJS 解析</h2><blockquote>
+<p>CommonJS 的核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.export 来导出需要暴露的接口</p>
+</blockquote>
+<p>require 内部逻辑：<br>例如：require(X)</p>
+<ol>
+<li>如果 X 是内置模块（比如 require(‘http’)）<br>a. 返回该模块<br>b. 不再继续执行</li>
+<li>如果 X 以 ‘./‘或者 ‘../‘开头<br>a. 根据 X 所在父模块，确定 X 的绝对路径<br>b. 将 X 当作文件，依次查找以下文件（.x ｜.x.js | .x.json | .x.node），只要一个存在就返回该文件，不再继续执行<br>c. 把 X 当作目录，依次查找以下文件（.x/package.json | .x/index.js | .x/index.json | .x/index.node），只要一个存在就返回并不再执行</li>
+<li>如果 X 不带路径<br>a. 根据 X 所在父模块，确定 X 可能的安装目录，依次往上级目录查找，把 X 当成文件名或目录名加载</li>
+<li>找不到抛错’not found’</li>
+</ol>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/node/">node</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/09/06/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86css%E7%AF%87/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">面试知识css篇</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/08/23/typescript%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/"><span class="level-item">typescript知识浅析</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="content" id="valine-thread"></div><script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@1.4.16/dist/Valine.min.js"></script><script>new Valine({
+            el: '#valine-thread',
+            appId: "dvbU6cs8mO4tpam28kfkNFaI-gzGzoHsz",
+            appKey: "tfoqOv7jT6pDSo3Abm9K4Jok",
+            
+            avatar: "mm",
+            avatarForce: false,
+            meta: ["nick","mail","link"],
+            pageSize: 10,
+            lang: "zh-CN",
+            visitor: false,
+            highlight: true,
+            recordIP: false,
+            
+            
+            
+            enableQQ: false,
+            requiredFields: [],
+        });</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpeg" alt="foolishmax"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">foolishmax</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>上海</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">35</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">17</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">20</p></a></div></div></nav></div></div><!--!--><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a><p class="is-size-7"><span>&copy; 2023 foolishmax</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: ''
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
