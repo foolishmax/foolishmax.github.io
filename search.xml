@@ -2432,8 +2432,8 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 
 <h2 id="当调用-setState-的时候，发生了什么事？"><a href="#当调用-setState-的时候，发生了什么事？" class="headerlink" title="当调用 setState 的时候，发生了什么事？"></a>当调用 setState 的时候，发生了什么事？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">将传递给setState的参数对象合并到组件的当前的状态，react遍历dom节点，计算差异，更新UI。</span><br><span class="line">https://segmentfault.com/a/1190000018250127</span><br></pre></td></tr></table></figure>
 
-<h2 id="为什么-setState-的参数是一个-callback-而不是一个对象"><a href="#为什么-setState-的参数是一个-callback-而不是一个对象" class="headerlink" title="为什么 setState 的参数是一个 callback 而不是一个对象"></a>为什么 setState 的参数是一个 callback 而不是一个对象</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">因为this.props和this.state的更新可能是异步的，不能依赖它们的值去计算下一个state</span><br><span class="line">(更新状态不要直接修改this.state，虽然状态可以改变，但不会触发组件的更新)</span><br><span class="line"></span><br><span class="line">setState何时同步何时异步？</span><br><span class="line">异步：由React控制的事件处理程序以及生命周期函数中调用setState为异步</span><br><span class="line">同步：React控制之外的原生js绑定的事件、setTimeout/setInterval等。</span><br></pre></td></tr></table></figure>
-
+<h2 id="为什么-setState-的参数是一个-callback-而不是一个对象"><a href="#为什么-setState-的参数是一个-callback-而不是一个对象" class="headerlink" title="为什么 setState 的参数是一个 callback 而不是一个对象"></a>为什么 setState 的参数是一个 callback 而不是一个对象</h2><p>因为 this.props 和 this.state 的更新可能是异步的，不能依赖它们的值去计算下一个 state<br>(更新状态不要直接修改 this.state，虽然状态可以改变，但不会触发组件的更新)</p>
+<p>setState 何时同步何时异步？<br>异步：由 React 控制的事件处理程序以及生命周期函数中调用 setState 为异步<br>同步：React 控制之外的原生 js 绑定的事件、setTimeout/setInterval 等。</p>
 <h2 id="setState-什么时候同步什么时候异步？"><a href="#setState-什么时候同步什么时候异步？" class="headerlink" title="setState 什么时候同步什么时候异步？"></a>setState 什么时候同步什么时候异步？</h2><p>react 三个模式：<br>1.legacy 模式： 通过 ReactDOM.render(<App />, rootNode)创建的，当前 react 的使用方式<br>2.blocking 模式：通过 ReactDOM.createBlockingRoot(rootNode).render(<App />),实验阶段，作为迁移到 concurrent 模式的第一个步骤<br>3.concurrent 模式，通过 ReactDOM.createRoot(rootNode).render(<App />),实验阶段，未来 react 的默认开发模式</p>
 <p>setState 只在合成事件（react 为了解决跨平台，兼容性问题，自己封装了一套事件机制，代理了原生的事件）和钩子函数（生命周期中）是异步的，在原生事件和 setTimeout 中都是同步的。</p>
 <p>不同模式执行结果不同，legacy 模式命中 batchedUpadates（批处理）时异步，为命中时同步<br>concurrent 模式都是异步的</p>
@@ -2482,6 +2482,9 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 </ul>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ErrorBoundary</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">error</span>: <span class="literal">null</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">getDerivedStateFromError</span>(<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="comment">// 更新state，显示降级UI</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123; error &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">componentDidCatch</span>(<span class="params">error, errorInfo</span>) &#123;</span><br><span class="line">    <span class="comment">// 统计上报错误信息</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error, errorInfo);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">error</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>报错了<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">children</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
+<h2 id="Portal-传送门"><a href="#Portal-传送门" class="headerlink" title="Portal 传送门"></a>Portal 传送门</h2><blockquote>
+<p>可以将 DOM 结构脱离父节点渲染到指定节点位置，并且不会破坏事件传播，事件冒泡会正常工作，生命周期正常执行。常见使用场景：渲染模态框、工具提示、弹出消息等</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>react</category>
@@ -5411,6 +5414,29 @@ dt.getDay()     //星期几（0-6）
 <blockquote>
 <p>不同浏览器的最低延迟不一样，比如 chrome 的最低时延是 1ms，而如果 timer 嵌套层级很多，那么最低是 4ms，具体嵌套层级的阈值不同浏览器也不一致，HTML Standard 规定是 &gt;5, chrome 是 &gt;=5;</p>
 </blockquote>
+<h2 id="如果判断是-PC-端还是移动端"><a href="#如果判断是-PC-端还是移动端" class="headerlink" title="如果判断是 PC 端还是移动端"></a>如果判断是 PC 端还是移动端</h2><ul>
+<li>屏幕宽度：window.screen、window.innerWidth</li>
+<li>屏幕方向：window.orientation pc 端为 undefined</li>
+<li>navigator.userAgent 正则去匹配</li>
+</ul>
+<h2 id="常见移动端适配方案？"><a href="#常见移动端适配方案？" class="headerlink" title="常见移动端适配方案？"></a>常见移动端适配方案？</h2><ul>
+<li>媒体查询@media<ul>
+<li>分别为不同屏幕尺寸的移动设备编写不同尺寸的 css 属性</li>
+</ul>
+</li>
+<li>rem 适配方案<ul>
+<li>使用 flexible 阿里早期开源的移动端适配解决方案</li>
+<li>postcss-pxtorem 插件实现 px 到 rem 的转换</li>
+</ul>
+</li>
+<li>viewport 适配方案<ul>
+<li>设置 meta 标签</li>
+<li>使用 postcss-px-to-viewport 插件将 px 自动转换为 vw</li>
+<li>可以通过插件的 ignoring 特性标注不需要转换的属性</li>
+</ul>
+</li>
+</ul>
+<p>缺点：就是转换的时候如不能完全整除就会产生像素差</p>
 ]]></content>
       <categories>
         <category>面经</category>
