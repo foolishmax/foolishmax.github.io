@@ -1799,80 +1799,6 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;useWorkspaces&quot;: true, // 使用 workspaces 配置。此项为 true 的话，将使用 package.json 的 &quot;workspaces&quot;，下面的 &quot;packages&quot; 字段将不生效</span><br><span class="line">    &quot;version&quot;: &quot;0.1.0&quot;, // 所有包版本号，独立模式-&quot;independent&quot;</span><br><span class="line">    &quot;npmClient&quot;: &quot;cnpm&quot;, // npm client，可设置为 cnpm、yarn 等</span><br><span class="line">    &quot;packages&quot;: [ // 包所在目录，可指定多个</span><br><span class="line">        &quot;packages/*&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;command&quot;: &#123; // lerna 命令相关配置</span><br><span class="line">        &quot;publish&quot;: &#123; // 发布相关</span><br><span class="line">            &quot;ignoreChanges&quot;: [ // 指定文件或目录的变更，不触发 publish</span><br><span class="line">                &quot;.gitignore&quot;,</span><br><span class="line">                &quot;*.log&quot;,</span><br><span class="line">                &quot;*.md&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;bootstrap&quot;: &#123; // bootstrap 相关</span><br><span class="line">            &quot;ignore&quot;: &quot;npm-*&quot;,  // 不受 bootstrap 影响的包</span><br><span class="line">            &quot;npmClientArgs&quot;: [ // bootstr 执行参数</span><br><span class="line">                &quot;--no-package-lock&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="CRA-lerna-react-typescript-项目搭建"><a href="#CRA-lerna-react-typescript-项目搭建" class="headerlink" title="CRA + lerna + react + typescript 项目搭建"></a>CRA + lerna + react + typescript 项目搭建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.create-react-app demo --template typescript</span><br><span class="line"></span><br><span class="line">2.cd demo</span><br><span class="line"></span><br><span class="line">3.npm run eject</span><br><span class="line"></span><br><span class="line">4.lerna init</span><br><span class="line"></span><br><span class="line">5.lerna create builder-script</span><br><span class="line"></span><br><span class="line">6.自定义builder-scripts脚本命令</span><br><span class="line"></span><br><span class="line">7.自定义 eslintrc、tsconfig、webpack等配置项</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="脚手架开发"><a href="#脚手架开发" class="headerlink" title="脚手架开发"></a>脚手架开发</h2><p>开发脚手架的核心目标：提升前端研发效能</p>
-<p>内容：</p>
-<ul>
-<li>创建项目+通用代码<ul>
-<li>埋点</li>
-<li>http 请求</li>
-<li>工具方法</li>
-<li>组件库</li>
-</ul>
-</li>
-<li>git 操作<ul>
-<li>创建仓库</li>
-<li>代码冲突</li>
-<li>远程代码同步</li>
-<li>创建版本</li>
-<li>发布打 tag</li>
-</ul>
-</li>
-<li>构建和发布上线<ul>
-<li>依赖安装和构建</li>
-<li>资源上传 cdn</li>
-<li>域名绑定</li>
-<li>测试/正式服务器</li>
-</ul>
-</li>
-</ul>
-<p>脚手架核心价值将研发过程：</p>
-<ul>
-<li>自动化：项目重复代码拷贝/git 操作/发布上线操作</li>
-<li>标准化：项目创建/git flow/发布流程/回滚流程</li>
-<li>数据化：研发过程系统化、数据化，使得研发过程可量化</li>
-</ul>
-<p>自动化构建工具：jenkins、trvis 通常需要 git hooks 触发，在服务端运行需要定制化操作，整个过程比较复杂</p>
-<p>脚手架执行原理：<br>以 vue-cli 为例子</p>
-<ol>
-<li>在终端输入 vue create xxx</li>
-<li>终端解析出 vue 命令</li>
-<li>终端在环境变量中找到(相当于 which vue，找不到提示 commond not found) vue 命令</li>
-<li>根据 node/bin/目录下 vue 命令（软连接）连接到 node 全局依赖 lib/node_modules 包下的 vue.js</li>
-<li>终端利用 node(/usr/bin/env node) 执行 vue.js</li>
-<li>vue.js 解析 command/options</li>
-<li>vue.js 执行 command</li>
-<li>执行完毕，退出</li>
-</ol>
-<p>从应用角度看如何开发一个脚手架：</p>
-<ol>
-<li>开发 npm 项目，项目中包含一个 bin/vue.js 文件，并将项目发布到 npm</li>
-<li>将 npm 项目安装到 node 的 lib/node_modules 中</li>
-<li>在 node 的 bin 目录下配置 vue 软连接到 lib/node_modules/@vue/cli/bin/vue.js</li>
-<li>执行 vue 的命令时就可以找到 vue.js 执行</li>
-</ol>
-<p>疑问：</p>
-<ol>
-<li>为什么全局安装@vue/cli 会添加 vue 命令？<br>答： 在 package.json 中的 {bin: {‘vue’: ‘bin/vue.js’}}配置</li>
-<li>全局安装 npm install -g @vue/cli 时发生了什么？<br>答：首先会把@vue/cli 这个项目按轧辊在 node 的 lib/node_modules 目录下，然后检查项目中 package 中是否存在 bin 属性，如果存在的话会在 node 的 bin 目录下创建一个对应的软连接</li>
-<li>执行 vue 命令发生了什么？<br>答：操作系统会找到 which vue 的目录路径并执行这个路径的文件（先去环境变量中找对应命令，拿到目录执行）</li>
-<li>怎么直接执行一个 js 文件，不通过 node？<br>答：在文件顶部写 #！/usr/bin/env node,相当于告诉操作系统去环境变量中找 node 命令去执行这个文件；/usr/bin/env node xxx.js = xxx.js(顶部添加指令) = node test.js</li>
-</ol>
-<p>创建软连接命令：</p>
-<ul>
-<li>ln -s /Users/foo/xxx.js vue</li>
-</ul>
-<p>脚手架开发难点：</p>
-<ol>
-<li>分包：将复杂的系统拆分成若干个模块</li>
-<li>命令注册：vue create、vue add 等</li>
-<li>参数解析 vue command options(全称、简称) params,帮助信息：Usage： vue &lt;’xxx’&gt; [‘options’]; Options: xxx</li>
-<li>命令行交互（让用户选择或者输入）</li>
-<li>日志打印</li>
-<li>命令行文字变色</li>
-<li>网络通信：http/websocket</li>
-<li>文件处理</li>
-</ol>
 ]]></content>
       <categories>
         <category>lerna</category>
@@ -2329,175 +2255,10 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 </ul>
 </li>
 </ul>
-<h2 id="React-中的生命周期函数"><a href="#React-中的生命周期函数" class="headerlink" title="React 中的生命周期函数"></a>React 中的生命周期函数</h2><p>生命周期函数是指组件在某一时刻自动执行的函数</p>
+<h2 id="类组件和函数组件之间的区别？"><a href="#类组件和函数组件之间的区别？" class="headerlink" title="类组件和函数组件之间的区别？"></a>类组件和函数组件之间的区别？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">相同点：</span><br><span class="line">接受属性返回React元素</span><br><span class="line"></span><br><span class="line">不同点：</span><br><span class="line">    1.编程思想不同：类组件需要创建实例，基于面向对象的方式编程。函数式组件接受输入返回输出，属于函数式编程的思想。</span><br><span class="line">    2.内存占用：类组件需要创建实例，会占用内存，函数组件不需要创建实例，可以节约内存</span><br><span class="line">    3.捕获特性：函数组件具有捕获特性</span><br><span class="line">    4.可测试性：函数组件更方便编写单元测试</span><br><span class="line">    5.状态：类组件有实例可以维护自己的状态，函数组件可以使用useState维护自己的状态</span><br><span class="line">    6.声明周期：类组件有生命周期，可以在生命周期内写逻辑，函数组件可以在useEffect中</span><br><span class="line">    7.逻辑复用：函数组件通过继承实现逻辑复用，函数组件可以通过自定义hooks实现逻辑复用</span><br><span class="line">    8.性能优化：类组件通过shouldComponentUpdate和PureComponent来跳过更新，函数组件通过React.memo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><p>React 提供 <em>类组件</em> 和 <em>函数式组件</em> 两种方式，类组件需要使用 <em>Component</em> 继承，主要做一些初始化工作</p>
 <!--more-->
-<img src="https://raw.githubusercontent.com/foolishmax/static/master/images/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0.png"/>
-
-<h3 id="初始化过程（Initialization）"><a href="#初始化过程（Initialization）" class="headerlink" title="初始化过程（Initialization）"></a>初始化过程（Initialization）</h3><ul>
-<li>在 constructor()里面初始化 Props 和 State 属性。</li>
-<li>getDefaultProps()可以设置组件的默认属性值。</li>
-</ul>
-<h3 id="挂载过程（Mounting）"><a href="#挂载过程（Mounting）" class="headerlink" title="挂载过程（Mounting）"></a>挂载过程（Mounting）</h3><ul>
-<li>componentWillMount(): 在组件即将被挂载到页面的时刻自动执行。</li>
-<li>render(): 将组件挂载到页面。</li>
-<li>componentDidMount(): 组件被挂载到页面之后立即执行。</li>
-</ul>
-<h3 id="更新过程（Updation）"><a href="#更新过程（Updation）" class="headerlink" title="更新过程（Updation）"></a>更新过程（Updation）</h3><ul>
-<li>componentWillReceiveProps()（在 16.4 版本中废弃，不推荐使用）：<br>一个组件从父组件接受参数，如果这个组件第一次存在父组件中不会执行，已经存在才会执行，<br>如果没有 Props 属性则直接跳过。</li>
-<li>shouldComponentUpdate():<br>组件更新前检查是否需要更新组件，返回布尔类型。此生命周期函数可以强制关闭不需要更新的子组件<br>来提高渲染性能。</li>
-<li>componentWillUpdate():<br>组件更新之前自动执行。前提是 shouldComponentUpdate()执行并返回 true<br>-render():<br>将组件更新到页面<br>-componentDidUpdate():<br>组件更新完成之后立即执行。</li>
-</ul>
-<h3 id="移除过程（Unmounting）"><a href="#移除过程（Unmounting）" class="headerlink" title="移除过程（Unmounting）"></a>移除过程（Unmounting）</h3><ul>
-<li>componentWillUnmount():<br>当组件即将从页面中移除时执行。</li>
-</ul>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
-<li>React 中的 render() 也是生命周期函数，而 constructor()并不是生命周期函数。</li>
-<li>所有的组件都有生命周期函数。</li>
-<li>除了 render()函数，其他函数都可以不写，因为除了 render()函数其他函数都是继承自<br>React 中内置的。</li>
-<li>AJAX 请求一般都是放在 componentDidMount()里面。</li>
-</ul>
-<h2 id="React-状态提升"><a href="#React-状态提升" class="headerlink" title="React 状态提升"></a>React 状态提升</h2><ul>
-<li><p>所谓状态提升，就是将 各个子组件的公共 state 提升到它们的父组件进行统一存储、处理<br>(单一数据源)，然后将父组件处理后的数据或者函数 props 到各个子组件中。</p>
-</li>
-<li><p>如果子组件要修改父组件中 state 该怎么办？</p>
-<ul>
-<li>做法就是将父组件中负责 setState 的函数，以 props 的形式传给子组件，然后子组件<br>需要改变 state 时调用即可。</li>
-</ul>
-</li>
-</ul>
-<h2 id="React-Router"><a href="#React-Router" class="headerlink" title="React Router"></a>React Router</h2><ul>
-<li>React Router 包装了 BrowserRouter 和 HashRouter 两个组件。<ul>
-<li>BrowserRouter 使用 HTML5 的 history API(pushState、replaceState 等)实现<br>UI 和 URL 的同步</li>
-<li>HashRouter 使用 URL 的 hash 实现应用的 UI 和 URL 同步</li>
-</ul>
-</li>
-</ul>
-<h2 id="React-Hooks"><a href="#React-Hooks" class="headerlink" title="React Hooks"></a>React Hooks</h2><ul>
-<li>useState</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//用法：</span><br><span class="line"></span><br><span class="line">//useState唯一的参数就是初始state</span><br><span class="line">//返回一个数组，第一项state，第二项更新state的函数</span><br><span class="line">const [number, setNumber] = useState(0);</span><br><span class="line"></span><br><span class="line">//函数式更新</span><br><span class="line">//如果新的state需要通过使用以前的state计算得出，可以将函数传递给setState。</span><br><span class="line">//例如：</span><br><span class="line">setCount((count) =&gt; &#123;</span><br><span class="line">    return count + 1</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//惰性初始化state，对复杂初始数据，initialState可以是一个函数</span><br><span class="line">//函数或initialState参数只会在组件的初始渲染中起作用</span><br><span class="line">function Counter() &#123;</span><br><span class="line">    const [&#123;name, number&#125;,setValue] = useState(() =&gt; &#123;</span><br><span class="line">        return &#123;name:&#x27;计数器&#x27;,number:0&#125;;</span><br><span class="line">    &#125;)</span><br><span class="line">    return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;p&gt;&#123;name&#125;:&#123;number&#125;&lt;/p&gt;</span><br><span class="line">            &lt;button onClick=&#123;() =&gt; setValue(&#123;number: number + 1&#125;)&#125;&gt;+&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line">--------------</span><br><span class="line">//官网例子</span><br><span class="line">const [state, setState] = useState(() =&gt; &#123;</span><br><span class="line">    const initialState = someExpensiveComputation(props);</span><br><span class="line">    return initialState;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//useState的初始值，只在第一次有效</span><br><span class="line">//按照有序的方式使用useState不得在循环判断等条件语句中使用</span><br><span class="line">//useState不会自动合并更新对象，需使用扩展符&#123;...obj,name:&#x27;lisi&#x27;&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>useEffect</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//基本使用</span><br><span class="line">//useEffect有两个参数：function(执行项)，array(依赖项)</span><br><span class="line">useEffect(() =&gt; &#123;&#125;,[name]);</span><br><span class="line"></span><br><span class="line">//如果依赖项为空数组，只会在第一次挂载后执行，类似componentDidMount</span><br><span class="line">useEffect(() =&gt; &#123;&#125;,[]);</span><br><span class="line"></span><br><span class="line">//清除副作用，模拟componentUnMount</span><br><span class="line">//通过返回一个函数来指定如何清除副作用，防止内存泄漏，函数会在组件卸载前执行</span><br><span class="line">useEffect(() =&gt; &#123;</span><br><span class="line">    let timer = setInterVal(() =&gt; &#123;</span><br><span class="line">        console.log(&quot;定时器&quot;);</span><br><span class="line">    &#125;,1000)</span><br><span class="line">    return () =&gt; &#123;</span><br><span class="line">        clearInterval(timer)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,[name])</span><br><span class="line"></span><br><span class="line">//注意：可以在组件中多次使用useEffect</span><br><span class="line">//Hook 允许我们按照代码的用途分离他们，react将按照effect声明的顺序依次调用组件中的每一个effect</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>useContext</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//父组件创建上下文</span><br><span class="line">const Context = createContext();</span><br><span class="line">//并将数据传递给子组件</span><br><span class="line">const [num, setNum] = useState(0);</span><br><span class="line">&lt;Context.Provider value=&#123;&#123;num, setNum&#125;&#125;&gt;</span><br><span class="line">    &lt;Children /&gt;</span><br><span class="line">&lt;/Context.Provider&gt;</span><br><span class="line"></span><br><span class="line">//子组件接收</span><br><span class="line">const &#123;num, setNum&#125; = useContext(Context);</span><br><span class="line">useEffect(() =&gt; &#123;</span><br><span class="line">    setNum(num + 1);</span><br><span class="line">&#125;,[])</span><br><span class="line">&lt;p&gt;&#123;num&#125;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>useReducer</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//基础使用</span><br><span class="line">const initialState = &#123; count: 0 &#125;;</span><br><span class="line"></span><br><span class="line">function reducer(state, action)&#123;</span><br><span class="line">    switch(action.type) &#123;</span><br><span class="line">        case &#x27;increment&#x27;:</span><br><span class="line">            return &#123;count:state.count + 1&#125;;</span><br><span class="line">        case &#x27;decrement&#x27;:</span><br><span class="line">            return &#123;count:state.count - 1&#125;;</span><br><span class="line">        default:</span><br><span class="line">            throw new Error();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function MyUseReducer() &#123;</span><br><span class="line">    const [state, dispatch] = useReducer(reducer, initialState);</span><br><span class="line">    return (</span><br><span class="line">        &lt;&gt;</span><br><span class="line">            count: &#123;state.count&#125;</span><br><span class="line">            &lt;button onClick=&#123;() =&gt; dispatch(&#123;type:&#x27;decrement&#x27;&#125;)&#125;&gt;+&lt;/button&gt;</span><br><span class="line">            &lt;button onClick=&#123;() =&gt; dispatch(&#123;type:&#x27;increment&#x27;&#125;)&#125;&gt;+&lt;/button&gt;</span><br><span class="line">        &lt;/&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//惰性初始化</span><br><span class="line">//稍加改造</span><br><span class="line">const initialCount = 0;</span><br><span class="line"></span><br><span class="line">function init(initialCount) &#123;</span><br><span class="line">  return &#123;count: initialCount&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case &#x27;increment&#x27;:</span><br><span class="line">      return &#123;count: state.count + 1&#125;;</span><br><span class="line">    case &#x27;decrement&#x27;:</span><br><span class="line">      return &#123;count: state.count - 1&#125;;</span><br><span class="line">    case &#x27;reset&#x27;:</span><br><span class="line">      return init(action.payload);</span><br><span class="line">    default:</span><br><span class="line">      throw new Error();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function MyUseReducer() &#123;</span><br><span class="line">  const [state, dispatch] = useReducer(reducer, initialCount , init);</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      Count: &#123;state.count&#125;</span><br><span class="line">      &lt;button</span><br><span class="line">        onClick=&#123;() =&gt; dispatch(&#123;type: &#x27;reset&#x27;, payload: initialCount&#125;)&#125;&gt;</span><br><span class="line">        Reset</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; dispatch(&#123;type: &#x27;decrement&#x27;&#125;)&#125;&gt;-&lt;/button&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; dispatch(&#123;type: &#x27;increment&#x27;&#125;)&#125;&gt;+&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;》》</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="React-框架的关键设计思想：“组件”、“虚拟-DOM”"><a href="#React-框架的关键设计思想：“组件”、“虚拟-DOM”" class="headerlink" title="React 框架的关键设计思想：“组件”、“虚拟 DOM”"></a>React 框架的关键设计思想：“组件”、“虚拟 DOM”</h3><!--more-->
-
-<h3 id="组件化-工程化思想在框架中的落地"><a href="#组件化-工程化思想在框架中的落地" class="headerlink" title="组件化: 工程化思想在框架中的落地"></a>组件化: 工程化思想在框架中的落地</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">“封闭”：在组件自身的渲染工作流中，每个组件都只处理它的内部的渲染逻辑。</span><br><span class="line">“开放”：针对组件间通信来说，React基于“单向数据流”的原则完成组件间的通信。</span><br></pre></td></tr></table></figure>
-
-<!--more-->
-
-<h3 id="虚拟-DOM：核心算法的基石："><a href="#虚拟-DOM：核心算法的基石：" class="headerlink" title="虚拟 DOM：核心算法的基石："></a>虚拟 DOM：核心算法的基石：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">组件初始化-&gt;render方法-&gt;生成虚拟DOM-&gt;ReactDOM.render方法-&gt;生成真实DOM</span><br><span class="line"></span><br><span class="line">组件更新-&gt;render方法-&gt;生成新的虚拟DOM-&gt;diff算法-&gt;定位两次虚拟DOM的差异-&gt;批量更新</span><br></pre></td></tr></table></figure>
-
-<h3 id="componentWillReceiveProps-nextProps"><a href="#componentWillReceiveProps-nextProps" class="headerlink" title="componentWillReceiveProps(nextProps)"></a>componentWillReceiveProps(nextProps)</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">如果父组件导致子组件重新渲染，即使props没有更改，也会调用此方法，如果只想处理更改，请确保当前值和变更值的比较。---React官方</span><br></pre></td></tr></table></figure>
-
-<h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">React组件会根据shouldComponentUpdate的返回值来决定是否执行后面的生命周期进而决定是否对组件进行re-render(重渲染)</span><br></pre></td></tr></table></figure>
-
-<h3 id="getDerivedStateFromProps-新增-不是-componentWillMount-废弃-的替代品"><a href="#getDerivedStateFromProps-新增-不是-componentWillMount-废弃-的替代品" class="headerlink" title="getDerivedStateFromProps(新增)不是 componentWillMount(废弃)的替代品"></a>getDerivedStateFromProps(新增)不是 componentWillMount(废弃)的替代品</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">getDerivedStateFromProps有且仅有一个用途：使用props来派生/更新state</span><br><span class="line"></span><br><span class="line">static getDerivedStateFromProps(props, state)</span><br><span class="line">1.静态方法，访问不到this</span><br><span class="line">2.参数 props(父组件)和state(自身)</span><br><span class="line">3.对象格式的返回值，用来更新自身state（更新并非覆盖式，而是替换式更新）</span><br><span class="line">4.挂载和更新都会触发此钩子</span><br><span class="line"></span><br><span class="line">其他：</span><br><span class="line">getDerivedStateFromProps是作为一个试图代替componentWillReceiveProps的API出现的。</span><br><span class="line">getDerivedStateFromProps不能完全和componentWillReceiveProps画等号</span><br><span class="line"></span><br><span class="line">原因：getDerivedStateFromProps仅可以代替componentWillReceiveProps来实现基于props派生state，原则来说能且只能做这一件事。</span><br></pre></td></tr></table></figure>
-
-<h3 id="getSnapshotBeforeUpdate-新增-与-componentWillUpdate-废弃"><a href="#getSnapshotBeforeUpdate-新增-与-componentWillUpdate-废弃" class="headerlink" title="getSnapshotBeforeUpdate(新增)与 componentWillUpdate(废弃)"></a>getSnapshotBeforeUpdate(新增)与 componentWillUpdate(废弃)</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">getSnapshotBeforeUpdate(prevProps, prevState)&#123;&#125;</span><br><span class="line">1. 执行时机在render方法之后，真实DOM更新之前</span><br><span class="line">2.返回值会作为第三个参数传递给componentDidUpdate</span><br></pre></td></tr></table></figure>
-
-<h3 id="Fiber-架构（核心：可中断、可恢复、优先级）"><a href="#Fiber-架构（核心：可中断、可恢复、优先级）" class="headerlink" title="Fiber 架构（核心：可中断、可恢复、优先级）"></a>Fiber 架构（核心：可中断、可恢复、优先级）</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.Fiber是React16对React核心算法的一次重写</span><br><span class="line">2.Fiber会使原本同步的渲染过程变成异步的</span><br><span class="line">3.Fiber会将一个大的更新任务拆解为许多个小任务(工作单元)，这些工作单元有着不同的优先级，react可以根据优先级的高低去实现工作单元的打断和恢复</span><br><span class="line"></span><br><span class="line">Fiber架构的重要特征就是可以被打断的异步渲染模式，根据能否被打断这一标准，React16的生命周期被划分为render和commit两个阶段</span><br><span class="line">render阶段在执行过程中允许被打断（因为此阶段用户不可见，打断也无影响）</span><br><span class="line">commit阶段总是同步执行（涉及到同步渲染，会影响用户直观体验）</span><br><span class="line"></span><br><span class="line">render阶段是允许暂停、终止和重启的，这就导致render阶段的生命周期都是有可能被重复执行，所以要废弃处于render阶段的一些生命周期：componentWillMount、componenntUpdate、componentWillReceiveProps、shouldComponentUpdate(一般不会在这个生命周期中进行副作用操作，所以相对风险不大，没有被废弃)</span><br><span class="line"></span><br><span class="line">每个更新任务都会被赋予一个优先级</span><br><span class="line">若B任务的优先级高于当前任务A，那么当前处于Reconciler层的A任务就会被中断，当B任务完成后，A任务就会被重新推入Reconciler层，继续它的渲染，这便是所谓的“可恢复”</span><br><span class="line"></span><br><span class="line">Fiber架构对生命周期的影响</span><br><span class="line">react15: render开始-&gt;停不下来的递归计算(同步)-&gt;commit提交渲染</span><br><span class="line">react16: render开始-&gt;工作单元｜工作单元｜工作单元...(异步)-&gt;commit提交渲染</span><br></pre></td></tr></table></figure>
-
-<h3 id="组件间通信"><a href="#组件间通信" class="headerlink" title="组件间通信"></a>组件间通信</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UI = render(data) 或 UI = f(data)</span><br><span class="line">React的视图会随着数据的变化而变化</span><br></pre></td></tr></table></figure>
-
-<h3 id="React-Hooks-的使用原则"><a href="#React-Hooks-的使用原则" class="headerlink" title="React-Hooks 的使用原则"></a>React-Hooks 的使用原则</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.只在React函数中调用Hook</span><br><span class="line">2.不要在循环、条件和嵌套函数中调用Hook(要确保hooks在每次渲染时都保持同样的执行顺序)</span><br><span class="line"></span><br><span class="line">从源码调用流程看原理：Hooks的正常运作，在底层依赖于顺序链表。</span><br><span class="line">mountState首次渲染构建链表并渲染，updateState依次遍历链表并渲染</span><br><span class="line"></span><br><span class="line">hooks的渲染就是通过依次遍历来定位每个hooks的内容，如果前后两次读到的链表在顺序上出现差异，那么渲染的结果自然就是不可控的</span><br></pre></td></tr></table></figure>
-
-<h3 id="虚拟-DOM"><a href="#虚拟-DOM" class="headerlink" title="虚拟 DOM"></a>虚拟 DOM</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">虚拟DOM本质上是JS和DOM之间的一个映射缓存，在形态上表现为一个能够描述DOM结构及其属性信息的JS对象。</span><br></pre></td></tr></table></figure>
-
-<h3 id="Diff-逻辑的拆分与解读"><a href="#Diff-逻辑的拆分与解读" class="headerlink" title="Diff 逻辑的拆分与解读"></a>Diff 逻辑的拆分与解读</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.Diff算法性能突破的关键点在于 分层对比</span><br><span class="line">2.类型一致的节点才有继续Diff的必要性</span><br><span class="line">3.key属性的设置，可以帮我们尽可能重用同一层级内的节点</span><br></pre></td></tr></table></figure>
-
-<h3 id="setState-异步"><a href="#setState-异步" class="headerlink" title="setState 异步"></a>setState 异步</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setState-&gt;shouldComponentUpdate-&gt;componentWillUpdate-&gt;render-&gt;componentDidUpdate</span><br><span class="line"></span><br><span class="line">批量更新：每来一个setState，就把它塞进一个队列里面存起来，等时机成熟，再把存起来的state结果做合并，最后只针对最后一次最新的state值走一次更新流程</span><br><span class="line"></span><br><span class="line">setState的表现会因为调用的场景不同而不同：</span><br><span class="line">1.在React钩子函数及合成事件中，表现为异步</span><br><span class="line">2.在setTimeout、setInterval等函数中，包括DOM原生事件中，表现为同步。</span><br></pre></td></tr></table></figure>
-
-<h3 id="ReactDOM-render-调用栈的逻辑分层"><a href="#ReactDOM-render-调用栈的逻辑分层" class="headerlink" title="ReactDOM.render 调用栈的逻辑分层"></a>ReactDOM.render 调用栈的逻辑分层</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">待补充</span><br></pre></td></tr></table></figure>
-
-<h3 id="React-事件系统"><a href="#React-事件系统" class="headerlink" title="React 事件系统"></a>React 事件系统</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">当事件在具体的DOM节点上被触发后，最终都会冒泡到document上，document上所绑定的统一事件处理程序会将事件分发到具体的组件实例</span><br><span class="line"></span><br><span class="line">react合成事件：在底层抹平了不同浏览器的差异，在上层面向开发者暴漏统一的、稳定的、与DOM原生事件相同的事件接口（原生DOM事件可以通过e.nativeEvent查看）</span><br></pre></td></tr></table></figure>
-
-<h2 id="请说一下你对-React-的理解？"><a href="#请说一下你对-React-的理解？" class="headerlink" title="请说一下你对 React 的理解？"></a>请说一下你对 React 的理解？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. react是一个用于构建用户界面的JavaScript库</span><br><span class="line">2. react的核心设计思路有三个：</span><br><span class="line">声明式</span><br><span class="line">    命令式：命令程序一步一步的执行操作</span><br><span class="line">    声明式：只需告诉程序我们想要的结果，其他的交给程序去做。</span><br><span class="line">组件化</span><br><span class="line">    将视图拆分和模块复用，做到高内聚低耦合</span><br><span class="line"></span><br><span class="line">通用性</span><br><span class="line">    一次学习，随处编写。RN，react360等，跨平台底层靠虚拟DOM实现</span><br><span class="line"></span><br><span class="line">3. 缺点</span><br><span class="line">1.没有官方系统解决方案，在开发大型应用时需要向社区寻找并整合解决方案。</span><br><span class="line">2.过于灵活，需要注意代码规范</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="React-lazy-懒加载"><a href="#React-lazy-懒加载" class="headerlink" title="React.lazy 懒加载"></a>React.lazy 懒加载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// React.lazy方法可以异步加载组件</span><br><span class="line">const Foo = React.lazy(() =&gt; import(&#x27;../components/Foo&#x27;)</span><br><span class="line"></span><br><span class="line">// React.lazy不能单独使用，需要配合React.suspense,用来包裹异步组件，添加loading效果等。</span><br><span class="line">&lt;React.Suspense fallback=&#123;&lt;div&gt;loading...&lt;/div&gt;&#125;&gt;</span><br><span class="line">    &lt;Foo /&gt;</span><br><span class="line">&lt;/React.Suspense&gt;</span><br><span class="line"></span><br><span class="line">React.lazy原理</span><br><span class="line">React.lazy使用import来懒加载组件，import在webpack中最终会调用requireEnsure方法，</span><br><span class="line">动态插入script来请求js文件，类似jsonp的形式。</span><br></pre></td></tr></table></figure>
-
-<h2 id="类组件和函数组件之间的区别？"><a href="#类组件和函数组件之间的区别？" class="headerlink" title="类组件和函数组件之间的区别？"></a>类组件和函数组件之间的区别？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">相同点：</span><br><span class="line">接受属性返回React元素</span><br><span class="line"></span><br><span class="line">不同点：</span><br><span class="line">    1.编程思想不同：类组件需要创建实例，基于面向对象的方式编程。函数式组件接受输入返回输出，属于函数式编程的思想。</span><br><span class="line">    2.内存占用：类组件需要创建实例，会占用内存，函数组件不需要创建实例，可以节约内存</span><br><span class="line">    3.捕获特性：函数组件具有捕获特性</span><br><span class="line">    4.可测试性：函数组件更方便编写单元测试</span><br><span class="line">    5.状态：类组件有实例可以维护自己的状态，函数组件可以使用useState维护自己的状态</span><br><span class="line">    6.声明周期：类组件有生命周期，可以在生命周期内写逻辑，函数组件可以在useEffect中</span><br><span class="line">    7.逻辑复用：函数组件通过继承实现逻辑复用，函数组件可以通过自定义hooks实现逻辑复用</span><br><span class="line">    8.性能优化：类组件通过shouldComponentUpdate和PureComponent来跳过更新，函数组件通过React.memo</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="当调用-setState-的时候，发生了什么事？"><a href="#当调用-setState-的时候，发生了什么事？" class="headerlink" title="当调用 setState 的时候，发生了什么事？"></a>当调用 setState 的时候，发生了什么事？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">将传递给setState的参数对象合并到组件的当前的状态，react遍历dom节点，计算差异，更新UI。</span><br><span class="line">https://segmentfault.com/a/1190000018250127</span><br></pre></td></tr></table></figure>
-
-<h2 id="为什么-setState-的参数是一个-callback-而不是一个对象"><a href="#为什么-setState-的参数是一个-callback-而不是一个对象" class="headerlink" title="为什么 setState 的参数是一个 callback 而不是一个对象"></a>为什么 setState 的参数是一个 callback 而不是一个对象</h2><p>因为 this.props 和 this.state 的更新可能是异步的，不能依赖它们的值去计算下一个 state<br>(更新状态不要直接修改 this.state，虽然状态可以改变，但不会触发组件的更新)</p>
-<p>setState 何时同步何时异步？<br>异步：由 React 控制的事件处理程序以及生命周期函数中调用 setState 为异步<br>同步：React 控制之外的原生 js 绑定的事件、setTimeout/setInterval 等。</p>
-<h2 id="setState-什么时候同步什么时候异步？"><a href="#setState-什么时候同步什么时候异步？" class="headerlink" title="setState 什么时候同步什么时候异步？"></a>setState 什么时候同步什么时候异步？</h2><p>react 三个模式：<br>1.legacy 模式： 通过 ReactDOM.render(<App />, rootNode)创建的，当前 react 的使用方式<br>2.blocking 模式：通过 ReactDOM.createBlockingRoot(rootNode).render(<App />),实验阶段，作为迁移到 concurrent 模式的第一个步骤<br>3.concurrent 模式，通过 ReactDOM.createRoot(rootNode).render(<App />),实验阶段，未来 react 的默认开发模式</p>
-<p>setState 只在合成事件（react 为了解决跨平台，兼容性问题，自己封装了一套事件机制，代理了原生的事件）和钩子函数（生命周期中）是异步的，在原生事件和 setTimeout 中都是同步的。</p>
-<p>不同模式执行结果不同，legacy 模式命中 batchedUpadates（批处理）时异步，为命中时同步<br>concurrent 模式都是异步的</p>
-<p>setState 异步并不是说内部由异步代码实现，其本身执行过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值，形成了“异步”</p>
-<p>可以通过第二个参数的 callback 回调函数中拿到最新的值，在异步中如果对同一个值进行多次 setState，那么 setState 的批量更新策略会将其覆盖，去最后一次的执行，如果同时 setState 多个值，会在更新时对其进行合并批量更新。</p>
-<h2 id="react-渲染机制"><a href="#react-渲染机制" class="headerlink" title="react 渲染机制"></a>react 渲染机制</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">首先打开页面会渲染出一颗DOM树，更新数据会生成一颗虚拟DOM树，通过diff算法，</span><br><span class="line">比较两颗DOM树的差异，找到更新的地方进行批量改动。</span><br><span class="line"></span><br><span class="line">diff：计算一棵树形结构到另一颗树形结构的最少操作。</span><br><span class="line"></span><br><span class="line">1.把树形结构按照层级分解，只比较同级元素</span><br><span class="line">2.给列表结构的每个单元添加唯一的 key 属性，方便比较</span><br><span class="line">3.diff只简单考虑同层级的节点位置变换，如果是跨层级的话，只有创建节点和删除节点的操作。（官方也不推荐）</span><br></pre></td></tr></table></figure>
-
-<h2 id="React-StrictMode-目前有助于："><a href="#React-StrictMode-目前有助于：" class="headerlink" title="React.StrictMode 目前有助于："></a>React.StrictMode 目前有助于：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">识别不安全的生命周期</span><br><span class="line">关于使用过时字符串 ref API 的警告</span><br><span class="line">关于使用废弃的 findDOMNode 方法的警告</span><br><span class="line">检测意外的副作用</span><br><span class="line">检测过时的 context API</span><br></pre></td></tr></table></figure>
-
-<h2 id="虚拟-DOM-优点"><a href="#虚拟-DOM-优点" class="headerlink" title="虚拟 DOM 优点"></a>虚拟 DOM 优点</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 减少不必要的DOM操作</span><br><span class="line">    1.1虚拟dom可以将多次操作合并为一次操作，比如添加100个节点，确是一个一个操作的</span><br><span class="line">    1.2虚拟dom借助dom diff可以将多余的操作省略掉，比如添加100个节点，其中10个是新增的</span><br><span class="line"></span><br><span class="line">2. 跨平台渲染</span><br><span class="line">    1.因为虚拟dom本质上是一个js对象</span><br><span class="line"></span><br><span class="line">react虚拟dom结构:</span><br><span class="line"></span><br><span class="line">const vNode = &#123;</span><br><span class="line">    key: null,</span><br><span class="line">    props:&#123;</span><br><span class="line">        children: [</span><br><span class="line">            &#123;type: &#x27;span&#x27;, ....&#125;,</span><br><span class="line">        ],</span><br><span class="line">        className: &#x27;red&#x27;,</span><br><span class="line">        onClick: () =&gt; &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    ref: null,</span><br><span class="line">    type: &#x27;div&#x27;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">创建虚拟dom：React.createElement</span><br></pre></td></tr></table></figure>
-
-<h2 id="diff-策略"><a href="#diff-策略" class="headerlink" title="diff 策略"></a>diff 策略</h2><p>`<br>策略一： tree diff<br>1.React 对树进行分层比较，两颗虚拟 DOM 树只会对同一层级的 DOM 节点进行比较。<br>如果存在跨层级的操作，只会进行创建和删除 2.如果节点是组件就进行 Component diff 3.如果节点是标签就进行 Element diff</p>
-<p>策略二：component diff<br>如果为非同类型组件的话标记组件为 dirty component，替换组件下所有子节点，<br>类型相同更新属性，然后深入组件进行 Tree diff（递归遍历对比）</p>
-<p>策略三：element diff<br>如果节点是原生标签，则看标签名<br>标签名不同直接替换，相同更新属性，然后进入标签进行 Tree diff（递归遍历对比）<br>`</p>
-<h2 id="shouldComponentUpdate-nextProps-nextState-是做什么的，（react-性能优化是哪个周期函数？）"><a href="#shouldComponentUpdate-nextProps-nextState-是做什么的，（react-性能优化是哪个周期函数？）" class="headerlink" title="shouldComponentUpdate(nextProps, nextState)是做什么的，（react 性能优化是哪个周期函数？）"></a>shouldComponentUpdate(nextProps, nextState)是做什么的，（react 性能优化是哪个周期函数？）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shouldComponentUpdate 这个方法用来判断是否需要调用render方法重新绘制dom,</span><br><span class="line">由于渲染dom非常消耗性能，合理的调用shouldComponentUpdate方法可以极大的提高性能。</span><br></pre></td></tr></table></figure>
-
-<h2 id="createElement-和-cloneElement-有什么区别？"><a href="#createElement-和-cloneElement-有什么区别？" class="headerlink" title="createElement 和 cloneElement 有什么区别？"></a>createElement 和 cloneElement 有什么区别？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">React.createElement()构建React元素。</span><br><span class="line"></span><br><span class="line">接受三个参数，第一个参数为标签名，如div、span等，或者react组件，第二个参数为传入的属性，第三个为组件的子组件。</span><br><span class="line"></span><br><span class="line">React.createElement(</span><br><span class="line">    type,</span><br><span class="line">    [props],</span><br><span class="line">    [...children]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">React.cloneElement(),第一个参数传入react元素不是标签名，第二个参数传入属性，新添加的属性会并入原有的属性，第三个参数为子组件</span><br><span class="line"></span><br><span class="line">React.cloneElement(</span><br><span class="line">    element,</span><br><span class="line">    [props],</span><br><span class="line">    [...children]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h2 id="虚拟-DOM-的优缺点？"><a href="#虚拟-DOM-的优缺点？" class="headerlink" title="虚拟 DOM 的优缺点？"></a>虚拟 DOM 的优缺点？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">优点：</span><br><span class="line">1. 处理了浏览器兼容性问题，避免了用户操作真实DOM</span><br><span class="line">2.内容经过xss处理，可以防范xss攻击</span><br><span class="line">3.跨平台开发</span><br><span class="line">4.更新的时候可以实现差异化更新，减少更新DOM的操作</span><br><span class="line"></span><br><span class="line">缺点：</span><br><span class="line">1.虚拟DOM需要消耗额外的内存</span><br><span class="line">2.首次渲染不一定会更快</span><br></pre></td></tr></table></figure>
-
-<h2 id="React-中创建组件的方式"><a href="#React-中创建组件的方式" class="headerlink" title="React 中创建组件的方式"></a>React 中创建组件的方式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">React.createClass()、ES6 class组件 无无状态函数式组件</span><br></pre></td></tr></table></figure>
-
-<h2 id="react-中-key-的作用"><a href="#react-中-key-的作用" class="headerlink" title="react 中 key 的作用"></a>react 中 key 的作用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">key在react中用于追踪哪些列表中元素被修改、添加或者移除的辅助标识。</span><br><span class="line"></span><br><span class="line">在开发中，需要保证某个元素的key在同级元素中具有唯一性。</span><br><span class="line"></span><br><span class="line">diff算法会借助元素的key值来判断元素是新创建的还是被移动而来的元素，从而减少不必要的元素重渲染</span><br></pre></td></tr></table></figure>
-
-<h2 id="react-优势"><a href="#react-优势" class="headerlink" title="react 优势"></a>react 优势</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 速度快：不直接操作dom，采用虚拟dom的概念</span><br><span class="line">2.跨浏览器兼容，兼容性好</span><br><span class="line">3.一切都是component，代码更加模块化，可维护性高</span><br><span class="line">4.单向数据流，采用Flux单向数据层架构</span><br></pre></td></tr></table></figure>
-
-<h2 id="react-事件机制"><a href="#react-事件机制" class="headerlink" title="react 事件机制"></a>react 事件机制</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">react的事件机制利用了事件委托机制，事件并没有真正的绑定在真实的dom节点上，</span><br><span class="line">而是把事件绑定在结构的最外层document，使用统一的事件监听器，所有事件都由这个监听器统一分发。</span><br><span class="line"></span><br><span class="line">组件挂载和更新时，会将绑定的事件分门别类的放进一个叫EvnentPluginHub的事件池中。</span><br><span class="line"></span><br><span class="line">事件触发时，根据事件产生的Event对象找到触发事件的组件，再通过组件标识和事件类型</span><br><span class="line">从事件池中找到对应的事件监听回调，然后执行相关的监听函数。</span><br></pre></td></tr></table></figure>
-
-<h2 id="异步回调中怎么使用-syntheticEvent？"><a href="#异步回调中怎么使用-syntheticEvent？" class="headerlink" title="异步回调中怎么使用 syntheticEvent？"></a>异步回调中怎么使用 syntheticEvent？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">在合成事件机制里，一旦事件监听回调执行，合成事件对象就会被销毁，异步回调执行的时候</span><br><span class="line">合成事件对象早就被销毁了。</span><br><span class="line">解决方法：执行event.persist(),通知react不需要回收。</span><br></pre></td></tr></table></figure>
-
-<h2 id="React-生命周期"><a href="#React-生命周期" class="headerlink" title="React 生命周期"></a>React 生命周期</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">React 16推出Fiber之后，如果要开启async rendering，那么在render函数之前的所有函数都有可能被执行多次</span><br><span class="line"></span><br><span class="line">废弃：</span><br><span class="line">componentWillMount</span><br><span class="line">componentWillReceiveProps(nextProps)</span><br><span class="line">componentWillUpdate(nextProps, nextState)</span><br><span class="line">代替：</span><br><span class="line">静态函数：static getDerivedStateFromProps(nextProps, prevState)</span><br><span class="line"></span><br><span class="line">静态函数：static getDerivedStateFromError(error) // 渲染备用UI</span><br><span class="line">此生命周期return的值会自动调用setState，将值和state合并</span><br><span class="line">运行事件节点：子组件被渲染发生错误后且在页面更新前</span><br><span class="line"></span><br><span class="line">getSnapshotBeforeUpdate(prevProps, prevState) 此生命周期的返回值将作为参数传递给componentDidUpdate()</span><br><span class="line"></span><br><span class="line">componentDidCatch(error, info) // 打印错误信息</span><br><span class="line"></span><br><span class="line">错误边界无法捕获的错误：</span><br><span class="line">1.组件自身的错误</span><br><span class="line">2.异步错误，setTimeout</span><br><span class="line">3.事件中的错误，比如click事件中发生错误</span><br></pre></td></tr></table></figure>
-
-<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 构建action，通过创建一个函数，返回一个对象，需要携带type属性</span><br><span class="line"></span><br><span class="line">2. 构建reducer，用来响应action，然后通过return把数据传回store</span><br><span class="line"></span><br><span class="line">3. 利用createStore来构建store，把reducer作为参数传入</span><br><span class="line"></span><br><span class="line">4. 利用store.subscribe()注册监听</span><br><span class="line"></span><br><span class="line">5. 利用store.dispatch()发送action</span><br><span class="line"></span><br><span class="line">6. 利用store.getState()拿到值</span><br></pre></td></tr></table></figure>
-
-<h2 id="mobx"><a href="#mobx" class="headerlink" title="mobx"></a>mobx</h2><p>Observable //被观察者<br>Observer // 观察者<br>Reaction //响应</p>
-<p>mobx 底层对数据的观察是使用 Object.defineProperty(mobx4)或 Proxy(mobx5)<br>observer 这个装饰器，对 react 组件的 render 方法进行跟踪，将 render 方法加入到各个 observable 的依赖中，当 observale 发生变化的时候，就会调用 forceUpdate 更新组件<br>（mobx4 将 Array 用类数组对象来模拟的，通过包装类封装为一个对象）</p>
-<h2 id="如何统一监听-React-报错？"><a href="#如何统一监听-React-报错？" class="headerlink" title="如何统一监听 React 报错？"></a>如何统一监听 React 报错？</h2><ul>
-<li><p>ErrorBoundary 组件</p>
-<ul>
-<li>监听所有下级组件报错，可降级展示 UI</li>
-<li>只监听组件渲染时报错，不监听 DOM 事件、异步错误<ul>
-<li>不监听 DOM 事件报错，可用 try…catch,window.onerror</li>
-</ul>
-</li>
-<li>只在 production 环境生效，dev 会直接抛出错误</li>
-</ul>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ErrorBoundary</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">error</span>: <span class="literal">null</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">getDerivedStateFromError</span>(<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="comment">// 更新state，显示降级UI</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123; error &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">componentDidCatch</span>(<span class="params">error, errorInfo</span>) &#123;</span><br><span class="line">    <span class="comment">// 统计上报错误信息</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error, errorInfo);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">error</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>报错了<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">children</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="Portal-传送门"><a href="#Portal-传送门" class="headerlink" title="Portal 传送门"></a>Portal 传送门</h2><blockquote>
-<p>可以将 DOM 结构脱离父节点渲染到指定节点位置，并且不会破坏事件传播，事件冒泡会正常工作，生命周期正常执行。常见使用场景：渲染模态框、工具提示、弹出消息等</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>react</category>
-      </categories>
-      <tags>
-        <tag>react</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>全面解读React v18全部Api</title>
-    <url>/2023/03/13/%E5%85%A8%E9%9D%A2%E8%A7%A3%E8%AF%BBreact-v18%E5%85%A8%E9%83%A8api/</url>
-    <content><![CDATA[<h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><p>React 提供 <em>类组件</em> 和 <em>函数式组件</em> 两种方式，类组件需要使用 <em>Component</em> 继承，主要做一些初始化工作</p>
-<span id="more"></span>
 
 <h2 id="PureComponent"><a href="#PureComponent" class="headerlink" title="PureComponent"></a>PureComponent</h2><p>会对 <em>props</em> 和 <em>state</em> 进行浅比较（可能会因为深层的数据不一致而产生错误的否定判断），跳过不比较的更新，提高组件性能</p>
 <h2 id="PureComponent-和-shouldComponentUpdate-的关系"><a href="#PureComponent-和-shouldComponentUpdate-的关系" class="headerlink" title="PureComponent 和 shouldComponentUpdate 的关系"></a>PureComponent 和 shouldComponentUpdate 的关系</h2><p><strong>PureComponent</strong>通过自带的 <em>props</em> 和 <em>state</em> 浅比较实现了<strong>shouldComponentUpdate(nextProps, nextState)</strong></p>
@@ -2553,6 +2314,61 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <li>flushSync：可以将回调函数中的更新任务，放到一个较高级的优先级中，适用于强制刷新，同时确保了 DOM 会被立即更新</li>
 <li>unstable_batchedUpdates :可用于手动批量更新 state，可以指定多个 setState 合并为一个更新请求</li>
 </ul>
+<h2 id="React-lazy-懒加载"><a href="#React-lazy-懒加载" class="headerlink" title="React.lazy 懒加载"></a>React.lazy 懒加载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// React.lazy方法可以异步加载组件</span><br><span class="line">const Foo = React.lazy(() =&gt; import(&#x27;../components/Foo&#x27;)</span><br><span class="line"></span><br><span class="line">// React.lazy不能单独使用，需要配合React.suspense,用来包裹异步组件，添加loading效果等。</span><br><span class="line">&lt;React.Suspense fallback=&#123;&lt;div&gt;loading...&lt;/div&gt;&#125;&gt;</span><br><span class="line">    &lt;Foo /&gt;</span><br><span class="line">&lt;/React.Suspense&gt;</span><br><span class="line"></span><br><span class="line">React.lazy原理</span><br><span class="line">React.lazy使用import来懒加载组件，import在webpack中最终会调用requireEnsure方法，</span><br><span class="line">动态插入script来请求js文件，类似jsonp的形式。</span><br></pre></td></tr></table></figure>
+
+<h2 id="当调用-setState-的时候，发生了什么事？"><a href="#当调用-setState-的时候，发生了什么事？" class="headerlink" title="当调用 setState 的时候，发生了什么事？"></a>当调用 setState 的时候，发生了什么事？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">将传递给setState的参数对象合并到组件的当前的状态，react遍历dom节点，计算差异，更新UI。</span><br><span class="line">https://segmentfault.com/a/1190000018250127</span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么-setState-的参数是一个-callback-而不是一个对象"><a href="#为什么-setState-的参数是一个-callback-而不是一个对象" class="headerlink" title="为什么 setState 的参数是一个 callback 而不是一个对象"></a>为什么 setState 的参数是一个 callback 而不是一个对象</h2><p>因为 this.props 和 this.state 的更新可能是异步的，不能依赖它们的值去计算下一个 state<br>(更新状态不要直接修改 this.state，虽然状态可以改变，但不会触发组件的更新)</p>
+<p>setState 何时同步何时异步？<br>异步：由 React 控制的事件处理程序以及生命周期函数中调用 setState 为异步<br>同步：React 控制之外的原生 js 绑定的事件、setTimeout/setInterval 等。</p>
+<h2 id="setState-什么时候同步什么时候异步？"><a href="#setState-什么时候同步什么时候异步？" class="headerlink" title="setState 什么时候同步什么时候异步？"></a>setState 什么时候同步什么时候异步？</h2><p>react 三个模式：<br>1.legacy 模式： 通过 ReactDOM.render(<App />, rootNode)创建的，当前 react 的使用方式<br>2.blocking 模式：通过 ReactDOM.createBlockingRoot(rootNode).render(<App />),实验阶段，作为迁移到 concurrent 模式的第一个步骤<br>3.concurrent 模式，通过 ReactDOM.createRoot(rootNode).render(<App />),实验阶段，未来 react 的默认开发模式</p>
+<p>setState 只在合成事件（react 为了解决跨平台，兼容性问题，自己封装了一套事件机制，代理了原生的事件）和钩子函数（生命周期中）是异步的，在原生事件和 setTimeout 中都是同步的。</p>
+<p>不同模式执行结果不同，legacy 模式命中 batchedUpadates（批处理）时异步，为命中时同步<br>concurrent 模式都是异步的</p>
+<p>setState 异步并不是说内部由异步代码实现，其本身执行过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值，形成了“异步”</p>
+<p>可以通过第二个参数的 callback 回调函数中拿到最新的值，在异步中如果对同一个值进行多次 setState，那么 setState 的批量更新策略会将其覆盖，去最后一次的执行，如果同时 setState 多个值，会在更新时对其进行合并批量更新。</p>
+<h2 id="React-StrictMode-目前有助于："><a href="#React-StrictMode-目前有助于：" class="headerlink" title="React.StrictMode 目前有助于："></a>React.StrictMode 目前有助于：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">识别不安全的生命周期</span><br><span class="line">关于使用过时字符串 ref API 的警告</span><br><span class="line">关于使用废弃的 findDOMNode 方法的警告</span><br><span class="line">检测意外的副作用</span><br><span class="line">检测过时的 context API</span><br></pre></td></tr></table></figure>
+
+<h2 id="虚拟-DOM-优点"><a href="#虚拟-DOM-优点" class="headerlink" title="虚拟 DOM 优点"></a>虚拟 DOM 优点</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 减少不必要的DOM操作</span><br><span class="line">    1.1虚拟dom可以将多次操作合并为一次操作，比如添加100个节点，确是一个一个操作的</span><br><span class="line">    1.2虚拟dom借助dom diff可以将多余的操作省略掉，比如添加100个节点，其中10个是新增的</span><br><span class="line"></span><br><span class="line">2. 跨平台渲染</span><br><span class="line">    1.因为虚拟dom本质上是一个js对象</span><br><span class="line"></span><br><span class="line">react虚拟dom结构:</span><br><span class="line"></span><br><span class="line">const vNode = &#123;</span><br><span class="line">    key: null,</span><br><span class="line">    props:&#123;</span><br><span class="line">        children: [</span><br><span class="line">            &#123;type: &#x27;span&#x27;, ....&#125;,</span><br><span class="line">        ],</span><br><span class="line">        className: &#x27;red&#x27;,</span><br><span class="line">        onClick: () =&gt; &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    ref: null,</span><br><span class="line">    type: &#x27;div&#x27;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">创建虚拟dom：React.createElement</span><br></pre></td></tr></table></figure>
+
+<h2 id="diff-策略"><a href="#diff-策略" class="headerlink" title="diff 策略"></a>diff 策略</h2><p>策略一： tree diff<br>React 对树进行分层比较，两颗虚拟 DOM 树只会对同一层级的 DOM 节点进行比较。如果存在跨层级的操作，只会进行创建和删除<br>如果节点是组件就进行 Component diff<br>如果节点是标签就进行 Element diff</p>
+<p>策略二：component diff<br>如果为非同类型组件的话标记组件为 dirty component，替换组件下所有子节点，<br>类型相同更新属性，然后深入组件进行 Tree diff（递归遍历对比）</p>
+<p>策略三：element diff<br>如果节点是原生标签，则看标签名<br>标签名不同直接替换，相同更新属性，然后进入标签进行 Tree diff（递归遍历对比）</p>
+<h2 id="shouldComponentUpdate-nextProps-nextState-是做什么的，（react-性能优化是哪个周期函数？）"><a href="#shouldComponentUpdate-nextProps-nextState-是做什么的，（react-性能优化是哪个周期函数？）" class="headerlink" title="shouldComponentUpdate(nextProps, nextState)是做什么的，（react 性能优化是哪个周期函数？）"></a>shouldComponentUpdate(nextProps, nextState)是做什么的，（react 性能优化是哪个周期函数？）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shouldComponentUpdate 这个方法用来判断是否需要调用render方法重新绘制dom,</span><br><span class="line">由于渲染dom非常消耗性能，合理的调用shouldComponentUpdate方法可以极大的提高性能。</span><br></pre></td></tr></table></figure>
+
+<h2 id="createElement-和-cloneElement-有什么区别？"><a href="#createElement-和-cloneElement-有什么区别？" class="headerlink" title="createElement 和 cloneElement 有什么区别？"></a>createElement 和 cloneElement 有什么区别？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">React.createElement()构建React元素。</span><br><span class="line"></span><br><span class="line">接受三个参数，第一个参数为标签名，如div、span等，或者react组件，第二个参数为传入的属性，第三个为组件的子组件。</span><br><span class="line"></span><br><span class="line">React.createElement(</span><br><span class="line">    type,</span><br><span class="line">    [props],</span><br><span class="line">    [...children]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">React.cloneElement(),第一个参数传入react元素不是标签名，第二个参数传入属性，新添加的属性会并入原有的属性，第三个参数为子组件</span><br><span class="line"></span><br><span class="line">React.cloneElement(</span><br><span class="line">    element,</span><br><span class="line">    [props],</span><br><span class="line">    [...children]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="虚拟-DOM-的优缺点？"><a href="#虚拟-DOM-的优缺点？" class="headerlink" title="虚拟 DOM 的优缺点？"></a>虚拟 DOM 的优缺点？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">优点：</span><br><span class="line">1. 处理了浏览器兼容性问题，避免了用户操作真实DOM</span><br><span class="line">2.内容经过xss处理，可以防范xss攻击</span><br><span class="line">3.跨平台开发</span><br><span class="line">4.更新的时候可以实现差异化更新，减少更新DOM的操作</span><br><span class="line"></span><br><span class="line">缺点：</span><br><span class="line">1.虚拟DOM需要消耗额外的内存</span><br><span class="line">2.首次渲染不一定会更快</span><br></pre></td></tr></table></figure>
+
+<h2 id="React-中创建组件的方式"><a href="#React-中创建组件的方式" class="headerlink" title="React 中创建组件的方式"></a>React 中创建组件的方式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">React.createClass()、ES6 class组件 无无状态函数式组件</span><br></pre></td></tr></table></figure>
+
+<h2 id="react-中-key-的作用"><a href="#react-中-key-的作用" class="headerlink" title="react 中 key 的作用"></a>react 中 key 的作用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">key在react中用于追踪哪些列表中元素被修改、添加或者移除的辅助标识。</span><br><span class="line"></span><br><span class="line">在开发中，需要保证某个元素的key在同级元素中具有唯一性。</span><br><span class="line"></span><br><span class="line">diff算法会借助元素的key值来判断元素是新创建的还是被移动而来的元素，从而减少不必要的元素重渲染</span><br></pre></td></tr></table></figure>
+
+<h2 id="react-优势"><a href="#react-优势" class="headerlink" title="react 优势"></a>react 优势</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 速度快：不直接操作dom，采用虚拟dom的概念</span><br><span class="line">2.跨浏览器兼容，兼容性好</span><br><span class="line">3.一切都是component，代码更加模块化，可维护性高</span><br><span class="line">4.单向数据流，采用Flux单向数据层架构</span><br></pre></td></tr></table></figure>
+
+<h2 id="react-事件机制"><a href="#react-事件机制" class="headerlink" title="react 事件机制"></a>react 事件机制</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">react的事件机制利用了事件委托机制，事件并没有真正的绑定在真实的dom节点上，</span><br><span class="line">而是把事件绑定在结构的最外层document，使用统一的事件监听器，所有事件都由这个监听器统一分发。</span><br><span class="line"></span><br><span class="line">组件挂载和更新时，会将绑定的事件分门别类的放进一个叫EvnentPluginHub的事件池中。</span><br><span class="line"></span><br><span class="line">事件触发时，根据事件产生的Event对象找到触发事件的组件，再通过组件标识和事件类型</span><br><span class="line">从事件池中找到对应的事件监听回调，然后执行相关的监听函数。</span><br></pre></td></tr></table></figure>
+
+<h2 id="异步回调中怎么使用-syntheticEvent？"><a href="#异步回调中怎么使用-syntheticEvent？" class="headerlink" title="异步回调中怎么使用 syntheticEvent？"></a>异步回调中怎么使用 syntheticEvent？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">在合成事件机制里，一旦事件监听回调执行，合成事件对象就会被销毁，异步回调执行的时候</span><br><span class="line">合成事件对象早就被销毁了。</span><br><span class="line">解决方法：执行event.persist(),通知react不需要回收。</span><br></pre></td></tr></table></figure>
+
+<h2 id="React-生命周期"><a href="#React-生命周期" class="headerlink" title="React 生命周期"></a>React 生命周期</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">React 16推出Fiber之后，如果要开启async rendering，那么在render函数之前的所有函数都有可能被执行多次</span><br><span class="line"></span><br><span class="line">废弃：</span><br><span class="line">componentWillMount</span><br><span class="line">componentWillReceiveProps(nextProps)</span><br><span class="line">componentWillUpdate(nextProps, nextState)</span><br><span class="line">代替：</span><br><span class="line">静态函数：static getDerivedStateFromProps(nextProps, prevState)</span><br><span class="line"></span><br><span class="line">静态函数：static getDerivedStateFromError(error) // 渲染备用UI</span><br><span class="line">此生命周期return的值会自动调用setState，将值和state合并</span><br><span class="line">运行事件节点：子组件被渲染发生错误后且在页面更新前</span><br><span class="line"></span><br><span class="line">getSnapshotBeforeUpdate(prevProps, prevState) 此生命周期的返回值将作为参数传递给componentDidUpdate()</span><br><span class="line"></span><br><span class="line">componentDidCatch(error, info) // 打印错误信息</span><br><span class="line"></span><br><span class="line">错误边界无法捕获的错误：</span><br><span class="line">1.组件自身的错误</span><br><span class="line">2.异步错误，setTimeout</span><br><span class="line">3.事件中的错误，比如click事件中发生错误</span><br></pre></td></tr></table></figure>
+
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 构建action，通过创建一个函数，返回一个对象，需要携带type属性</span><br><span class="line"></span><br><span class="line">2. 构建reducer，用来响应action，然后通过return把数据传回store</span><br><span class="line"></span><br><span class="line">3. 利用createStore来构建store，把reducer作为参数传入</span><br><span class="line"></span><br><span class="line">4. 利用store.subscribe()注册监听</span><br><span class="line"></span><br><span class="line">5. 利用store.dispatch()发送action</span><br><span class="line"></span><br><span class="line">6. 利用store.getState()拿到值</span><br></pre></td></tr></table></figure>
+
+<h2 id="mobx"><a href="#mobx" class="headerlink" title="mobx"></a>mobx</h2><p>Observable //被观察者<br>Observer // 观察者<br>Reaction //响应</p>
+<p>mobx 底层对数据的观察是使用 Object.defineProperty(mobx4)或 Proxy(mobx5)<br>observer 这个装饰器，对 react 组件的 render 方法进行跟踪，将 render 方法加入到各个 observable 的依赖中，当 observale 发生变化的时候，就会调用 forceUpdate 更新组件<br>（mobx4 将 Array 用类数组对象来模拟的，通过包装类封装为一个对象）</p>
+<h2 id="如何统一监听-React-报错？"><a href="#如何统一监听-React-报错？" class="headerlink" title="如何统一监听 React 报错？"></a>如何统一监听 React 报错？</h2><ul>
+<li><p>ErrorBoundary 组件</p>
+<ul>
+<li>监听所有下级组件报错，可降级展示 UI</li>
+<li>只监听组件渲染时报错，不监听 DOM 事件、异步错误<ul>
+<li>不监听 DOM 事件报错，可用 try…catch,window.onerror</li>
+</ul>
+</li>
+<li>只在 production 环境生效，dev 会直接抛出错误</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ErrorBoundary</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">error</span>: <span class="literal">null</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">getDerivedStateFromError</span>(<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="comment">// 更新state，显示降级UI</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123; error &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">componentDidCatch</span>(<span class="params">error, errorInfo</span>) &#123;</span><br><span class="line">    <span class="comment">// 统计上报错误信息</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error, errorInfo);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">error</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>报错了<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">children</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Portal-传送门"><a href="#Portal-传送门" class="headerlink" title="Portal 传送门"></a>Portal 传送门</h2><blockquote>
+<p>可以将 DOM 结构脱离父节点渲染到指定节点位置，并且不会破坏事件传播，事件冒泡会正常工作，生命周期正常执行。常见使用场景：渲染模态框、工具提示、弹出消息等</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>react</category>
@@ -2672,6 +2488,66 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
     <url>/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/</url>
     <content><![CDATA[<h2 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h2><span id="more"></span>
 
+<h2 id="你知道哪些前端攻击？该如何预防？"><a href="#你知道哪些前端攻击？该如何预防？" class="headerlink" title="你知道哪些前端攻击？该如何预防？"></a>你知道哪些前端攻击？该如何预防？</h2><ul>
+<li><p>xss</p>
+<ul>
+<li>Cross Site Script 跨站脚本攻击</li>
+<li>手段：将 js 代码插入到网页内容中，渲染时执行 js 代码</li>
+<li>预防：特殊字符替换（前端或后端）</li>
+</ul>
+</li>
+<li><p>csrf</p>
+<ul>
+<li><p>Cross Site Request Forgery 跨站请求伪造</p>
+</li>
+<li><p>手段：诱导用户去访问另一个网站的接口，伪造请求</p>
+</li>
+<li><p>预防：严格的跨域限制 + 验证码机制</p>
+</li>
+<li><p>csrf 详细过程</p>
+<ul>
+<li>用户登录 A 网站，有了 A 网站的 cookie</li>
+<li>诱导用户到 B 网站，并发起 A 网站的请求</li>
+<li>A 网站的 API 发现有 cookie，认为是用户自己操作的</li>
+</ul>
+</li>
+<li><p>csrf 预防手段</p>
+<ul>
+<li>严格的跨域请求限制，如判断 referer（请求来源）</li>
+<li>为 cookie 设置 SameSite，禁止跨域传递 cookie<ul>
+<li>Chrome 51 开始，浏览器的 Cookie 新增加了一个 SameSite 属性，用来防止 CSRF 攻击 和用户追踪（第三方恶意获取 cookie），限制第三方 Cookie，从而减少安全风险。</li>
+</ul>
+</li>
+<li>关键接口使用短信验证码</li>
+<li>token 验证</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>点击劫持</p>
+<ul>
+<li>click jacing</li>
+<li>手段：诱导界面上蒙一个透明 iframe，诱导用户点击</li>
+<li>预防：让 iframe 不能跨域加载<ul>
+<li>X-FRAME-OPTIONS 响应头是用来给浏览器指示允许一个页面可否在<code>&lt;frame&gt;</code>,<br><code>&lt;iframe&gt;</code> 或者 <code>&lt;object&gt;</code> 中展现的标记。网站可以使用此功能，来确保自己网站<br>内容没有被嵌到别人的网站中去，也从而避免点击劫持的攻击。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>DDos</p>
+<ul>
+<li>Distribute denial-of-service 分布式拒绝服务</li>
+<li>手段：分布式的、大规模的流量访问，使服务器瘫痪</li>
+<li>预防：软件层不好做，需硬件预防（如阿里云 WAF）</li>
+</ul>
+</li>
+<li><p>SQL 注入</p>
+<ul>
+<li>手段：提交内容时写入 SQL 语句，破环数据库</li>
+<li>预防：处理输入的内容，替换特殊字符</li>
+</ul>
+</li>
+</ul>
 <h4 id="sql-注入"><a href="#sql-注入" class="headerlink" title="sql 注入"></a>sql 注入</h4><ul>
 <li>就是通过把 SQL 命令插入到 Web 表单递交或输入域名或页面请求的查询字符串，<br>最终达到欺骗服务器执行恶意的 SQL 命令</li>
 </ul>
@@ -2752,69 +2628,13 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <ul>
 <li><p>攻击者使用一个透明 iframe，覆盖在一个网页上，然后诱使用户在该页面上进行操作，<br>此时用将在不知情的情况下点击透明的 iframe 页面。</p>
 </li>
-<li><p>攻击者使用一张图片覆盖在网页，遮挡网页原有的位置含义。</p>
+<li><p>攻击者使用一张图片覆盖在网页，遮挡网页原有的位置含义</p>
 </li>
 </ul>
 </li>
 <li><p>防御措施：</p>
 <ul>
 <li>X-FRAME-OPTIONS 响应头是用来给浏览器指示允许一个页面可否在<code>&lt;frame&gt;</code>,<br><code>&lt;iframe&gt;</code> 或者 <code>&lt;object&gt;</code> 中展现的标记。网站可以使用此功能，来确保自己网站<br>内容没有被嵌到别人的网站中去，也从而避免点击劫持的攻击。</li>
-</ul>
-</li>
-</ul>
-<h2 id="你知道哪些前端攻击？该如何预防？"><a href="#你知道哪些前端攻击？该如何预防？" class="headerlink" title="你知道哪些前端攻击？该如何预防？"></a>你知道哪些前端攻击？该如何预防？</h2><ul>
-<li><p>xss</p>
-<ul>
-<li>Cross Site Script 跨站脚本攻击</li>
-<li>手段：将 js 代码插入到网页内容中，渲染时执行 js 代码</li>
-<li>预防：特殊字符替换（前端或后端）</li>
-</ul>
-</li>
-<li><p>csrf</p>
-<ul>
-<li><p>Cross Site Request Forgery 跨站请求伪造</p>
-</li>
-<li><p>手段：诱导用户去访问另一个网站的接口，伪造请求</p>
-</li>
-<li><p>预防：严格的跨域限制 + 验证码机制</p>
-</li>
-<li><p>csrf 详细过程</p>
-<ul>
-<li>用户登录 A 网站，有了 A 网站的 cookie</li>
-<li>诱导用户到 B 网站，并发起 A 网站的请求</li>
-<li>A 网站的 API 发现有 cookie，认为是用户自己操作的</li>
-</ul>
-</li>
-<li><p>csrf 预防手段</p>
-<ul>
-<li>严格的跨域请求限制，如判断 referer（请求来源）</li>
-<li>为 cookie 设置 SameSite，禁止跨域传递 cookie<ul>
-<li>Chrome 51 开始，浏览器的 Cookie 新增加了一个 SameSite 属性，用来防止 CSRF 攻击 和用户追踪（第三方恶意获取 cookie），限制第三方 Cookie，从而减少安全风险。</li>
-</ul>
-</li>
-<li>关键接口使用短信验证码</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>点击劫持</p>
-<ul>
-<li>click jacing</li>
-<li>手段：诱导界面上蒙一个透明 iframe，诱导用户点击</li>
-<li>预防：让 iframe 不能跨域加载</li>
-</ul>
-</li>
-<li><p>DDos</p>
-<ul>
-<li>Distribute denial-of-service 分布式拒绝服务</li>
-<li>手段：分布式的、大规模的流量访问，使服务器瘫痪</li>
-<li>预防：软件层不好做，需硬件预防（如阿里云 WAF）</li>
-</ul>
-</li>
-<li><p>SQL 注入</p>
-<ul>
-<li>手段：提交内容时写入 SQL 语句，破环数据库</li>
-<li>预防：处理输入的内容，替换特殊字符</li>
 </ul>
 </li>
 </ul>
@@ -2898,6 +2718,32 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <li>传输层（传输层为两台主机上的应用程序提供端到端的通信 TCP，UDP）</li>
 <li>网络层（网络层实现数据包的选路和转发）</li>
 <li>数据链路层（ARP 地址解析协议、RARP 逆地址解析协议，使用物理地址寻找一台机器）</li>
+</ul>
+<h2 id="HTTP-协议-1-0、1-1、2-0-有什么区别？"><a href="#HTTP-协议-1-0、1-1、2-0-有什么区别？" class="headerlink" title="HTTP 协议 1.0、1.1、2.0 有什么区别？"></a>HTTP 协议 1.0、1.1、2.0 有什么区别？</h2><ul>
+<li><p>HTTP 1.0</p>
+<ul>
+<li>最基础的 HTTP 协议</li>
+<li>支持基本的 GET、POST 方法</li>
+</ul>
+</li>
+<li><p>HTTP 1.1</p>
+<ul>
+<li>缓存策略 cache-control、E-tag 等</li>
+<li>支持长连接 Connection: keep-alive,一次 TCP 连接多次请求</li>
+<li>支持断点续传，状态码 206</li>
+<li>支持新的方法 PUT、DELETE 等，可用于 Restful API</li>
+</ul>
+</li>
+<li><p>HTTP 2.0</p>
+<ul>
+<li>头部数据压缩：http2.0 使用 HPACK 算法对 header 对头部数据进行压缩，体积变小后，网络传输速度会更快<ul>
+<li>http/1.1 版本的头部信息是本文，而 http/2.0 头部数据就是二进制</li>
+</ul>
+</li>
+<li>多路复用，一次 TCP 连接中可以多个 HTTP 并行请求</li>
+<li>服务端推送</li>
+</ul>
+</li>
 </ul>
 <h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><pre><code>WebSocket是html5定义的新协议，特点是即时通信、替代轮训
 
@@ -3021,7 +2867,7 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 </ul>
 </li>
 </ul>
-<h2 id="HTTP-协议-1-0、1-1、2-0-有什么区别？"><a href="#HTTP-协议-1-0、1-1、2-0-有什么区别？" class="headerlink" title="HTTP 协议 1.0、1.1、2.0 有什么区别？"></a>HTTP 协议 1.0、1.1、2.0 有什么区别？</h2><ul>
+<h2 id="HTTP-协议-1-0、1-1、2-0-有什么区别？-1"><a href="#HTTP-协议-1-0、1-1、2-0-有什么区别？-1" class="headerlink" title="HTTP 协议 1.0、1.1、2.0 有什么区别？"></a>HTTP 协议 1.0、1.1、2.0 有什么区别？</h2><ul>
 <li><p>HTTP 1.0</p>
 <ul>
 <li>最基础的 HTTP 协议</li>
@@ -4132,6 +3978,7 @@ DoublyLinkedList.prototype.toString = function () &#123;
 
 <pre><code>* 先检查搜索关键字是否符合url规则，然后将其组装成完成url进行访问
 * 检查缓存，浏览器检查本地强缓存是否可用，如果命中强缓存就直接从缓存中返回资源
+  - 根据http header中的expires、cache-control来判断是否命中强缓存
 * DNS解析，如果未命中强缓存，则向服务器发起请求，通过递归查询和迭代查询解析域名来获取对应IP地址
   - 浏览器IP缓存
   - 操作系统IP缓存
@@ -4143,7 +3990,7 @@ DoublyLinkedList.prototype.toString = function () &#123;
 * 客户端发送HTTP请求
 * 建立TCP连接，三次握手
 * 发起http请求
-* 负载均衡：服务端网管收到http请求后，可能会进行一系列负载均衡处理，通过反向代理分配给对应集群中的服务器去执行
+* 负载均衡：服务端网关收到http请求后，可能会进行一系列负载均衡处理，通过反向代理分配给对应集群中的服务器去执行
 * 服务端返回响应：服务端收到请求后，根据请求头中缓存标识（If-Modified-Since/If-None-Match）来判断缓存是否生效，
 生效返回304状态码，未命中缓存返回200状态码和标识（Last-Modified/Etag）
 * 浏览器接收到http响应后，根据connection: keep-alive判断保持连接或者四次挥手断开TCP连接
@@ -4167,6 +4014,96 @@ DoublyLinkedList.prototype.toString = function () &#123;
 
 <p>Note：如果页面需要建立与许多第三方域的连接，则将它们预先连接会适得其反。 preconnect 提示最好仅用于最关键的连接。对于其他的，只需使用 <link rel="dns-prefetch"> 即可节省第一步的时间 DNS 查找。</p>
 <p>扩展：<br><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NDY4NDgyOQ==&mid=2247491757&idx=1&sn=a956c6c62c98e2d5ee71c8ed8d3a3eb8&chksm=cecfa85ff9b82149a3e50e81789b29cc0923745cf8a8f7713619aa2499753a3de760f24e6f93&scene=132#wechat_redirect">收到的 HTML 如果包含几十个图片标签，这些图片是以什么方式、什么顺序、建立了多少连接、使用什么协议被下载下来的呢？</a></p>
+<h2 id="性能优化（空间换时间）"><a href="#性能优化（空间换时间）" class="headerlink" title="性能优化（空间换时间）"></a>性能优化（空间换时间）</h2><ul>
+<li><p>性能优化原则</p>
+<ul>
+<li>多使用内存、缓存</li>
+<li>减少 CUP 计算，减少网络加载耗时</li>
+<li>适用于所有编程的性能优化-空间换时间</li>
+</ul>
+</li>
+<li><p>减少资源体积：压缩代码</p>
+</li>
+<li><p>减少访问次数：合并代码，SSR 服务器渲染，缓存，精灵图</p>
+<ul>
+<li>缓存（webpack contenthash）<ul>
+<li>静态资源加 hash 后缀，根据文件内容计算 hash</li>
+<li>文件内容不变，则 hash 不变则 url 不变</li>
+<li>url 和文件不变，则会自动触发 http 的缓存机制，返回 304</li>
+</ul>
+</li>
+<li>SSR<ul>
+<li>服务器端渲染：将网页和数据一起加载，一起渲染</li>
+<li>非 SSR（前后端分离）：先加载网页，后加载数据，再渲染数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>DNS 预解析</p>
+</li>
+<li><p>减少 cookie 大小，http 请求会携带 cookie</p>
+</li>
+<li><p>使用 http2 头部压缩</p>
+</li>
+<li><p>避免重定向：当页面发生了重定向，就会延迟整个 HTML 文档的传输。在 HTML 文档到达之前，页面中不会呈现任何东西，也没有任何组件会被下载。</p>
+</li>
+<li><p>渲染优化</p>
+<ul>
+<li>css 放在 head，js 放在 body 最下面</li>
+<li>尽早开始执行 js，用 DOMContentLoaded 触发</li>
+<li>懒加载（图片懒加载-IntersectionObserver，下滑更多等）</li>
+<li>对 DOM 查询进行缓存</li>
+<li>减少 DOM 数量，大数据量分页、虚拟列表</li>
+<li>合并频繁的 DOM 操作,document.createDocumentFragment()，减少 dom 操作次数</li>
+<li>节流 throttle、防抖 debounce</li>
+<li>使用 loading 图，提高用户视觉体验</li>
+<li>使用 GPU 加速：使用 transform、opacity，要慎用低端机 GPU 差，占用较多内存，因此是否开启硬件加速，要用测试结果决定</li>
+<li>使用 requestAnimationFrame 来实现视觉变化</li>
+</ul>
+</li>
+<li><p>三方资源</p>
+<ul>
+<li>第三方资源、库使用 CDN</li>
+<li>压缩图片体积，减少图片大小</li>
+<li>图片使用 webp 格式，减少图片体积</li>
+<li>preload 预先加载 css 文件或者字体文件、js 文件等<ul>
+<li>浏览器需要先把 html 页面加载回来，才能知道下一步去加载那些 js、css 或字体文件，中间时间就被浪费掉了</li>
+<li>可以在等待 html 响应的同时把重要的静态资源文件也加载回来</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="你对闭包了解多少？"><a href="#你对闭包了解多少？" class="headerlink" title="你对闭包了解多少？"></a>你对闭包了解多少？</h2><pre><code>解释一下作用域链是如何产生的
+解释一下js执行山下文的创建、执行过程
+解释一下闭包所产生的变量放在哪里
+</code></pre>
+<ul>
+<li>闭包的定义：闭包就是能够读取其他函数内部变量的函数。</li>
+<li>闭包的底层实现原理</li>
+<li>js 执行上下文：</li>
+<li><img src="https://img-blog.csdnimg.cn/20190527213618675.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMzMTg4NDIx,size_16,color_FFFFFF,t_70" alt="image"></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">js运行三部曲</span><br><span class="line">1.语法分析</span><br><span class="line">2.预编译</span><br><span class="line">3.解释执行</span><br><span class="line"></span><br><span class="line">js代码需要经过浏览器V8引擎进行预编译，里面涉及到变量提升、函数提升。</span><br><span class="line">预编译的环境需要个环境，这个环境就是执行上下文。</span><br><span class="line"></span><br><span class="line">js执行上下文分为三种：</span><br><span class="line">1.全局执行上下文：代码开始执行时首先进入的环境</span><br><span class="line">2.函数执行上下文：函数调用时，会开始执行函数中的代码</span><br><span class="line">3.eval执行上下文：不建议使用</span><br><span class="line"></span><br><span class="line">执行上下文的周期，分为两个阶段</span><br><span class="line">1.创建阶段</span><br><span class="line">    创建词法环境</span><br><span class="line">    生成变量对象VO，建立作用域链</span><br><span class="line">    确认this指向，并绑定this</span><br><span class="line">2.执行阶段</span><br><span class="line">    进行变量赋值，函数引用以及执行代码</span><br><span class="line"></span><br><span class="line">预编译发生在函数执行前，预编译四部曲：</span><br><span class="line">1.创建AO对象</span><br><span class="line">2.找形参和变量声明，将变量和形参作为AO的属性名，值为undefined</span><br><span class="line">3.将形参和实参相统一</span><br><span class="line">4.在函数体中找到函数声明，值赋予函数体（函数名相同，后者覆盖前者）</span><br><span class="line">5.最后程序输出变量值的时候，就是从AO对象中拿</span><br><span class="line">（此时就产生了外部作用域的引用，js查找变量的规则就是如果在函数执行上下文中找不到变量，</span><br><span class="line">就在调用上下文中寻找他，如果还没有就一直往上一级，直到全局执行上下文，如果还没有，就是undefined，js形成闭包）</span><br></pre></td></tr></table></figure>
+
+<h2 id="js-的执行机制"><a href="#js-的执行机制" class="headerlink" title="js 的执行机制"></a>js 的执行机制</h2><p>js 是单线程的，处理 js 任务只能一个一个顺序执行，js 中把任务分为了同步任务和异步任务，<br>同步任务进入主线程先执行，异步任务进入 Event Table 并注册函数，指定事情完成后，Event Table 就会将函数移入到事件队列 Event Queque 中，等待主线程任务执行完毕，就会从事件队列中取出对应事件进入主线程执行。</p>
+<p>macro-task（宏任务）：包括整体代码 script、setTimeout、setInterval、IO 操作、UI 交互、postMessage 等<br>micro-task（微任务）：Promise.then、process.nextTick、MutationObserve 等<br>微任务先于宏任务先执行（除了 script）执行过程不同任务进入不同的 event queue</p>
+<p>js 先执行整体的同步任务代码，遇到微任务就会将其放入到微任务事件队列，遇到宏任务放到宏任务事件队列中。</p>
+<p>然后整体的同步任务代码执行完之后，就会先执行微任务队列中的任务，<br>等待微任务队列中的所有任务执行完毕之后，再去从宏任务队列中找到第一个任务进行执行，<br>执行过程中，如果遇到微任务就会放到微任务队列中，等到该宏任务执行完毕之后，<br>就会查看微任务队列中有没有微任务，如果有就先执行微任务队列中的任务，否则执行第二个宏任务，<br>以此类推。</p>
+<h2 id="简单说下原型链"><a href="#简单说下原型链" class="headerlink" title="简单说下原型链"></a>简单说下原型链</h2><ul>
+<li><p>原型链是由原型对象组成的，每个对象都有<strong>proto</strong>属性，指向了创建该对象的构造函数的<br>原型，<strong>proto</strong>将对象连接起来组成了原型链。</p>
+</li>
+<li><p>原型链：用来实现继承和共享属性的有限对象链。</p>
+</li>
+<li><p>每个对象都有<strong>proto</strong>（隐式原型）属性，指向创建该对象的构造函数的原型。其实<br>这个属性指向了 [[prototype]]，但是 [[prototype]] 是内部属性，我们并不能<br>访问到，所以使用 <em>proto</em> 来访问。</p>
+</li>
+<li><p>对象的隐式原型等于对象的构造函数的显式原型：obj.<strong>proto</strong> === Object.prototype</p>
+</li>
+<li><p>访问属性的时候，js 引擎会调用内部的默认[[Get]]操作，[[Get]]操作首先会检查对象本身是否包含这个属性<br>如果对象没有这个属性，则对象可以通过<strong>proto</strong>来寻找不属于该对象的属性，<strong>proto</strong><br>将对象和原型连接起来形成原型链</p>
+</li>
+<li><p>Function.prototype 和 Object.prototype 是两个特殊的对象，他们由引擎创建。</p>
+</li>
+</ul>
 <h2 id="defer-和-async-有什么区别？"><a href="#defer-和-async-有什么区别？" class="headerlink" title="defer 和 async 有什么区别？"></a>defer 和 async 有什么区别？</h2><ul>
 <li>区别 <img src="/images/md_img/defer_async.jpg" alt="区别"></li>
 </ul>
@@ -4266,7 +4203,7 @@ DoublyLinkedList.prototype.toString = function () &#123;
 <h2 id="localStorage-超过最大限制（5M）怎么处理？"><a href="#localStorage-超过最大限制（5M）怎么处理？" class="headerlink" title="localStorage 超过最大限制（5M）怎么处理？"></a>localStorage 超过最大限制（5M）怎么处理？</h2><ul>
 <li><p>localstorage 一般最大容量为 5M，意思是每个域名（假如为 a.com）下最大 localstorage 容量为 5M，我们可以通过 iframe 创建 b.com 域框架用于存储 a.com 剩下的数据，然后通过 postMessage 读写数据。</p>
 <ul>
-<li>通常对于不同页面的脚本，只有在同源策略下才能通信，但是 window.postMessage(message,targetOrigin)方法提供了一种受控机制来规避次限制。</li>
+<li>通常对于不同页面的脚本，只有在同源策略下才能通信，但是 window.postMessage(message,targetOrigin)方法提供了一种受控机制来规避此限制。</li>
 <li>而且 localStorage 本身定位也不是大数据量的存储方案</li>
 </ul>
 </li>
@@ -4287,75 +4224,44 @@ DoublyLinkedList.prototype.toString = function () &#123;
 </ul>
 </li>
 </ul>
-<h2 id="html5-的几种存储形式"><a href="#html5-的几种存储形式" class="headerlink" title="html5 的几种存储形式"></a>html5 的几种存储形式</h2><ul>
-<li>1.本地存储 localStorage,sessionStorage</li>
-<li>2.离线缓存 application cache</li>
-<li><ol start="3">
-<li>indexedDb,webSQL</li>
-</ol>
-</li>
-</ul>
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.负载均衡、CDN加速、设置缓存、</span><br><span class="line">2.业务逻辑优化</span><br><span class="line">3.代码程序优化（组件按需加载、图片懒加载，代码压缩）</span><br><span class="line">4.避免重绘回流</span><br><span class="line">重绘：页面元素的样式改变不会影响它在文档流中的位置时发生重绘</span><br><span class="line">回流：DOM尺寸大小结构发生变化时</span><br><span class="line">回流一定会导致重绘</span><br><span class="line">如何避免：</span><br><span class="line">1.避免频繁操作dom，通过创建document.createDocumentFragment()一次性插入需要操作的dom</span><br><span class="line">2.具有复杂动画的Dom元素使用绝对定位，使其脱离文档流</span><br><span class="line">3.合并对于Dom中style样式的操作</span><br><span class="line">4.避免使用css表达式 calc()</span><br></pre></td></tr></table></figure>
+<h2 id="fetch-和-axios"><a href="#fetch-和-axios" class="headerlink" title="fetch 和 axios"></a>fetch 和 axios</h2><pre><code>fetch取消发送
+1.创建一个AbortController实例
+2.该实例具有signal属性
+3.将signal传递给fetch option
+4.调用AbortController的abort属性来取消所有使用该信号的fetch
 
-<h2 id="fetch-和-axios"><a href="#fetch-和-axios" class="headerlink" title="fetch 和 axios"></a>fetch 和 axios</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fetch取消发送</span><br><span class="line">1.创建一个AbortController实例</span><br><span class="line">2.该实例具有signal属性</span><br><span class="line">3.将signal传递给fetch option</span><br><span class="line">4.调用AbortController的abort属性来取消所有使用该信号的fetch</span><br><span class="line"></span><br><span class="line">axios取消发送</span><br><span class="line">1.const cancelToken = axios.CancelToken</span><br><span class="line">2.const source = CancelToken.source()</span><br><span class="line">3.axios.get(&#x27;/xxx&#x27;,&#123;cancelToken: source.token&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="预编译"><a href="#预编译" class="headerlink" title="预编译"></a>预编译</h2><pre><code>在作用域的创建阶段（预编译阶段），会生成js的变量对象（VO对象）供js引擎去访问。
-1.创建ao对象
-2.找形参和变量声明，作为ao对象的属性名，值为undefined
-3.实参和形参相统一
-4.找函数声明，如果名字和变量相同则覆盖变量声明
-5.解释执行
+axios取消发送
+1.const cancelToken = axios.CancelToken
+2.const source = CancelToken.source()
+3.axios.get(&#39;/xxx&#39;,&#123;cancelToken: source.token&#125;)
 </code></pre>
-<h2 id="箭头函数中的-this"><a href="#箭头函数中的-this" class="headerlink" title="箭头函数中的 this"></a>箭头函数中的 this</h2><p>1.箭头函数中的 this 是在定义函数的时候绑定的（继承自父执行上下文中的 this），而不是执行函数时绑定。 2.箭头函数没有 this，所以不能用作构造函数。</p>
-<h2 id="Map-和-Set-两种新的数据结构的区别？"><a href="#Map-和-Set-两种新的数据结构的区别？" class="headerlink" title="Map 和 Set 两种新的数据结构的区别？"></a>Map 和 Set 两种新的数据结构的区别？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. Map类似Object是一种键值对集合，区别在于Map的键不仅限于字符串，其他各种类型的值都可以作为Map的键</span><br><span class="line"></span><br><span class="line">2.Set是类似数组的一种数据结构，不点在于Set中没有重复的值</span><br></pre></td></tr></table></figure>
+<h2 id="箭头函数中的-this"><a href="#箭头函数中的-this" class="headerlink" title="箭头函数中的 this"></a>箭头函数中的 this</h2><ul>
+<li>箭头函数中的 this 是在定义函数的时候绑定的（继承自父执行上下文中的 this），而不是执行函数时绑定。</li>
+<li>箭头函数没有 this，所以不能用作构造函数。</li>
+</ul>
+<h2 id="Map-和-Set-两种新的数据结构的区别？"><a href="#Map-和-Set-两种新的数据结构的区别？" class="headerlink" title="Map 和 Set 两种新的数据结构的区别？"></a>Map 和 Set 两种新的数据结构的区别？</h2><ul>
+<li><p>Map 类似 Object 是一种键值对集合，区别在于 Map 的键不仅限于字符串，其他各种类型的值都可以作为 Map 的键</p>
+</li>
+<li><p>Set 是类似数组的一种数据结构，不点在于 Set 中没有重复的值</p>
+</li>
+</ul>
+<h2 id="js-的-new-操作符都做了些什么？"><a href="#js-的-new-操作符都做了些什么？" class="headerlink" title="js 的 new 操作符都做了些什么？"></a>js 的 new 操作符都做了些什么？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 创建一个空的js对象&#123;&#125;</span><br><span class="line">2. 将空对象的隐式原型__proto__指向构造函数的原型</span><br><span class="line">3. 将空对象作为构造函数的上下文（改变this指向）</span><br><span class="line">4. 对构造函数返回值做判断</span><br><span class="line"></span><br><span class="line">实现：</span><br><span class="line">function newFn(fn, ...args) &#123;</span><br><span class="line">  const obj = Object.create(fn.prototype);</span><br><span class="line">  const result = fn.apply(obj, args);</span><br><span class="line">  return typeof result === &#x27;object&#x27; &amp;&amp; result !== null ? result : obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Person(name) &#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const p = newFn(Person, &#x27;Jerome&#x27;);</span><br><span class="line"></span><br><span class="line">console.log(&#x27;p.name :&gt;&gt; &#x27;, p.name); // p.name :&gt;&gt;  Jerome</span><br><span class="line"></span><br><span class="line">补充：</span><br><span class="line">在new的时候，会对构造函数的返回值做一些判断</span><br><span class="line">1. 如果返回值是基础类型数据，则忽略返回值</span><br><span class="line">2. 如果返回值是引用数据类型，则使用return的返回，也就是new操作符无效</span><br></pre></td></tr></table></figure>
 
-<h2 id="你对闭包了解多少？"><a href="#你对闭包了解多少？" class="headerlink" title="你对闭包了解多少？"></a>你对闭包了解多少？</h2><pre><code>解释一下作用域链是如何产生的
-解释一下js执行山下文的创建、执行过程
-解释一下闭包所产生的变量放在哪里
+<h2 id="es6-新特性"><a href="#es6-新特性" class="headerlink" title="es6 新特性"></a>es6 新特性</h2><pre><code>1.let和const
+2.模版字符串
+3.箭头函数
+4.函数可以设置默认参数值
+5.扩展运算符
+6.对象和数组的解构
+7.class
 </code></pre>
-<ul>
-<li>闭包的定义：闭包就是能够读取其他函数内部变量的函数。</li>
-<li>闭包的底层实现原理</li>
-<li>js 执行上下文：</li>
-<li><img src="https://img-blog.csdnimg.cn/20190527213618675.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMzMTg4NDIx,size_16,color_FFFFFF,t_70" alt="image"></li>
+<h2 id="图片懒加载原理"><a href="#图片懒加载原理" class="headerlink" title="图片懒加载原理"></a>图片懒加载原理</h2><ul>
+<li>浏览器是否发起请求是根据<img />标签的 src 属性</li>
+<li>所以懒加载的关键是：在图片没有进入可视区域时，先不给<img />的 src 属性赋值，等到图片进入可是区域再给 data-src -&gt; src 赋值。</li>
+<li>// 方法一：offsetTop - scrollTop &lt;= 视口高度</li>
+<li>// 方法二：getBoundingClientRect().top &lt;= 视口高度 screenHeight</li>
+<li>// 方法三：IntersectionObserver</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">js运行三部曲</span><br><span class="line">1.语法分析</span><br><span class="line">2.预编译</span><br><span class="line">3.解释执行</span><br><span class="line"></span><br><span class="line">js代码需要经过浏览器V8引擎进行预编译，里面涉及到变量提升、函数提升。</span><br><span class="line">预编译的环境需要个环境，这个环境就是执行上下文。</span><br><span class="line"></span><br><span class="line">js执行上下文分为三种：</span><br><span class="line">1.全局执行上下文：代码开始执行时首先进入的环境</span><br><span class="line">2.函数执行上下文：函数调用时，会开始执行函数中的代码</span><br><span class="line">3.eval执行上下文：不建议使用</span><br><span class="line"></span><br><span class="line">执行上下文的周期，分为两个阶段</span><br><span class="line">1.创建阶段</span><br><span class="line">    创建词法环境</span><br><span class="line">    生成变量对象VO，建立作用域链</span><br><span class="line">    确认this指向，并绑定this</span><br><span class="line">2.执行阶段</span><br><span class="line">    进行变量赋值，函数引用以及执行代码</span><br><span class="line"></span><br><span class="line">预编译发生在函数执行前，预编译四部曲：</span><br><span class="line">1.创建AO对象</span><br><span class="line">2.找形参和变量声明，将变量和形参作为AO的属性名，值为undefined</span><br><span class="line">3.将形参和实参相统一</span><br><span class="line">4.在函数体中找到函数声明，值赋予函数体（函数名相同，后者覆盖前者）</span><br><span class="line">5.最后程序输出变量值的时候，就是从AO对象中拿</span><br><span class="line">（此时就产生了外部作用域的引用，js查找变量的规则就是如果在函数执行上下文中找不到变量，</span><br><span class="line">就在调用上下文中寻找他，如果还没有就一直往上一级，直到全局执行上下文，如果还没有，就是undefined，js形成闭包）</span><br></pre></td></tr></table></figure>
-
-<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">student.__proto__ === Student.prototype</span><br><span class="line">1.每个函数function都由一个prototype，即显式原型。是在定义函数的时候自动添加的，默认是一个空的Object对象</span><br><span class="line">2.每个引用类型都有一个__proto__,即隐式原型。是创建对象时自动添加的，默认值为构造函数的prototype属性值</span><br><span class="line">实例对象的隐式原型 等于 对应构造函数或类的显式原型</span><br><span class="line">能直接操作显式原型，不能直接操作隐式原型</span><br></pre></td></tr></table></figure>
-
-<h2 id="简单说下原型链"><a href="#简单说下原型链" class="headerlink" title="简单说下原型链"></a>简单说下原型链</h2><ul>
-<li><p>原型链是由原型对象组成的，每个对象都有<strong>proto</strong>属性，指向了创建该对象的构造函数的<br>原型，<strong>proto</strong>将对象连接起来组成了原型链。</p>
-</li>
-<li><p>原型链：用来实现继承和共享属性的有限对象链。</p>
-</li>
-<li><p>每个对象都有<strong>proto</strong>（隐式原型）属性，指向创建该对象的构造函数的原型。其实<br>这个属性指向了 [[prototype]]，但是 [[prototype]] 是内部属性，我们并不能<br>访问到，所以使用 <em>proto</em> 来访问。</p>
-</li>
-<li><p>对象的隐式原型等于对象的构造函数的显式原型：obj.<strong>proto</strong> === Object.prototype</p>
-</li>
-<li><p>访问属性的时候，js 引擎会调用内部的默认。。。。。。[[Get]]操作，[[Get]]操作首先会检查对象本身是否包含这个属性<br>如果对象没有这个属性，则对象可以通过<strong>proto</strong>来寻找不属于该对象的属性，<strong>proto</strong><br>将对象和原型连接起来形成原型链</p>
-</li>
-<li><p>Function.prototype 和 Object.prototype 是两个特殊的对象，他们由引擎创建。</p>
-</li>
-</ul>
-<h2 id="js-的-new-操作符都做了些什么？"><a href="#js-的-new-操作符都做了些什么？" class="headerlink" title="js 的 new 操作符都做了些什么？"></a>js 的 new 操作符都做了些什么？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 创建一个空的js对象&#123;&#125;</span><br><span class="line">2. 将空对象的隐式原型__proto__指向构造函数的原型</span><br><span class="line">3. 将空对象作为构造函数的上下文（改变this指向）</span><br><span class="line">4. 对构造函数返回值做判断</span><br><span class="line"></span><br><span class="line">实现：</span><br><span class="line">function create(fn, ...args) &#123;</span><br><span class="line">    let obj = Object.create(&#123;&#125;);</span><br><span class="line"></span><br><span class="line">    // obj.__proto__ = fn.prototype;</span><br><span class="line">    Object.setPrototypeOf(obj, fn.prototype);</span><br><span class="line"></span><br><span class="line">    let result = fn.apply(obj, args);</span><br><span class="line"></span><br><span class="line">    return result instanceof Object ? result : obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">补充：</span><br><span class="line">在new的时候，会对构造函数的返回值做一些判断</span><br><span class="line">1. 如果返回值是基础类型数据，则忽略返回值</span><br><span class="line">2. 如果返回值是引用数据类型，则使用return的返回，也就是new操作符无效</span><br></pre></td></tr></table></figure>
-
-<h2 id="什么是会话-cookie-什么是持久-cookie"><a href="#什么是会话-cookie-什么是持久-cookie" class="headerlink" title="什么是会话 cookie,什么是持久 cookie?"></a>什么是会话 cookie,什么是持久 cookie?</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cookie是服务器返回的，指定了expire（有效期）的是持久cookie,没有指定的是会话cookie</span><br></pre></td></tr></table></figure>
-
-<h2 id="es6-新特性"><a href="#es6-新特性" class="headerlink" title="es6 新特性"></a>es6 新特性</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.let和const</span><br><span class="line">2.模版字符串</span><br><span class="line">3.箭头函数</span><br><span class="line">4.函数可以设置默认参数值</span><br><span class="line">5.扩展运算符</span><br><span class="line">6.对象和数组的解构</span><br><span class="line">7.class</span><br></pre></td></tr></table></figure>
-
-<h2 id="图片懒加载原理"><a href="#图片懒加载原理" class="headerlink" title="图片懒加载原理"></a>图片懒加载原理</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 浏览器是否发起请求是根据&lt;img /&gt;标签的src属性</span><br><span class="line">2. 所以懒加载的关键是：在图片没有进入可视区域时，</span><br><span class="line">先不给&lt;img /&gt;的src属性赋值，等到图片进入可是区域再给data-src -&gt; src赋值。</span><br><span class="line"></span><br><span class="line">当图片底边距离页面的偏移（图片高度+图片距离顶部偏移高度）</span><br><span class="line">小于等于</span><br><span class="line">浏览器底边距离页面顶部高度（浏览器一屏高度 + 滚动区域）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><img src="/images/md_img/lazyload.webp" alt="图片懒加载"></li>
-</ul>
-<h2 id="AMD-和-CMD-的区别"><a href="#AMD-和-CMD-的区别" class="headerlink" title="AMD 和 CMD 的区别"></a>AMD 和 CMD 的区别</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">共同点：</span><br><span class="line">1.两者都是框架在推广过程中对模块定义的规范产出</span><br><span class="line">2.都是异步加载模块</span><br><span class="line">不同点：</span><br><span class="line">1.AMD是RequireJs在推广过程中对模块定义的规范产出，CMD是SeaJs在推广过程中对模块定义的规范化产出</span><br><span class="line">2.AMD推崇依赖前置，CMD推崇依赖就近</span><br><span class="line">3.AMD的应用体验好，因为模块提前执行了，CMD性能好，因为只有用户需要的时候才执行</span><br></pre></td></tr></table></figure>
-
-<h2 id="如何实现-js-倒计时的纠偏？"><a href="#如何实现-js-倒计时的纠偏？" class="headerlink" title="如何实现 js 倒计时的纠偏？"></a>如何实现 js 倒计时的纠偏？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 第一种通过前端定时向服务端发送请求获取最新的时间差，以此来校准倒计时时间。</span><br><span class="line">2. 通过前端根据偏差时间来自动调整下次间隔的时间来实现，首先以setTimeout递归的方式来实现倒计时，</span><br><span class="line">通过一个变量记录倒计时的秒数，根据秒数和间隔时间计算出此时无偏差时应该显示的时间，</span><br><span class="line">然后拿当前真实时间与这个时间相减，就可以得到时间的偏差大小，因此在设置下一个定时器的时候，</span><br><span class="line">间隔时间减去这个偏差大小就可以纠正时间误差。</span><br></pre></td></tr></table></figure>
-
-<h2 id="js-的执行机制"><a href="#js-的执行机制" class="headerlink" title="js 的执行机制"></a>js 的执行机制</h2><p>js 是单线程的，处理 js 任务只能一个一个顺序执行，js 中把任务分为了同步任务和异步任务，<br>同步任务进入主线程先执行，异步任务进入 Event Table 并注册函数，指定事情完成后，Event Table 就会将函数移入到事件队列 Event Queque 中，等待主线程任务执行完毕，<br>就会从事件队列中取出对应事件进入主线程执行。</p>
-<p>macro-task（宏任务）：包括整体代码 script、setTimeout、setInterval、IO 操作、UI 交互、postMessage 等<br>micro-task（微任务）：Promise.then、process.nextTick、MutationObserve 等<br>微任务先于宏任务先执行（除了 script）执行过程不同任务进入不同的 event queue</p>
-<p>js 先执行整体的同步任务代码，遇到微任务就会将其放入到微任务事件队列，遇到宏任务放到宏任务事件队列中。</p>
-<p>然后整体的同步任务代码执行完之后，就会先执行微任务队列中的任务，<br>等待微任务队列中的所有任务执行完毕之后，再去从宏任务队列中找到第一个任务进行执行，<br>执行过程中，如果遇到微任务就会放到微任务队列中，等到该宏任务执行完毕之后，<br>就会查看微任务队列中有没有微任务，如果有就先执行微任务队列中的任务，否则执行第二个宏任务，<br>以此类推。</p>
 <h2 id="为什么-try-catch-不能捕获到-promise-的错误？"><a href="#为什么-try-catch-不能捕获到-promise-的错误？" class="headerlink" title="为什么 try/catch 不能捕获到 promise 的错误？"></a>为什么 try/catch 不能捕获到 promise 的错误？</h2><ul>
 <li><p>try-catch 主要用于捕获同步函数的异常，如果 try 里面的异步方法出现了异常，此时 catch 是无法捕获到异常的。ES6 中 Promise 对象的实例提供了 catch() 方法，表示异步捕获异常。</p>
 </li>
@@ -4780,7 +4686,7 @@ dt.getDay()     //星期几（0-6）
 
 <h2 id="Chrome-打开一个页面需要启动多少线程？分别有哪些线程？"><a href="#Chrome-打开一个页面需要启动多少线程？分别有哪些线程？" class="headerlink" title="Chrome 打开一个页面需要启动多少线程？分别有哪些线程？"></a>Chrome 打开一个页面需要启动多少线程？分别有哪些线程？</h2><!--more-->
 
-<pre><code>最新Chrome浏览器包括：一个浏览器(Browser)主线程、一个GPU进程、一个网络(NetWork)
+<pre><code>最新Chrome浏览器包括：一个浏览器(Browser)主进程、一个GPU进程、一个网络(NetWork)
 进程、多个渲染进程和多个插件进程
 </code></pre>
 <ul>
@@ -5206,51 +5112,6 @@ dt.getDay()     //星期几（0-6）
 </ul>
 </li>
 </ul>
-<h2 id="typeof-运算符"><a href="#typeof-运算符" class="headerlink" title="typeof 运算符"></a>typeof 运算符</h2><ul>
-<li>识别所有值类型<ul>
-<li>undefined</li>
-<li>string</li>
-<li>number</li>
-<li>boolean</li>
-<li>Symbol</li>
-</ul>
-</li>
-<li>识别函数、<ul>
-<li>function</li>
-</ul>
-</li>
-<li>判断是否是引用类型<ul>
-<li>object</li>
-</ul>
-</li>
-</ul>
-<h2 id="异步和单线程"><a href="#异步和单线程" class="headerlink" title="异步和单线程"></a>异步和单线程</h2><ul>
-<li><p>js 是单线程语言，同时只能做一件事</p>
-</li>
-<li><p>浏览器和 nodejs 已支持启动进程，如 web worker</p>
-</li>
-<li><p>js 和 dom 渲染共用同一个线程，因为 js 可以修改 dom 结构，所以遇到等待（网络请求，定时任务）就会卡住</p>
-<ul>
-<li>网络请求，如 ajax 图片加载</li>
-<li>定时任务，如 setTimeout</li>
-</ul>
-</li>
-<li><p>所以需要异步（callback）</p>
-</li>
-<li><p>异步和同步的区别？</p>
-<ul>
-<li>基于 js 是单线程语言</li>
-<li>异步不会阻塞代码执行</li>
-<li>同步会阻塞代码执行</li>
-</ul>
-</li>
-</ul>
-<h2 id="for…of"><a href="#for…of" class="headerlink" title="for…of"></a>for…of</h2><ul>
-<li><p>for…in（以及 forEach、for）都是常规的同步遍历</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">muti</span>(<span class="params">num</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">resolve</span>(num * num);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 现象：1s后，同时打印 1，4，9</span></span><br><span class="line">nums.<span class="title function_">forEach</span>(<span class="keyword">async</span> (item) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">muti</span>(item);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 现象：异步等待打印</span></span><br><span class="line">!(<span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">muti</span>(i);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></li>
-<li><p>for…of 常用于异步的遍历</p>
-</li>
-</ul>
 <h2 id="BOM-API"><a href="#BOM-API" class="headerlink" title="BOM API"></a>BOM API</h2><ul>
 <li>navigator</li>
 <li>screen</li>
@@ -5268,88 +5129,6 @@ dt.getDay()     //星期几（0-6）
 </ul>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 页面的全部资源加载完成后才会执行，包括图片、视频等</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// DOM 渲染完成后即可执行，此时图片、视频可能还没有加载完</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="性能优化（空间换时间）"><a href="#性能优化（空间换时间）" class="headerlink" title="性能优化（空间换时间）"></a>性能优化（空间换时间）</h2><ul>
-<li><p>性能优化原则</p>
-<ul>
-<li>多使用内存、缓存</li>
-<li>减少 CUP 计算，减少网络加载耗时</li>
-<li>适用于所有编程的性能优化-空间换时间</li>
-</ul>
-</li>
-<li><p>减少资源体积：压缩代码</p>
-</li>
-<li><p>减少访问次数：合并代码，SSR 服务器渲染，缓存，精灵图</p>
-<ul>
-<li>缓存（webpack contenthash）<ul>
-<li>静态资源加 hash 后缀，根据文件内容计算 hash</li>
-<li>文件内容不变，则 hash 不变则 url 不变</li>
-<li>url 和文件不变，则会自动触发 http 的缓存机制，返回 304</li>
-</ul>
-</li>
-<li>SSR<ul>
-<li>服务器端渲染：将网页和数据一起加载，一起渲染</li>
-<li>非 SSR（前后端分离）：先加载网页，后加载数据，再渲染数据</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>DNS 预解析</p>
-</li>
-<li><p>减少 cookie 大小，http 请求会携带 cookie</p>
-</li>
-<li><p>使用 http2 头部压缩</p>
-</li>
-<li><p>避免重定向：当页面发生了重定向，就会延迟整个 HTML 文档的传输。在 HTML 文档到达之前，页面中不会呈现任何东西，也没有任何组件会被下载。</p>
-</li>
-<li><p>渲染优化</p>
-<ul>
-<li>css 放在 head，js 放在 body 最下面</li>
-<li>尽早开始执行 js，用 DOMContentLoaded 触发</li>
-<li>懒加载（图片懒加载-IntersectionObserver，下滑更多等）</li>
-<li>对 DOM 查询进行缓存</li>
-<li>减少 DOM 数量，大数据量分页、虚拟列表</li>
-<li>合并频繁的 DOM 操作,document.createDocumentFragment()，减少 dom 操作次数</li>
-<li>节流 throttle、防抖 debounce</li>
-<li>使用 loading 图，提高用户视觉体验</li>
-<li>使用 GPU 加速：使用 transform、opacity，要慎用低端机 GPU 差，占用较多内存，因此是否开启硬件加速，要用测试结果决定</li>
-<li>使用 requestAnimationFrame 来实现视觉变化</li>
-</ul>
-</li>
-<li><p>三方资源</p>
-<ul>
-<li>第三方资源、库使用 CDN</li>
-<li>压缩图片体积，减少图片大小</li>
-<li>图片使用 webp 格式，减少图片体积</li>
-<li>preload 预先加载 css 文件或者字体文件、js 文件等<ul>
-<li>浏览器需要先把 html 页面加载回来，才能知道下一步去加载那些 js、css 或字体文件，中间时间就被浪费掉了</li>
-<li>可以在等待 html 响应的同时把重要的静态资源文件也加载回来</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><ul>
-<li>XSS 跨站请求攻击<ul>
-<li>攻击方式<ul>
-<li>一个博客网站，我发表一篇博客，其中嵌入 script 脚本</li>
-<li>脚本内容：获取 cookie，发送到我的服务器</li>
-<li>发布这篇博客，有人查看，就可以回去到访问者的 cookie</li>
-</ul>
-</li>
-<li>预防方式<ul>
-<li>替换特殊字符</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>XSRF 跨站请求伪造<ul>
-<li>预防<ul>
-<li>增加验证，例如密码、短信验证、指纹等</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 <h2 id="ES6-新增的声明方式"><a href="#ES6-新增的声明方式" class="headerlink" title="ES6 新增的声明方式"></a>ES6 新增的声明方式</h2><ul>
 <li>let、const<ul>
 <li>不属于顶层对象 window</li>
@@ -6238,10 +6017,6 @@ Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若�
 </ul>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1. 获取随机数 0-99</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getRandomNumber</span>(<span class="params">min, max</span>) &#123;</span><br><span class="line">  min = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(min);</span><br><span class="line">  max = <span class="title class_">Math</span>.<span class="title function_">floor</span>(max);</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * (max - min + <span class="number">1</span>) + min);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr = <span class="title class_">Array</span>.<span class="title function_">from</span>(&#123; <span class="attr">length</span>: <span class="number">10</span> &#125;, <span class="function">() =&gt;</span> <span class="title function_">getRandomNumber</span>(<span class="number">0</span>, <span class="number">99</span>));</span><br><span class="line"><span class="comment">// 2. 去重(没必要)</span></span><br><span class="line">arr = [...<span class="keyword">new</span> <span class="title class_">Set</span>(arr)];</span><br><span class="line"><span class="comment">// 3. 排序</span></span><br><span class="line">arr.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line"><span class="comment">// 4. 存储 0-9 10-19 20-29</span></span><br><span class="line"><span class="keyword">const</span> map = &#123;&#125;;</span><br><span class="line">arr.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> key = <span class="title class_">Math</span>.<span class="title function_">floor</span>(item / <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!map[key]) &#123;</span><br><span class="line">    map[key] = [];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  map[key].<span class="title function_">push</span>(item);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> result = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> map) &#123;</span><br><span class="line">  result.<span class="title function_">push</span>(map[key]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br></pre></td></tr></table></figure>
 
-<h2 id="将树状结构转换为属性平铺的结构"><a href="#将树状结构转换为属性平铺的结构" class="headerlink" title="将树状结构转换为属性平铺的结构"></a>将树状结构转换为属性平铺的结构</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 题目</span></span><br><span class="line"><span class="keyword">const</span> entry = &#123;</span><br><span class="line">  <span class="attr">a</span>: &#123;</span><br><span class="line">    <span class="attr">b</span>: &#123;</span><br><span class="line">      <span class="attr">c</span>: &#123;</span><br><span class="line">        <span class="attr">dd</span>: <span class="string">&#x27;abcdd&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">d</span>: &#123;</span><br><span class="line">      <span class="attr">ee</span>: <span class="string">&#x27;adee&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">f</span>: <span class="string">&#x27;af&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> output = &#123;</span><br><span class="line">  <span class="string">&#x27;a.b.c.dd&#x27;</span>: <span class="string">&#x27;abcdd&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;a.d.ee&#x27;</span>: <span class="string">&#x27;adee&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;a.f&#x27;</span>: <span class="string">&#x27;af&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解答</span></span><br><span class="line"><span class="comment">// 方法1: 递归</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">flatObj</span>(<span class="params">obj, preKey = <span class="string">&#x27;&#x27;</span>, result = &#123;&#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.<span class="title function_">hasOwnProperty</span>(key)) &#123;</span><br><span class="line">      <span class="keyword">const</span> newKey = <span class="string">`<span class="subst">$&#123;preKey&#125;</span><span class="subst">$&#123;key&#125;</span>`</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> obj[key] === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        <span class="title function_">flatObj</span>(obj[key], <span class="string">`<span class="subst">$&#123;newKey&#125;</span>.`</span>, result);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result[newKey] = obj[key];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方法2: while循环-队列</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">flatObj2</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> queue = <span class="title class_">Object</span>.<span class="title function_">entries</span>(obj);</span><br><span class="line">  <span class="keyword">const</span> result = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (queue.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> [key, value] = queue.<span class="title function_">pop</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> [k, v] <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">entries</span>(value)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> v === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        queue.<span class="title function_">push</span>([<span class="string">`<span class="subst">$&#123;key&#125;</span>.<span class="subst">$&#123;k&#125;</span>`</span>, v]);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result[<span class="string">`<span class="subst">$&#123;key&#125;</span>.<span class="subst">$&#123;k&#125;</span>`</span>] = v;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试用例</span></span><br><span class="line"><span class="title function_">flatObj</span>(entry);</span><br><span class="line"><span class="title function_">flatObj2</span>(entry);</span><br></pre></td></tr></table></figure>
-
-<h2 id="将平铺属性的数据结构转换为树状数据结构"><a href="#将平铺属性的数据结构转换为树状数据结构" class="headerlink" title="将平铺属性的数据结构转换为树状数据结构"></a>将平铺属性的数据结构转换为树状数据结构</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 题目</span></span><br><span class="line"><span class="keyword">const</span> entry = &#123;</span><br><span class="line">  <span class="string">&#x27;a.b.c.dd&#x27;</span>: <span class="string">&#x27;abcdd&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;a.d.ee&#x27;</span>: <span class="string">&#x27;adee&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;a.f&#x27;</span>: <span class="string">&#x27;af&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> output = &#123;</span><br><span class="line">  <span class="attr">a</span>: &#123;</span><br><span class="line">    <span class="attr">b</span>: &#123;</span><br><span class="line">      <span class="attr">c</span>: &#123;</span><br><span class="line">        <span class="attr">dd</span>: <span class="string">&#x27;abcdd&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">d</span>: &#123;</span><br><span class="line">      <span class="attr">ee</span>: <span class="string">&#x27;adee&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">f</span>: <span class="string">&#x27;af&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 答案</span></span><br><span class="line"><span class="comment">// 方法1: 双重循环</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">map</span>(<span class="params">entry</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> result = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> entry) &#123;</span><br><span class="line">    <span class="keyword">const</span> value = entry[key];</span><br><span class="line">    <span class="keyword">const</span> keyMap = key.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!result[keyMap[<span class="number">0</span>]]) &#123;</span><br><span class="line">      result[keyMap[<span class="number">0</span>]] = &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> tmp = result[keyMap[<span class="number">0</span>]];</span><br><span class="line">    <span class="keyword">let</span> length = keyMap.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!tmp[keyMap[i]]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i === length - <span class="number">1</span>) &#123;</span><br><span class="line">          tmp[keyMap[i]] = value;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          tmp[keyMap[i]] = &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      tmp = tmp[keyMap[i]];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方法2: 递归</span></span><br><span class="line"><span class="comment">// &#123;&quot;a.b.c.dd&quot;: &quot;abcdd&quot;&#125;</span></span><br><span class="line"><span class="comment">// =&gt; &#123;&quot;a.b.c&quot;: &#123;&quot;dd&quot;:&quot;abcdd&quot;&#125;&#125;</span></span><br><span class="line"><span class="comment">// =&gt;...</span></span><br><span class="line"><span class="comment">// =&gt; &#123;&quot;a&quot;: &#123;&quot;b&quot;: &#123;&quot;c&quot;: &#123;&quot;dd&quot;: &quot;abcdd&quot;&#125;&#125;&#125;&#125;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">map2</span>(<span class="params">entry</span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">getNest</span>(<span class="params">key</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> lastIndex = key.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> value = entry[key];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lastIndex !== -<span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">delete</span> entry[key];</span><br><span class="line">      <span class="keyword">const</span> preKey = key.<span class="title function_">substring</span>(<span class="number">0</span>, lastIndex);</span><br><span class="line">      <span class="keyword">const</span> restKey = key.<span class="title function_">substring</span>(lastIndex + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!entry[preKey]) &#123;</span><br><span class="line">        entry[preKey] = &#123; [restKey]: value &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        entry[preKey][restKey] = value;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="regexp">/./</span>.<span class="title function_">test</span>(preKey)) &#123;</span><br><span class="line">        <span class="title function_">getNest</span>(preKey);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> entry) &#123;</span><br><span class="line">    <span class="title function_">getNest</span>(key);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> entry;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">map</span>(entry);</span><br><span class="line"><span class="title function_">map2</span>(entry);</span><br></pre></td></tr></table></figure>
-
 <h2 id="深度比较-isEqual"><a href="#深度比较-isEqual" class="headerlink" title="深度比较 isEqual"></a>深度比较 isEqual</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isEqual</span>(<span class="params">obj1, obj2</span>) &#123;</span><br><span class="line">  <span class="comment">//其中一个为值类型或null</span></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title function_">isObject</span>(obj1) || !<span class="title function_">isObject</span>(obj2)) &#123;</span><br><span class="line">    <span class="keyword">return</span> obj1 === obj2;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//判断是否两个参数是同一个变量</span></span><br><span class="line">  <span class="keyword">if</span> (obj1 === obj2) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//判断keys数是否相等</span></span><br><span class="line">  <span class="keyword">const</span> obj1Keys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj1);</span><br><span class="line">  <span class="keyword">const</span> obj2Keys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj2);</span><br><span class="line">  <span class="keyword">if</span> (obj1Keys.<span class="property">length</span> !== obj2Keys.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//深度比较每一个key</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj1) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_">isEqual</span>(obj1[key], obj2[key])) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="根据数组的-key-去重"><a href="#根据数组的-key-去重" class="headerlink" title="根据数组的 key 去重"></a>根据数组的 key 去重</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">dedup</span> = (<span class="params">data, getKey = () =&gt; &#123;&#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> dateMap = data.<span class="title function_">reduce</span>(<span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> key = <span class="title function_">getKey</span>(cur);</span><br><span class="line">    <span class="keyword">if</span> (!pre[key]) &#123;</span><br><span class="line">      pre[key] = cur;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pre;</span><br><span class="line">  &#125;, &#123;&#125;);</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Object</span>.<span class="title function_">values</span>(dateMap);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> data = [</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">v</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">v</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">v</span>: <span class="number">1</span> &#125;,</span><br><span class="line">];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">dedup</span>(data, <span class="function">(<span class="params">item</span>) =&gt;</span> item.<span class="property">id</span>));</span><br></pre></td></tr></table></figure>
@@ -6439,6 +6214,10 @@ shuffle(arr)
 
 <h2 id="「树形结构」转「扁平结构」"><a href="#「树形结构」转「扁平结构」" class="headerlink" title="「树形结构」转「扁平结构」"></a>「树形结构」转「扁平结构」</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">flatten</span>(<span class="params">tree, arr = []</span>) &#123;</span><br><span class="line">  tree.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; children, ...rest &#125; = item;</span><br><span class="line">    arr.<span class="title function_">push</span>(rest);</span><br><span class="line">    <span class="keyword">if</span> (children.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="title function_">flatten</span>(children, arr);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="将树状结构转换为属性平铺的结构"><a href="#将树状结构转换为属性平铺的结构" class="headerlink" title="将树状结构转换为属性平铺的结构"></a>将树状结构转换为属性平铺的结构</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 题目</span></span><br><span class="line"><span class="keyword">const</span> entry = &#123;</span><br><span class="line">  <span class="attr">a</span>: &#123;</span><br><span class="line">    <span class="attr">b</span>: &#123;</span><br><span class="line">      <span class="attr">c</span>: &#123;</span><br><span class="line">        <span class="attr">dd</span>: <span class="string">&#x27;abcdd&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">d</span>: &#123;</span><br><span class="line">      <span class="attr">ee</span>: <span class="string">&#x27;adee&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">f</span>: <span class="string">&#x27;af&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> output = &#123;</span><br><span class="line">  <span class="string">&#x27;a.b.c.dd&#x27;</span>: <span class="string">&#x27;abcdd&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;a.d.ee&#x27;</span>: <span class="string">&#x27;adee&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;a.f&#x27;</span>: <span class="string">&#x27;af&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解答</span></span><br><span class="line"><span class="comment">// 方法1: 递归</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">flatObj</span>(<span class="params">obj, preKey = <span class="string">&#x27;&#x27;</span>, result = &#123;&#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.<span class="title function_">hasOwnProperty</span>(key)) &#123;</span><br><span class="line">      <span class="keyword">const</span> newKey = <span class="string">`<span class="subst">$&#123;preKey&#125;</span><span class="subst">$&#123;key&#125;</span>`</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> obj[key] === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        <span class="title function_">flatObj</span>(obj[key], <span class="string">`<span class="subst">$&#123;newKey&#125;</span>.`</span>, result);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result[newKey] = obj[key];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方法2: while循环-队列</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">flatObj2</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> queue = <span class="title class_">Object</span>.<span class="title function_">entries</span>(obj);</span><br><span class="line">  <span class="keyword">const</span> result = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (queue.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> [key, value] = queue.<span class="title function_">pop</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> [k, v] <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">entries</span>(value)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> v === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        queue.<span class="title function_">push</span>([<span class="string">`<span class="subst">$&#123;key&#125;</span>.<span class="subst">$&#123;k&#125;</span>`</span>, v]);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result[<span class="string">`<span class="subst">$&#123;key&#125;</span>.<span class="subst">$&#123;k&#125;</span>`</span>] = v;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试用例</span></span><br><span class="line"><span class="title function_">flatObj</span>(entry);</span><br><span class="line"><span class="title function_">flatObj2</span>(entry);</span><br></pre></td></tr></table></figure>
+
+<h2 id="将平铺属性的数据结构转换为树状数据结构"><a href="#将平铺属性的数据结构转换为树状数据结构" class="headerlink" title="将平铺属性的数据结构转换为树状数据结构"></a>将平铺属性的数据结构转换为树状数据结构</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 题目</span></span><br><span class="line"><span class="keyword">const</span> entry = &#123;</span><br><span class="line">  <span class="string">&#x27;a.b.c.dd&#x27;</span>: <span class="string">&#x27;abcdd&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;a.d.ee&#x27;</span>: <span class="string">&#x27;adee&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;a.f&#x27;</span>: <span class="string">&#x27;af&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> output = &#123;</span><br><span class="line">  <span class="attr">a</span>: &#123;</span><br><span class="line">    <span class="attr">b</span>: &#123;</span><br><span class="line">      <span class="attr">c</span>: &#123;</span><br><span class="line">        <span class="attr">dd</span>: <span class="string">&#x27;abcdd&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">d</span>: &#123;</span><br><span class="line">      <span class="attr">ee</span>: <span class="string">&#x27;adee&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">f</span>: <span class="string">&#x27;af&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 答案</span></span><br><span class="line"><span class="comment">// 方法1: 双重循环</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">map</span>(<span class="params">entry</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> result = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> entry) &#123;</span><br><span class="line">    <span class="keyword">const</span> value = entry[key];</span><br><span class="line">    <span class="keyword">const</span> keyMap = key.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!result[keyMap[<span class="number">0</span>]]) &#123;</span><br><span class="line">      result[keyMap[<span class="number">0</span>]] = &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> tmp = result[keyMap[<span class="number">0</span>]];</span><br><span class="line">    <span class="keyword">let</span> length = keyMap.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!tmp[keyMap[i]]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i === length - <span class="number">1</span>) &#123;</span><br><span class="line">          tmp[keyMap[i]] = value;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          tmp[keyMap[i]] = &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      tmp = tmp[keyMap[i]];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方法2: 递归</span></span><br><span class="line"><span class="comment">// &#123;&quot;a.b.c.dd&quot;: &quot;abcdd&quot;&#125;</span></span><br><span class="line"><span class="comment">// =&gt; &#123;&quot;a.b.c&quot;: &#123;&quot;dd&quot;:&quot;abcdd&quot;&#125;&#125;</span></span><br><span class="line"><span class="comment">// =&gt;...</span></span><br><span class="line"><span class="comment">// =&gt; &#123;&quot;a&quot;: &#123;&quot;b&quot;: &#123;&quot;c&quot;: &#123;&quot;dd&quot;: &quot;abcdd&quot;&#125;&#125;&#125;&#125;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">map2</span>(<span class="params">entry</span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">getNest</span>(<span class="params">key</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> lastIndex = key.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> value = entry[key];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lastIndex !== -<span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">delete</span> entry[key];</span><br><span class="line">      <span class="keyword">const</span> preKey = key.<span class="title function_">substring</span>(<span class="number">0</span>, lastIndex);</span><br><span class="line">      <span class="keyword">const</span> restKey = key.<span class="title function_">substring</span>(lastIndex + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!entry[preKey]) &#123;</span><br><span class="line">        entry[preKey] = &#123; [restKey]: value &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        entry[preKey][restKey] = value;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="regexp">/./</span>.<span class="title function_">test</span>(preKey)) &#123;</span><br><span class="line">        <span class="title function_">getNest</span>(preKey);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> entry) &#123;</span><br><span class="line">    <span class="title function_">getNest</span>(key);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> entry;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">map</span>(entry);</span><br><span class="line"><span class="title function_">map2</span>(entry);</span><br></pre></td></tr></table></figure>
+
 <h2 id="实现-jsonp，传入-url、callback-和-callbackName-三个参数"><a href="#实现-jsonp，传入-url、callback-和-callbackName-三个参数" class="headerlink" title="实现 jsonp，传入 url、callback 和 callbackName 三个参数"></a>实现 jsonp，传入 url、callback 和 callbackName 三个参数</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">jsonp</span>(<span class="params">url, callback, callbackName</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  script.<span class="property">src</span> = <span class="string">`<span class="subst">$&#123;url&#125;</span>?type=jsonp&amp;callbackName=<span class="subst">$&#123;callbackName&#125;</span>&#125;`</span>;</span><br><span class="line">  script.<span class="property">onload</span> = callback;</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(script);</span><br><span class="line">  <span class="variable language_">window</span>[callbackName] = <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(script);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">jsonp</span>(</span><br><span class="line">  <span class="string">&#x27;http://www.xxx.com/xxx&#x27;</span>,</span><br><span class="line">  <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&#x27;fn&#x27;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
 <h2 id="实现计时器-timer，仅暴露-start、stop、reset-方法"><a href="#实现计时器-timer，仅暴露-start、stop、reset-方法" class="headerlink" title="实现计时器 timer，仅暴露 start、stop、reset 方法"></a>实现计时器 timer，仅暴露 start、stop、reset 方法</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Timer</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> second = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> refId = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">const</span> clear = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (refId !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="built_in">clearInterval</span>(refId);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> start = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    refId = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(second);</span><br><span class="line">      second += <span class="number">1</span>;</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> stop = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">clear</span>();</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> reset = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    second = <span class="number">0</span>;</span><br><span class="line">    <span class="title function_">clear</span>();</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> &#123; start, stop, reset &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -6461,7 +6240,7 @@ shuffle(arr)
 
 <h2 id="实现-lodash-get"><a href="#实现-lodash-get" class="headerlink" title="实现 lodash.get"></a>实现 lodash.get</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">get</span>(<span class="params">obj, path, dftValue = <span class="string">&#x27;undefined&#x27;</span></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> newPath = [];</span><br><span class="line">  <span class="keyword">if</span> (<span class="title class_">Array</span>.<span class="title function_">isArray</span>(path)) &#123;</span><br><span class="line">    newPath = path;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    newPath = path.<span class="title function_">replace</span>(<span class="regexp">/\[/g</span>, <span class="string">&#x27;.&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/\]/</span>, <span class="string">&#x27;&#x27;</span>).<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> newPath.<span class="title function_">reduce</span>(<span class="function">(<span class="params">obj = &#123;&#125;, key</span>) =&gt;</span> obj[key], obj);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> object = &#123; <span class="attr">a</span>: [&#123; <span class="attr">b</span>: &#123; <span class="attr">c</span>: <span class="number">3</span> &#125; &#125;] &#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">get</span>(object, <span class="string">&#x27;a[0].b.c&#x27;</span>));</span><br></pre></td></tr></table></figure>
 
-<h2 id="数组随机排序-shuffle"><a href="#数组随机排序-shuffle" class="headerlink" title="数组随机排序 shuffle"></a>数组随机排序 shuffle</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 简单有缺陷</span></span><br><span class="line"><span class="comment">// ECMAScript标准提到对于同一组a、b的值，compareFn(a, b)需要总是返回相同的值</span></span><br><span class="line"><span class="comment">// 且vs引擎中丨阿宇数组部分的sort源码，考虑性能原因，对于短数组（小于等于22）使用插入排序，长数组（大于22）使用快速排序</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">shuffle</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  arr.<span class="title function_">sort</span>(<span class="function">() =&gt;</span> <span class="title class_">Math</span>.<span class="title function_">random</span>() - <span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// es6洗牌算法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">shuffle</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> i = arr.<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">while</span> (--i) &#123;</span><br><span class="line">    <span class="keyword">let</span> j = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * i);</span><br><span class="line">    [arr[j], arr[i]] = [arr[i], arr[j]];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数组随机排序-shuffle"><a href="#数组随机排序-shuffle" class="headerlink" title="数组随机排序 shuffle"></a>数组随机排序 shuffle</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 简单有缺陷</span></span><br><span class="line"><span class="comment">// ECMAScript标准提到对于同一组a、b的值，compareFn(a, b)需要总是返回相同的值,sort采用原地算法</span></span><br><span class="line"><span class="comment">// 且vs引擎中丨阿宇数组部分的sort源码，考虑性能原因，对于短数组（小于等于22）使用插入排序，长数组（大于22）使用快速排序</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">shuffle</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  arr.<span class="title function_">sort</span>(<span class="function">() =&gt;</span> <span class="title class_">Math</span>.<span class="title function_">random</span>() - <span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// es6洗牌算法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">shuffle</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> i = arr.<span class="property">length</span>;</span><br><span class="line">  <span class="keyword">while</span> (--i) &#123;</span><br><span class="line">    <span class="keyword">let</span> j = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * i);</span><br><span class="line">    [arr[j], arr[i]] = [arr[i], arr[j]];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
       <categories>
@@ -6729,29 +6508,27 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <li>…</li>
 </ul>
 <p><a href="https://juejin.cn/post/7023242274876162084#heading-6">掘金</a></p>
-<h2 id="webpack-常用-loader"><a href="#webpack-常用-loader" class="headerlink" title="webpack 常用 loader"></a>webpack 常用 loader</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">样式：style-loader、css-loader、less-loader、sass-loader</span><br><span class="line">文件：file-loader、url-loader</span><br><span class="line">编译：babel-loader、ts-loader</span><br><span class="line">校验：eslint-loader</span><br><span class="line"></span><br><span class="line">常用的plugin</span><br><span class="line">html-webpack-plugin</span><br><span class="line">webpack-bundle-analyzer 打包分析</span><br><span class="line">HotModuleReplacementPlugin 热更新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">自己写webpack插件：</span><br><span class="line">主要就是通过访问compliler和compilation拦截webpack的执行</span><br></pre></td></tr></table></figure>
+<h2 id="webpack-常用-loader-和-plugin"><a href="#webpack-常用-loader-和-plugin" class="headerlink" title="webpack 常用 loader 和 plugin"></a>webpack 常用 loader 和 plugin</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">样式：style-loader、css-loader、less-loader、sass-loader</span><br><span class="line">文件：file-loader、url-loader</span><br><span class="line">编译：babel-loader、ts-loader</span><br><span class="line">校验：eslint-loader</span><br><span class="line"></span><br><span class="line">常用的plugin</span><br><span class="line">html-webpack-plugin</span><br><span class="line">webpack-bundle-analyzer 打包分析</span><br><span class="line">HotModuleReplacementPlugin 热更新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">自己写webpack插件：</span><br><span class="line">主要就是通过访问compliler和compilation拦截webpack的执行</span><br></pre></td></tr></table></figure>
 
-<h2 id="谈谈你对-webpack-的理解？"><a href="#谈谈你对-webpack-的理解？" class="headerlink" title="谈谈你对 webpack 的理解？"></a>谈谈你对 webpack 的理解？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">webpack是一个打包模块化js的工具，在webpack里一切文件皆模块</span><br><span class="line">，通过loader转换，通过plugin注入钩子，最后输出由多个</span><br><span class="line">模块组合成的文件，webpack专注构建模块化。WebPack可</span><br><span class="line">以看做是模块的打包机器：它做的事情是，分析你的项目</span><br><span class="line">结构，找到js模块及其它的一些浏览器不能直接运行的</span><br><span class="line">拓展语言，例如：Scss，TS等，并将其打包为合适的格式</span><br><span class="line">以供浏览器使用。</span><br></pre></td></tr></table></figure>
+<h2 id="webpack-的构建流程是什么"><a href="#webpack-的构建流程是什么" class="headerlink" title="webpack 的构建流程是什么?"></a>webpack 的构建流程是什么?</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Webpack 的运行流程是一个串行的过程，从启动到结束会依次执行以下流程：</span><br><span class="line">初始化参数：从配置文件和 Shell 语句中读取与合并参数，得出最终的参数；</span><br><span class="line">开始编译：用上一步得到的参数初始化Compiler对象，</span><br><span class="line">加载所有配置的插件，执行对象的 run 方法开始执行编译；</span><br><span class="line"></span><br><span class="line">确定入口：根据配置中的 entry 找出所有的入口文件；</span><br><span class="line"></span><br><span class="line">编译模块：从入口文件出发，调用所有配置的 Loader</span><br><span class="line">对模块进行翻译，再找出该模块依赖的模块，再递归本步骤直到</span><br><span class="line">所有入口依赖的文件都经过了本步骤的处理；</span><br><span class="line"></span><br><span class="line">完成模块编译：在经过第4步使用Loader翻译完所有模块后，</span><br><span class="line">得到了每个模块被翻译后的最终内容以及它们之间的依赖关系；</span><br><span class="line"></span><br><span class="line">输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk转换成一个单独的文件加入到输</span><br><span class="line">出列表，这步是可以修改输出内容的最后机会；</span><br><span class="line"></span><br><span class="line">输出完成：在确定好输出内容后，根据配置确定输出的</span><br><span class="line">路径和文件名，把文件内容写入到文件系统。</span><br><span class="line"></span><br><span class="line">在以上过程中，Webpack会在特定的时间点广播出特定</span><br><span class="line">的事件，插件在监听到感兴趣的事件后会执行特定的逻辑，</span><br><span class="line">并且插件可以调用 Webpack 提供的 API 改变 Webpack 的运行结果。</span><br></pre></td></tr></table></figure>
 
-<h2 id="说说-webpack-与-grunt、gulp-的不同？"><a href="#说说-webpack-与-grunt、gulp-的不同？" class="headerlink" title="说说 webpack 与 grunt、gulp 的不同？"></a>说说 webpack 与 grunt、gulp 的不同？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">三者都是前端构建工具，grunt和gulp在早期比较流行，</span><br><span class="line">现在webpack相对来说比较主，不过一些轻量化的任务</span><br><span class="line">还是会用gulp来处理，比如单独打包CSS文件等。</span><br><span class="line"></span><br><span class="line">grunt和gulp是基于任务和流（Task、Stream）的。</span><br><span class="line">类似jQuery，找到一个（或一类）文件，对其做一</span><br><span class="line">系列链式操作，更新流上的数据，整条链式操作</span><br><span class="line">构成了一个任务，多个任务就构成了web的构建流程。</span><br><span class="line"></span><br><span class="line">webpack是基于入口的。webpack会自动地递归解析</span><br><span class="line">入口所需要加载的所有资源文件，然后用不同的</span><br><span class="line">Loader来处理不同的文件，用Plugin来扩展webpack功能。</span><br><span class="line"></span><br><span class="line">所以，从构建来说，gulp和grunt需要开发者将整个</span><br><span class="line">前端构建过程拆分成多个`Task`，并合理控制所有`Task`的</span><br><span class="line">调用关系；webpack需要开发者找到入口，并需要清楚对</span><br><span class="line">于不同的资源应该使什么Loader做何种解析和加工对</span><br><span class="line">于知识背景来说，gulp更像后端开发者的思路，</span><br><span class="line">需要对于整个流程了如指掌webpack更倾向于前端开发者的思路</span><br></pre></td></tr></table></figure>
+<h2 id="如何利用-webpack-来优化前端性能？"><a href="#如何利用-webpack-来优化前端性能？" class="headerlink" title="如何利用 webpack 来优化前端性能？"></a>如何利用 webpack 来优化前端性能？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用webpack优化前端性能是指优化webpack的输出结果，</span><br><span class="line">让打包的最终结果在浏览器运行快速高效。</span><br><span class="line"></span><br><span class="line">压缩代码。删除多余的代码、注释、简化代码的写法等等方式。</span><br><span class="line">可以利用webpack的UglifyJsPlugin和ParallelUglifyPlugin来压缩JS文件</span><br><span class="line">，利用cssnano（css-loader?minimize）来压缩css</span><br><span class="line"></span><br><span class="line">利用CDN加速。在构建过程中，将引用的静态资源路径修改为CDN上对</span><br><span class="line">应的路径。可以利用webpack对于output参数和各loader的publicPath</span><br><span class="line">参数来修改资源路径</span><br><span class="line"></span><br><span class="line">删除死代码（Tree Shaking）。将代码中永远不会走到的片段删除掉。</span><br><span class="line"></span><br><span class="line">可以通过在启动webpack时追加参数--optimize-minimize来</span><br><span class="line">实现提取公共代码。</span><br></pre></td></tr></table></figure>
 
-<h2 id="什么是-bundle-什么是-chunk，什么是-module"><a href="#什么是-bundle-什么是-chunk，什么是-module" class="headerlink" title="什么是 bundle,什么是 chunk，什么是 module?"></a>什么是 bundle,什么是 chunk，什么是 module?</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bundle：是由webpack打包出来的文件</span><br><span class="line">chunk：代码块，一个chunk由多个模块组合而成，用于代码的合并和分割</span><br><span class="line">module：是开发中的单个模块，在webpack的世界，一切皆模块，一个模块对应一个文件，webpack会从配置的entry中递归开始找出所有依赖的模块</span><br></pre></td></tr></table></figure>
-
-<h2 id="什么是-Loader-什么是-Plugin"><a href="#什么是-Loader-什么是-Plugin" class="headerlink" title="什么是 Loader?什么是 Plugin?"></a>什么是 Loader?什么是 Plugin?</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.Loaders是用来告诉webpack如何转化处理某一类型的文件，</span><br><span class="line">并且引入到打包出的文中</span><br><span class="line">2）Plugin是用来自定义webpack打包过程的方式，</span><br><span class="line">一个插件是含有apply方法的一个，通过这个方法可以参与</span><br><span class="line">到整个webpack打包的各个流程(生命周期)。</span><br></pre></td></tr></table></figure>
-
-<h2 id="有哪些常见的-Loader？他们是解决什么问题的？"><a href="#有哪些常见的-Loader？他们是解决什么问题的？" class="headerlink" title="有哪些常见的 Loader？他们是解决什么问题的？"></a>有哪些常见的 Loader？他们是解决什么问题的？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">file-loader：把文件输出到一个文件夹中，在代码中通过</span><br><span class="line">相对URL去引用输出的文件</span><br><span class="line">url-loader：和file-loader类似，但是能在文件很小的情况下</span><br><span class="line">以base64的方式把文件内容注入到代码中去</span><br><span class="line">source-map-loader：加载额外的Source Map文件，以方便断点调试</span><br><span class="line">image-loader：加载并且压缩图片文件</span><br><span class="line">babel-loader：把ES6转换成ES5</span><br><span class="line">css-loader：加载CSS，支持模块化、压缩、文件导入等特性</span><br><span class="line">style-loader：把CSS代码注入到JavaScript中，通过DOM操作去加载CSS。</span><br><span class="line">eslint-loader：通过ESLint检查JavaScript代码</span><br></pre></td></tr></table></figure>
-
-<h2 id="有哪些常见的-Plugin？他们是解决什么问题的？"><a href="#有哪些常见的-Plugin？他们是解决什么问题的？" class="headerlink" title="有哪些常见的 Plugin？他们是解决什么问题的？"></a>有哪些常见的 Plugin？他们是解决什么问题的？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">define-plugin：定义环境变量</span><br><span class="line">commons-chunk-plugin：提取公共代码</span><br><span class="line">uglifyjs-webpack-plugin：通过UglifyES压缩ES6代码</span><br></pre></td></tr></table></figure>
-
+<h2 id="谈谈你对-webpack-的理解？"><a href="#谈谈你对-webpack-的理解？" class="headerlink" title="谈谈你对 webpack 的理解？"></a>谈谈你对 webpack 的理解？</h2><p>webpack 是一个打包模块化 js 的工具，在 webpack 里一切文件皆模块<br>，通过 loader 转换，通过 plugin 注入钩子，最后输出由多个<br>模块组合成的文件，webpack 专注构建模块化。WebPack 可<br>以看做是模块的打包机器：它做的事情是，分析你的项目<br>结构，找到 js 模块及其它的一些浏览器不能直接运行的<br>拓展语言，例如：Scss，TS 等，并将其打包为合适的格式<br>以供浏览器使用。</p>
+<h2 id="说说-webpack-与-grunt、gulp-的不同？"><a href="#说说-webpack-与-grunt、gulp-的不同？" class="headerlink" title="说说 webpack 与 grunt、gulp 的不同？"></a>说说 webpack 与 grunt、gulp 的不同？</h2><p>三者都是前端构建工具，grunt 和 gulp 在早期比较流行，<br>现在 webpack 相对来说比较主，不过一些轻量化的任务<br>还是会用 gulp 来处理，比如单独打包 CSS 文件等。</p>
+<p>grunt 和 gulp 是基于任务和流（Task、Stream）的。<br>类似 jQuery，找到一个（或一类）文件，对其做一<br>系列链式操作，更新流上的数据，整条链式操作<br>构成了一个任务，多个任务就构成了 web 的构建流程。</p>
+<p>webpack 是基于入口的。webpack 会自动地递归解析<br>入口所需要加载的所有资源文件，然后用不同的<br>Loader 来处理不同的文件，用 Plugin 来扩展 webpack 功能。</p>
+<p>所以，从构建来说，gulp 和 grunt 需要开发者将整个<br>前端构建过程拆分成多个<code>Task</code>，并合理控制所有<code>Task</code>的<br>调用关系；webpack 需要开发者找到入口，并需要清楚对<br>于不同的资源应该使什么 Loader 做何种解析和加工对<br>于知识背景来说，gulp 更像后端开发者的思路，<br>需要对于整个流程了如指掌 webpack 更倾向于前端开发者的思路</p>
+<h2 id="什么是-bundle-什么是-chunk，什么是-module"><a href="#什么是-bundle-什么是-chunk，什么是-module" class="headerlink" title="什么是 bundle,什么是 chunk，什么是 module?"></a>什么是 bundle,什么是 chunk，什么是 module?</h2><ul>
+<li>bundle：是由 webpack 打包出来的文件</li>
+<li>chunk：代码块，一个 chunk 由多个模块组合而成，用于代码的合并和分割</li>
+<li>module：是开发中的单个模块，在 webpack 的世界，一切皆模块，一个模块对应一个文件，webpack 会从配置的 entry 中递归开始找出所有依赖的模块</li>
+</ul>
 <h2 id="Loader-和-Plugin-的不同？"><a href="#Loader-和-Plugin-的不同？" class="headerlink" title="Loader 和 Plugin 的不同？"></a>Loader 和 Plugin 的不同？</h2><p>不同的作用<br>Loader 直译为”加载器”。Webpack 将一切文件视为模块，<br>但是 webpack 原生是只能解析 js 文件，如果想将其他文件<br>也打包的话，就会用到 loader。 所以 Loader 的作用是让 webpack 拥有了加载和解析非 JavaScript 文件的能力。</p>
 <p>Plugin 直译为”插件”。Plugin 可以扩展 webpack 的功能，让 webpack 具有更多的灵活性。 在 Webpack 运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。</p>
 <p>不同的用法<br>Loader 在 module.rules 中配置，也就是说他作为模块的解析规则而存在。 类型为数组，每一项都是一个 Object，里面描述了对于什么<br>类型的文件（test），使用什么加载(loader)和使用的参数（options）</p>
 <p>Plugin 在 plugins 中单独配置。 类型为数组，每一项是一个 plugin 的实例，参数都通过构造函数传入。</p>
-<h2 id="webpack-的构建流程是什么"><a href="#webpack-的构建流程是什么" class="headerlink" title="webpack 的构建流程是什么?"></a>webpack 的构建流程是什么?</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Webpack 的运行流程是一个串行的过程，从启动到结束会依次执行以下流程：</span><br><span class="line">初始化参数：从配置文件和 Shell 语句中读取与合并参数，得出最终的参数；</span><br><span class="line">开始编译：用上一步得到的参数初始化Compiler对象，</span><br><span class="line">加载所有配置的插件，执行对象的 run 方法开始执行编译；</span><br><span class="line"></span><br><span class="line">确定入口：根据配置中的 entry 找出所有的入口文件；</span><br><span class="line"></span><br><span class="line">编译模块：从入口文件出发，调用所有配置的 Loader</span><br><span class="line">对模块进行翻译，再找出该模块依赖的模块，再递归本步骤直到</span><br><span class="line">所有入口依赖的文件都经过了本步骤的处理；</span><br><span class="line"></span><br><span class="line">完成模块编译：在经过第4步使用Loader翻译完所有模块后，</span><br><span class="line">得到了每个模块被翻译后的最终内容以及它们之间的依赖关系；</span><br><span class="line"></span><br><span class="line">输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk转换成一个单独的文件加入到输</span><br><span class="line">出列表，这步是可以修改输出内容的最后机会；</span><br><span class="line"></span><br><span class="line">输出完成：在确定好输出内容后，根据配置确定输出的</span><br><span class="line">路径和文件名，把文件内容写入到文件系统。</span><br><span class="line"></span><br><span class="line">在以上过程中，Webpack会在特定的时间点广播出特定</span><br><span class="line">的事件，插件在监听到感兴趣的事件后会执行特定的逻辑，</span><br><span class="line">并且插件可以调用 Webpack 提供的 API 改变 Webpack 的运行结果。</span><br></pre></td></tr></table></figure>
-
 <h2 id="描述一下编写-loader-或-plugin-的思路？"><a href="#描述一下编写-loader-或-plugin-的思路？" class="headerlink" title="描述一下编写 loader 或 plugin 的思路？"></a>描述一下编写 loader 或 plugin 的思路？</h2><p>Loader 像一个”翻译官”把读到的源文件内容转义成新的文件内容，<br>并且每个 Loader 通过链式操作，将源文件一步步翻译成想要的样子。<br>编写 Loader 时要遵循单一原则，每个 Loader 只做一种”转义”工作。 每个 Loader 的拿到的是源文件内容（source），可以通过返回值的方式将处理后的内容输出，也可以调用 this.callback()方法，将内容返回给 webpack。 还可以通过 this.async()生成一个 callback 函数，再用这个 callback 将处理后的内容输出出去。 此外 webpack 还为开发者准备了开发 loader 的工具函数集——loader-utils。<br>相对于 Loader 而言，Plugin 的编写就灵活了许多。 webpack 在运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。</p>
-<h2 id="如何利用-webpack-来优化前端性能？"><a href="#如何利用-webpack-来优化前端性能？" class="headerlink" title="如何利用 webpack 来优化前端性能？"></a>如何利用 webpack 来优化前端性能？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用webpack优化前端性能是指优化webpack的输出结果，</span><br><span class="line">让打包的最终结果在浏览器运行快速高效。</span><br><span class="line"></span><br><span class="line">压缩代码。删除多余的代码、注释、简化代码的写法等等方式。</span><br><span class="line">可以利用webpack的UglifyJsPlugin和ParallelUglifyPlugin来压缩JS文件</span><br><span class="line">，利用cssnano（css-loader?minimize）来压缩css</span><br><span class="line"></span><br><span class="line">利用CDN加速。在构建过程中，将引用的静态资源路径修改为CDN上对</span><br><span class="line">应的路径。可以利用webpack对于output参数和各loader的publicPath</span><br><span class="line">参数来修改资源路径</span><br><span class="line"></span><br><span class="line">删除死代码（Tree Shaking）。将代码中永远不会走到的片段删除掉。</span><br><span class="line"></span><br><span class="line">可以通过在启动webpack时追加参数--optimize-minimize来</span><br><span class="line">实现提取公共代码。</span><br></pre></td></tr></table></figure>
-
 <h2 id="构建打包优化（webpack-bundle-analyzer-分析各个打包文件）"><a href="#构建打包优化（webpack-bundle-analyzer-分析各个打包文件）" class="headerlink" title="构建打包优化（webpack-bundle-analyzer 分析各个打包文件）"></a>构建打包优化（webpack-bundle-analyzer 分析各个打包文件）</h2><p>速度优化:</p>
 <ul>
 <li><p>exclude/include</p>
@@ -6812,7 +6589,7 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
     <title>前端模块化</title>
     <url>/2023/03/31/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
     <content><![CDATA[<h2 id="前端模块化"><a href="#前端模块化" class="headerlink" title="前端模块化"></a>前端模块化</h2><blockquote>
-<p>把复杂的代码按照功能的不同划分成不同的模块单独维护，提高开发效率，方便后期维护。服务端规范主要是 CommonJS，例如 nodejs。客户端主要有 AMD（异步模块定义，推崇依赖前置 requirejs）、CMD（通用模块定义，推崇依赖就近，seajs），但是随着 ES6 的普及，前端的这些第三方的模块化实现已经在渐渐的淘汰</p>
+<p>把复杂的代码按照功能的不同划分成不同的模块单独维护，提高开发效率，方便后期维护。<br>服务端规范主要是 CommonJS，例如 nodejs。<br>客户端主要有 AMD（异步模块定义，推崇依赖前置 requirejs）、CMD（通用模块定义，推崇依赖就近，seajs），但是随着 ES6 的普及，前端的这些第三方的模块化实现已经在渐渐的淘汰</p>
 </blockquote>
 <p>模块化的演进：</p>
 <ol>
@@ -6838,6 +6615,90 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
       </categories>
       <tags>
         <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>脚手架开发</title>
+    <url>/2023/04/04/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BC%80%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="脚手架开发"><a href="#脚手架开发" class="headerlink" title="脚手架开发"></a>脚手架开发</h2><p>开发脚手架的核心目标：提升前端研发效能</p>
+<p>内容：</p>
+<ul>
+<li>创建项目+通用代码<ul>
+<li>埋点</li>
+<li>http 请求</li>
+<li>工具方法</li>
+<li>组件库</li>
+</ul>
+</li>
+<li>git 操作<ul>
+<li>创建仓库</li>
+<li>代码冲突</li>
+<li>远程代码同步</li>
+<li>创建版本</li>
+<li>发布打 tag</li>
+</ul>
+</li>
+<li>构建和发布上线<ul>
+<li>依赖安装和构建</li>
+<li>资源上传 cdn</li>
+<li>域名绑定</li>
+<li>测试/正式服务器</li>
+</ul>
+</li>
+</ul>
+<p>脚手架核心价值将研发过程：</p>
+<ul>
+<li>自动化：项目重复代码拷贝/git 操作/发布上线操作</li>
+<li>标准化：项目创建/git flow/发布流程/回滚流程</li>
+<li>数据化：研发过程系统化、数据化，使得研发过程可量化</li>
+</ul>
+<p>自动化构建工具：jenkins、trvis 通常需要 git hooks 触发，在服务端运行需要定制化操作，整个过程比较复杂</p>
+<p>脚手架执行原理：<br>以 vue-cli 为例子</p>
+<ol>
+<li>在终端输入 vue create xxx</li>
+<li>终端解析出 vue 命令</li>
+<li>终端在环境变量中找到(相当于 which vue，找不到提示 commond not found) vue 命令</li>
+<li>根据 node/bin/目录下 vue 命令（软连接）连接到 node 全局依赖 lib/node_modules 包下的 vue.js</li>
+<li>终端利用 node(/usr/bin/env node) 执行 vue.js</li>
+<li>vue.js 解析 command/options</li>
+<li>vue.js 执行 command</li>
+<li>执行完毕，退出</li>
+</ol>
+<p>从应用角度看如何开发一个脚手架：</p>
+<ol>
+<li>开发 npm 项目，项目中包含一个 bin/vue.js 文件，并将项目发布到 npm</li>
+<li>将 npm 项目安装到 node 的 lib/node_modules 中</li>
+<li>在 node 的 bin 目录下配置 vue 软连接到 lib/node_modules/@vue/cli/bin/vue.js</li>
+<li>执行 vue 的命令时就可以找到 vue.js 执行</li>
+</ol>
+<p>疑问：</p>
+<ol>
+<li>为什么全局安装@vue/cli 会添加 vue 命令？<br>答： 在 package.json 中的 {bin: {‘vue’: ‘bin/vue.js’}}配置</li>
+<li>全局安装 npm install -g @vue/cli 时发生了什么？<br>答：首先会把@vue/cli 这个项目安装在 node 的 lib/node_modules 目录下，然后检查项目中 package 中是否存在 bin 属性，如果存在的话会在 node 的 bin 目录下创建一个对应的软连接</li>
+<li>执行 vue 命令发生了什么？<br>答：操作系统会找到 which vue 的目录路径并执行这个路径的文件（先去环境变量中找对应命令，拿到目录执行）</li>
+<li>怎么直接执行一个 js 文件，不通过 node？<br>答：在文件顶部写 #！/usr/bin/env node,相当于告诉操作系统去环境变量中找 node 命令去执行这个文件；/usr/bin/env node xxx.js = xxx.js(顶部添加指令) = node test.js</li>
+</ol>
+<p>创建软连接命令：</p>
+<ul>
+<li>ln -s /Users/foo/xxx.js vue</li>
+</ul>
+<p>脚手架开发难点：</p>
+<ol>
+<li>分包：将复杂的系统拆分成若干个模块</li>
+<li>命令注册：vue create、vue add 等</li>
+<li>参数解析 vue command options(全称、简称) params,帮助信息：Usage： vue &lt;’xxx’&gt; [‘options’]; Options: xxx</li>
+<li>命令行交互（让用户选择或者输入）</li>
+<li>日志打印</li>
+<li>命令行文字变色</li>
+<li>网络通信：http/websocket</li>
+<li>文件处理</li>
+</ol>
+]]></content>
+      <categories>
+        <category>脚手架</category>
+      </categories>
+      <tags>
+        <tag>脚手架</tag>
       </tags>
   </entry>
 </search>
