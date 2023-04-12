@@ -2316,8 +2316,7 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 </ul>
 <h2 id="React-lazy-懒加载"><a href="#React-lazy-懒加载" class="headerlink" title="React.lazy 懒加载"></a>React.lazy 懒加载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// React.lazy方法可以异步加载组件</span><br><span class="line">const Foo = React.lazy(() =&gt; import(&#x27;../components/Foo&#x27;)</span><br><span class="line"></span><br><span class="line">// React.lazy不能单独使用，需要配合React.suspense,用来包裹异步组件，添加loading效果等。</span><br><span class="line">&lt;React.Suspense fallback=&#123;&lt;div&gt;loading...&lt;/div&gt;&#125;&gt;</span><br><span class="line">    &lt;Foo /&gt;</span><br><span class="line">&lt;/React.Suspense&gt;</span><br><span class="line"></span><br><span class="line">React.lazy原理</span><br><span class="line">React.lazy使用import来懒加载组件，import在webpack中最终会调用requireEnsure方法，</span><br><span class="line">动态插入script来请求js文件，类似jsonp的形式。</span><br></pre></td></tr></table></figure>
 
-<h2 id="当调用-setState-的时候，发生了什么事？"><a href="#当调用-setState-的时候，发生了什么事？" class="headerlink" title="当调用 setState 的时候，发生了什么事？"></a>当调用 setState 的时候，发生了什么事？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">将传递给setState的参数对象合并到组件的当前的状态，react遍历dom节点，计算差异，更新UI。</span><br><span class="line">https://segmentfault.com/a/1190000018250127</span><br></pre></td></tr></table></figure>
-
+<h2 id="当调用-setState-的时候，发生了什么事？"><a href="#当调用-setState-的时候，发生了什么事？" class="headerlink" title="当调用 setState 的时候，发生了什么事？"></a>当调用 setState 的时候，发生了什么事？</h2><p>将传递给 setState 的参数对象合并到组件的当前的状态，react 遍历 dom 节点，计算差异，更新 UI。<br><a href="https://segmentfault.com/a/1190000018250127">https://segmentfault.com/a/1190000018250127</a></p>
 <h2 id="为什么-setState-的参数是一个-callback-而不是一个对象"><a href="#为什么-setState-的参数是一个-callback-而不是一个对象" class="headerlink" title="为什么 setState 的参数是一个 callback 而不是一个对象"></a>为什么 setState 的参数是一个 callback 而不是一个对象</h2><p>因为 this.props 和 this.state 的更新可能是异步的，不能依赖它们的值去计算下一个 state<br>(更新状态不要直接修改 this.state，虽然状态可以改变，但不会触发组件的更新)</p>
 <p>setState 何时同步何时异步？<br>异步：由 React 控制的事件处理程序以及生命周期函数中调用 setState 为异步<br>同步：React 控制之外的原生 js 绑定的事件、setTimeout/setInterval 等。</p>
 <h2 id="setState-什么时候同步什么时候异步？"><a href="#setState-什么时候同步什么时候异步？" class="headerlink" title="setState 什么时候同步什么时候异步？"></a>setState 什么时候同步什么时候异步？</h2><p>react 三个模式：<br>1.legacy 模式： 通过 ReactDOM.render(<App />, rootNode)创建的，当前 react 的使用方式<br>2.blocking 模式：通过 ReactDOM.createBlockingRoot(rootNode).render(<App />),实验阶段，作为迁移到 concurrent 模式的第一个步骤<br>3.concurrent 模式，通过 ReactDOM.createRoot(rootNode).render(<App />),实验阶段，未来 react 的默认开发模式</p>
@@ -2368,6 +2367,12 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 </ul>
 <h2 id="Portal-传送门"><a href="#Portal-传送门" class="headerlink" title="Portal 传送门"></a>Portal 传送门</h2><blockquote>
 <p>可以将 DOM 结构脱离父节点渲染到指定节点位置，并且不会破坏事件传播，事件冒泡会正常工作，生命周期正常执行。常见使用场景：渲染模态框、工具提示、弹出消息等</p>
+</blockquote>
+<h2 id="useEffect-和-useLayoutEffect-的执行时机"><a href="#useEffect-和-useLayoutEffect-的执行时机" class="headerlink" title="useEffect 和 useLayoutEffect 的执行时机"></a>useEffect 和 useLayoutEffect 的执行时机</h2><blockquote>
+<p>useEffect 在 beforeMutation 阶段调度 flushPassiveEffects，在 layout 阶段注册 destroy、create 函数，在 commit 阶段完成后，异步执行 flushPassiveEffects，内部执行注册的回调</p>
+</blockquote>
+<blockquote>
+<p>useLayoutEffect 在 mutation 阶段执行 destroy 销毁函数，在 layout 阶段执行 create 创建函数</p>
 </blockquote>
 ]]></content>
       <categories>
@@ -2494,6 +2499,7 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <li>Cross Site Script 跨站脚本攻击</li>
 <li>手段：将 js 代码插入到网页内容中，渲染时执行 js 代码</li>
 <li>预防：特殊字符替换（前端或后端）</li>
+<li>输入检查，对于用户输入进行格式检查。</li>
 </ul>
 </li>
 <li><p>csrf</p>
@@ -2665,60 +2671,12 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
       </tags>
   </entry>
   <entry>
-    <title>vue3源码调试</title>
-    <url>/2022/01/02/vue3%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/</url>
-    <content><![CDATA[<h2 id="vue3-源码调试步骤"><a href="#vue3-源码调试步骤" class="headerlink" title="vue3 源码调试步骤"></a>vue3 源码调试步骤</h2><span id="more"></span>
-
-<h3 id="clone-项目"><a href="#clone-项目" class="headerlink" title="clone 项目"></a>clone 项目</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/vuejs/vue-next.git</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yarn --ignore-scripts</span><br></pre></td></tr></table></figure>
-
-<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改<strong>package.json</strong>中的 scripts 下 dev 的配置，后面添加 <em>–sourcemap</em></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;dev&quot;: &quot;node scripts/dev.js&quot;</span><br><span class="line">// ⬇</span><br><span class="line">&quot;dev&quot;: &quot;node scripts/dev.js --sourcemap&quot;</span><br></pre></td></tr></table></figure>
-
-<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yarn run dev</span><br></pre></td></tr></table></figure>
-
-<p>当终端出现<strong>waiting for changes…<strong>表示编译成功，可以</strong>ctrl+c</strong>结束进程查看源码了</p>
-<p>打包完成之后，examples 下面的文件会引用 dist 文件下的文件（dist 文件是我们刚才编译后生成的文件）<br><img src="../images/md_img/vue3-dist.jpg" alt="vue3-dist"></p>
-<h3 id="debugger"><a href="#debugger" class="headerlink" title="debugger"></a>debugger</h3><p>我们直接在<strong>package/vue/examples</strong>目录下添加<strong>demo/test.html</strong>文件，并引用**../../dist/vue.global.js**文件就可以使用 vue3 了，代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;script src=&quot;../../dist/vue.global.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;template id=&quot;foo&quot;&gt;</span><br><span class="line">      &lt;h2&gt;&#123;&#123;name&#125;&#125;&lt;/h2&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      const App = &#123;</span><br><span class="line">        template: &#x27;#foo&#x27;,</span><br><span class="line">        data: function () &#123;</span><br><span class="line">          return &#123;</span><br><span class="line">            name: &#x27;foolishmax&#x27;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      Vue.createApp(App).mount(&#x27;#app&#x27;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>接下来在浏览器中打开就可以进行 vue3 的代码调试了。</p>
-<p><img src="../images/md_img/vue3-debugger.jpg" alt="vue3-debugger"></p>
-]]></content>
-      <categories>
-        <category>vue3</category>
-      </categories>
-      <tags>
-        <tag>vue3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机网络</title>
     <url>/2023/03/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>OSI(open system interconnect)参考模型</p>
+    <content><![CDATA[<h2 id="http-和-https-的区别"><a href="#http-和-https-的区别" class="headerlink" title="http 和 https 的区别"></a>http 和 https 的区别</h2><p>http 是超文本传输协议，信息是明文传输，https 是更加安全的 ssl 加密传输协议<br>http 默认是 80 端口，https 默认是 443 端口<br>https 需要申请 CA 证书<br>https 是 http + ssl/tls（数字证书）进行组合的更加安全的传输协议</p>
+<p>https 工作原理（非对称加密） 1.服务端向客户端传递证书作为公钥 2.客户端对证书进行解析，判断证书的办法机构和过期时间等，如果都没有问题，生成一个随机值作为私钥，然后使用证书进行加密发送给服务端 3.服务端解密得到客户端私钥 4.之后双方利用私钥进行加密解密，完成信息的通信</p>
 <span id="more"></span>
 
-<ul>
-<li>应用层（为应用程序提供网络服务）</li>
-<li>表示层（数据格式化，加密等）</li>
-<li>会话层（建立、维护管理会话连接）</li>
-<li>传输层（建立、维护管理到端连接）</li>
-<li>网络层（IP 寻址和路由选择）<ul>
-<li>寻址就是根据 IP 地址找到具体的设备</li>
-<li>路由就是选择数据传输的线路</li>
-</ul>
-</li>
-<li>数据链路层（控制网络层和物理层之间通信）</li>
-<li>物理层（通过光缆、无线电波等方式连接组网）</li>
-</ul>
-<p>TCP/IP 模型</p>
-<ul>
-<li>应用层（应用层就是向用户提供通信服务的活动，提供用户程序接口 HTTP、FTP、DNS）</li>
-<li>传输层（传输层为两台主机上的应用程序提供端到端的通信 TCP，UDP）</li>
-<li>网络层（网络层实现数据包的选路和转发）</li>
-<li>数据链路层（ARP 地址解析协议、RARP 逆地址解析协议，使用物理地址寻找一台机器）</li>
-</ul>
 <h2 id="HTTP-协议-1-0、1-1、2-0-有什么区别？"><a href="#HTTP-协议-1-0、1-1、2-0-有什么区别？" class="headerlink" title="HTTP 协议 1.0、1.1、2.0 有什么区别？"></a>HTTP 协议 1.0、1.1、2.0 有什么区别？</h2><ul>
 <li><p>HTTP 1.0</p>
 <ul>
@@ -2744,6 +2702,81 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <li>服务端推送</li>
 </ul>
 </li>
+</ul>
+<h2 id="301-和-302-的区别"><a href="#301-和-302-的区别" class="headerlink" title="301 和 302 的区别"></a>301 和 302 的区别</h2><p>301 表示资源被永久移除，浏览器在拿到状态码后跳转到一个新的 URL 地址，可从相应头的 location 首部中获取，搜索引擎在抓取新内容的同时也将就地址交换为重定向之后的网址。</p>
+<p>302 表示地址资源还在，仍可以访问，搜索引擎会抓取新的内容而保存旧的地址，seo 302 优于 301.</p>
+<p>重定向的原因：<br>网站调整（改变网页目录结构）<br>页面被移到一个新地址<br>页面扩展名改变 .php -&gt;.html<br>如果不做重定向会返回 404 页面，会白白流失用户访问量。</p>
+<p>1XX 信息性状态码，表示接受的请求正在处理<br>2XX 成功状态码，表示请求被正常处理完毕<br>3XX 重定向状态码，表示需要进行附加操作以完成请求<br>4XX 客户端错误状态码，表示服务器无法处理请求<br>400 Bad Request 请求出现语法错误<br>401 被请求的页面需要用户名和密码<br>403 forbidden 请求页面的访问被禁止<br>404 资源未找到<br>5XX 服务器错误状态码，表示服务器处理请求出错<br>502 网关错误<br>503 服务器超负载或者停机维护，无法处理请求<br>504 网关超时</p>
+<h2 id="HTTP-协议和-UDP-协议有什么区别？"><a href="#HTTP-协议和-UDP-协议有什么区别？" class="headerlink" title="HTTP 协议和 UDP 协议有什么区别？"></a>HTTP 协议和 UDP 协议有什么区别？</h2><ul>
+<li>网络协议<ul>
+<li>HTTP 协议在应用层</li>
+<li>TCP、UDP 协议在传输层<ul>
+<li>TCP 协议<ul>
+<li>有连接，有断开</li>
+<li>稳定传输</li>
+</ul>
+</li>
+<li>UDP 协议<ul>
+<li>无连接，无断开</li>
+<li>不稳定传输，但效率高</li>
+<li>如视频会议、语音通话</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="UDP-amp-TCP-的区别"><a href="#UDP-amp-TCP-的区别" class="headerlink" title="UDP &amp; TCP 的区别"></a>UDP &amp; TCP 的区别</h2><ul>
+<li><p>相同点：</p>
+<ul>
+<li>UDP 协议 和 TCP 协议 都是运输层协议</li>
+</ul>
+</li>
+<li><p>不同点：</p>
+<ul>
+<li><p>UDP 特点：</p>
+<ul>
+<li>无连接 —— 知道对端的 IP 和端口号就直接进行传输，不需要建立连接</li>
+<li>不可靠 —— 没有确认机制，没有重传机制，即使因为网络故障无法发送到<br>对方，UDP 协议也不会给应用层返回任何错误信息</li>
+<li>面向数据报</li>
+<li>传输速 度块</li>
+</ul>
+</li>
+<li><p>TCP 特点：</p>
+<ul>
+<li>面向连接，在客户端和服务器进行交换数据前，必须先在双方之间建立一个<br>TCP 连接</li>
+<li>可靠传输，具有确认应答机制、超时重传机制、拥塞控制、流量控制、<br>滑动窗口机制、延迟应答等。</li>
+<li>面向字节流</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>UDP 的响应速度优于 TCP，安全性和数据可靠性不如 TCP</p>
+</li>
+<li><p>UDP 一般用在网络负担非常重，但对响应速度要求高，数据类型都是短消息的情况下</p>
+</li>
+</ul>
+<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>OSI(open system interconnect)参考模型</p>
+<ul>
+<li>应用层（为应用程序提供网络服务）</li>
+<li>表示层（数据格式化，加密等）</li>
+<li>会话层（建立、维护管理会话连接）</li>
+<li>传输层（建立、维护管理到端连接）</li>
+<li>网络层（IP 寻址和路由选择）<ul>
+<li>寻址就是根据 IP 地址找到具体的设备</li>
+<li>路由就是选择数据传输的线路</li>
+</ul>
+</li>
+<li>数据链路层（控制网络层和物理层之间通信）</li>
+<li>物理层（通过光缆、无线电波等方式连接组网）</li>
+</ul>
+<p>TCP/IP 模型</p>
+<ul>
+<li>应用层（应用层就是向用户提供通信服务的活动，提供用户程序接口 HTTP、FTP、DNS）</li>
+<li>传输层（传输层为两台主机上的应用程序提供端到端的通信 TCP，UDP）</li>
+<li>网络层（网络层实现数据包的选路和转发）</li>
+<li>数据链路层（ARP 地址解析协议、RARP 逆地址解析协议，使用物理地址寻找一台机器）</li>
 </ul>
 <h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><pre><code>WebSocket是html5定义的新协议，特点是即时通信、替代轮训
 
@@ -2792,8 +2825,6 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 
 <h2 id="http-常见的请求头字段"><a href="#http-常见的请求头字段" class="headerlink" title="http 常见的请求头字段"></a>http 常见的请求头字段</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Accept: 浏览器可接受的数据类型</span><br><span class="line">Accept-Charset: 浏览器可接受的字符集</span><br><span class="line">Accept-Encoding：浏览器能够进行解码的数据编码方式</span><br><span class="line">Accept-Language： 浏览器所希望的语言种类</span><br><span class="line">Connection：是否需要持久连接，值“Keep-Alive”，HTTP1.1默认进行持久连接</span><br><span class="line">Cookie：cookie信息</span><br><span class="line">content-type</span><br><span class="line">If-Modified-Since：内容被修改才会返回</span><br><span class="line">User-Agent：浏览器类型</span><br><span class="line"></span><br><span class="line">响应头：</span><br><span class="line">content-Length: 表示内容长度</span><br><span class="line">content-type：文档类型</span><br><span class="line">Date：当前时间</span><br><span class="line">Expires：指定缓存过期时间</span><br><span class="line">Last-Modified：文档过期时间</span><br></pre></td></tr></table></figure>
 
-<h2 id="http-和-https-的区别"><a href="#http-和-https-的区别" class="headerlink" title="http 和 https 的区别"></a>http 和 https 的区别</h2><p>http 是超文本传输协议，信息是明文传输，https 是更加安全的 ssl 加密传输协议<br>http 默认是 80 端口，https 默认是 443 端口<br>https 需要申请 CA 证书<br>https 是 http + ssl/tls（数字证书）进行组合的更加安全的传输协议</p>
-<p>https 工作原理（非对称加密） 1.服务端向客户端传递证书作为公钥 2.客户端对证书进行解析，判断证书的办法机构和过期时间等，如果都没有问题，生成一个随机值作为私钥，然后使用证书进行加密发送给服务端 3.服务端解密得到客户端私钥 4.之后双方利用私钥进行加密解密，完成信息的通信</p>
 <h2 id="xss（跨域脚本攻击）csrf（跨站请求伪造）"><a href="#xss（跨域脚本攻击）csrf（跨站请求伪造）" class="headerlink" title="xss（跨域脚本攻击）csrf（跨站请求伪造）"></a>xss（跨域脚本攻击）csrf（跨站请求伪造）</h2><p>csrf: 需要用户先登陆网站 A，获取 cookie，利用的是网站 A 本身的漏洞，去请求网站 A 的 api，—进行 token 验证，referer 验证，只接收本站的请求</p>
 <p>xss：向网站 A 注入 js 代码，然后执行 js 代码，篡改网站 A 的内容，破坏页面正常结构，插入恶意广告。—编码转换</p>
 <h2 id="什么是跨域？解决跨域的方法有哪些"><a href="#什么是跨域？解决跨域的方法有哪些" class="headerlink" title="什么是跨域？解决跨域的方法有哪些?"></a>什么是跨域？解决跨域的方法有哪些?</h2><ul>
@@ -2842,56 +2873,6 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <p>防止已失效的连接请求报文段突然又传送到服务端，产生错误。<br>如上述情况，如果 client 没有再次向 server 发出确认，server 收不到确认就不会建立连接，可以避免 server 端一直等待浪费资源。</p>
 <h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><ul>
 <li><a href="https://blog.csdn.net/rememberyf/article/details/80309148">https://blog.csdn.net/rememberyf/article/details/80309148</a></li>
-</ul>
-<h2 id="301-和-302-的区别"><a href="#301-和-302-的区别" class="headerlink" title="301 和 302 的区别"></a>301 和 302 的区别</h2><p>301 表示资源被永久移除，浏览器在拿到状态码后跳转到一个新的 URL 地址，可从相应头的 location 首部中获取，搜索引擎在抓取新内容的同时也将就地址交换为重定向之后的网址。</p>
-<p>302 表示地址资源还在，仍可以访问，搜索引擎会抓取新的内容而保存旧的地址，seo 302 优于 301.</p>
-<p>重定向的原因：<br>网站调整（改变网页目录结构）<br>页面被移到一个新地址<br>页面扩展名改变 .php -&gt;.html<br>如果不做重定向会返回 404 页面，会白白流失用户访问量。</p>
-<p>1XX 信息性状态码，表示接受的请求正在处理<br>2XX 成功状态码，表示请求被正常处理完毕<br>3XX 重定向状态码，表示需要进行附加操作以完成请求<br>4XX 客户端错误状态码，表示服务器无法处理请求<br>400 Bad Request 请求出现语法错误<br>401 被请求的页面需要用户名和密码<br>403 forbidden 请求页面的访问被禁止<br>404 资源未找到<br>5XX 服务器错误状态码，表示服务器处理请求出错<br>502 网关错误<br>503 服务器超负载或者停机维护，无法处理请求<br>504 网关超时</p>
-<h2 id="HTTP-协议和-UDP-协议有什么区别？"><a href="#HTTP-协议和-UDP-协议有什么区别？" class="headerlink" title="HTTP 协议和 UDP 协议有什么区别？"></a>HTTP 协议和 UDP 协议有什么区别？</h2><ul>
-<li>网络协议<ul>
-<li>HTTP 协议在应用层</li>
-<li>TCP、UDP 协议在传输层<ul>
-<li>TCP 协议<ul>
-<li>有连接，有断开</li>
-<li>稳定传输</li>
-</ul>
-</li>
-<li>UDP 协议<ul>
-<li>无连接，无断开</li>
-<li>不稳定传输，但效率高</li>
-<li>如视频会议、语音通话</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="HTTP-协议-1-0、1-1、2-0-有什么区别？-1"><a href="#HTTP-协议-1-0、1-1、2-0-有什么区别？-1" class="headerlink" title="HTTP 协议 1.0、1.1、2.0 有什么区别？"></a>HTTP 协议 1.0、1.1、2.0 有什么区别？</h2><ul>
-<li><p>HTTP 1.0</p>
-<ul>
-<li>最基础的 HTTP 协议</li>
-<li>支持基本的 GET、POST 方法</li>
-</ul>
-</li>
-<li><p>HTTP 1.1</p>
-<ul>
-<li>缓存策略 cache-control、E-tag 等</li>
-<li>支持长连接 Connection: keep-alive,一次 TCP 连接多次请求</li>
-<li>支持断点续传，状态码 206</li>
-<li>支持新的方法 PUT、DELETE 等，可用于 Restful API</li>
-</ul>
-</li>
-<li><p>HTTP 2.0</p>
-<ul>
-<li>头部数据压缩：http2.0 使用 HPACK 算法对 header 对头部数据进行压缩，体积变小后，网络传输速度会更快<ul>
-<li>http/1.1 版本的头部信息是本文，而 http/2.0 头部数据就是二进制</li>
-</ul>
-</li>
-<li>多路复用，一次 TCP 连接中可以多个 HTTP 并行请求</li>
-<li>服务端推送</li>
-</ul>
-</li>
 </ul>
 <h2 id="什么是-HTTPS-中间人攻击？如何预防？"><a href="#什么是-HTTPS-中间人攻击？如何预防？" class="headerlink" title="什么是 HTTPS 中间人攻击？如何预防？"></a>什么是 HTTPS 中间人攻击？如何预防？</h2><ul>
 <li><p>HTTPS 加密传输</p>
@@ -3101,36 +3082,6 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <li>拥塞控制</li>
 <li>TCP 的连接管理</li>
 <li>滑动窗口</li>
-</ul>
-<h2 id="UDP-amp-TCP-的区别"><a href="#UDP-amp-TCP-的区别" class="headerlink" title="UDP &amp; TCP 的区别"></a>UDP &amp; TCP 的区别</h2><ul>
-<li><p>相同点：</p>
-<ul>
-<li>UDP 协议 和 TCP 协议 都是运输层协议</li>
-</ul>
-</li>
-<li><p>不同点：</p>
-<ul>
-<li><p>UDP 特点：</p>
-<ul>
-<li>无连接 —— 知道对端的 IP 和端口号就直接进行传输，不需要建立连接</li>
-<li>不可靠 —— 没有确认机制，没有重传机制，即使因为网络故障无法发送到<br>对方，UDP 协议也不会给应用层返回任何错误信息</li>
-<li>面向数据报</li>
-<li>传输速 度块</li>
-</ul>
-</li>
-<li><p>TCP 特点：</p>
-<ul>
-<li>面向连接，在客户端和服务器进行交换数据前，必须先在双方之间建立一个<br>TCP 连接</li>
-<li>可靠传输，具有确认应答机制、超时重传机制、拥塞控制、流量控制、<br>滑动窗口机制、延迟应答等。</li>
-<li>面向字节流</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>UDP 的响应速度优于 TCP，安全性和数据可靠性不如 TCP</p>
-</li>
-<li><p>UDP 一般用在网络负担非常重，但对响应速度要求高，数据类型都是短消息的情况下</p>
-</li>
 </ul>
 <h2 id="http-和-https-的区别-1"><a href="#http-和-https-的区别-1" class="headerlink" title="http 和 https 的区别"></a>http 和 https 的区别</h2><ul>
 <li>http 是一种一种广泛使用的网络协议，是一个客户端和服务器请求和应答的标准。</li>
@@ -3874,6 +3825,24 @@ DoublyLinkedList.prototype.toString = function () &#123;
 </ul>
 </li>
 </ul>
+<h2 id="微前端框架"><a href="#微前端框架" class="headerlink" title="微前端框架"></a>微前端框架</h2><ul>
+<li><p>qiankun(基于 single-spa)</p>
+<ul>
+<li>沙箱（sandbox、快照、window.proxy）</li>
+<li>样式隔离（shadowDom、scopedCss）</li>
+</ul>
+</li>
+<li><p>micro-app（基于 webComponent）</p>
+<ul>
+<li>webComponent<ul>
+<li>允许用户自定义一个元素，名字随便起</li>
+<li>shadowDom 样式隔离是 webComponent 的一部分</li>
+<li>支持组件的模版、插槽、生命周期、属性等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="简易版-single-spa-源码实现"><a href="#简易版-single-spa-源码实现" class="headerlink" title="简易版 single-spa 源码实现"></a>简易版 single-spa 源码实现</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">onclick</span>=<span class="string">&quot;go(&#x27;#/a&#x27;)&quot;</span>&gt;</span>a应用<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">onclick</span>=<span class="string">&quot;go(&#x27;#/b&#x27;)&quot;</span>&gt;</span>b应用<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- navigation-event.js --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 对用户的路径切换 进行劫持，劫持后，重新调用reroute方法，进行计算应用的加载</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">urlRoute</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">reroute</span>(<span class="variable language_">arguments</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;hashchange&#x27;</span>, urlRoute);</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;popstate&#x27;</span>, urlRoute); <span class="comment">// 浏览器历史切换的时候会执行此方法</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 但是当路由切换的时候 我们触发single-spa的addEventLister, 应用中可能也包含addEventLister</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 需要劫持原生的路由系统，保证当我们加载完后再切换路由</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> capturedEventListeners = &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">hashchange</span>: [],</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">popstate</span>: [],</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> listentingTo = [<span class="string">&#x27;hashchange&#x27;</span>, <span class="string">&#x27;popstate&#x27;</span>];</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> originalAddEventListener = <span class="variable language_">window</span>.<span class="property">addEventListener</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> originalRemoveEventListener = <span class="variable language_">window</span>.<span class="property">removeEventListener</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">window</span>.<span class="property">addEventListener</span> = <span class="keyword">function</span> (<span class="params">eventName, callback</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 有要监听的事件， 函数不能重复</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (</span></span><br><span class="line"><span class="language-javascript">          listentingTo.<span class="title function_">includes</span>(eventName) &amp;&amp;</span></span><br><span class="line"><span class="language-javascript">          !capturedEventListeners[eventName].<span class="title function_">some</span>(</span></span><br><span class="line"><span class="language-javascript">            <span class="function">(<span class="params">listener</span>) =&gt;</span> listener === callback</span></span><br><span class="line"><span class="language-javascript">          )</span></span><br><span class="line"><span class="language-javascript">        ) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> capturedEventListeners[eventName].<span class="title function_">push</span>(callback);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> originalAddEventListener.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">window</span>.<span class="property">removeEventListener</span> = <span class="keyword">function</span> (<span class="params">eventName, callback</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 有要监听的事件， 函数不能重复</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (listentingTo.<span class="title function_">includes</span>(eventName)) &#123;</span></span><br><span class="line"><span class="language-javascript">          capturedEventListeners[eventName] = capturedEventListeners[</span></span><br><span class="line"><span class="language-javascript">            eventName</span></span><br><span class="line"><span class="language-javascript">          ].<span class="title function_">filter</span>(<span class="function">(<span class="params">fn</span>) =&gt;</span> fn !== callback);</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> originalRemoveEventListener.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">callCaptureEventListeners</span>(<span class="params">e</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (e) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> eventType = e[<span class="number">0</span>].<span class="property">type</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (listentingTo.<span class="title function_">includes</span>(eventType)) &#123;</span></span><br><span class="line"><span class="language-javascript">            capturedEventListeners[eventType].<span class="title function_">forEach</span>(<span class="function">(<span class="params">listener</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">              listener.<span class="title function_">apply</span>(<span class="variable language_">this</span>, e);</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">patchFn</span>(<span class="params">updateState, methodName</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> urlBefore = <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> r = updateState.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); <span class="comment">// 调用此方法 确实发生了路径的变化</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> urlAfter = <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (urlBefore !== urlAfter) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 手动派发popstate事件</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">window</span>.<span class="title function_">dispatchEvent</span>(<span class="keyword">new</span> <span class="title class_">PopStateEvent</span>(<span class="string">&#x27;popstate&#x27;</span>));</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> r;</span></span><br><span class="line"><span class="language-javascript">        &#125;;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">window</span>.<span class="property">history</span>.<span class="property">pushState</span> = <span class="title function_">patchFn</span>(<span class="variable language_">window</span>.<span class="property">history</span>.<span class="property">pushState</span>, <span class="string">&#x27;pushState&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">window</span>.<span class="property">history</span>.<span class="property">replaceState</span> = <span class="title function_">patchFn</span>(</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">window</span>.<span class="property">history</span>.<span class="property">replaceState</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="string">&#x27;replaceState&#x27;</span></span></span><br><span class="line"><span class="language-javascript">      );</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- app.helpers.js --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// app status</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> <span class="variable constant_">NOT_LOADED</span> = <span class="string">&#x27;NOT_LOADED&#x27;</span>; <span class="comment">// 没有被加载</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> <span class="variable constant_">LOADING_SOURCE_CODE</span> = <span class="string">&#x27;LOADING_SOURCE_CODE&#x27;</span>; <span class="comment">// 路径匹配了 要去加载这个资源</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> <span class="variable constant_">LOAD_ERROR</span> = <span class="string">&#x27;LOAD_ERROR&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 启动的过程</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> <span class="variable constant_">NOT_BOOTSTRAPED</span> = <span class="string">&#x27;NOT_BOOTSTRAPED&#x27;</span>; <span class="comment">// 资源加载完毕了 需要启动，此时还没有启动</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> <span class="variable constant_">BOOTSTRAPING</span> = <span class="string">&#x27;BOOTSTRAPING&#x27;</span>; <span class="comment">// 启动中</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> <span class="variable constant_">NOT_MOUNTED</span> = <span class="string">&#x27;NOT_MOUNTED&#x27;</span>; <span class="comment">// 没有被挂载</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 挂载流程</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> <span class="variable constant_">MOUNTING</span> = <span class="string">&#x27;MOUNTING&#x27;</span>; <span class="comment">// 正在挂载</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> <span class="variable constant_">MOUNTED</span> = <span class="string">&#x27;MOUNTED&#x27;</span>; <span class="comment">// 挂载完成</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 卸载流程</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> <span class="variable constant_">UNMOUNTING</span> = <span class="string">&#x27;UNMOUNTING&#x27;</span>; <span class="comment">// 卸载中</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 加载正在下载应用 LOADING_SOURCE_CODE，激活已经运行了</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 看一下这个应用是否正在被激活</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">isActive</span>(<span class="params">app</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> app.<span class="property">status</span> === <span class="variable constant_">MOUNTED</span>; <span class="comment">// 此应用正在被激活</span></span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 看一下此应用是否被激活</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">shouldBeActive</span>(<span class="params">app</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> app.<span class="title function_">activeWhen</span>(<span class="variable language_">window</span>.<span class="property">location</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">getAppChanges</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> appsToLoad = [];</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> appsToMount = [];</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> appsToUnmount = [];</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        apps.<span class="title function_">forEach</span>(<span class="function">(<span class="params">app</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> appShouldBeActive = <span class="title function_">shouldBeActive</span>(app);</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">switch</span> (app.<span class="property">status</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">case</span> <span class="attr">NOT_LOADED</span>:</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">case</span> <span class="attr">LOADING_SOURCE_CODE</span>:</span></span><br><span class="line"><span class="language-javascript">              <span class="comment">// 1） 标记当前路径下 哪些应用要被加载</span></span></span><br><span class="line"><span class="language-javascript">              <span class="keyword">if</span> (appShouldBeActive) &#123;</span></span><br><span class="line"><span class="language-javascript">                appsToLoad.<span class="title function_">push</span>(app);</span></span><br><span class="line"><span class="language-javascript">              &#125;</span></span><br><span class="line"><span class="language-javascript">              <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">case</span> <span class="attr">NOT_BOOTSTRAPED</span>:</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">case</span> <span class="attr">BOOTSTRAPING</span>:</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">case</span> <span class="attr">NOT_MOUNTED</span>:</span></span><br><span class="line"><span class="language-javascript">              <span class="comment">// 2) 当前路径下 哪些应用要被挂在</span></span></span><br><span class="line"><span class="language-javascript">              <span class="keyword">if</span> (appShouldBeActive) &#123;</span></span><br><span class="line"><span class="language-javascript">                appsToMount.<span class="title function_">push</span>(app);</span></span><br><span class="line"><span class="language-javascript">              &#125;</span></span><br><span class="line"><span class="language-javascript">              <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">case</span> <span class="attr">MOUNTED</span>:</span></span><br><span class="line"><span class="language-javascript">              <span class="comment">// 3） 当前路径下 哪些应用要被卸载</span></span></span><br><span class="line"><span class="language-javascript">              <span class="keyword">if</span> (!appShouldBeActive) &#123;</span></span><br><span class="line"><span class="language-javascript">                appsToUnmount.<span class="title function_">push</span>(app);</span></span><br><span class="line"><span class="language-javascript">              &#125;</span></span><br><span class="line"><span class="language-javascript">              <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">default</span>:</span></span><br><span class="line"><span class="language-javascript">              <span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> &#123; appsToLoad, appsToMount, appsToUnmount &#125;;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- lifecycles --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// load</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">flattenArrayToPromise</span>(<span class="params">fns</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        fns = <span class="title class_">Array</span>.<span class="title function_">isArray</span>(fns) ? fns : [fns];</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">props</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// redux</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> fns.<span class="title function_">reduce</span>(</span></span><br><span class="line"><span class="language-javascript">            <span class="function">(<span class="params">rPromise, fn</span>) =&gt;</span> rPromise.<span class="title function_">then</span>(<span class="function">() =&gt;</span> <span class="title function_">fn</span>(props)),</span></span><br><span class="line"><span class="language-javascript">            <span class="title class_">Promise</span>.<span class="title function_">resolve</span>()</span></span><br><span class="line"><span class="language-javascript">          );</span></span><br><span class="line"><span class="language-javascript">        &#125;;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">toLoadPromise</span>(<span class="params">app</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (app.<span class="property">status</span> !== <span class="variable constant_">NOT_LOADED</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 此应用加载完毕了</span></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> app;</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">          app.<span class="property">status</span> = <span class="variable constant_">LOADING_SOURCE_CODE</span>; <span class="comment">// 正在加载应用</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// loadApp 对于之前的内容 System.import()</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> app.<span class="title function_">loadApp</span>(app.<span class="property">customProps</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">v</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">const</span> &#123; bootstrap, mount, unmount &#125; = v;</span></span><br><span class="line"><span class="language-javascript">            app.<span class="property">status</span> = <span class="variable constant_">NOT_BOOTSTRAPED</span>;</span></span><br><span class="line"><span class="language-javascript">            app.<span class="property">bootstrap</span> = <span class="title function_">flattenArrayToPromise</span>(bootstrap);</span></span><br><span class="line"><span class="language-javascript">            app.<span class="property">mount</span> = <span class="title function_">flattenArrayToPromise</span>(mount);</span></span><br><span class="line"><span class="language-javascript">            app.<span class="property">unmount</span> = <span class="title function_">flattenArrayToPromise</span>(unmount);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> app;</span></span><br><span class="line"><span class="language-javascript">          &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// mount</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">toMountPromise</span>(<span class="params">app</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (app.<span class="property">status</span> !== <span class="variable constant_">NOT_MOUNTED</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> app;</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> app.<span class="title function_">mount</span>(app.<span class="property">customProps</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            app.<span class="property">status</span> = <span class="variable constant_">MOUNTED</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> app;</span></span><br><span class="line"><span class="language-javascript">          &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// unmount</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">toUnmountPromise</span>(<span class="params">app</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (app.<span class="property">status</span> !== <span class="variable constant_">MOUNTED</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> app;</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">          app.<span class="property">status</span> = <span class="variable constant_">UNMOUNTING</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// app.unmount 方法用户可能写的是一个数组。。。。。</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> app.<span class="title function_">unmount</span>(app.<span class="property">customProps</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            app.<span class="property">status</span> = <span class="variable constant_">NOT_MOUNTED</span>;</span></span><br><span class="line"><span class="language-javascript">          &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// bootstrap</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">toBootstrapPromise</span>(<span class="params">app</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (app.<span class="property">status</span> !== <span class="variable constant_">NOT_BOOTSTRAPED</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 此应用加载完毕了</span></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> app;</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">          app.<span class="property">status</span> = <span class="variable constant_">BOOTSTRAPING</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> app.<span class="title function_">bootstrap</span>(app.<span class="property">customProps</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            app.<span class="property">status</span> = <span class="variable constant_">NOT_MOUNTED</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> app;</span></span><br><span class="line"><span class="language-javascript">          &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- reroute --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 后续路径变化 也需要走这里， 重新计算哪些应用被加载或者写在</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> appChangeUnderWay = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> peopleWaitingOnAppChange = [];</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">reroute</span>(<span class="params">event</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 如果多次触发reroute 方法我们可以创造一个队列来屏蔽这个问题</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (appChangeUnderWay) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            peopleWaitingOnAppChange.<span class="title function_">push</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">              resolve,</span></span><br><span class="line"><span class="language-javascript">              reject,</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">          &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 获取app对应的状态 进行分类</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> &#123; appsToLoad, appsToMount, appsToUnmount &#125; = <span class="title function_">getAppChanges</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 加载完毕后 需要去挂载的应用</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (started) &#123;</span></span><br><span class="line"><span class="language-javascript">          appChangeUnderWay = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 用户调用了start方法 我们需要处理当前应用要挂载或者卸载</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> <span class="title function_">performAppChange</span>();</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 先拿到应用去加载  -》</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="title function_">loadApps</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">loadApps</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 应用的加载</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(appsToLoad.<span class="title function_">map</span>(toLoadPromise)).<span class="title function_">then</span>(</span></span><br><span class="line"><span class="language-javascript">            callEventListener</span></span><br><span class="line"><span class="language-javascript">          ); <span class="comment">// 目前我们没有调用start</span></span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">performAppChange</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 将不需要的应用卸载掉, 返回一个卸载的promise</span></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 1) 稍后测试销毁逻辑</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> unmountAllPromises = <span class="title class_">Promise</span>.<span class="title function_">all</span>(</span></span><br><span class="line"><span class="language-javascript">            appsToUnmount.<span class="title function_">map</span>(toUnmountPromise)</span></span><br><span class="line"><span class="language-javascript">          );</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 流程加载需要的应用  -》 启动对应的应用 -》 卸载之前的 -》 挂载对应的应用</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 2) 加载需要的应用（可能这个应用在注册的时候已经被加载了）</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 默认情况注册的时候 路径是 /a , 但是当我们start的时候应用是/b</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> loadMountPromises = <span class="title class_">Promise</span>.<span class="title function_">all</span>(</span></span><br><span class="line"><span class="language-javascript">            appsToLoad.<span class="title function_">map</span>(<span class="function">(<span class="params">app</span>) =&gt;</span></span></span><br><span class="line"><span class="language-javascript">              <span class="title function_">toLoadPromise</span>(app).<span class="title function_">then</span>(<span class="function">(<span class="params">app</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="comment">// 当应用加载完毕后 需要启动和挂载，但是要保证挂载前 先卸载掉来的应用</span></span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">return</span> <span class="title function_">tryBootstrapAndMount</span>(app, unmountAllPromises);</span></span><br><span class="line"><span class="language-javascript">              &#125;)</span></span><br><span class="line"><span class="language-javascript">            )</span></span><br><span class="line"><span class="language-javascript">          );</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="comment">// 如果应用 没有加载   加载 -》启动挂载   如果应用已经加载过了  挂载</span></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">const</span> <span class="title class_">MountPromises</span> = <span class="title class_">Promise</span>.<span class="title function_">all</span>(</span></span><br><span class="line"><span class="language-javascript">            appsToMount.<span class="title function_">map</span>(<span class="function">(<span class="params">app</span>) =&gt;</span></span></span><br><span class="line"><span class="language-javascript">              <span class="title function_">tryBootstrapAndMount</span>(app, unmountAllPromises)</span></span><br><span class="line"><span class="language-javascript">            )</span></span><br><span class="line"><span class="language-javascript">          );</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">function</span> <span class="title function_">tryBootstrapAndMount</span>(<span class="params">app, unmountAllPromises</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span> (<span class="title function_">shouldBeActive</span>(app)) &#123;</span></span><br><span class="line"><span class="language-javascript">              <span class="comment">// 保证卸载完毕在挂载</span></span></span><br><span class="line"><span class="language-javascript">              <span class="keyword">return</span> <span class="title function_">toBootstrapPromise</span>(app).<span class="title function_">then</span>(<span class="function">(<span class="params">app</span>) =&gt;</span></span></span><br><span class="line"><span class="language-javascript">                unmountAllPromises.<span class="title function_">then</span>(<span class="function">() =&gt;</span> <span class="title function_">toMountPromise</span>(app))</span></span><br><span class="line"><span class="language-javascript">              );</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>([loadMountPromises, <span class="title class_">MountPromises</span>]).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 卸载完毕后</span></span></span><br><span class="line"><span class="language-javascript">            <span class="title function_">callEventListener</span>();</span></span><br><span class="line"><span class="language-javascript">            appChangeUnderWay = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span> (peopleWaitingOnAppChange.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">              peopleWaitingOnAppChange = []; <span class="comment">// 多次操作 我缓存起来，。。。。</span></span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">          &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">callEventListener</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="title function_">callCaptureEventListeners</span>(event);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- registerApplication --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> apps = [];</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">registerApplication</span>(<span class="params">appName, loadApp, activeWhen, customProps</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> registeration = &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">name</span>: appName,</span></span><br><span class="line"><span class="language-javascript">          loadApp,</span></span><br><span class="line"><span class="language-javascript">          activeWhen,</span></span><br><span class="line"><span class="language-javascript">          customProps,</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">status</span>: <span class="variable constant_">NOT_LOADED</span>,</span></span><br><span class="line"><span class="language-javascript">        &#125;;</span></span><br><span class="line"><span class="language-javascript">        apps.<span class="title function_">push</span>(registeration);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">reroute</span>(); <span class="comment">// 重写路由</span></span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- start --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> started = <span class="literal">false</span>; <span class="comment">// 默认没有调用start方法</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">start</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        started = <span class="literal">true</span>; <span class="comment">// 用户启动了</span></span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">reroute</span>();</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 入口 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> app1 = &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">bootstrap</span>: [</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">async</span> () =&gt; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;app1 bootstrap1&#x27;</span>),</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">async</span> () =&gt; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;app1 bootstrap2&#x27;</span>),</span></span><br><span class="line"><span class="language-javascript">        ],</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">mount</span>: [</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">async</span> (props) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// new Vue().$mount()...</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;app1 mount1&#x27;</span>, props);</span></span><br><span class="line"><span class="language-javascript">          &#125;,</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">async</span> () =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// new Vue().$mount()...</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;app1 mount2&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">          &#125;,</span></span><br><span class="line"><span class="language-javascript">        ],</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">unmount</span>: <span class="keyword">async</span> (props) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;app1 unmount&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> app2 = &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">bootstrap</span>: <span class="keyword">async</span> () =&gt; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;app2 bootstrap1&#x27;</span>),</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">mount</span>: [</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">async</span> () =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// new Vue().$mount()...</span></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reejct</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">              <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;app2 mount&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">                <span class="title function_">resolve</span>();</span></span><br><span class="line"><span class="language-javascript">              &#125;, <span class="number">1000</span>);</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">          &#125;,</span></span><br><span class="line"><span class="language-javascript">        ],</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">unmount</span>: <span class="keyword">async</span> () =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;app2 unmount&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript">      <span class="title function_">registerApplication</span>(</span></span><br><span class="line"><span class="language-javascript">        <span class="string">&#x27;a&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">async</span> () =&gt; app1,</span></span><br><span class="line"><span class="language-javascript">        <span class="function">(<span class="params">location</span>) =&gt;</span> location.<span class="property">hash</span>.<span class="title function_">startsWith</span>(<span class="string">&#x27;#/a&#x27;</span>),</span></span><br><span class="line"><span class="language-javascript">        &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;</span></span><br><span class="line"><span class="language-javascript">      );</span></span><br><span class="line"><span class="language-javascript">      <span class="title function_">registerApplication</span>(</span></span><br><span class="line"><span class="language-javascript">        <span class="string">&#x27;b&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">async</span> () =&gt; app2,</span></span><br><span class="line"><span class="language-javascript">        <span class="function">(<span class="params">location</span>) =&gt;</span> location.<span class="property">hash</span>.<span class="title function_">startsWith</span>(<span class="string">&#x27;#/b&#x27;</span>),</span></span><br><span class="line"><span class="language-javascript">        &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;</span></span><br><span class="line"><span class="language-javascript">      );</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 开启路径的监控，路径切换的时候 可以调用对应的mount unmount</span></span></span><br><span class="line"><span class="language-javascript">      <span class="title function_">start</span>();</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 这个监控操作 应该被延迟到 当应用挂挂载完毕后再行</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;hashchange&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">hash</span>, <span class="string">&#x27;p----&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">function</span> <span class="title function_">go</span>(<span class="params">url</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 用户调用pushState replaceState 此方法不会触发逻辑reroute</span></span></span><br><span class="line"><span class="language-javascript">        history.<span class="title function_">pushState</span>(&#123;&#125;, <span class="literal">null</span>, url);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
@@ -4014,6 +3983,67 @@ DoublyLinkedList.prototype.toString = function () &#123;
 
 <p>Note：如果页面需要建立与许多第三方域的连接，则将它们预先连接会适得其反。 preconnect 提示最好仅用于最关键的连接。对于其他的，只需使用 <link rel="dns-prefetch"> 即可节省第一步的时间 DNS 查找。</p>
 <p>扩展：<br><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NDY4NDgyOQ==&mid=2247491757&idx=1&sn=a956c6c62c98e2d5ee71c8ed8d3a3eb8&chksm=cecfa85ff9b82149a3e50e81789b29cc0923745cf8a8f7713619aa2499753a3de760f24e6f93&scene=132#wechat_redirect">收到的 HTML 如果包含几十个图片标签，这些图片是以什么方式、什么顺序、建立了多少连接、使用什么协议被下载下来的呢？</a></p>
+<h2 id="你知道哪些前端攻击？该如何预防？"><a href="#你知道哪些前端攻击？该如何预防？" class="headerlink" title="你知道哪些前端攻击？该如何预防？"></a>你知道哪些前端攻击？该如何预防？</h2><ul>
+<li><p>xss</p>
+<ul>
+<li>Cross Site Script 跨站脚本攻击</li>
+<li>手段：将 js 代码插入到网页内容中，渲染时执行 js 代码</li>
+<li>预防：特殊字符替换（前端或后端）</li>
+<li>输入检查，对于用户输入进行格式检查。</li>
+</ul>
+</li>
+<li><p>csrf</p>
+<ul>
+<li><p>Cross Site Request Forgery 跨站请求伪造</p>
+</li>
+<li><p>手段：诱导用户去访问另一个网站的接口，伪造请求</p>
+</li>
+<li><p>预防：严格的跨域限制 + 验证码机制</p>
+</li>
+<li><p>csrf 详细过程</p>
+<ul>
+<li>用户登录 A 网站，有了 A 网站的 cookie</li>
+<li>诱导用户到 B 网站，并发起 A 网站的请求</li>
+<li>A 网站的 API 发现有 cookie，认为是用户自己操作的</li>
+</ul>
+</li>
+<li><p>csrf 预防手段</p>
+<ul>
+<li>严格的跨域请求限制，如判断 referer（请求来源）</li>
+<li>为 cookie 设置 SameSite，禁止跨域传递 cookie<ul>
+<li>Chrome 51 开始，浏览器的 Cookie 新增加了一个 SameSite 属性，用来防止 CSRF 攻击 和用户追踪（第三方恶意获取 cookie），限制第三方 Cookie，从而减少安全风险。</li>
+</ul>
+</li>
+<li>关键接口使用短信验证码</li>
+<li>token 验证</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>点击劫持</p>
+<ul>
+<li>click jacing</li>
+<li>手段：诱导界面上蒙一个透明 iframe，诱导用户点击</li>
+<li>预防：让 iframe 不能跨域加载<ul>
+<li>X-FRAME-OPTIONS 响应头是用来给浏览器指示允许一个页面可否在<code>&lt;frame&gt;</code>,<br><code>&lt;iframe&gt;</code> 或者 <code>&lt;object&gt;</code> 中展现的标记。网站可以使用此功能，来确保自己网站<br>内容没有被嵌到别人的网站中去，也从而避免点击劫持的攻击。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>DDos</p>
+<ul>
+<li>Distribute denial-of-service 分布式拒绝服务</li>
+<li>手段：分布式的、大规模的流量访问，使服务器瘫痪</li>
+<li>预防：软件层不好做，需硬件预防（如阿里云 WAF）</li>
+</ul>
+</li>
+<li><p>SQL 注入</p>
+<ul>
+<li>手段：提交内容时写入 SQL 语句，破环数据库</li>
+<li>预防：处理输入的内容，替换特殊字符</li>
+</ul>
+</li>
+</ul>
 <h2 id="性能优化（空间换时间）"><a href="#性能优化（空间换时间）" class="headerlink" title="性能优化（空间换时间）"></a>性能优化（空间换时间）</h2><ul>
 <li><p>性能优化原则</p>
 <ul>
@@ -5781,58 +5811,6 @@ dt.getDay()     //星期几（0-6）
     <url>/2019/07/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><span id="more"></span>
 
-<pre><code>缓存可以简单高效的提高性能优化，对于一个数据请求来说，分为网络请求、后端处理、浏览器
-响应三个步骤，浏览器缓存可以优化网络请求和响应部分。比如：直接换用缓存而不发起请求，
-或者发起请求但后端存储的数据和前端一致，就没有必要将数据回传，这样就减少的响应数据，
-使得缓存文件可以重复利用，减少带宽，减低网络负荷。
-</code></pre>
-<h2 id="缓存位置"><a href="#缓存位置" class="headerlink" title="缓存位置"></a>缓存位置</h2><pre><code>网络请求会先从缓存位置上面查找缓存，如果都没有命中，才会去请求网络资源，从缓存位置
-分为四种，并且各自有优先级：
-- Service Worker
-- Memory Cache
-- Disk Cache
-- Push Cache
-
-Service Worker:
-Service Worker 是运行在浏览器背后的独立线程，一般可以用
-来实现缓存功能。使用 Service Worker 的话，传输协议必须为 HTTPS。因为
-Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。
-Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、
-如何匹配缓存、如何读取缓存，并且缓存是持续性的。
-
-Service Worker 实现缓存功能一般分为三个步骤：首先需要先注册
-Service Worker，然后监听到 install 事件以后就可以缓存需要的文件，那么在下次用户访问
-的时候就可以通过拦截请求的方式查询是否存在缓存，存在缓存的话就可以直接读取缓存文件，
-否则就去请求数据。
-
-当 Service Worker 没有命中缓存的时候，我们需要去调用 fetch 函数
-获取数据。也就是说，如果我们没有在 Service Worker 命中缓存的话，会根据缓存查找优先级
-去查找数据。但是不管我们是从 Memory Cache 中还是从网络请求中获取的数据，浏览器都会显
-示我们是从 Service Worker 中获取的内容。
-
-Memory Cache:
-Memory Cache 也就是内存中的缓存，主要包含的是当前中页面中已经抓取到的资源,例如页面
-上已经下载的样式、脚本、图片等。读取内存中的数据肯定比磁盘快,内存缓存虽然读取高效，
-可是缓存持续性很短，会随着进程的释放而释放。 一旦我们关闭 Tab 页面，内存中的缓存也就
-被释放了。
-
-Disk Cache:
-Disk Cache 也就是存储在硬盘中的缓存，读取速度慢点，但是什么都能存储到磁盘中，比之
-Memory Cache 胜在容量和存储时效性上。
-
-在所有浏览器缓存中，Disk Cache 覆盖面基本是最大的。它会
-根据 HTTP Herder 中的字段判断哪些资源需要缓存，哪些资源可以不请求直接使用，哪些资源
-已经过期需要重新请求。并且即使在跨站点的情况下，相同地址的资源一旦被硬盘缓存下来，就不
-会再次去请求数据。
-
-Push Cache:
-Push Cache（推送缓存）是 HTTP/2 中的内容，当以上三种
-缓存都没有命中时，它才会被使用。它只在会话（Session）中存在，一旦会话结束就被释放，
-并且缓存时间也很短暂，在 Chrome 浏览器中只有 5 分钟左右，同时它也并非严格执行 HTTP 头中
-的缓存指令。
-
-`如果以上四种缓存都没有命中的话，只能发起网络请求来获取资源了。 为了性能上的考虑，大部分接口都应该选择好缓存策略， 浏览器缓存策略分为两种：强缓存和协商缓存，并且缓存策略都是通过设置HTTP Header来实现的。`
-</code></pre>
 <h2 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h2><pre><code>强缓存：不会向服务器发送请求，直接从缓存中读取资源，可以通过HTTP Header实现：Expires
 和Cache-Control。
 + Expires：缓存过期时间，用来指定资源到期的时间，是服务端的具体的时间点，结合Last-modified
@@ -6516,8 +6494,8 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 
 <h2 id="谈谈你对-webpack-的理解？"><a href="#谈谈你对-webpack-的理解？" class="headerlink" title="谈谈你对 webpack 的理解？"></a>谈谈你对 webpack 的理解？</h2><p>webpack 是一个打包模块化 js 的工具，在 webpack 里一切文件皆模块<br>，通过 loader 转换，通过 plugin 注入钩子，最后输出由多个<br>模块组合成的文件，webpack 专注构建模块化。WebPack 可<br>以看做是模块的打包机器：它做的事情是，分析你的项目<br>结构，找到 js 模块及其它的一些浏览器不能直接运行的<br>拓展语言，例如：Scss，TS 等，并将其打包为合适的格式<br>以供浏览器使用。</p>
 <h2 id="说说-webpack-与-grunt、gulp-的不同？"><a href="#说说-webpack-与-grunt、gulp-的不同？" class="headerlink" title="说说 webpack 与 grunt、gulp 的不同？"></a>说说 webpack 与 grunt、gulp 的不同？</h2><p>三者都是前端构建工具，grunt 和 gulp 在早期比较流行，<br>现在 webpack 相对来说比较主，不过一些轻量化的任务<br>还是会用 gulp 来处理，比如单独打包 CSS 文件等。</p>
+<p>webpack 是基于入口的,webpack 会自动地递归解析<br>入口所需要加载的所有资源文件，然后用不同的<br>Loader 来处理不同的文件，用 Plugin 来扩展 webpack 功能。</p>
 <p>grunt 和 gulp 是基于任务和流（Task、Stream）的。<br>类似 jQuery，找到一个（或一类）文件，对其做一<br>系列链式操作，更新流上的数据，整条链式操作<br>构成了一个任务，多个任务就构成了 web 的构建流程。</p>
-<p>webpack 是基于入口的。webpack 会自动地递归解析<br>入口所需要加载的所有资源文件，然后用不同的<br>Loader 来处理不同的文件，用 Plugin 来扩展 webpack 功能。</p>
 <p>所以，从构建来说，gulp 和 grunt 需要开发者将整个<br>前端构建过程拆分成多个<code>Task</code>，并合理控制所有<code>Task</code>的<br>调用关系；webpack 需要开发者找到入口，并需要清楚对<br>于不同的资源应该使什么 Loader 做何种解析和加工对<br>于知识背景来说，gulp 更像后端开发者的思路，<br>需要对于整个流程了如指掌 webpack 更倾向于前端开发者的思路</p>
 <h2 id="什么是-bundle-什么是-chunk，什么是-module"><a href="#什么是-bundle-什么是-chunk，什么是-module" class="headerlink" title="什么是 bundle,什么是 chunk，什么是 module?"></a>什么是 bundle,什么是 chunk，什么是 module?</h2><ul>
 <li>bundle：是由 webpack 打包出来的文件</li>
@@ -6575,6 +6553,51 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <ul>
 <li>通过 webpack 的 optimization 属性来配置分包规则</li>
 </ul>
+</li>
+</ul>
+<h2 id="webpack5-和-webpack4-的区别？"><a href="#webpack5-和-webpack4-的区别？" class="headerlink" title="webpack5 和 webpack4 的区别？"></a>webpack5 和 webpack4 的区别？</h2><blockquote>
+<p>可以参考 webpack 官网的从 v4 升级到 v5 的版本迁移解决方案</p>
+</blockquote>
+<ul>
+<li><p>tree Shaking -只支持 esmodule，但是 vue、react 框架都是用 babel-loader 编译的，可以设置 modules：false 防止 babel 将模块类型转译为 commonjs 类型，导致 tree-shaking 失效</p>
+<ul>
+<li>webpack5 中 mode=’production’自动开启 tree-shaking</li>
+</ul>
+</li>
+<li><p>代码压缩</p>
+<ul>
+<li>webpack4 需要下载 terser-webpack-plugin 插件</li>
+<li>webpack5 内置了这个插件，并在 mode=’production’时自动开启 js 压缩功能</li>
+</ul>
+</li>
+<li><p>sideEffects 副作用</p>
+<ul>
+<li>optimization.sideEffects = true 开启副作用功能</li>
+<li>package.json 中设置 sideEffects:false 标记所有模块无副作用</li>
+<li>webpack 在打包前会检查项目所属的 package.json 文件中的 sideEffects 标识，如果没有副作用那么这个模块就不需要打包。</li>
+</ul>
+</li>
+<li><p>webpack 缓存</p>
+<ul>
+<li>webpack4 的缓存配置需要安装对应缓存插件</li>
+<li>webpack5 内置 cache 缓存机制，直接配置。</li>
+<li>使用持久化缓存<br>cache: {<br>type: ‘filesystem’， // cache 会在开发模式下设置成 memory，并在生产模式下把 chache 给禁用掉<br>cacheDirectory: path.join(__dirname, ‘node_modules/.cac/webpack’)<br>}</li>
+</ul>
+</li>
+<li><p>loader 的优化，通过 type 替换 loader</p>
+</li>
+<li><p>启动服务</p>
+<ul>
+<li>webpack4 是通过 webpack-dev-server 启动服务</li>
+<li>webpack5 内置 webpack serve 启动</li>
+</ul>
+</li>
+<li><p>模块联邦（微前端）</p>
+<ul>
+<li>实现应用程序之间的隔离</li>
+</ul>
+</li>
+<li><p>热更新</p>
 </li>
 </ul>
 ]]></content>
@@ -6664,13 +6687,6 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <li>vue.js 执行 command</li>
 <li>执行完毕，退出</li>
 </ol>
-<p>从应用角度看如何开发一个脚手架：</p>
-<ol>
-<li>开发 npm 项目，项目中包含一个 bin/vue.js 文件，并将项目发布到 npm</li>
-<li>将 npm 项目安装到 node 的 lib/node_modules 中</li>
-<li>在 node 的 bin 目录下配置 vue 软连接到 lib/node_modules/@vue/cli/bin/vue.js</li>
-<li>执行 vue 的命令时就可以找到 vue.js 执行</li>
-</ol>
 <p>疑问：</p>
 <ol>
 <li>为什么全局安装@vue/cli 会添加 vue 命令？<br>答： 在 package.json 中的 {bin: {‘vue’: ‘bin/vue.js’}}配置</li>
@@ -6693,12 +6709,57 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <li>网络通信：http/websocket</li>
 <li>文件处理</li>
 </ol>
+<p>从应用角度看如何开发一个脚手架：</p>
+<ol>
+<li>开发 npm 项目，项目中包含一个 bin/vue.js 文件，并将项目发布到 npm</li>
+<li>将 npm 项目安装到 node 的 lib/node_modules 中</li>
+<li>在 node 的 bin 目录下配置 vue 软连接到 lib/node_modules/@vue/cli/bin/vue.js</li>
+<li>执行 vue 的命令时就可以找到 vue.js 执行</li>
+</ol>
 ]]></content>
       <categories>
         <category>脚手架</category>
       </categories>
       <tags>
         <tag>脚手架</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue3源码分析</title>
+    <url>/2022/01/02/vue3%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="编程范式"><a href="#编程范式" class="headerlink" title="编程范式"></a>编程范式</h2><span id="more"></span>
+
+<ul>
+<li>命令式：关注过程的一种编程范式，描述了完成一个功能的纤细逻辑与实现<ul>
+<li>性能好</li>
+</ul>
+</li>
+<li>声明式：不关注过程只关注结果<ul>
+<li>可维护性强</li>
+<li>开发成本（开发周期）、开发体验（心智负担）</li>
+</ul>
+</li>
+</ul>
+<h2 id="vue-框架设计原则"><a href="#vue-框架设计原则" class="headerlink" title="vue 框架设计原则"></a>vue 框架设计原则</h2><blockquote>
+<p>vue 封装了命令式的逻辑，而对外暴露了声明式的接口；<br>vue 在可维护性和性能之间进行取舍，找到平衡点，在保证可维护性的基础上，尽可能的减少性能的损耗</p>
+</blockquote>
+<h2 id="vue-组件挂载时会发生如下几件事："><a href="#vue-组件挂载时会发生如下几件事：" class="headerlink" title="vue 组件挂载时会发生如下几件事："></a>vue 组件挂载时会发生如下几件事：</h2><ul>
+<li>编译：vue 模板会被编译为渲染函数（就是用来返回虚拟 DOM 树的函数）</li>
+<li>挂载：运行时渲染器会调用渲染函数，遍历返回虚拟 DOM 树，基于虚拟 DOM 树创建实际的 DOM 节点，此过程会追踪所用到的所有响应式依赖</li>
+<li>更新：当依赖发生改变后，副作用会重新执行，创建一个更新后的虚拟 DOM 树，然后运行时会将新旧两颗虚拟 DOM 树进行对比，将必要的更新应用到真实 DOM 节点</li>
+</ul>
+<h2 id="带编译时信息的虚拟-DOM"><a href="#带编译时信息的虚拟-DOM" class="headerlink" title="带编译时信息的虚拟 DOM"></a>带编译时信息的虚拟 DOM</h2><blockquote>
+<p>vue 中，框架同时控制着编译器和运行时，所以可以通过带编译时信息的虚拟 DOM 做很多编译时优化，例如静态提升、动态类型标记、树结构打平等</p>
+</blockquote>
+<blockquote>
+<p>react 的实现是纯运行时的，所以 react 的更新算法无法预知新的虚拟 DOM 树会是怎样，所以每次更新总是需要遍历整棵树、对比每个 vnode 上的 props 的区别来更新节点，尽管 DOM 树中有些静态节点不会改变，但在每次重新渲染还会创建新的 vnode，带来了大量不必要的内存压力</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>vue3</category>
+      </categories>
+      <tags>
+        <tag>vue3</tag>
       </tags>
   </entry>
 </search>
