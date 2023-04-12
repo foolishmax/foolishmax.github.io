@@ -2236,6 +2236,14 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <li><p>更新的时候利用的是在内存中构建并直接替换的双缓存技术，react 中最多会同时存在两颗 fiber 树，屏幕上显示内容对应的 fiber 树为 current fiber 树，正在内存中构建的 fiber 树为 workInProgressFiber 树</p>
 </li>
 </ul>
+<h2 id="diff-策略"><a href="#diff-策略" class="headerlink" title="diff 策略"></a>diff 策略</h2><blockquote>
+<p>React 文档中提到即使最前沿的算法，前后两棵树完全比对的算法时间复杂度为 O(n^3)，其中 n 是树中元素的数量。所以为了降低算法复杂度，React 的 diff 策略会预设三个限制</p>
+</blockquote>
+<ol>
+<li>只对同级元素进行 Diff，如果 Dom 节点在两次更新中跨越了层级，那么 React 不会尝试复用它</li>
+<li>不同类型的元素不复用，如果元素由 div 变为 p，React 会销毁 div 及其子孙节点，并新建 p 及其子孙节点</li>
+<li>通过 key prop 来确定 dom 节点的更新情况</li>
+</ol>
 <h2 id="React-的基本认识"><a href="#React-的基本认识" class="headerlink" title="React 的基本认识"></a>React 的基本认识</h2><span id="more"></span>
 
 <ul>
@@ -2328,16 +2336,11 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 
 <h2 id="虚拟-DOM-优点"><a href="#虚拟-DOM-优点" class="headerlink" title="虚拟 DOM 优点"></a>虚拟 DOM 优点</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 减少不必要的DOM操作</span><br><span class="line">    1.1虚拟dom可以将多次操作合并为一次操作，比如添加100个节点，确是一个一个操作的</span><br><span class="line">    1.2虚拟dom借助dom diff可以将多余的操作省略掉，比如添加100个节点，其中10个是新增的</span><br><span class="line"></span><br><span class="line">2. 跨平台渲染</span><br><span class="line">    1.因为虚拟dom本质上是一个js对象</span><br><span class="line"></span><br><span class="line">react虚拟dom结构:</span><br><span class="line"></span><br><span class="line">const vNode = &#123;</span><br><span class="line">    key: null,</span><br><span class="line">    props:&#123;</span><br><span class="line">        children: [</span><br><span class="line">            &#123;type: &#x27;span&#x27;, ....&#125;,</span><br><span class="line">        ],</span><br><span class="line">        className: &#x27;red&#x27;,</span><br><span class="line">        onClick: () =&gt; &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    ref: null,</span><br><span class="line">    type: &#x27;div&#x27;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">创建虚拟dom：React.createElement</span><br></pre></td></tr></table></figure>
 
-<h2 id="diff-策略"><a href="#diff-策略" class="headerlink" title="diff 策略"></a>diff 策略</h2><p>策略一： tree diff<br>React 对树进行分层比较，两颗虚拟 DOM 树只会对同一层级的 DOM 节点进行比较。如果存在跨层级的操作，只会进行创建和删除<br>如果节点是组件就进行 Component diff<br>如果节点是标签就进行 Element diff</p>
-<p>策略二：component diff<br>如果为非同类型组件的话标记组件为 dirty component，替换组件下所有子节点，<br>类型相同更新属性，然后深入组件进行 Tree diff（递归遍历对比）</p>
-<p>策略三：element diff<br>如果节点是原生标签，则看标签名<br>标签名不同直接替换，相同更新属性，然后进入标签进行 Tree diff（递归遍历对比）</p>
 <h2 id="shouldComponentUpdate-nextProps-nextState-是做什么的，（react-性能优化是哪个周期函数？）"><a href="#shouldComponentUpdate-nextProps-nextState-是做什么的，（react-性能优化是哪个周期函数？）" class="headerlink" title="shouldComponentUpdate(nextProps, nextState)是做什么的，（react 性能优化是哪个周期函数？）"></a>shouldComponentUpdate(nextProps, nextState)是做什么的，（react 性能优化是哪个周期函数？）</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shouldComponentUpdate 这个方法用来判断是否需要调用render方法重新绘制dom,</span><br><span class="line">由于渲染dom非常消耗性能，合理的调用shouldComponentUpdate方法可以极大的提高性能。</span><br></pre></td></tr></table></figure>
 
 <h2 id="createElement-和-cloneElement-有什么区别？"><a href="#createElement-和-cloneElement-有什么区别？" class="headerlink" title="createElement 和 cloneElement 有什么区别？"></a>createElement 和 cloneElement 有什么区别？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">React.createElement()构建React元素。</span><br><span class="line"></span><br><span class="line">接受三个参数，第一个参数为标签名，如div、span等，或者react组件，第二个参数为传入的属性，第三个为组件的子组件。</span><br><span class="line"></span><br><span class="line">React.createElement(</span><br><span class="line">    type,</span><br><span class="line">    [props],</span><br><span class="line">    [...children]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">React.cloneElement(),第一个参数传入react元素不是标签名，第二个参数传入属性，新添加的属性会并入原有的属性，第三个参数为子组件</span><br><span class="line"></span><br><span class="line">React.cloneElement(</span><br><span class="line">    element,</span><br><span class="line">    [props],</span><br><span class="line">    [...children]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
 <h2 id="虚拟-DOM-的优缺点？"><a href="#虚拟-DOM-的优缺点？" class="headerlink" title="虚拟 DOM 的优缺点？"></a>虚拟 DOM 的优缺点？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">优点：</span><br><span class="line">1. 处理了浏览器兼容性问题，避免了用户操作真实DOM</span><br><span class="line">2.内容经过xss处理，可以防范xss攻击</span><br><span class="line">3.跨平台开发</span><br><span class="line">4.更新的时候可以实现差异化更新，减少更新DOM的操作</span><br><span class="line"></span><br><span class="line">缺点：</span><br><span class="line">1.虚拟DOM需要消耗额外的内存</span><br><span class="line">2.首次渲染不一定会更快</span><br></pre></td></tr></table></figure>
-
-<h2 id="React-中创建组件的方式"><a href="#React-中创建组件的方式" class="headerlink" title="React 中创建组件的方式"></a>React 中创建组件的方式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">React.createClass()、ES6 class组件 无无状态函数式组件</span><br></pre></td></tr></table></figure>
 
 <h2 id="react-中-key-的作用"><a href="#react-中-key-的作用" class="headerlink" title="react 中 key 的作用"></a>react 中 key 的作用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">key在react中用于追踪哪些列表中元素被修改、添加或者移除的辅助标识。</span><br><span class="line"></span><br><span class="line">在开发中，需要保证某个元素的key在同级元素中具有唯一性。</span><br><span class="line"></span><br><span class="line">diff算法会借助元素的key值来判断元素是新创建的还是被移动而来的元素，从而减少不必要的元素重渲染</span><br></pre></td></tr></table></figure>
 
@@ -2372,7 +2375,7 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <p>useEffect 在 beforeMutation 阶段调度 flushPassiveEffects，在 layout 阶段注册 destroy、create 函数，在 commit 阶段完成后，异步执行 flushPassiveEffects，内部执行注册的回调</p>
 </blockquote>
 <blockquote>
-<p>useLayoutEffect 在 mutation 阶段执行 destroy 销毁函数，在 layout 阶段执行 create 创建函数</p>
+<p>useLayoutEffect 在 mutation 阶段执行 destroy 销毁函数，在 layout 阶段执行 create 创建函数<br>·</p>
 </blockquote>
 ]]></content>
       <categories>
