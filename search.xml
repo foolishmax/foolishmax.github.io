@@ -2235,6 +2235,8 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 </li>
 <li><p>更新的时候利用的是在内存中构建并直接替换的双缓存技术，react 中最多会同时存在两颗 fiber 树，屏幕上显示内容对应的 fiber 树为 current fiber 树，正在内存中构建的 fiber 树为 workInProgressFiber 树</p>
 </li>
+<li><p>两颗缓存树之间的替换操作是在 commit 阶段的 mutation 之后 layout 之前执行的 root.finishedWork = root.current.alternate</p>
+</li>
 </ul>
 <h2 id="diff-策略"><a href="#diff-策略" class="headerlink" title="diff 策略"></a>diff 策略</h2><blockquote>
 <p>React 文档中提到即使最前沿的算法，前后两棵树完全比对的算法时间复杂度为 O(n^3)，其中 n 是树中元素的数量。所以为了降低算法复杂度，React 的 diff 策略会预设三个限制</p>
@@ -2243,6 +2245,13 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <li>只对同级元素进行 Diff，如果 Dom 节点在两次更新中跨越了层级，那么 React 不会尝试复用它</li>
 <li>不同类型的元素不复用，如果元素由 div 变为 p，React 会销毁 div 及其子孙节点，并新建 p 及其子孙节点</li>
 <li>通过 key prop 来确定 dom 节点的更新情况</li>
+</ol>
+<blockquote>
+<p>React 可以从同级的节点数量将 Diff 分为单节点 diff 和多节点 diff</p>
+</blockquote>
+<ol>
+<li>单节点 diff 优先判断 key 是否相同，如果 key 相同判断 type 是否相同，只有都相同才会复用 dom 节点，type 不同将其 child 及其兄弟 fiber 都标记删除，如果仅 key 不同仅将其 child 标记删除</li>
+<li>多节点 diff，分为三种情况新增、删除和更新，但是更新操作的优先级要更高，因为在日常开发中，更新组件发生的频率更高，所以 diff 会优先判断当前节点是否属于更新操作，而且在 diff 的时候 react 针对同级的 fiber 节点是通过 oldFiber.sibling 指针链接形成的单链表，所以无法使用双指针（从数组头和尾同时遍历提高效率）优化。基于这个原因，react 的 diff 算法的整体逻辑会经历两轮遍历：第一轮处理更新的节点，第二轮处理剩下的不属于更新的节点</li>
 </ol>
 <h2 id="React-的基本认识"><a href="#React-的基本认识" class="headerlink" title="React 的基本认识"></a>React 的基本认识</h2><span id="more"></span>
 
@@ -2375,8 +2384,18 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <p>useEffect 在 beforeMutation 阶段调度 flushPassiveEffects，在 layout 阶段注册 destroy、create 函数，在 commit 阶段完成后，异步执行 flushPassiveEffects，内部执行注册的回调</p>
 </blockquote>
 <blockquote>
-<p>useLayoutEffect 在 mutation 阶段执行 destroy 销毁函数，在 layout 阶段执行 create 创建函数<br>·</p>
+<p>useLayoutEffect 在 mutation 阶段执行 destroy 销毁函数，在 layout 阶段执行 create 创建函数</p>
 </blockquote>
+<h2 id="当-shouldYield-为-true，以至于-performUnitOfWork-被中断后如何重新启动？"><a href="#当-shouldYield-为-true，以至于-performUnitOfWork-被中断后如何重新启动？" class="headerlink" title="当 shouldYield 为 true，以至于 performUnitOfWork 被中断后如何重新启动？"></a>当 shouldYield 为 true，以至于 performUnitOfWork 被中断后如何重新启动？</h2><blockquote>
+<p>React 架构中的 Scheduler 调度器包含两个功能时间切片、优先级调度</p>
+</blockquote>
+<ul>
+<li>时间切片采用执行时机更靠前的 MessageChannel，如果当前宿主环境不支持 MessageChannel 则使用 setTimeout，而且在 Scheduler 中为任务分配的初始剩余时间为 5ms，随着应用运行会根据 fps 动态调整任务的可执行时间</li>
+<li>优先级调度是通过 runWithPriority 实现的，接收一个优先级和一个回调函数，其中不同的优先级对应的是不同时长的任务过期时间<ul>
+<li>Scheduler 中存在两个队列 timerQueue 保存未就绪任务、taskQueue 保存已就绪任务，当 shouldYield 为 true 时，会在 taskQueue 已就绪任务中通过小顶堆查找时间最早的任务并执行它</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>react</category>
