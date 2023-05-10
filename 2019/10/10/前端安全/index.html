@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>前端安全 - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="前端安全"><meta property="og:type" content="blog"><meta property="og:title" content="前端安全"><meta property="og:url" content="https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="前端安全"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/img/og_image.png"><meta property="article:published_time" content="2019-10-10T05:50:51.000Z"><meta property="article:modified_time" content="2023-04-07T03:29:56.068Z"><meta property="article:author" content="foolishmax"><meta property="article:tag" content="前端安全"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://github.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"},"headline":"前端安全","image":["https://github.com/img/og_image.png"],"datePublished":"2019-10-10T05:50:51.000Z","dateModified":"2023-04-07T03:29:56.068Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"前端安全"}</script><link rel="canonical" href="https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>前端安全 - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="前端安全"><meta property="og:type" content="blog"><meta property="og:title" content="前端安全"><meta property="og:url" content="https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="前端安全"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/img/og_image.png"><meta property="article:published_time" content="2019-10-10T05:50:51.000Z"><meta property="article:modified_time" content="2023-04-24T01:55:41.317Z"><meta property="article:author" content="foolishmax"><meta property="article:tag" content="前端安全"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://github.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"},"headline":"前端安全","image":["https://github.com/img/og_image.png"],"datePublished":"2019-10-10T05:50:51.000Z","dateModified":"2023-04-24T01:55:41.317Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"前端安全"}</script><link rel="canonical" href="https://github.com/foolishmax/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -28,7 +28,7 @@
       window.addEventListener('hashchange', switchTab, false);
   })();
   </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
-</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="detail column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-10-10T05:50:51.000Z" title="10/10/2019, 1:50:51 PM">2019-10-10</time>发表</span><span class="level-item"><time dateTime="2023-04-07T03:29:56.068Z" title="4/7/2023, 11:29:56 AM">2023-04-07</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/">前端安全</a></span><span class="level-item">11 分钟读完 (大约1678个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">前端安全</h1><div class="content"><h2 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h2><span id="more"></span>
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="detail column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-10-10T05:50:51.000Z" title="10/10/2019, 1:50:51 PM">2019-10-10</time>发表</span><span class="level-item"><time dateTime="2023-04-24T01:55:41.317Z" title="4/24/2023, 9:55:41 AM">2023-04-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/">前端安全</a></span><span class="level-item">5 分钟读完 (大约724个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">前端安全</h1><div class="content"><h2 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h2><span id="more"></span>
 
 <h2 id="你知道哪些前端攻击？该如何预防？"><a href="#你知道哪些前端攻击？该如何预防？" class="headerlink" title="你知道哪些前端攻击？该如何预防？"></a>你知道哪些前端攻击？该如何预防？</h2><ul>
 <li><p>xss</p>
@@ -91,93 +91,43 @@
 </ul>
 </li>
 </ul>
-<h4 id="sql-注入"><a href="#sql-注入" class="headerlink" title="sql 注入"></a>sql 注入</h4><ul>
-<li>就是通过把 SQL 命令插入到 Web 表单递交或输入域名或页面请求的查询字符串，<br>最终达到欺骗服务器执行恶意的 SQL 命令</li>
-</ul>
+<h2 id="什么是跨域？解决跨域的方法有哪些"><a href="#什么是跨域？解决跨域的方法有哪些" class="headerlink" title="什么是跨域？解决跨域的方法有哪些?"></a>什么是跨域？解决跨域的方法有哪些?</h2><ul>
+<li><p>同源策略</p>
 <ul>
-<li>预防：比如使用基于 nodejs 的 sequelize 框架，不要裸写 sql 语句，使用常见的数据库工具即可解决</li>
+<li>是一种浏览器的安全策略</li>
+<li>协议、域名、端口号必须完全一致</li>
+<li>不同源的客户端脚本在没有明确的授权的情况下，不能读取对方的资源</li>
 </ul>
-<h4 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h4><ul>
-<li><p>xss：跨站脚本攻击(Cross Site Scripting),攻击者通过注入非法的 html 标签<br>或者 JavaScript 代码，从而当用户浏览该网页时，控制用户浏览器。</p>
 </li>
-<li><p>xss 主要分为三类：</p>
+<li><p>跨域</p>
 <ul>
-<li>DOM xss<ul>
-<li>DOM 即文本对象模型，DOM 通常代表在 html、xhtml 和 xml 中的对象，使用 DOM<br>可以允许程序和脚本动态的访问和更新文档的内容、结构和样式。它不需要服务器<br>解析响应的直接参与，触发 XSS 靠的是浏览器端的 DOM 解析，可以认为完全是客户端<br>的事情。</li>
-</ul>
-</li>
-<li>反射型 xss<ul>
-<li>反射型 XSS 也被称为非持久性 XSS，是现在最容易出现的一种 XSS 漏洞。发出请<br>求时，XSS 代码出现在 URL 中 ，最后输入提交到服务器，服务器解析后在响应内容<br>中出现这段 XSS 代码，最后浏览器解析执行。</li>
-</ul>
-</li>
-<li>存储型 xss<ul>
-<li>存储型 XSS 又被称为持久性 XSS，它是最危险的一种跨站脚本，相比反射型 XSS<br>和 DOM 型 XSS 具有更高的隐蔽性，所以危害更大，因为它不需要用户手动触发。<br>允许用户存储数据的 web 程序都可能存在存储型 XSS 漏洞，当攻击者提交一段 XSS<br>代码后，被服务器端接收并存储，当所有浏览者访问某个页面时都会被 XSS，其中<br>最典型的例子就是留言板。</li>
+<li>指一个域下的文档或脚本尝试去请求另一个域下的资源。</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p>主要影响：</p>
+<!-- more -->
+
 <ul>
-<li><p>利用虚假输入表单骗取用户个人信息</p>
-</li>
-<li><p>利用脚本窃取用户的 Cookie 值，被害者在不知情的情况下，帮助攻击者发送恶意请求。</p>
-</li>
-<li><p>显示伪造的文章或者图片</p>
-</li>
-</ul>
-</li>
-<li><p>防御措施：</p>
+<li><p>解决跨域</p>
 <ul>
-<li><p>设置 httpOnly：在 cookie 中设置 HttpOnly 属性后，js 脚本将无法读取到 cookie 的信息。</p>
+<li><p>jsonp</p>
 </li>
-<li><p>输入检查，对于用户输入进行格式检查。</p>
-<ul>
-<li>移除用户上传的 DOM 属性，如 onerror 事件等。</li>
-<li>移除用户上传的 style 节点、script 节点、iframe 节点。</li>
-</ul>
+<li><p>postMessage 跨域</p>
 </li>
-</ul>
+<li><p>WebSocket 协议跨域</p>
 </li>
-</ul>
-<ul>
-<li>vue 中输出原生 html 需要使用 <strong>v-html</strong></li>
-<li>react 中可以使用 <strong>dangerouslySetInnerHTML</strong></li>
-</ul>
-<h4 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h4><ul>
-<li><p>csrf：跨站请求伪造(Cross-Site Request Forgeries)，冒充用户发起请求，完成<br>一些违背用户意愿的事情。</p>
+<li><p>CORS（跨域资源共享，服务端设置 Access-Control-Allow-Origin，前端无需设置，<br>若要带 cookie 请求，前后端都要设置）</p>
 </li>
-<li><p>防御措施</p>
-<ul>
-<li><p>提交数据使用 post 请求</p>
+<li><p>nginx 反向代理接口跨域</p>
 </li>
-<li><p>Token 验证：</p>
-<ul>
-<li>第一步：后端随机产生一个 token，把这个 token 保存在 session 状态中，同时<br>后端把 token 交给前端页面；</li>
-<li>第二步：前端页面提交请求时，把 token 加入到请求数据或者头信息中，一起<br>传给后端；</li>
-<li>后端验证前端传来的 token 与 session 是否一致，一致则合法，否则非法请求。</li>
-</ul>
+<li><p>document.domain(两个页面通过 js 强制设置 document.domain 为基础主域，针对基础域名相同的情况)</p>
 </li>
-<li><p>Referer check：请求来源验证，但是不能保证 100%有效，因为服务器并不是什么<br>时候都能取到 Referer，而且低版本浏览器存在伪造 Referer 的风险。</p>
+<li><p>window.name + iframe</p>
 </li>
-<li><p>验证码：强制用户必须和应用进行交互，完成最终请求，但用户体验比较差。</p>
+<li><p>location.hash + iframe</p>
 </li>
-</ul>
+<li><p>…</p>
 </li>
-</ul>
-<h4 id="clickjacking"><a href="#clickjacking" class="headerlink" title="clickjacking"></a>clickjacking</h4><ul>
-<li><p>clickjacking: 点击劫持，利用透明的按钮或连接做成陷阱，覆盖在 web 页面之上，然后<br>诱使用户在不知的情况下，点击那个链接访问内容的一种攻击手段。又称为界面伪装。</p>
-</li>
-<li><p>大概有两种方式：</p>
-<ul>
-<li><p>攻击者使用一个透明 iframe，覆盖在一个网页上，然后诱使用户在该页面上进行操作，<br>此时用将在不知情的情况下点击透明的 iframe 页面。</p>
-</li>
-<li><p>攻击者使用一张图片覆盖在网页，遮挡网页原有的位置含义</p>
-</li>
-</ul>
-</li>
-<li><p>防御措施：</p>
-<ul>
-<li>X-FRAME-OPTIONS 响应头是用来给浏览器指示允许一个页面可否在<code>&lt;frame&gt;</code>,<br><code>&lt;iframe&gt;</code> 或者 <code>&lt;object&gt;</code> 中展现的标记。网站可以使用此功能，来确保自己网站<br>内容没有被嵌到别人的网站中去，也从而避免点击劫持的攻击。</li>
 </ul>
 </li>
 </ul>
