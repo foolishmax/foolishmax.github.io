@@ -6422,13 +6422,25 @@ dt.getDay()     //星期几（0-6）
 </ul>
 </li>
 </ul>
-<h2 id="PRD-包含哪些部分？"><a href="#PRD-包含哪些部分？" class="headerlink" title="PRD 包含哪些部分？"></a>PRD 包含哪些部分？</h2><ul>
-<li>需求背景</li>
+<h2 id="PRD-包含哪些部分（五部分）？"><a href="#PRD-包含哪些部分（五部分）？" class="headerlink" title="PRD 包含哪些部分（五部分）？"></a>PRD 包含哪些部分（五部分）？</h2><ul>
+<li>需求背景（业务价值）</li>
 <li>需求简介（列表）</li>
 <li>业务架构（产品结构、业务逻辑）</li>
-<li>产品原型</li>
+<li>产品原型（全局说明）</li>
+<li>非功能性需求</li>
 </ul>
-<h2 id="研发需要怎样的-PRD？"><a href="#研发需要怎样的-PRD？" class="headerlink" title="研发需要怎样的 PRD？"></a>研发需要怎样的 PRD？</h2>]]></content>
+<p>考虑点：</p>
+<ol>
+<li>投入产出比 ROI（return on inverstment）</li>
+<li>产品效果 PV、UV</li>
+</ol>
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><ul>
+<li>可控性</li>
+<li>稳定性</li>
+<li>适用性</li>
+<li>易用性</li>
+</ul>
+]]></content>
       <categories>
         <category>项目</category>
       </categories>
