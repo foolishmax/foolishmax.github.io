@@ -1341,7 +1341,9 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
   <entry>
     <title>前端模块化</title>
     <url>/2023/03/31/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="前端模块化"><a href="#前端模块化" class="headerlink" title="前端模块化"></a>前端模块化</h2><blockquote>
+    <content><![CDATA[<h2 id="前端模块化"><a href="#前端模块化" class="headerlink" title="前端模块化"></a>前端模块化</h2><span id="more"></span>
+
+<blockquote>
 <p>把复杂的代码按照功能的不同划分成不同的模块单独维护，提高开发效率，方便后期维护。<br>服务端规范主要是 CommonJS，例如 nodejs。<br>客户端主要有 AMD（异步模块定义，推崇依赖前置 requirejs）、CMD（通用模块定义，推崇依赖就近，seajs），但是随着 ES6 的普及，前端的这些第三方的模块化实现已经在渐渐的淘汰</p>
 </blockquote>
 <p>模块化的演进：</p>
@@ -1933,7 +1935,9 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
   <entry>
     <title>脚手架开发</title>
     <url>/2023/04/04/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BC%80%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="脚手架开发"><a href="#脚手架开发" class="headerlink" title="脚手架开发"></a>脚手架开发</h2><p>开发脚手架的核心目标：提升前端研发效能</p>
+    <content><![CDATA[<h2 id="脚手架开发"><a href="#脚手架开发" class="headerlink" title="脚手架开发"></a>脚手架开发</h2><span id="more"></span>
+
+<p>开发脚手架的核心目标：提升前端研发效能</p>
 <p>内容：</p>
 <ul>
 <li>创建项目+通用代码<ul>

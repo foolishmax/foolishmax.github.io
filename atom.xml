@@ -42,19 +42,12 @@
     <link href="https://github.com/foolishmax/2023/04/04/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BC%80%E5%8F%91/"/>
     <id>https://github.com/foolishmax/2023/04/04/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BC%80%E5%8F%91/</id>
     <published>2023-04-04T07:15:25.000Z</published>
-    <updated>2023-04-07T02:32:52.115Z</updated>
+    <updated>2023-05-31T09:48:09.918Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="脚手架开发"><a href="#脚手架开发" class="headerlink" title="脚手架开发"></a>脚手架开发</h2><p>开发脚手架的核心目标：提升前端研发效能</p><p>内容：</p><ul><li>创建项目+通用代码<ul><li>埋点</li><li>http 请求</li><li>工具方法</li><li>组件库</li></ul></li><li>git 操作<ul><li>创建仓库</li><li>代码冲突</li><li>远程代码同步</li><li>创建版本</li><li>发布打 tag</li></ul></li><li>构建和发布上线<ul><li>依赖安装和构建</li><li>资源上传 cdn</li><li>域名绑定</li><li>测试/正式服务器</li></ul></li></ul><p>脚手架核心价值将研发过程：</p><ul><li>自动化：项目重复代码拷贝/git 操作/发布上线操作</li><li>标准化：项目创建/git flow/发布流程/回滚流程</li><li>数据化：研发过程系统化、数据化，使得研发过程可量化</li></ul><p>自动化构建工具：jenkins、trvis 通常需要 git hooks 触发，在服务端运行需要定制化操作，整个过程比较复杂</p><p>脚手架执行原理：<br>以 vue-cli 为例子</p><ol><li>在终端输入 vue create xxx</li><li>终端解析出 vue 命令</li><li>终端在环境变量中找到(相当于 which vue，找不到提示 commond not found) vue 命令</li><li>根据 node/bin/目录下 vue 命令（软连接）连接到 node 全局依赖 lib/node_modules 包下的 vue.js</li><li>终端利用 node(/usr/bin/env node) 执行 vue.js</li><li>vue.js 解析 command/options</li><li>vue.js 执行 command</li><li>执行完毕，退出</li></ol><p>疑问：</p><ol><li>为什么全局安装@vue/cli 会添加 vue 命令？<br>答： 在 package.json 中的 {bin: {‘vue’: ‘bin/vue.js’}}配置</li><li>全局安装 npm install -g @vue/cli 时发生了什么？<br>答：首先会把@vue/cli 这个项目安装在 node 的 lib/node_modules 目录下，然后检查项目中 package 中是否存在 bin 属性，如果存在的话会在 node 的 bin 目录下创建一个对应的软连接</li><li>执行 vue 命令发生了什么？<br>答：操作系统会找到 which vue 的目录路径并执行这个路径的文件（先去环境变量中找对应命令，拿到目录执行）</li><li>怎么直接执行一个 js 文件，不通过 node？<br>答：在文件顶部写 #！/usr/bin/env node,相当于告诉操作系统去环境变量中找 node 命令去执行这个文件；/usr/bin/env node xxx.js = xxx.js(顶部添加指令) = node test.js</li></ol><p>创建软连接命令：</p><ul><li>ln -s /Users/foo/xxx.js vue</li></ul><p>脚手架开发难点：</p><ol><li>分包：将复杂的系统拆分成若干个模块</li><li>命令注册：vue create、vue add 等</li><li>参数解析 vue command options(全称、简称) params,帮助信息：Usage： vue &lt;’xxx’&gt; [‘options’]; Options: xxx</li><li>命令行交互（让用户选择或者输入）</li><li>日志打印</li><li>命令行文字变色</li><li>网络通信：http/websocket</li><li>文件处理</li></ol><p>从应用角度看如何开发一个脚手架：</p><ol><li>开发 npm 项目，项目中包含一个 bin/vue.js 文件，并将项目发布到 npm</li><li>将 npm 项目安装到 node 的 lib/node_modules 中</li><li>在 node 的 bin 目录下配置 vue 软连接到 lib/node_modules/@vue/cli/bin/vue.js</li><li>执行 vue 的命令时就可以找到 vue.js 执行</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="脚手架开发"><a href="#脚手架开发" class="headerlink" title="脚手架开发"></a>脚手架开发</h2><span id="more"></span><p>开发脚手架的核心目标：提升前端研发效能</p><p>内容：</p><ul><li>创建项目+通用代码<ul><li>埋点</li><li>http 请求</li><li>工具方法</li><li>组件库</li></ul></li><li>git 操作<ul><li>创建仓库</li><li>代码冲突</li><li>远程代码同步</li><li>创建版本</li><li>发布打 tag</li></ul></li><li>构建和发布上线<ul><li>依赖安装和构建</li><li>资源上传 cdn</li><li>域名绑定</li><li>测试/正式服务器</li></ul></li></ul><p>脚手架核心价值将研发过程：</p><ul><li>自动化：项目重复代码拷贝/git 操作/发布上线操作</li><li>标准化：项目创建/git flow/发布流程/回滚流程</li><li>数据化：研发过程系统化、数据化，使得研发过程可量化</li></ul><p>自动化构建工具：jenkins、trvis 通常需要 git hooks 触发，在服务端运行需要定制化操作，整个过程比较复杂</p><p>脚手架执行原理：<br>以 vue-cli 为例子</p><ol><li>在终端输入 vue create xxx</li><li>终端解析出 vue 命令</li><li>终端在环境变量中找到(相当于 which vue，找不到提示 commond not found) vue 命令</li><li>根据 node/bin/目录下 vue 命令（软连接）连接到 node 全局依赖 lib/node_modules 包下的 vue.js</li><li>终端利用 node(/usr/bin/env node) 执行 vue.js</li><li>vue.js 解析 command/options</li><li>vue.js 执行 command</li><li>执行完毕，退出</li></ol><p>疑问：</p><ol><li>为什么全局安装@vue/cli 会添加 vue 命令？<br>答： 在 package.json 中的 {bin: {‘vue’: ‘bin/vue.js’}}配置</li><li>全局安装 npm install -g @vue/cli 时发生了什么？<br>答：首先会把@vue/cli 这个项目安装在 node 的 lib/node_modules 目录下，然后检查项目中 package 中是否存在 bin 属性，如果存在的话会在 node 的 bin 目录下创建一个对应的软连接</li><li>执行 vue 命令发生了什么？<br>答：操作系统会找到 which vue 的目录路径并执行这个路径的文件（先去环境变量中找对应命令，拿到目录执行）</li><li>怎么直接执行一个 js 文件，不通过 node？<br>答：在文件顶部写 #！/usr/bin/env node,相当于告诉操作系统去环境变量中找 node 命令去执行这个文件；/usr/bin/env node xxx.js = xxx.js(顶部添加指令) = node test.js</li></ol><p>创建软连接命令：</p><ul><li>ln -s /Users/foo/xxx.js vue</li></ul><p>脚手架开发难点：</p><ol><li>分包：将复杂的系统拆分成若干个模块</li><li>命令注册：vue create、vue add 等</li><li>参数解析 vue command options(全称、简称) params,帮助信息：Usage： vue &lt;’xxx’&gt; [‘options’]; Options: xxx</li><li>命令行交互（让用户选择或者输入）</li><li>日志打印</li><li>命令行文字变色</li><li>网络通信：http/websocket</li><li>文件处理</li></ol><p>从应用角度看如何开发一个脚手架：</p><ol><li>开发 npm 项目，项目中包含一个 bin/vue.js 文件，并将项目发布到 npm</li><li>将 npm 项目安装到 node 的 lib/node_modules 中</li><li>在 node 的 bin 目录下配置 vue 软连接到 lib/node_modules/@vue/cli/bin/vue.js</li><li>执行 vue 的命令时就可以找到 vue.js 执行</li></ol>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;h2 id=&quot;脚手架开发&quot;&gt;&lt;a href=&quot;#脚手架开发&quot; class=&quot;headerlink&quot; title=&quot;脚手架开发&quot;&gt;&lt;/a&gt;脚手架开发&lt;/h2&gt;&lt;p&gt;开发脚手架的核心目标：提升前端研发效能&lt;/p&gt;
-&lt;p&gt;内容：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;创建项目+通用代码&lt;ul&gt;
-</summary>
-      
+    <summary type="html">&lt;h2 id=&quot;脚手架开发&quot;&gt;&lt;a href=&quot;#脚手架开发&quot; class=&quot;headerlink&quot; title=&quot;脚手架开发&quot;&gt;&lt;/a&gt;脚手架开发&lt;/h2&gt;</summary>
     
     
     
@@ -70,16 +63,12 @@
     <link href="https://github.com/foolishmax/2023/03/31/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     <id>https://github.com/foolishmax/2023/03/31/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/</id>
     <published>2023-03-31T08:45:36.000Z</published>
-    <updated>2023-04-04T07:07:44.361Z</updated>
+    <updated>2023-05-31T09:48:19.387Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="前端模块化"><a href="#前端模块化" class="headerlink" title="前端模块化"></a>前端模块化</h2><blockquote><p>把复杂的代码按照功能的不同划分成不同的模块单独维护，提高开发效率，方便后期维护。<br>服务端规范主要是 CommonJS，例如 nodejs。<br>客户端主要有 AMD（异步模块定义，推崇依赖前置 requirejs）、CMD（通用模块定义，推崇依赖就近，seajs），但是随着 ES6 的普及，前端的这些第三方的模块化实现已经在渐渐的淘汰</p></blockquote><p>模块化的演进：</p><ol><li>基于文件划分模块的方式</li><li>每个模块暴露一个全局对象，所有模块成员都挂载在这个对象中，例如 jQuery 库把它的 api 都放在了 window.$下面，但zepto也是在window.$下容易命名冲突</li><li>使用 IIFE 为模块提供私有空间</li><li>利用 IIFE 的参数作为依赖声明使用</li><li>模块化规范（AMD、CMD、CommonJS、ESM 等）</li></ol><h2 id="CommonJS-解析"><a href="#CommonJS-解析" class="headerlink" title="CommonJS 解析"></a>CommonJS 解析</h2><blockquote><p>CommonJS 的核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.export 来导出需要暴露的接口</p></blockquote><p>require 内部逻辑：<br>例如：require(X)</p><ol><li>如果 X 是内置模块（比如 require(‘http’)）<br>a. 返回该模块<br>b. 不再继续执行</li><li>如果 X 以 ‘./‘或者 ‘../‘开头<br>a. 根据 X 所在父模块，确定 X 的绝对路径<br>b. 将 X 当作文件，依次查找以下文件（.x ｜.x.js | .x.json | .x.node），只要一个存在就返回该文件，不再继续执行<br>c. 把 X 当作目录，依次查找以下文件（.x/package.json | .x/index.js | .x/index.json | .x/index.node），只要一个存在就返回并不再执行</li><li>如果 X 不带路径<br>a. 根据 X 所在父模块，确定 X 可能的安装目录，依次往上级目录查找，把 X 当成文件名或目录名加载</li><li>找不到抛错’not found’</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="前端模块化"><a href="#前端模块化" class="headerlink" title="前端模块化"></a>前端模块化</h2><span id="more"></span><blockquote><p>把复杂的代码按照功能的不同划分成不同的模块单独维护，提高开发效率，方便后期维护。<br>服务端规范主要是 CommonJS，例如 nodejs。<br>客户端主要有 AMD（异步模块定义，推崇依赖前置 requirejs）、CMD（通用模块定义，推崇依赖就近，seajs），但是随着 ES6 的普及，前端的这些第三方的模块化实现已经在渐渐的淘汰</p></blockquote><p>模块化的演进：</p><ol><li>基于文件划分模块的方式</li><li>每个模块暴露一个全局对象，所有模块成员都挂载在这个对象中，例如 jQuery 库把它的 api 都放在了 window.$下面，但zepto也是在window.$下容易命名冲突</li><li>使用 IIFE 为模块提供私有空间</li><li>利用 IIFE 的参数作为依赖声明使用</li><li>模块化规范（AMD、CMD、CommonJS、ESM 等）</li></ol><h2 id="CommonJS-解析"><a href="#CommonJS-解析" class="headerlink" title="CommonJS 解析"></a>CommonJS 解析</h2><blockquote><p>CommonJS 的核心思想是通过 require 方法来同步加载依赖的其他模块，通过 module.export 来导出需要暴露的接口</p></blockquote><p>require 内部逻辑：<br>例如：require(X)</p><ol><li>如果 X 是内置模块（比如 require(‘http’)）<br>a. 返回该模块<br>b. 不再继续执行</li><li>如果 X 以 ‘./‘或者 ‘../‘开头<br>a. 根据 X 所在父模块，确定 X 的绝对路径<br>b. 将 X 当作文件，依次查找以下文件（.x ｜.x.js | .x.json | .x.node），只要一个存在就返回该文件，不再继续执行<br>c. 把 X 当作目录，依次查找以下文件（.x/package.json | .x/index.js | .x/index.json | .x/index.node），只要一个存在就返回并不再执行</li><li>如果 X 不带路径<br>a. 根据 X 所在父模块，确定 X 可能的安装目录，依次往上级目录查找，把 X 当成文件名或目录名加载</li><li>找不到抛错’not found’</li></ol>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;h2 id=&quot;前端模块化&quot;&gt;&lt;a href=&quot;#前端模块化&quot; class=&quot;headerlink&quot; title=&quot;前端模块化&quot;&gt;&lt;/a&gt;前端模块化&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;把复杂的代码按照功能的不同划分成不同的模块单独维护，提高开发效率，方便后期维护。&lt;br&gt;服</summary>
-      
+    <summary type="html">&lt;h2 id=&quot;前端模块化&quot;&gt;&lt;a href=&quot;#前端模块化&quot; class=&quot;headerlink&quot; title=&quot;前端模块化&quot;&gt;&lt;/a&gt;前端模块化&lt;/h2&gt;</summary>
     
     
     
