@@ -1119,7 +1119,7 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
       </tags>
   </entry>
   <entry>
-    <title>Node.js之mongoDB</title>
+    <title>mongodb深入浅出</title>
     <url>/2019/09/09/mongodb%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/</url>
     <content><![CDATA[<h2 id="开启-MongoDB-服务器"><a href="#开启-MongoDB-服务器" class="headerlink" title="开启 MongoDB 服务器"></a>开启 MongoDB 服务器</h2><span id="more"></span>
 
