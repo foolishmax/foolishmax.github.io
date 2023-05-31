@@ -2031,7 +2031,7 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
       </tags>
   </entry>
   <entry>
-    <title>DOM基本操作</title>
+    <title>dom基本操作</title>
     <url>/2019/08/11/dom%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h2 id="一、节点"><a href="#一、节点" class="headerlink" title="一、节点"></a>一、节点</h2><h3 id="节点属性"><a href="#节点属性" class="headerlink" title="节点属性"></a>节点属性</h3><span id="more"></span>
 
