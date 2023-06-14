@@ -1191,7 +1191,7 @@ js引擎的工作方式分为：预编译和执行代码两个阶段。
 <h2 id="阿里云服务器"><a href="#阿里云服务器" class="headerlink" title="阿里云服务器"></a>阿里云服务器</h2><ol>
 <li>安装 nodejs</li>
 <li>安装 mongod</li>
-<li>安装 redis</li>
+<li>安装 redis<br>3.1 redis-server 启动 redis<br>3.2 ps axu | grep redis 查看 redis 服务进程</li>
 <li>安装 nginx<br>4.1 nginx -s reopen // 重新指定日志打印的文件<br>4.2 nginx - t //检测配置文件是否有语法错误<br>4.3 nginx -s reload // 重新加载配置文件</li>
 </ol>
 ]]></content>
