@@ -6457,4 +6457,27 @@ dt.getDay()     //星期几（0-6）
         <tag>面经</tag>
       </tags>
   </entry>
+  <entry>
+    <title>代码的艺术</title>
+    <url>/2023/06/16/%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/</url>
+    <content><![CDATA[<h2 id="一流代码的特性"><a href="#一流代码的特性" class="headerlink" title="一流代码的特性"></a>一流代码的特性</h2><ul>
+<li><p>正确和性能</p>
+<ul>
+<li>鲁棒性</li>
+<li>高效</li>
+</ul>
+</li>
+<li><p>可读性和可维护</p>
+<ul>
+<li>简洁</li>
+<li>简短</li>
+<li>可测试</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>代码</tag>
+      </tags>
+  </entry>
 </search>
