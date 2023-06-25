@@ -6544,7 +6544,10 @@ dt.getDay()     //星期几（0-6）
 <p>网站的整体的用户体验也是影响Google排名的一个重要因素，但是Google是如何衡量的呢？<br>Google使用了一个名为RankBrain的人工智能程序，该程序结合了其他的排名要素，例如：<br>·自然搜索点击率（CTR）：通过提高网站链接的点击率，可以提高排名<br>·停留时间（Dwell Time）：从搜索结果到你的网站后的停留时间<br>·跳出率：进入网站到离开网站没有任何交互，Google会任务该页面不相关，不会对其进行排名</p>
 </li>
 </ol>
-]]></content>
+<p>总结：<br>    以上就是本文的所有内容，希望你能够习惯这篇关于影响Google排名10大因素的文章。</p>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/110720993">SEO站内优化：网站结构优化</a><br><a href="https://www.zhihu.com/question/351325115">怎么做网站关键词优化？</a><br><a href="https://developers.google.cn/speed/docs/insights/about?hl=zh-CN">PageSpeed Insights</a><br><a href="https://blog.csdn.net/coslay/article/details/43539913">优化网站加载速度的14个技巧</a><br><a href="https://www.wbolt.com/organic-ctr.html">什么是自然搜索点击率（Organic CTR）？</a><br><a href="https://www.wbolt.com/organic-ctr.html">什么是跳出率及如何保持网站较低跳出率</a></p>
+<h2 id="谷歌如何评估网站性能？"><a href="#谷歌如何评估网站性能？" class="headerlink" title="谷歌如何评估网站性能？"></a>谷歌如何评估网站性能？</h2>]]></content>
       <tags>
         <tag>网站</tag>
       </tags>
