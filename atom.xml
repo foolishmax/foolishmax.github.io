@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2023-06-16T03:16:02.702Z</updated>
+  <updated>2023-06-25T06:49:33.558Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -17,13 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>如何优化网站以符合谷歌的Core Web Vitals标准</title>
+    <link href="https://github.com/foolishmax/2023/06/25/%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E7%BD%91%E7%AB%99%E4%BB%A5%E7%AC%A6%E5%90%88%E8%B0%B7%E6%AD%8C%E7%9A%84Core-Web-Vitals%E6%A0%87%E5%87%86/"/>
+    <id>https://github.com/foolishmax/2023/06/25/%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E7%BD%91%E7%AB%99%E4%BB%A5%E7%AC%A6%E5%90%88%E8%B0%B7%E6%AD%8C%E7%9A%84Core-Web-Vitals%E6%A0%87%E5%87%86/</id>
+    <published>2023-06-25T02:02:04.000Z</published>
+    <updated>2023-06-25T06:49:33.558Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="为什么要做Core-Web-Vitals"><a href="#为什么要做Core-Web-Vitals" class="headerlink" title="为什么要做Core Web Vitals?"></a>为什么要做Core Web Vitals?</h2><p>网站响应速度越快，在谷歌中的排名越高的机会就越大</p><span id="more"></span><h2 id="谷歌排名的主要因素（优先级从高到低）"><a href="#谷歌排名的主要因素（优先级从高到低）" class="headerlink" title="谷歌排名的主要因素（优先级从高到低）"></a>谷歌排名的主要因素（优先级从高到低）</h2><ol><li><p>高质量的内容</p><p> 在Google排名因素里绝对以‘内容为王，外链为皇’，如果能创造对用户来说独特、新颖、且有帮助的内容，那么Google搜索引擎会将结果页面排到更高位置。</p><p> Google特别关注内容质量，无论如何优化网站，如果内容没有价值，就不要期望能获得更高的排名。</p><p> 那么，什么才算是高质量的内容呢？</p><p> <strong>原创、独特、有价值的内容</strong></p><p> 如果内容重复或者跟其他网站类似，那么就会对SEO产生负面影响，对于新网站来说Google可能就不会去索引你的页面，网站就不会获得排名。如果经常发布重复内容，Google会减少抓去你的网站内容的频率。</p><p> <strong>经常更新内容</strong></p><p> 通过定期更新网站，为其添加新东西，通过增加内容新鲜度给搜索引擎发出一个积极的信号。如果内容主题涉及到新闻或者某件事的发展趋势，可以通过Google Trends工具找到最新的信息来保持内容的新鲜度。</p><p> <strong>内容长度</strong></p><p> 平均长度1890个词的文章会排在第一页，但对字数的限制没有一个硬性规定。更好的解决办法是撰写具有深度的内容，能够完全回答用户的问题并提供详细的解决方案。</p><p> <strong>内容结构和组织方式</strong></p><p> 组织合理、结构清晰的网页，可以让访客更轻松的、更方便的阅读并找到问题的解决方案。<br> 优化文章的结构和组织可以使用多个标题和副标题（H2、H3、H4等），还可以使用列表的形式组织内容，好处就是Google会为不同的关键词筛选带列表形式的高质量内容，将其展示为答案盒子。<br> 通过整理内容的结构和组织方式，内容的可读性将大大提高，正反馈就是提高了用户体验，增加了<code>停留时间（Dwell Time）</code>间接的增加了提高排名的机会。</p></li><li><p>反向链接</p><p> Google排名算法中第二优先级排名因素就是反向链接。<br> 如果你的网站能从权重高的网站获得反向链接，通过这些链接相当于给Google传递了一个信号，即你的内容是值得信赖的，因为有这么多不同的网站都可以为你做担保。<br> 通过这些反向链接（入站链接）可以为你的网站带来更多流量，就有极大的可能获取更高的排名。</p></li><li><p>搜索意图</p><p> 你的网站内容是否匹配用户的搜索意图对Google排名的影响非常重要。<br> 这就意味着如果你想写关于某个主题的内容，一定要匹配搜索意图，如果想为某个搜索关键字排名，则应该制作视频或者信息图表等。<br> 通过匹配搜索意图，可以回答这些问题并创建人们正在寻找的内容。</p></li><li><p>网站加载速度</p><p> 提高网站加载速度不仅可以提高Google搜索引擎的排名，还可以降低网站的跳出率，提高其转换率，提供更高的用户体验。<br> 可以使用Google免费的工具<a href="https://pagespeed.web.dev/">PageSpeed Insights</a>来检查你的网站加载速度，PageSpeed Insights会生成网页的实际性能报告，并能提供如何改进响应网页的建议。<br> 如何提高网站的加载速度？</p></li><li><p>移动友好</p><p> 在GSMA智库近日发布了《2023年全球移动经济报告发展》报告，报告显示截至2022年底，全球独立移动用户数为54亿，其中移动互联网用户数为44亿，且自从Google在2019年提出移动优先的口号，所以网站自适应移动端就称为了关键。<br> 这就意味着Google会优先使用你的网站移动版去索引和排名，如果想快速提升你的网站排名，那么就需要让你的网站变成移动端友好型网站。</p></li><li><p>域名权威</p><p> “域名权威”是 SEO 相关的术语，指网站的域名在某领域相关内容具有权威性，一般域名建站时间越久、反链越多、流量越大、搜索引擎点击数越高、跳出率越低，域名就越权威。<br> 通过专注在自己的领域，创造出更优秀的内容，可以通过关键词分析工具，找到访客感兴趣的主题，围绕这些主题打造高质量内容增加话题的权威性。<br> 如此，Google变为逐渐把你的网站当作该主题领域的权威专家，提高你的网站的域名权威，从而提高网站在搜索引擎的排名</p></li><li><p>关键词优化</p><p> 关键词即用户搜索框输入的内容，它如实的反馈了用户的需求，所以找准关键词，也就意味着锁定了目标用户。<br> 所以你的网站中包含了你的受众群体正在搜索的关键词是非常关键的。</p><p> 如何做网站关键词优化？<br> ·标题：在SEO标题的开始就包含目标关键词<br> ·元描述：写吸引人的描述，然后添加关键词，告诉用户这个页面是做什么的，提高用户的自然搜索点击率<br> ·图片alt文字：可以将关键词添加到alt文本中告诉Google这是什么<br> ·锚文本：Google使用锚文本来查找页面内容，给关键词加上锚文本链接帮助Google识别页面内容<br> ·使用LSI关键词：用户会搜索除主要关键词之外的其他相关词条，这些词条被称LSI（潜在语义索引）关键词，通过在页面上包含这些内容，可以帮助Google找出有关内容。<br> ·避免关键词堆砌：不可不断重复主要关键词，这是一种不好的SEO做法。<br> ·在H2和H3中添加关键词：通过关键词变体来进一步优化内容组织结构<br> ·URL中添加关键词</p></li><li><p>网站结构</p><p> 站内结构决定了网站是否容易被收录，是否方便用户浏览，是否符合蜘蛛的爬取等等。<br> 网站结构是指网站中页面之间的层次关系。从用户角度来讲，能够使用户方便快捷的在网站中浏览内容，不至于迷失。对搜索引擎来说，优化网站结构，可以帮助蜘蛛快速抓取网站内容</p></li><li><p>网站安全</p><p> HTTPS会影响网站的排名，HTTPS保证了您的站点是否在用户的浏览器和Web服务器之间建立了安全连接，它可以加密网站和用户浏览器之间的数据</p></li><li><p>用户体验</p><p>网站的整体的用户体验也是影响Google排名的一个重要因素，但是Google是如何衡量的呢？<br>Google使用了一个名为RankBrain的人工智能程序，该程序结合了其他的排名要素，例如：<br>·自然搜索点击率（CTR）：通过提高网站链接的点击率，可以提高排名<br>·停留时间（Dwell Time）：从搜索结果到你的网站后的停留时间<br>·跳出率：进入网站到离开网站没有任何交互，Google会任务该页面不相关，不会对其进行排名</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;为什么要做Core-Web-Vitals&quot;&gt;&lt;a href=&quot;#为什么要做Core-Web-Vitals&quot; class=&quot;headerlink&quot; title=&quot;为什么要做Core Web Vitals?&quot;&gt;&lt;/a&gt;为什么要做Core Web Vitals?&lt;/h2&gt;&lt;p&gt;网站响应速度越快，在谷歌中的排名越高的机会就越大&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="网站" scheme="https://github.com/foolishmax/tags/%E7%BD%91%E7%AB%99/"/>
+    
+  </entry>
+  
+  <entry>
     <title>代码的艺术</title>
     <link href="https://github.com/foolishmax/2023/06/16/%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/"/>
     <id>https://github.com/foolishmax/2023/06/16/%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/</id>
     <published>2023-06-16T03:14:28.000Z</published>
-    <updated>2023-06-16T03:16:02.702Z</updated>
+    <updated>2023-06-20T03:11:12.457Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="一流代码的特性"><a href="#一流代码的特性" class="headerlink" title="一流代码的特性"></a>一流代码的特性</h2><ul><li><p>正确和性能</p><ul><li>鲁棒性</li><li>高效</li></ul></li><li><p>可读性和可维护</p><ul><li>简洁</li><li>简短</li><li>可测试</li></ul></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="一流代码的特性"><a href="#一流代码的特性" class="headerlink" title="一流代码的特性"></a>一流代码的特性</h2><ul><li><p>正确和性能</p><ul><li>鲁棒性</li><li>高效</li></ul></li><li><p>可读性和可维护</p><ul><li>简洁</li><li>简短</li><li>可测试</li></ul></li><li><p>共享和重用</p><ul><li>共享</li><li>可移植</li></ul></li><li><p>运维和运营</p><ul><li>可监控/可观测</li><li>可运维</li><li>可扩展</li></ul></li></ul><h2 id="好的代码从哪里来？"><a href="#好的代码从哪里来？" class="headerlink" title="好的代码从哪里来？"></a>好的代码从哪里来？</h2><p>编码前：需求分析，系统设计<br>编码中：编写代码，单元测试<br>编码后：集成测试、上线、持续运营/迭代改进</p><p>一个好的系统/产品是以上过程持续迭代的结果</p>]]></content>
     
     
       
@@ -414,27 +433,6 @@
     
     
     <category term="vue3" scheme="https://github.com/foolishmax/tags/vue3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>lerna开发</title>
-    <link href="https://github.com/foolishmax/2021/11/01/lerna%E5%BC%80%E5%8F%91/"/>
-    <id>https://github.com/foolishmax/2021/11/01/lerna%E5%BC%80%E5%8F%91/</id>
-    <published>2021-11-01T10:19:30.000Z</published>
-    <updated>2023-04-04T07:15:40.589Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="创建-npm-私服"><a href="#创建-npm-私服" class="headerlink" title="创建 npm 私服"></a>创建 npm 私服</h2><span id="more"></span><ul><li>verdaccio 是一个简单、零配置的本地私有化 npm 仓库</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cnpm install verdaccio -g</span><br><span class="line"></span><br><span class="line">verdaccio</span><br><span class="line">http://localhost:4873</span><br><span class="line">npm adduser --registry http://localhost:4873/</span><br><span class="line">npm publish --registry http://localhost: 4873/</span><br></pre></td></tr></table></figure><h2 id="lerna-常用命令"><a href="#lerna-常用命令" class="headerlink" title="lerna 常用命令"></a>lerna 常用命令</h2><p>项目初始化<br>| 命令 | 说明 |<br>| — | — |<br>| lerna init –independent | 初始化项目 |</p><p>创建包<br>| 命令 | 说明 |<br>| — | — |<br>| lerna create module-1 | 创建 package |<br>| lerna add | 安装依赖 |<br>| lerna link | 链接依赖 |</p><p>开发和测试<br>| 命令 | 说明 |<br>| — | — |<br>| lerna exec | 执行 shell 脚本 |<br>| lerna run | 执行 npm 命令 |<br>| lerna clean | 清空依赖|<br>| lerna bootstrap | 重新安装依赖 |</p><p>package 依赖</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.给指定package安装依赖</span><br><span class="line">$ lerna add lodash packages/module-1</span><br><span class="line">$ lerna add lodash --scope=module-1</span><br><span class="line">$ lerna add lodash **/module-1</span><br><span class="line">$yarn workspace module-1 add lodash</span><br><span class="line"></span><br><span class="line">2.给所有package安装依赖</span><br><span class="line">$ lerna add lodash</span><br><span class="line"></span><br><span class="line">3.workspace之间的依赖</span><br><span class="line">$ lerna add module-2 packages/module-1</span><br><span class="line">$ lerna add module-2 --scope module-1</span><br></pre></td></tr></table></figure><p>发布</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lerna publish</span><br></pre></td></tr></table></figure><h2 id="lerna-json"><a href="#lerna-json" class="headerlink" title="lerna.json"></a>lerna.json</h2><ul><li>version: 当前仓库的版本，independent mode 请设置为 <strong>independent</strong>.<ul><li>lerna 对于包的管理有两种模式：固定模式 fixed、独立模式 independent。</li><li>固定模式所有包是统一的版本号，每次升级所有包统一更新，无论这个包内容是否改变。 *具体体现在 lerna 的配置文件中 lerna.json 中永远会存在一个确定版本号：{“version”: “0.0.1”}</li><li>独立模式，每个包都是单独的版本号，每次 lerna 触发发布命令，每个包的版本都会单独变化，具体体现在 lerna 的配置文件 lerna.json 中没有一个确定的版本号，而是{“version”:”independent”}</li></ul></li><li>npmClient: 指定运行的客户端程序 默认为 npm</li><li>ignoreChanges: 一个不包含在<strong>lerna changed/publish</strong>的 glob 数组，使用这个阻止发布不必要的更新，比如修复<strong>README.md</strong></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;useWorkspaces&quot;: true, // 使用 workspaces 配置。此项为 true 的话，将使用 package.json 的 &quot;workspaces&quot;，下面的 &quot;packages&quot; 字段将不生效</span><br><span class="line">    &quot;version&quot;: &quot;0.1.0&quot;, // 所有包版本号，独立模式-&quot;independent&quot;</span><br><span class="line">    &quot;npmClient&quot;: &quot;cnpm&quot;, // npm client，可设置为 cnpm、yarn 等</span><br><span class="line">    &quot;packages&quot;: [ // 包所在目录，可指定多个</span><br><span class="line">        &quot;packages/*&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;command&quot;: &#123; // lerna 命令相关配置</span><br><span class="line">        &quot;publish&quot;: &#123; // 发布相关</span><br><span class="line">            &quot;ignoreChanges&quot;: [ // 指定文件或目录的变更，不触发 publish</span><br><span class="line">                &quot;.gitignore&quot;,</span><br><span class="line">                &quot;*.log&quot;,</span><br><span class="line">                &quot;*.md&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;bootstrap&quot;: &#123; // bootstrap 相关</span><br><span class="line">            &quot;ignore&quot;: &quot;npm-*&quot;,  // 不受 bootstrap 影响的包</span><br><span class="line">            &quot;npmClientArgs&quot;: [ // bootstr 执行参数</span><br><span class="line">                &quot;--no-package-lock&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="CRA-lerna-react-typescript-项目搭建"><a href="#CRA-lerna-react-typescript-项目搭建" class="headerlink" title="CRA + lerna + react + typescript 项目搭建"></a>CRA + lerna + react + typescript 项目搭建</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1.create-react-app demo --template typescript</span><br><span class="line"></span><br><span class="line">2.cd demo</span><br><span class="line"></span><br><span class="line">3.npm run eject</span><br><span class="line"></span><br><span class="line">4.lerna init</span><br><span class="line"></span><br><span class="line">5.lerna create builder-script</span><br><span class="line"></span><br><span class="line">6.自定义builder-scripts脚本命令</span><br><span class="line"></span><br><span class="line">7.自定义 eslintrc、tsconfig、webpack等配置项</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;创建-npm-私服&quot;&gt;&lt;a href=&quot;#创建-npm-私服&quot; class=&quot;headerlink&quot; title=&quot;创建 npm 私服&quot;&gt;&lt;/a&gt;创建 npm 私服&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="lerna" scheme="https://github.com/foolishmax/categories/lerna/"/>
-    
-    
-    <category term="lerna" scheme="https://github.com/foolishmax/tags/lerna/"/>
     
   </entry>
   
