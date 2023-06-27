@@ -6571,6 +6571,86 @@ dt.getDay()     //星期几（0-6）
 <li>首次输入延迟（FID）：交互性能</li>
 <li>累计布局偏移（CLS）：视觉稳定性</li>
 </ul>
+<h2 id="最大内容绘制-LCP"><a href="#最大内容绘制-LCP" class="headerlink" title="最大内容绘制 LCP"></a>最大内容绘制 LCP</h2><p>本质上代表的是可用内容在页面上呈现的速度有多快？</p>
+<p>LCP分数低的常见原因：</p>
+<ol>
+<li>在客户端上生成的页面内容，而不是在服务器上生成的内容需要更长的时间，LCP客户端渲染（CSR） &gt; 服务端渲染（SSR），顺便提一下SSR更有利于首屏渲染，CSR更利于页面交互</li>
+<li>服务端限制，服务端响应慢</li>
+<li>HTML中国呢引用了阻塞CSS和javascript，导致延迟页面加载</li>
+<li>大型图像或视频占用网络带宽，导致需要更长的渲染时间</li>
+</ol>
+<p>如何提高LCP分数：</p>
+<ol>
+<li>升级服务器和/或主机服务。确保下载速度即使在高使用率时也保持快速。</li>
+<li>激活服务器压缩和HTTP/2+。没有理由不这样做！</li>
+<li>减少服务器工作。删除未使用的代码和CMS插件，然后启用有效缓存。</li>
+<li>确保浏览器可以有效缓存文件。在HTTP头中设置适当的Expires、Last Modified和/或ETag哈希，以便不再请求文件。</li>
+<li>使用内容交付网络（CDN）在地理位置更靠近用户的服务器上拆分负载和托管资源。</li>
+<li>优化你的图像。将它们减少到最小尺寸，并使用适当的格式来最小化文件大小。确保尽早请求最大内容块中的任何图像；预加载可能会有所帮助。</li>
+<li>通过添加loading=”lazy”属性延迟加载图像。添加宽度和高度属性，以确保在图像完成加载之前在页面上保留适当的空间。</li>
+<li>最小化第三方请求，并将移动资产考虑到主域以避免无关DNS查找。</li>
+<li>最小化请求文件的数量和大小，尤其是在HTML的顶部。</li>
+<li>确保仅加载所需的web字体。切换到web安全字体以获得最佳性能。</li>
+<li>删除未使用的JavaScript和CSS文件。</li>
+<li>连接并缩小JavaScript和CSS文件。</li>
+<li>避免CSS@import语句-它们是串联的渲染块和加载样式。</li>
+<li>避免Base64编码-它会增加文件大小并需要额外的处理。</li>
+<li>考虑关键的联机CSS。在页面顶部的&lt;link&gt;块中嵌入基本的“折叠上方”CSS，然后异步加载更多样式表。</li>
+<li>稍后使用异步、延迟或ES模块JavaScript运行脚本。在服务工作者中执行长时间运行的JavaScript进程。</li>
+</ol>
+<h2 id="首次输入延迟-FID"><a href="#首次输入延迟-FID" class="headerlink" title="首次输入延迟 FID"></a>首次输入延迟 FID</h2><p>本质上代表网页对用户的输入、点击和滚动等操作的响应速度有多快？</p>
+<p>FID分数低的常见原因：</p>
+<p>FID和TBT分数低通常是由占用处理器的客户端代码引起的，例如：</p>
+<ol>
+<li>大量的呈现阻塞CSS和JavaScript，这会在下载和解析代码时停止页面加载</li>
+<li>加载页面时立即运行的大型流程密集型脚本</li>
+<li>长时间运行或优化较差的JavaScript任务</li>
+</ol>
+<p>默认情况下，浏览器运行在单个线程上，一次只能处理一个任务。如果一个JavaScript函数需要一秒钟的时间来执行，那么所有其他渲染过程都会在这一秒钟内被阻塞。页面无法响应用户输入、更新DOM、显示动画等。甚至GIF动画也可以在旧浏览器中被阻塞。</p>
+<p>如何提高FID分数：</p>
+<ol>
+<li>在服务器上生成并缓存尽可能多的静态HTML内容。尽量不要依赖客户端JavaScript框架为每个人呈现相同的HTML。</li>
+<li>确保浏览器可以有效缓存文件。在HTTP头中设置适当的Expires、Last Modified和/或ETag哈希，以便不再请求文件。</li>
+<li>采用渐进式增强技术，因此在JavaScript运行之前，该界面可以在HTML和CSS中使用。</li>
+<li>删除未使用的JavaScript和CSS文件。</li>
+<li>连接并缩小JavaScript和CSS文件。</li>
+<li>避免过度使用昂贵的CSS属性，如框阴影和过滤器。</li>
+<li>稍后使用异步、延迟或ES模块JavaScript运行脚本。</li>
+<li>最小化对分析、社交媒体小部件、论坛等的第三方JavaScript请求。这些请求可以快速加载到数兆字节的JavaScript。</li>
+<li>根据需要延迟加载JavaScript组件，例如聊天窗口小部件、视频播放器等。</li>
+<li>延迟加载不太重要的脚本，如分析、广告和社交媒体工具。</li>
+<li>将长时间运行的JavaScript任务分解为一系列较小的作业，这些作业在短时间的requestIdleCallback、setTimeout或requestAnimationFrame延迟后执行。</li>
+<li>考虑在Web工作者中使用一个后台线程来执行长时间运行的JavaScript进程。</li>
+</ol>
+<h2 id="累计布局偏移-CLS"><a href="#累计布局偏移-CLS" class="headerlink" title="累计布局偏移 CLS"></a>累计布局偏移 CLS</h2><p>本质上代表页面内容是否会意外移动或者跳转尤其是在初始加载期间</p>
+<p>通过以下指标相乘计算累计布局偏移CLS：</p>
+<ul>
+<li>影响分数：视口中国呢所有不稳定元素的总面积（%）</li>
+<li>距离分数：不稳定元素移动的最大距离（px），移动像素/视口大小</li>
+</ul>
+<p>手动测测CLS：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> cls = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">onLayoutShiftEntry</span>(<span class="params">entry: any</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (entry.<span class="property">hadRecentInput</span>) &#123;</span><br><span class="line">    cls += entry.<span class="property">value</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(cls);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="function">(<span class="params">entries</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> entry <span class="keyword">of</span> entries.<span class="title function_">getEntries</span>()) &#123;</span><br><span class="line">    <span class="title function_">onLayoutShiftEntry</span>(entry);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">observer.<span class="title function_">observe</span>(&#123; <span class="attr">type</span>: <span class="string">&quot;layout-shift&quot;</span>, <span class="attr">buffered</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//  主动触发</span></span><br><span class="line">observer.<span class="title function_">takeRecords</span>().<span class="title function_">forEach</span>(<span class="function">(<span class="params">entry</span>) =&gt;</span> <span class="title function_">onLayoutShiftEntry</span>(entry));</span><br></pre></td></tr></table></figure>
+
+<p>累积布局偏移分数低的常见原因：</p>
+<p>CLS分数低通常是由于加载页面资产和动态或未调整大小的DOM元素速度慢造成的：</p>
+<ol>
+<li>页面上的空间不用于图像、iFrame、广告等。</li>
+<li>内容被动态地注入DOM，通常是在网络请求广告、社交媒体小部件等之后。</li>
+<li>Web字体加载会导致不可见文本（FOIT）或未设置样式文本（FOUT）的明显闪烁。</li>
+</ol>
+<p>如何提高累积布局偏移分数：<br>客户端审计可以发现问题，但通常是确保在内容下载之前为内容预留空间。为最大内容绘制建议的服务器优化提示将有一些好处，但可能会有进一步的改进：</p>
+<ol>
+<li>在HTML的&lt;img&gt;和&lt;iframe&gt;标记中添加宽度和高度属性，或者使用新的CSS纵横比属性确保在下载资产之前在页面上保留适当的空间。</li>
+<li>为封装第三方内容（如广告和小部件）的容器元素设置适当的尺寸。</li>
+<li>确保尽早请求显示在页面顶部的图像和其他资产-预加载可能会有所帮助。</li>
+<li>尽量减少Web字体的使用，并考虑在可能的时候使用常用的OS字体。</li>
+<li>加载web字体并将CSS字体显示设置为可选或交换。确保使用大小相似的回退字体，以最小化布局偏移。</li>
+<li>避免向页面顶部插入元素，除非页面响应用户操作（如单击）。</li>
+<li>确保在输入触发器的500毫秒内完成用户交互。</li>
+<li>使用CSS变换和不透明度可以获得更高效的动画，而不会导致重新布局。</li>
+<li>考虑关键的联机CSS。在页面顶部的&lt;link&gt;块中嵌入基本的“折叠上方”CSS，然后异步加载其他样式表。</li>
+<li>必要时，考虑包容，一种新的CSS特性，允许您识别页面的孤立子树。浏览器可以通过渲染或不渲染特定的DOM内容块来优化处理。</li>
+</ol>
 ]]></content>
       <tags>
         <tag>网站</tag>
