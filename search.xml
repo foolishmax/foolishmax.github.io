@@ -6547,7 +6547,31 @@ dt.getDay()     //星期几（0-6）
 <p>总结：<br>    以上就是本文的所有内容，希望你能够习惯这篇关于影响Google排名10大因素的文章。</p>
 <p>参考：</p>
 <p><a href="https://zhuanlan.zhihu.com/p/110720993">SEO站内优化：网站结构优化</a><br><a href="https://www.zhihu.com/question/351325115">怎么做网站关键词优化？</a><br><a href="https://developers.google.cn/speed/docs/insights/about?hl=zh-CN">PageSpeed Insights</a><br><a href="https://blog.csdn.net/coslay/article/details/43539913">优化网站加载速度的14个技巧</a><br><a href="https://www.wbolt.com/organic-ctr.html">什么是自然搜索点击率（Organic CTR）？</a><br><a href="https://www.wbolt.com/organic-ctr.html">什么是跳出率及如何保持网站较低跳出率</a></p>
-<h2 id="谷歌如何评估网站性能？"><a href="#谷歌如何评估网站性能？" class="headerlink" title="谷歌如何评估网站性能？"></a>谷歌如何评估网站性能？</h2>]]></content>
+<h2 id="谷歌如何评估网站性能？"><a href="#谷歌如何评估网站性能？" class="headerlink" title="谷歌如何评估网站性能？"></a>谷歌如何评估网站性能？</h2><p>性能度量应用程序（如浏览器开发工具）报告技术度量，例如</p>
+<ul>
+<li>阻塞时间：等待下载开始所花费的时间。</li>
+<li>DNS解析：将主机名解析为IP地址以索引资产的时间。</li>
+<li>连接时间：初始化TCP连接的时间。</li>
+<li>首字节时间（TTFB）：请求和响应第一个字节之间的总时间。</li>
+<li>接受时间：检索整个资产的时间</li>
+<li>DOM加载时间：下载和呈现HTML文档对象模型的时间，分析和修改DOM的脚本可以可靠运行的第一个点。</li>
+<li>页面加载时间：下载页面和所有资产（图像、样式表、脚本等）的时间</li>
+<li>总页面重量：所有资产总大小，通常报告为压缩（下载）和未压缩大小</li>
+<li>DOM元素数：页面上HTML元素的总数，元素越多，页面处理时间越长</li>
+<li>首次内容绘制（FCP）：浏览器第一个元素像素之前所有的时间</li>
+<li>首个有意义慧智（FMP）：主页内容对用户可见之间所花费的时间。</li>
+<li>交互时间（TTI）：页面完全交互并能够可靠响应用户输入所花费的时间。</li>
+<li>首次CPU空间（FCI）：CPU呈现页面并运行所有初始化脚本，等待进一步输入的时间</li>
+<li>CPU使用率：呈现页面和响应用户输入时所需的处理活动</li>
+<li>每秒布局数：浏览器必须重新计算样式和页面布局的速率</li>
+</ul>
+<p>以上这些可以用于确定特定的瓶颈，如服务器负载、CMS缓存、浏览器缓存、下载速度和javascript效率。但无法确定页面提供的用户体验是否良好。<br>如：应用程序可以快速下载并显示，但第一次交互后会变得无响应，因为它正在执行大量未优化javascript代码。</p>
+<h2 id="什么是Core-Web-Vitals"><a href="#什么是Core-Web-Vitals" class="headerlink" title="什么是Core Web Vitals?"></a>什么是Core Web Vitals?</h2><ul>
+<li>最大内容绘制（LCP）：加载性能</li>
+<li>首次输入延迟（FID）：交互性能</li>
+<li>累计布局偏移（CLS）：视觉稳定性</li>
+</ul>
+]]></content>
       <tags>
         <tag>网站</tag>
       </tags>
