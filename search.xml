@@ -2567,10 +2567,15 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <h4 id="1-1-安装依赖"><a href="#1-1-安装依赖" class="headerlink" title="1.1 安装依赖"></a>1.1 安装依赖</h4><p>需要现在本地安装<strong>webpack</strong>及<strong>webpack-cli</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ npm install webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
 
-<h4 id="1-2-开始工作"><a href="#1-2-开始工作" class="headerlink" title="1.2 开始工作"></a>1.2 开始工作</h4><p>webpack 在 4 以后就支持 0 配置打包，我们可以测试一下 1.新建 webpack-work 项目，新建 <code>./src/index.js</code>文件，写一段简单的代码</p>
+<h4 id="1-2-开始工作"><a href="#1-2-开始工作" class="headerlink" title="1.2 开始工作"></a>1.2 开始工作</h4><p>webpack 在 4 以后就支持 0 配置打包，我们可以测试一下</p>
+<ol>
+<li>新建 webpack-work 项目，新建 <code>./src/index.js</code>文件，写一段简单的代码</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const a = &#x27;hello foolishmax&#x27;;</span><br><span class="line">console.log(a);</span><br><span class="line">module.exports = a;</span><br></pre></td></tr></table></figure>
 
-<p>2.直接运行<code>npx webpack</code>，启动打包<br><img src="../images/md_img/webpack-mode-error.png" alt="webpack-mode-error">)</p>
+<ol start="2">
+<li>直接运行<code>npx webpack</code>，启动打包<br><img src="../images/md_img/webpack-mode-error.png" alt="webpack-mode-error">)</li>
+</ol>
 <p>打包完成，会有一个提示：<code>The &#39;mode&#39; option has not been set,...</code></p>
 <p>意思就是我们没有配置 mode（告知 webpack 使用相应模式的内置优化，默认为<code>production</code>，另外还有<code>development</code>、<code>none</code>）</p>
 <table>
@@ -2654,7 +2659,6 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <p><a href="https://juejin.cn/post/7023242274876162084#heading-6">掘金</a></p>
 <h2 id="webpack-常用-loader-和-plugin"><a href="#webpack-常用-loader-和-plugin" class="headerlink" title="webpack 常用 loader 和 plugin"></a>webpack 常用 loader 和 plugin</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">样式：style-loader、css-loader、less-loader、sass-loader</span><br><span class="line">文件：file-loader、url-loader</span><br><span class="line">编译：babel-loader、ts-loader</span><br><span class="line">校验：eslint-loader</span><br><span class="line"></span><br><span class="line">常用的plugin</span><br><span class="line">html-webpack-plugin</span><br><span class="line">webpack-bundle-analyzer 打包分析</span><br><span class="line">HotModuleReplacementPlugin 热更新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">自己写webpack插件：</span><br><span class="line">主要就是通过访问compliler和compilation拦截webpack的执行</span><br></pre></td></tr></table></figure>
 
-<h2 id="webpack-的构建流程是什么"><a href="#webpack-的构建流程是什么" class="headerlink" title="webpack 的构建流程是什么?"></a>webpack 的构建流程是什么?</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Webpack 的运行流程是一个串行的过程，从启动到结束会依次执行以下流程：</span><br><span class="line">初始化参数：从配置文件和 Shell 语句中读取与合并参数，得出最终的参数；</span><br><span class="line">开始编译：用上一步得到的参数初始化Compiler对象，</span><br><span class="line">加载所有配置的插件，执行对象的 run 方法开始执行编译；</span><br><span class="line"></span><br><span class="line">确定入口：根据配置中的 entry 找出所有的入口文件；</span><br><span class="line"></span><br><span class="line">编译模块：从入口文件出发，调用所有配置的 Loader</span><br><span class="line">对模块进行翻译，再找出该模块依赖的模块，再递归本步骤直到</span><br><span class="line">所有入口依赖的文件都经过了本步骤的处理；</span><br><span class="line"></span><br><span class="line">完成模块编译：在经过第4步使用Loader翻译完所有模块后，</span><br><span class="line">得到了每个模块被翻译后的最终内容以及它们之间的依赖关系；</span><br><span class="line"></span><br><span class="line">输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk转换成一个单独的文件加入到输</span><br><span class="line">出列表，这步是可以修改输出内容的最后机会；</span><br><span class="line"></span><br><span class="line">输出完成：在确定好输出内容后，根据配置确定输出的</span><br><span class="line">路径和文件名，把文件内容写入到文件系统。</span><br><span class="line"></span><br><span class="line">在以上过程中，Webpack会在特定的时间点广播出特定</span><br><span class="line">的事件，插件在监听到感兴趣的事件后会执行特定的逻辑，</span><br><span class="line">并且插件可以调用 Webpack 提供的 API 改变 Webpack 的运行结果。</span><br></pre></td></tr></table></figure>
 
 <h2 id="如何利用-webpack-来优化前端性能？"><a href="#如何利用-webpack-来优化前端性能？" class="headerlink" title="如何利用 webpack 来优化前端性能？"></a>如何利用 webpack 来优化前端性能？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用webpack优化前端性能是指优化webpack的输出结果，</span><br><span class="line">让打包的最终结果在浏览器运行快速高效。</span><br><span class="line"></span><br><span class="line">压缩代码。删除多余的代码、注释、简化代码的写法等等方式。</span><br><span class="line">可以利用webpack的UglifyJsPlugin和ParallelUglifyPlugin来压缩JS文件</span><br><span class="line">，利用cssnano（css-loader?minimize）来压缩css</span><br><span class="line"></span><br><span class="line">利用CDN加速。在构建过程中，将引用的静态资源路径修改为CDN上对</span><br><span class="line">应的路径。可以利用webpack对于output参数和各loader的publicPath</span><br><span class="line">参数来修改资源路径</span><br><span class="line"></span><br><span class="line">删除死代码（Tree Shaking）。将代码中永远不会走到的片段删除掉。</span><br><span class="line"></span><br><span class="line">可以通过在启动webpack时追加参数--optimize-minimize来</span><br><span class="line">实现提取公共代码。</span><br></pre></td></tr></table></figure>
 
@@ -2764,6 +2768,18 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 </ul>
 </li>
 <li><p>热更新</p>
+</li>
+</ul>
+<h2 id="webpack的构建流程"><a href="#webpack的构建流程" class="headerlink" title="webpack的构建流程"></a>webpack的构建流程</h2><ul>
+<li><p>从入口文件entry出发，分析module模块并递归整个项目模块间的依赖关系</p>
+</li>
+<li><p>加载执行响应loader将module模块解析成webpack能够识别的有效模块，生成模块依赖图</p>
+</li>
+<li><p>编译过程触发多个事件钩子，执行配置的plugin插件</p>
+</li>
+<li><p>将解析后的模块分组生成chunk</p>
+</li>
+<li><p>根据output输出配置生成最后的bundle</p>
 </li>
 </ul>
 ]]></content>
