@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>实现一个多人协作在线文档有哪些技术难点？ - foolishmax</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="foolishmax"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="foolishmax"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="多人协作提供了稳定、高效、安全的协作环境，这种类似的产品需要克服的技术难点还是很多的，如："><meta property="og:type" content="blog"><meta property="og:title" content="实现一个多人协作在线文档有哪些技术难点？"><meta property="og:url" content="https://github.com/foolishmax/2023/06/29/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%E5%9C%A8%E7%BA%BF%E6%96%87%E6%A1%A3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%8A%80%E6%9C%AF%E9%9A%BE%E7%82%B9%EF%BC%9F/"><meta property="og:site_name" content="foolishmax"><meta property="og:description" content="多人协作提供了稳定、高效、安全的协作环境，这种类似的产品需要克服的技术难点还是很多的，如："><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/images/cover/duorenxiezuo.webp"><meta property="article:published_time" content="2023-06-29T03:24:18.000Z"><meta property="article:modified_time" content="2023-06-29T05:56:17.753Z"><meta property="article:author" content="foolishmax"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://github.com/images/cover/duorenxiezuo.webp"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/foolishmax/2023/06/29/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%E5%9C%A8%E7%BA%BF%E6%96%87%E6%A1%A3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%8A%80%E6%9C%AF%E9%9A%BE%E7%82%B9%EF%BC%9F/"},"headline":"实现一个多人协作在线文档有哪些技术难点？","image":["https://github.com/images/cover/duorenxiezuo.webp"],"datePublished":"2023-06-29T03:24:18.000Z","dateModified":"2023-06-29T05:56:17.753Z","author":{"@type":"Person","name":"foolishmax"},"publisher":{"@type":"Organization","name":"foolishmax","logo":{"@type":"ImageObject","url":"https://github.com/images/favicon.svg"}},"description":"多人协作提供了稳定、高效、安全的协作环境，这种类似的产品需要克服的技术难点还是很多的，如："}</script><link rel="canonical" href="https://github.com/foolishmax/2023/06/29/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%E5%9C%A8%E7%BA%BF%E6%96%87%E6%A1%A3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%8A%80%E6%9C%AF%E9%9A%BE%E7%82%B9%EF%BC%9F/"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+          Array
+              .from(document.querySelectorAll('.tab-content'))
+              .forEach($tab => {
+                  $tab.classList.add('is-hidden');
+              });
+          Array
+              .from(document.querySelectorAll('.tabs li'))
+              .forEach($tab => {
+                  $tab.classList.remove('is-active');
+              });
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="detail column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/../images/cover/duorenxiezuo.webp" alt="实现一个多人协作在线文档有哪些技术难点？"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-06-29T03:24:18.000Z" title="6/29/2023, 11:24:18 AM">2023-06-29</time>发表</span><span class="level-item"><time dateTime="2023-06-29T05:56:17.753Z" title="6/29/2023, 1:56:17 PM">2023-06-29</time>更新</span><span class="level-item">4 分钟读完 (大约546个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">实现一个多人协作在线文档有哪些技术难点？</h1><div class="content"><p>多人协作提供了稳定、高效、安全的协作环境，这种类似的产品需要克服的技术难点还是很多的，如：</p>
+<span id="more"></span>
+
+<ol>
+<li><p>实时同步</p>
+<p> 实现实时同步的难点在于如何快速传输用户的操作。<br> 常见的做法是websocket等技术，建立持久化连接，实时推送数据。<br> 同时为了减少网络传输量，可以采用差量同步的方式，只传输变化的部分数据。</p>
+</li>
+<li><p>冲突解决</p>
+<p> 多个用户同时编辑同一个文档时，可能会冲突。<br> 常见解决方案是采用OT（Operational Transformation）技术，将用户的操作换成操作序列，并在服务器上合并，最后同步给用户，还需要采用<strong>锁机制</strong>，保证同一时间只有一个用户能够编辑文档。</p>
+</li>
+<li><p>高并发</p>
+<p> 在线文档需要支持多人同时访问和编辑，就需要处理高并发的情况。<br> 提高并发性能，可以采用分布式架构、负载均衡等技术</p>
+</li>
+<li><p>安全性</p>
+<p> 在线文档需要保证用户数据安全，包括用户身份验证、数据传输加密等。<br> 解决：采用HTTPS协议、SSL证书等技术实现数据传输加密，密码、验证码进行用户身份验证等</p>
+</li>
+<li><p>数据存储</p>
+<p> 可以采用分布式数据库、缓存等技术提高数据存储和管理的效率和性能</p>
+</li>
+<li><p>实时性能</p>
+<p> 在线文档需要保证实时性能，即用户的操作能够实时生效，不能出现延迟等问题。<br> 解决：采用异步IO、事件驱动等技术，同时对系统进行优化和调整，提高系统性能和响应速度。</p>
+</li>
+</ol>
+<p>两个主要的技术难点就是：实时通信、编辑冲突</p>
+<ul>
+<li>实时通信：long pull 或者 websocket</li>
+<li>编辑冲突：编辑锁、GUN diff-patch（类似git版本控制diff）、OT（Operational Transformation）、Myer’s diff-patch</li>
+</ul>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/06/25/%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E7%BD%91%E7%AB%99%E4%BB%A5%E7%AC%A6%E5%90%88%E8%B0%B7%E6%AD%8C%E7%9A%84Core-Web-Vitals%E6%A0%87%E5%87%86/"><span class="level-item">如何优化网站以符合谷歌的Core Web Vitals标准</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="content" id="valine-thread"></div><script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@1.4.16/dist/Valine.min.js"></script><script>new Valine({
+            el: '#valine-thread',
+            appId: "dvbU6cs8mO4tpam28kfkNFaI-gzGzoHsz",
+            appKey: "tfoqOv7jT6pDSo3Abm9K4Jok",
+            
+            avatar: "mm",
+            avatarForce: false,
+            meta: ["nick","mail","link"],
+            pageSize: 10,
+            lang: "zh-CN",
+            visitor: false,
+            highlight: true,
+            recordIP: false,
+            
+            
+            
+            enableQQ: false,
+            requiredFields: [],
+        });</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpeg" alt="foolishmax"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">foolishmax</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>上海</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">39</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">18</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">23</p></a></div></div></nav></div></div><!--!--><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a><p class="is-size-7"><span>&copy; 2023 foolishmax</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: ''
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
