@@ -95,9 +95,10 @@
 <h2 id="dockerignore"><a href="#dockerignore" class="headerlink" title=".dockerignore"></a>.dockerignore</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.git</span><br><span class="line">node_modules</span><br></pre></td></tr></table></figure>
 
 <h2 id="始构建镜像"><a href="#始构建镜像" class="headerlink" title="始构建镜像"></a>始构建镜像</h2><p>在 Dockerfile 文件的存放目录下，执行构建动作</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker bild -t react-demo-image .</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker build -t aaa:ccc .</span><br></pre></td></tr></table></figure>
 
-<h2 id="docker-images-查看"><a href="#docker-images-查看" class="headerlink" title="docker images 查看"></a>docker images 查看</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REPOSITORY         TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">react-demo-image   latest    35c499bddac6   3 minutes ago   1.22GB</span><br><span class="line">node-test          latest    028a51c6e54d   8 months ago    945MB</span><br><span class="line">nginx              latest    f1325989da19   8 months ago    134MB</span><br></pre></td></tr></table></figure>
+<p>-t: 指定要创建的目标镜像名<br>.:Dockerfile文件所在目录，可以指定Dockerfile的绝对路径<br>aaa:镜像名<br>ccc:镜像的标签</p>
+<h2 id="docker-images-查看"><a href="#docker-images-查看" class="headerlink" title="docker images 查看"></a>docker images 查看</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">REPOSITORY         TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">react-demo-image   latest    35c499bddac6   3 minutes ago   1.22GB</span><br><span class="line">node-test          latest    028a51c6e54d   8 months ago    945MB</span><br><span class="line">nginx              latest    f1325989da19   8 months ago    134MB</span><br></pre></td></tr></table></figure>
 
 <h2 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -p 8081:3000 -d --name react-demo-server react-demo-image</span><br></pre></td></tr></table></figure>
 
