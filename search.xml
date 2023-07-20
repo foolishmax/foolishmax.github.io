@@ -6706,4 +6706,19 @@ dt.getDay()     //星期几（0-6）
 </ul>
 ]]></content>
   </entry>
+  <entry>
+    <title>nginx指南</title>
+    <url>/2023/07/20/nginx%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h2 id="负载均衡4种策略"><a href="#负载均衡4种策略" class="headerlink" title="负载均衡4种策略"></a>负载均衡4种策略</h2><ul>
+<li>轮询：默认方式</li>
+<li>weight：在轮询基础上增加权重，也就是轮询到的几率不同</li>
+<li>ip_hash：按照ip的hash分配，保证每个访客的请求固定访问一个服务器，解决session问题</li>
+<li>fair：按照相应时间来分配，需要安装nginx-upstream-fair插件</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 默认轮询</span></span><br><span class="line">upstream nest-server &#123;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3001</span>;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3002</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// weight</span></span><br><span class="line">upstream nest-server &#123;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3001</span>;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3002</span> weight=<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ip_hash</span></span><br><span class="line">upstream nest-server &#123;</span><br><span class="line">  ip_hash;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3001</span>;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3002</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
 </search>

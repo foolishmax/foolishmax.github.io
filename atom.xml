@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2023-06-29T05:56:17.753Z</updated>
+  <updated>2023-07-20T03:01:55.636Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nginx指南</title>
+    <link href="https://github.com/foolishmax/2023/07/20/nginx%E6%8C%87%E5%8D%97/"/>
+    <id>https://github.com/foolishmax/2023/07/20/nginx%E6%8C%87%E5%8D%97/</id>
+    <published>2023-07-20T02:56:39.000Z</published>
+    <updated>2023-07-20T03:01:55.636Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="负载均衡4种策略"><a href="#负载均衡4种策略" class="headerlink" title="负载均衡4种策略"></a>负载均衡4种策略</h2><ul><li>轮询：默认方式</li><li>weight：在轮询基础上增加权重，也就是轮询到的几率不同</li><li>ip_hash：按照ip的hash分配，保证每个访客的请求固定访问一个服务器，解决session问题</li><li>fair：按照相应时间来分配，需要安装nginx-upstream-fair插件</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认轮询</span></span><br><span class="line">upstream nest-server &#123;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3001</span>;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3002</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// weight</span></span><br><span class="line">upstream nest-server &#123;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3001</span>;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3002</span> weight=<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ip_hash</span></span><br><span class="line">upstream nest-server &#123;</span><br><span class="line">  ip_hash;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3001</span>;</span><br><span class="line">  server <span class="number">192.</span>xxx.<span class="property">x</span>.<span class="property">x</span>:<span class="number">3002</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;负载均衡4种策略&quot;&gt;&lt;a href=&quot;#负载均衡4种策略&quot; class=&quot;headerlink&quot; title=&quot;负载均衡4种策略&quot;&gt;&lt;/a&gt;负载均衡4种策略&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;轮询：默认方式&lt;/li&gt;
+&lt;li&gt;weight：在轮询基础上增加权重，也就是轮询</summary>
+      
+    
+    
+    
+    
+    <category term="nginx" scheme="https://github.com/foolishmax/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>实现一个多人协作在线文档有哪些技术难点？</title>
@@ -408,27 +432,6 @@
     
     
     <category term="typescript" scheme="https://github.com/foolishmax/tags/typescript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>获取唯一id的三种方法</title>
-    <link href="https://github.com/foolishmax/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/"/>
-    <id>https://github.com/foolishmax/2022/01/04/%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80id%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/</id>
-    <published>2022-01-04T03:19:53.000Z</published>
-    <updated>2022-07-30T04:14:35.340Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="uuid"><a href="#uuid" class="headerlink" title="uuid"></a>uuid</h2><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const UUID = (len = 32) =&gt; &#123;</span><br><span class="line">  return &quot;xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx&quot;</span><br><span class="line">    .replace(/[xy]/g, function replace(c) &#123;</span><br><span class="line">      /* eslint-disable no-bitwise */</span><br><span class="line">      const r = (Math.random() * 16) | 0;</span><br><span class="line">      const v = c === &quot;x&quot; ? r : (r &amp; 0x3) | 0x8;</span><br><span class="line"></span><br><span class="line">      return v.toString(16);</span><br><span class="line">    &#125;)</span><br><span class="line">    .substring(0, len);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h2 id="nanoid"><a href="#nanoid" class="headerlink" title="nanoid"></a>nanoid</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const nanoid = (t = 21) =&gt; &#123;</span><br><span class="line">  let e = &quot;&quot;,</span><br><span class="line">    r = crypto.getRandomValues(new Uint8Array(t));</span><br><span class="line">  for (; t--; ) &#123;</span><br><span class="line">    let n = 63 &amp; r[t];</span><br><span class="line">    e +=</span><br><span class="line">      n &lt; 36</span><br><span class="line">        ? n.toString(36)</span><br><span class="line">        : n &lt; 62</span><br><span class="line">        ? (n - 26).toString(36).toUpperCase()</span><br><span class="line">        : n &lt; 63</span><br><span class="line">        ? &quot;_&quot;</span><br><span class="line">        : &quot;-&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  return e;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="原生方法"><a href="#原生方法" class="headerlink" title="原生方法"></a>原生方法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const id = URL.createObjectURL(new Blob()).substr(-36)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;uuid&quot;&gt;&lt;a href=&quot;#uuid&quot; class=&quot;headerlink&quot; title=&quot;uuid&quot;&gt;&lt;/a&gt;uuid&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="javascript" scheme="https://github.com/foolishmax/categories/javascript/"/>
-    
-    
-    <category term="javascript" scheme="https://github.com/foolishmax/tags/javascript/"/>
     
   </entry>
   
