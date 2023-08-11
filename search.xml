@@ -38,6 +38,8 @@
 
 <h3 id="上传镜像-docker-push"><a href="#上传镜像-docker-push" class="headerlink" title="上传镜像 docker push"></a>上传镜像 docker push</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker push:将本地的镜像上传到镜像仓库，先登录镜像仓库</span></span><br><span class="line">docker push mynode:v1</span><br></pre></td></tr></table></figure>
 
+<h3 id="save镜像"><a href="#save镜像" class="headerlink" title="save镜像"></a>save镜像</h3><p>docker image save nginx:1.20.0 -0 nginx.name</p>
+<h3 id="load镜像"><a href="#load镜像" class="headerlink" title="load镜像"></a>load镜像</h3><p>docker image load -i ./nginx.name</p>
 <h2 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h2><h3 id="列出容器-docker-ps"><a href="#列出容器-docker-ps" class="headerlink" title="列出容器 docker ps"></a>列出容器 docker ps</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-a :显示所有的容器，包括未运行的</span></span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
 
 <h3 id="停止容器-docker-stop"><a href="#停止容器-docker-stop" class="headerlink" title="停止容器 docker stop"></a>停止容器 docker stop</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">停止运行中的容器myrunoob</span></span><br><span class="line">docker stop myrunoob</span><br></pre></td></tr></table></figure>
