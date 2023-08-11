@@ -50,6 +50,9 @@
 
 <h3 id="查看容器信息-docker-inspect"><a href="#查看容器信息-docker-inspect" class="headerlink" title="查看容器信息 docker inspect"></a>查看容器信息 docker inspect</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取容器/镜像的元数据</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取镜像mysql:5.6的元信息</span></span><br><span class="line">docker inspect mysql:5.6</span><br></pre></td></tr></table></figure>
 
+
+<h3 id="查看容器中运行的进程信息"><a href="#查看容器中运行的进程信息" class="headerlink" title="查看容器中运行的进程信息"></a>查看容器中运行的进程信息</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker contaienr top [id]</span><br></pre></td></tr></table></figure>
+
 <h3 id="查看容器日志-docker-logs"><a href="#查看容器日志-docker-logs" class="headerlink" title="查看容器日志 docker logs"></a>查看容器日志 docker logs</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">跟踪查看容器mynginx的日志输出</span></span><br><span class="line">docker logs -f mynginx</span><br></pre></td></tr></table></figure>
 
 <h3 id="进入容器控制台-docker-exec"><a href="#进入容器控制台-docker-exec" class="headerlink" title="进入容器控制台 docker exec"></a>进入容器控制台 docker exec</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 在运行的容器中执行命令</span><br><span class="line">// -d:分离模式，在后台运行</span><br><span class="line">// -i: 即使没有附加也保持STDIN打开</span><br><span class="line">// -t: 分配一个伪终端</span><br><span class="line">// docker exec -it &lt;container-id&gt; /bin/sh</span><br><span class="line"></span><br><span class="line">// 执行 exit 退出</span><br></pre></td></tr></table></figure>
