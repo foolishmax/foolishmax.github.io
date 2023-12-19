@@ -1379,20 +1379,29 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
     <content><![CDATA[<h2 id="react-渲染流程？"><a href="#react-渲染流程？" class="headerlink" title="react 渲染流程？"></a>react 渲染流程？</h2><span id="more"></span>
 
 <p><img src="/images/md_img/react-render.png" alt="react-render"></p>
-<p>React16 以前 React 的组件更新创建虚拟 DOM 和 Diff 的过程是不可中断，如果需要更新组件树层级非常深的话,diff 过程会占用浏览器线程，阻塞 js 执行以及 dom 渲染，基于以上原因 react 团队调整架构将原来数据结构的虚拟 dom 改为 fiber 数据结构，实现由原来不可中断的更新过程变成异步可中断的更新（双缓存机制）</p>
+<p>React16 以前 React 的组件更新创建虚拟 DOM 和 Diff 的过程是不可中断，如果需要更新组件树层级非常深的话,diff 过程会占用浏览器线程，阻塞 js 执行以及 dom 渲染，基于以上原因 react 团队调整架构将原来数据结构的虚拟 dom 改为 fiber 数据结构，实现由原来不可中断的更新过程变成异步可中断的更新（双缓存机制）吗，</p>
+<p>React Filber 架构分为三层:</p>
+<ul>
+<li><p>Scheduler（调度器，调度任务优先级，高优先级任务进入 Reconciler）</p>
+</li>
+<li><p>Reconciler（协调器，diff 算法找出变化的组件）</p>
+</li>
+<li><p>Renderer（渲染器，将组件渲染到页面）</p>
+</li>
+</ul>
 <blockquote>
-<p>React Filber 架构分为三层 Scheduler（调度器，调度任务优先级，高优先级任务进入 Reconciler）、Reconciler（协调器，diff 算法找出变化的组件）、Renderer（渲染器，将组件渲染到页面），React18 开启 concurrent mode 通过时间切片解决了任务拆分和任务优先级的问题，整个 Fiber 树的更新流程分为 render 阶段和 commit 阶段。</p>
+<p>React18 开启 concurrent mode 通过时间切片解决了任务拆分和任务优先级的问题，整个 Fiber 树的更新流程分为 render 阶段和 commit 阶段。</p>
 </blockquote>
 <ul>
 <li><p>首先在 DOM 挂载和更新的时候会通过 React.createElement(后改为 babel、tsx 更编译工具引入 react/jsx-runtime 包引入),将 react 组件变成 jsx 对象，或者叫 virtual-dom</p>
 </li>
-<li><p>这些渲染任务会经过 Scheduler 的调度根据优先级的不同(react 内部实现了 requestAnimationFrame 作为 polyfill)，通过帧率动态调整，计算剩余时间，模拟 requestIdleCallback，实现了时间切片，决定哪些任务进入 render 阶段，</p>
+<li><p>这些渲染任务会经过 Scheduler 的调度根据优先级的不同，通过帧率动态调整，计算剩余时间，模拟 requestIdleCallback，实现了时间切片，决定哪些任务进入 render 阶段，</p>
 </li>
-<li><p>在 render 阶段根据 jsx 对象构建新的 workInProgressFiber 树，通过 Reconciler 协调器对比 jsx 和当前 fiber 的差异（mount 时 fiber 节点标记为 placement），将有副作用（placement 插入、update 更新、deletetion 删除等）的 fiber 节点打上 tag，把这些带有副作用的 fiber 节点加入一条 effectlist 链表中，后改为 subtreeFlags，子节点副作用存放在父节点。</p>
+<li><p>在 render 阶段根据 jsx 对象构建新的 workInProgressFiber 树，通过 Reconciler 协调器对比 jsx 和当前 fiber 的差异标记对应的副作用tag，（比如在mount 时 fiber 节点标记为 placement），将有副作用（placement 插入、update 更新、deletetion 删除等）的 fiber 节点加入一条单向循环链表中，子节点副作用存放在父节点。</p>
 </li>
-<li><p>在 commit 阶段（分为 before mutation、mutation、layout 阶段）会遍历这条链表，执行副作用（如 placement 插入，执行 passive：useEffect 的副作用）处理响应的生命周期，然后将处理后的节点渲染到真实 DOM 节点，这个过程会引用不同的渲染器，在浏览器中就是 react-dom，在 canvas 或 svg 中就是 react-art 等。</p>
+<li><p>在 commit 阶段（分为 before mutation、mutation、layout 阶段）会遍历这条链表，执行副作用处理响应的生命周期（如 placement 插入，执行 passive：useEffect 的副作用），然后将处理后的节点渲染到真实 DOM 节点，这个过程会引用不同的渲染器，在浏览器中就是 react-dom，在 canvas 或 svg 中就是 react-art 等。</p>
 </li>
-<li><p>update 时根据最新的 jsx 对象对比 current fiber，在构建新的 workInProgressFiber 树（diff 算法），对比过程同样会收集副作用</p>
+<li><p>在 update 时根据最新的 jsx 对象对比 current fiber，在构建新的 workInProgressFiber 树（diff 算法），对比过程同样会收集副作用</p>
 </li>
 <li><p>更新的时候利用的是在内存中构建并直接替换的双缓存技术，react 中最多会同时存在两颗 fiber 树，屏幕上显示内容对应的 fiber 树为 current fiber 树，正在内存中构建的 fiber 树为 workInProgressFiber 树</p>
 </li>
@@ -4803,7 +4812,7 @@ shuffle(arr)
 
 <h2 id="合并两个有序数组？"><a href="#合并两个有序数组？" class="headerlink" title="合并两个有序数组？"></a>合并两个有序数组？</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">mergeArr</span>(<span class="params">arr1, arr2</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> mergedArr = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> pointer1 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> pointer2 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (pointer1 &lt; arr1.<span class="property">length</span> &amp;&amp; pointer2 &lt; arr2.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr1[pointer1] &lt; arr2[pointer2]) &#123;</span><br><span class="line">      mergedArr.<span class="title function_">push</span>(arr1[pointer1]);</span><br><span class="line">      pointer1++;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      mergedArr.<span class="title function_">push</span>(arr2[pointer2]);</span><br><span class="line">      pointer2++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (pointer1 &lt; arr1.<span class="property">length</span>) &#123;</span><br><span class="line">    mergedArr.<span class="title function_">push</span>(arr1[pointer1]);</span><br><span class="line">    pointer1++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (pointer2 &lt; arr2.<span class="property">length</span>) &#123;</span><br><span class="line">    mergedArr.<span class="title function_">push</span>(arr2[pointer2]);</span><br><span class="line">    pointer2++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> mergedArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…"></a>持续更新中…</h2>]]></content>
+<h2 id="持续更新中"><a href="#持续更新中" class="headerlink" title="持续更新中"></a>持续更新中</h2>]]></content>
       <categories>
         <category>面经</category>
       </categories>
