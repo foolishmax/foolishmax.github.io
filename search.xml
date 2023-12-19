@@ -1525,7 +1525,7 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <li>getSnapshotBeforeUpdate 生命周期钩子在 beforeMutation 阶段执行</li>
 </ul>
 <h2 id="为什么不能在循环或者条件语句中使用hooks？"><a href="#为什么不能在循环或者条件语句中使用hooks？" class="headerlink" title="为什么不能在循环或者条件语句中使用hooks？"></a>为什么不能在循环或者条件语句中使用hooks？</h2><blockquote>
-<p>这是React Hooks的首要规则，因为React Hooks是以单向循环链表的形式存储的，即是有序的。循环是为了从最后一个节点移到一个节点的时候，只需通过next一步就可以拿到第一个节点，而不需要一层层回溯。React Hooks的执行，分为 mount 和 update 阶段，在mount阶段的时候，通过mountWorkInProgressHook() 创建各个hooks (如useState, useMemo, useEffect, useCallback等)，并且将当前hook添加到表尾。在update阶段，在获取或者更新hooks值的时候，会先获取当前hook的状态，hook.memoizedState，并且是按照顺序或读写更新hook，若在条件或者循环语句使用hooks，那么在更新阶段，若增加或者减少了某个hook，hooks的数量发生变化，而React是按照顺序，通过next读取下一个hook，则导致后面的hooks和挂载阶段对应不上，发生读写错值的情况，从而引发bug。</p>
+<p>这是React Hooks的首要规则，因为React Hooks是以单向循环链表(好处：可以实现并发、可打断、可恢复、可继续执行下一个fiber任务)的形式存储的，即是有序的。循环是为了从最后一个节点移到一个节点的时候，只需通过next一步就可以拿到第一个节点，而不需要一层层回溯。React Hooks的执行，分为 mount 和 update 阶段，在mount阶段的时候，通过mountWorkInProgressHook() 创建各个hooks (如useState, useMemo, useEffect, useCallback等)，并且将当前hook添加到表尾。在update阶段，在获取或者更新hooks值的时候，会先获取当前hook的状态，hook.memoizedState，并且是按照顺序或读写更新hook，若在条件或者循环语句使用hooks，那么在更新阶段，若增加或者减少了某个hook，hooks的数量发生变化，而React是按照顺序，通过next读取下一个hook，则导致后面的hooks和挂载阶段对应不上，发生读写错值的情况，从而引发bug。</p>
 </blockquote>
 ]]></content>
       <categories>
