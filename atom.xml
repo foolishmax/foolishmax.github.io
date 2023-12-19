@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2023-11-13T03:24:17.772Z</updated>
+  <updated>2023-12-19T07:49:09.112Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>人月神话书摘</title>
+    <link href="https://github.com/foolishmax/2023/12/19/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E4%B9%A6%E6%91%98/"/>
+    <id>https://github.com/foolishmax/2023/12/19/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E4%B9%A6%E6%91%98/</id>
+    <published>2023-12-19T07:48:58.000Z</published>
+    <updated>2023-12-19T07:49:09.112Z</updated>
+    
+    <content type="html"><![CDATA[<p>什么叫“人月神话”？</p><p>人是程序员，月是时间，，如果1人干10个月如果等同10人干1个月，那就成神话。</p><p>001</p><p>焦油坑</p><p>过去几十年的大型系统开发就犹如一个焦油坑，很多大型动物在其中剧烈挣扎，他们中大多数开发出了可运行的系统–不过，其中只有非常少数的项目满足了目标、时间进度和预算的要求。</p><p>各种团队，大型的和小型的，庞杂的和精干的，一个接一个淹没在了焦油坑中。表面上看起来好像没有任何一个单独的问题会导致困难，每个都能被解决，但是当它们相互纠缠和累积在一起的时候，团队的行动就会变得越来越慢且很难看清问题的本质。</p><p>002</p><p>人月神话</p><p>缺乏合理的时间进度是造成项目滞后的最主要原因，它比其他所有因素加起来影响还大。</p><p>我们围绕成本核算的估计技术，混淆了工作量和项目进展。人月是危险和带有欺骗性的神话，因为它暗示人员数量和时间是可以相互替换的。</p><p>向软件项目中增派人手从三个方面增加了项目必要的总体工作量：</p><p>任务重新分配本身和所造成的工作中断；</p><p>培训新人员；</p><p>额外的相互沟通。</p><p>关于进度安排，我的经验是为1/3计划、1/6编码、1/4构件测试以及1/4系统测试。</p><p>Brook法则：向进度落后的项目中增加人手，只会使进度更加落后。</p><p>特别需要指出的是，不为系统测试安排足够的时间简直就是一场灾难。</p><p>在现实情况中，一旦开发团队观察到进度的偏差，总是倾向于对任务进行削减。当项目延期所导致的后续成本非常高时，这常常是唯一可行的方法。</p><p>003</p><p>外科手术队伍</p><p>小型、精干队伍是最好的–尽可能的少。</p><p>需要协作沟通的人员的数量影响着开发成本，因为成本的主要组成部分是相互的沟通和交流，以及更正沟通不当所引起的不良结果（系统调试）。</p><p>Mills建议大型项目的每一个部分由一个团队解决，但是该队伍以类似外科手术的方式组建，而并非一拥而上。</p><p>一位首席程序员、类似于外科手术队伍的团队架构提供了一种方法–既能获得由少数头脑产生的产品完整性，又能得到多位协助人员的总体生产率，还彻底地减少了沟通的工作量。</p><p>004</p><p>贵族专制、民主政治和系统设计</p><p>为了反映一系列连贯的设计思路，宁可省略一些不规则的特性和改进，也不提倡独立和无法整合的系统，哪怕它们其实包含着许多很好的设计。</p><p>同工作的水平分割相比，垂直划分从根本上大大减少了劳动量，结果是使交流彻底地简化，概念完整性得到大幅提高。</p><p>005</p><p>蛇添足</p><p>一种普遍倾向是过分地设计第二个系统，向系统添加很多修饰功能和想法，它们曾在第一个系统中被小心谨慎地推迟了。</p><p>实际情况中，尽早交流和持续沟通能使结构师有较好的成本意识，以及使开发人员获得对设计的信心，并且不会混淆各自的责任分工。</p><p>面对估算过高的难题，结构师有两个选择：削减设计或者建议成本更低的实现方法–挑战估算的结果</p><p>006</p><p>贯彻执行</p><p>即使是大型的设计团队，设计结果也必须由一个或两个人来完成，以确保这些决定是一致的。</p><p>允许体系结构师对实现人员的询问做出电话应答解释是非常重要的，并且必须进行日志记录和整理发布。</p><p>对于存有疑问的实现人员，应鼓励他们打电话询问相应的结构师，而不是一边自行猜测一边工作，这是一项很基本的措施。</p><p>007</p><p>为什么巴比伦塔会失败？</p><p>巴比伦塔项目的失败是因为缺乏交流，以及交流的结果–组织。</p><p>“因为左手不知道右手在做什么，从而进度灾难、功能的不合理和系统缺陷纷纷出现。</p><p>随着工作的进行，许多小组慢慢地修改自己程序的功能、规模和速度，他们明确或者隐含地更改了一些有效输入和输出结果用法上的约定，而因此给其他部分引发了BUG。</p><p>解决方案：</p><p>团队应该以尽可能多的方式进行相互之间的交流：非正式、常规项目会议，会上进行简要的技术陈述、共享的正式项目工作手册。举行常规项目会议，会议中，团队一个接一个地进行简要的技术陈述。这种方式非常有用，能澄清成百上千的细小误解。</p><p>制定项目工作手册，并实时记录变更：首先，必须在页面上标记发生改变的文本，例如，使用页边上的竖线标记每行变化的文字。第二，分发的变更页附带独立的总结性文字，对变更的重要性以及批注进行记录。</p><p>008</p><p>胸有成竹</p><p>编码大约只占了问题的六分之一左右，编码估计或者比率的错误可能会导致不合理的荒谬结果。</p><p>对常用编程语句而言。生产率似乎是固定的。这个固定的生产率包括了编程中需要注释，并可能存在错误的情况.</p><p>使用适当的高级语言，编程的生产率可以提高5倍。</p><p>009</p><p>削足适履</p><p>在大型的团队中，各个小组倾向于不断地局部优化，以满足自己的目标，而较少考虑队用户的整体影响。这种方向性的问题是大型项目的主要危险。</p><p>为了满足目标，每个人都在局部优化自己的程序，很少会有人停下来，考虑一下对客户的整体影响。</p><p>培养开发人员从系统整体出发、面向用户的态度是软件编程管理人员最重要的职能。</p><p>10</p><p>提纲挈领</p><p>如果要制造一台机器，哪些是关键的文档呢？</p><p>目标：定义待满足的目标和需要，定义迫切需要的资源、约束和优先级。</p><p>首先，书面记录决策是必要的。只有记录下来，分歧才会明朗，矛盾才会突出。项目经理常常会不断发现，许多理应被普遍认同的策略，完全不为团队的一些成员所知。每个文档本身就可以作为检查列表或者数据库。</p><p>项目经理的基本职责是使每个人都向着相同的方向前进。项目经理的主要日常工作是沟通，而不是做出决定；文档使各项计划和决策在整个团队范围内得到交流。</p><p>通过周期性的回顾，他能清楚项目所处的状态，以及哪些需要重点进行更改和调整。</p><p>11</p><p>未雨绸缪</p><p>变更的客观需要</p><p>对于大多数项目，第一个开发的系统并不合用。它可能太慢、太大，而且难以使用，或者三者兼而有之。</p><p>用户的实际需要和用户感觉会随着程序的构建、测试和使用而变化。</p><p>软件产品易于掌握的特性和不可见性，导致了它的构建人员（特别容易）面临着永恒的需求变更。</p><p>目标上（和开发策略上）的一些正常变化无可避免，事先为它们做准备总比假设它们不会出现要好得多。</p><p>为变更计划组织结构</p><p>当系统发生变化时，管理结构也需要进行调整。只要管理人员和技术人才的天赋允许，老板必须对他们的能力培养给予极大的关注，使管理人员和技术人才具有互换性。</p><p>为什么缺陷不能更彻底地被修复？</p><p>首先，看上去很轻微的错误，似乎仅仅是局部操作上的失败，实际上却是系统级别的问题，通常这不是很明显。</p><p>设计实现的人员越少、接口越少，产生的错误也就越少。</p><p>所有修改都倾向于破坏系统的架构，增加了系统的混乱程度。用在修复原有设计上瑕疵的工作量越来越少，而早期维护活动本身的漏洞所引起修复工作越来越多。</p><p>随着时间的推移，系统变得越来越无序，修复工作迟早会失去根基 ，尽管理论上系统一直可用，但实际上，整个系统已经面目全非，无法再成为下一步进展的基础。</p><p>机器在变化，配置在变化，用户的需求在变化，所以现实系统不可能永远可用。崭新的、对于原有系统的重新设计是完全必要的。</p><p>12</p><p>干将莫邪</p><p>每个编程人员也保留着编辑器、排序、内存信息转储、磁盘实用程序等工具。 这种方法对软件项目来说是愚蠢的。首先，项目的关键问题是沟通，个性化的工具妨碍–而不是促进沟通。</p><p>交互式编程</p><p>MIT的Multics项目的成果之一，是它对软件编程系统开发的贡献。在那些系统编程所关注的方面，Multics（以及后续系统，IBM的TSS）和其他交互式计算机系统在概念上有很大的不同：多个级别上数据和程序的共享和保护，可延伸的库管理，以及协助终端用户共同开发的设施。我确信在某些应用上，批处理系统决不会被交互式系统所取代。</p><p>13</p><p>整体部分</p><p>许许多多的失败完全源于那些产品未精确定义的地方。</p><p>“细致的功能定义、详细的规格说明、规范化的功能描述说明以及这些方法的实施，大大减少了系统中必须查找的bug数量。 注: 需求文档越详细，bug越少</p><p>在编写任何代码之前，规格说明必须提交给测试小组，以详细地检查说明的完整性和明确性 注: 需求文档给测试过一遍</p><p>他将程序开发划分成体系结构设计、设计实现和物理编码实现，每个步骤可以使用自顶向下的方法很好地实现。</p><p>好的自顶向下设计从几个方面避免了bug。</p><p>首先，清晰的结构和表达方式更容易对需求和模块功能进行精确的描述。</p><p>其次，模块分割和模块独立性避免了系统级的bug。</p><p>另外，细节的隐藏使结构上的缺陷更加容易识别。</p><p>最后，设计在每个精化步骤的层次上是可以测试的，所以测试可以尽早开始，并且每个步骤的重点可以放在合适的级别上。</p><p>一些糟糕的系统往往就是试图挽救一个基础很差的设计，而对它添加了很多表面装饰般的补丁。自顶向下的方法减少了这样的企图。</p><p>14</p><p>祸起萧墙</p><p>当人们听到某个项目的进度发生了灾难性偏离时，可能会认为项目一定是遭受了一系列重大灾难。然而，通常灾祸来自白蚁的肆虐，而不是龙卷风的侵袭。</p><p>里程碑</p><p>里程碑的选择只有一个原则，那就是，里程碑必须是具体的、特定的、可度量的事件，能够进行清晰定义。</p><p>例如：”结构师和实现人员签字认可的规格说明”，”100%源代码编制完成，纸带打孔完成并输入到磁盘库”，”测试通过了所有的测试用例”。</p><p>如果里程碑很模糊，老板就常常会得到一份与实际情况不符的报告。</p><p>慢性进度偏离是士气杀手。[Microsoft的Jim McCarthy说：”如果你错过了一个最终期限（deadline），确保制订下一条deadline</p><p>如果在某项活动开始之前就着手估计，并且每两周进行一次仔细的修订，根据实际情况动态调整时间。当里程碑没有正确反映损失的时间，并对人们形成误导，以致事态无法挽回的时候，它会彻底碾碎小组的士气。</p><p>保持进度透明可见</p><p>一线经理的利益和老板的利益是内在冲突的。一线经理担心如果汇报了问题，老板会采取行动,这些行动会取代经理的作用，降低自己的威信，搞乱了其他计划。所以，只要项目经理认为自己可以独立解决问题，他就不会告诉老板。</p><p>有两种掀开毯子把污垢展现在老板面前的方法，它们必须都被采用。</p><p>一种是减少角色冲突和鼓励状态共享</p><p>减少角色的冲突。老板必须规范自己，不对项目经理可以解决的问题做出反应。当项目经理了解到老板收到项目报告之后不会惊慌，或者不会越俎代庖时，他就逐渐会提交真实的评估结果。</p><p>另一种是猛地拉开地毯。</p><p>猛地拉开地毯。不论协作与否，拥有能了解状态真相的评审机制是必要的。PERT图以及频繁的里程碑是这种评审的基础。大型项目中，可能需要每周对某些部分进行评审，大约一个月左右进行整体评审。</p><p>没有银弹软件工程中的根本和次要问题</p><p>没有任何技术或管理上的进展，能够独立地许诺十年内使生产率、可靠性或简洁性获得数量级上的进步。因为软件有无法规避的特性：复杂度、一致性、可变性、不可见性。</p><p>产品复杂度：</p><p>由于复杂度，团队成员之间的沟通非常困难，导致了产品瑕疵、成本超支和进度延迟；</p><p>由于复杂度，列举和理解所有可能的状态十分困难，影响了产品的可靠性；</p><p>由于函数的复杂度，函数调用变得困难，导致程序难以使用；</p><p>由于结构性复杂度，程序难以在不产生副作用的情况下用新函数扩充；由于结构性复杂度，造成很多安全机制状态上的不可见性。</p><p>复杂度不仅仅导致技术上的困难，还引发了很多管理上的问题。它使全面理解问题变得困难，从而妨碍了概念上的完整性；它使所有离散出口难以寻找和控制；它引起了大量学习和理解上的负担，使开发慢慢演变成了一场灾难。</p><p>软件可变性：</p><p>软件实体经常会遭受到持续的变更压力</p><p>现实工作中，经常发生两种情况。</p><p>当人们发现软件很有用时，会在原有应用范围的边界，或者在超越边界的情况下使用软件。功能扩展的压力主要来自那些喜欢基本功能，又对软件提出了很多新用法的用户们。</p><p>其次，软件一定是在某种计算机硬件平台上开发，成功软件的生命期通常比当初的计算机硬件平台要长。即使不是更换计算机，则有可能是换新型号的磁盘、显示器或者打印机。软件必须与各种新生事物保持一致。</p><p>软件不可见性</p><p>软件是不可见的和无法可视化的。 其中的秘密就是逐步发育成长，而不是一次性搭建。</p><p>软件开发是一件棘手的事情，并不会有魔术般的解决方案，现在是从业者研究和分析革命性进展的时刻，而不是等待或希望它的出现。</p><p>现在有可能可以在软件生产率上取得逐步的进展，而不是等待不可能到来的大突破。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;什么叫“人月神话”？&lt;/p&gt;
+&lt;p&gt;人是程序员，月是时间，，如果1人干10个月如果等同10人干1个月，那就成神话。&lt;/p&gt;
+&lt;p&gt;001&lt;/p&gt;
+&lt;p&gt;焦油坑&lt;/p&gt;
+&lt;p&gt;过去几十年的大型系统开发就犹如一个焦油坑，很多大型动物在其中剧烈挣扎，他们中大多数开发出了可运行的系</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>如何管理前端团队</title>
@@ -409,27 +433,6 @@
     
     
     <category term="javascript" scheme="https://github.com/foolishmax/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>koa-generator快速搭建koa服务</title>
-    <link href="https://github.com/foolishmax/2022/03/08/koa-generator%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAkoa%E6%9C%8D%E5%8A%A1/"/>
-    <id>https://github.com/foolishmax/2022/03/08/koa-generator%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAkoa%E6%9C%8D%E5%8A%A1/</id>
-    <published>2022-03-08T02:46:25.000Z</published>
-    <updated>2022-07-30T04:11:13.711Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1-全局安装koa-generator脚手架"><a href="#1-全局安装koa-generator脚手架" class="headerlink" title="1.全局安装koa-generator脚手架"></a>1.全局安装<em>koa-generator</em>脚手架</h2><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g koa-generator</span><br><span class="line"># or</span><br><span class="line">yarn global add koa-generator</span><br></pre></td></tr></table></figure><h2 id="创建koa项目"><a href="#创建koa项目" class="headerlink" title="创建koa项目"></a>创建<em>koa</em>项目</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">koa2 project-name</span><br><span class="line"></span><br><span class="line">// 使用ejs引擎</span><br><span class="line">koa2 -e project-name</span><br></pre></td></tr></table></figure><h2 id="进入项目安装依赖"><a href="#进入项目安装依赖" class="headerlink" title="进入项目安装依赖"></a>进入项目安装依赖</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd project-name</span><br><span class="line">yarn install</span><br></pre></td></tr></table></figure><h2 id="项目运行"><a href="#项目运行" class="headerlink" title="项目运行"></a>项目运行</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br><span class="line"># or</span><br><span class="line">npm run dev</span><br><span class="line"># or...</span><br></pre></td></tr></table></figure><h3 id="使用-pm2-启动-koa-项目"><a href="#使用-pm2-启动-koa-项目" class="headerlink" title="使用 pm2 启动 koa 项目"></a>使用 pm2 启动 koa 项目</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 全局安装</span><br><span class="line">npm install -g pm2</span><br><span class="line">// 启动项目</span><br><span class="line">pm2 start ./bin/www</span><br><span class="line">// pm2自动重启</span><br><span class="line">pm2 start ./bin/www/ --watch</span><br></pre></td></tr></table></figure><h3 id="pm2-相关命令（www-是项目名）"><a href="#pm2-相关命令（www-是项目名）" class="headerlink" title="pm2 相关命令（www 是项目名）"></a>pm2 相关命令（www 是项目名）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pm2 list          #查看所有已启动项目</span><br><span class="line">pm2 start         #启动</span><br><span class="line">pm2 restart www   #重启</span><br><span class="line">pm2 stop www      #停止</span><br><span class="line">pm2 delete www    #删除</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;1-全局安装koa-generator脚手架&quot;&gt;&lt;a href=&quot;#1-全局安装koa-generator脚手架&quot; class=&quot;headerlink&quot; title=&quot;1.全局安装koa-generator脚手架&quot;&gt;&lt;/a&gt;1.全局安装&lt;em&gt;koa-generator&lt;/em&gt;脚手架&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="node" scheme="https://github.com/foolishmax/categories/node/"/>
-    
-    
-    <category term="node" scheme="https://github.com/foolishmax/tags/node/"/>
     
   </entry>
   
