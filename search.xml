@@ -1543,6 +1543,10 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <h2 id="为什么不能在循环或者条件语句中使用hooks？"><a href="#为什么不能在循环或者条件语句中使用hooks？" class="headerlink" title="为什么不能在循环或者条件语句中使用hooks？"></a>为什么不能在循环或者条件语句中使用hooks？</h2><blockquote>
 <p>这是React Hooks的首要规则，因为React Hooks是以单向循环链表(好处：可以实现并发、可打断、可恢复、可继续执行下一个fiber任务)的形式存储的，即是有序的。循环是为了从最后一个节点移到一个节点的时候，只需通过next一步就可以拿到第一个节点，而不需要一层层回溯。React Hooks的执行，分为 mount 和 update 阶段，在mount阶段的时候，通过mountWorkInProgressHook() 创建各个hooks (如useState, useMemo, useEffect, useCallback等)，并且将当前hook添加到表尾。在update阶段，在获取或者更新hooks值的时候，会先获取当前hook的状态，hook.memoizedState，并且是按照顺序或读写更新hook，若在条件或者循环语句使用hooks，那么在更新阶段，若增加或者减少了某个hook，hooks的数量发生变化，而React是按照顺序，通过next读取下一个hook，则导致后面的hooks和挂载阶段对应不上，发生读写错值的情况，从而引发bug。</p>
 </blockquote>
+<h2 id="为何-React-需要-fiber-并发模式这一套复杂东西，而-Vue-不需要呢？"><a href="#为何-React-需要-fiber-并发模式这一套复杂东西，而-Vue-不需要呢？" class="headerlink" title="为何 React 需要 fiber 并发模式这一套复杂东西，而 Vue 不需要呢？"></a>为何 React 需要 fiber 并发模式这一套复杂东西，而 Vue 不需要呢？</h2><p>React 需要引入 Fiber 架构和并发模式的主要原因是为了解决其在大型应用中的性能问题。在 React 之前的版本中，由于采用了递归调用的方式进行虚拟 DOM 的处理，当组件层级较深或组件数量较多时，会出现性能瓶颈，导致页面卡顿甚至无响应。</p>
+<p>Fiber 架构的引入使得 React 能够实现增量渲染和优先级调度，使得在处理更新时可以灵活地中断、终止和恢复任务，从而更好地控制渲染过程，提高页面的流畅度和响应速度。而并发模式则允许 React 在浏览器空闲时执行任务，进一步提升性能表现。</p>
+<p>相比之下，Vue 在设计上采用了不同的响应式系统和渲染优化策略，使得在大型应用中依然能够保持良好的性能表现，且相对于 React 的 Fiber 架构而言更加简洁直观。因此，虽然 Vue 不需要类似于 Fiber 的复杂架构，但仍然能够提供出色的性能。</p>
+<p>总的来说，React 引入 Fiber 架构并非故意为难自己，而是为了不断优化框架性能，提升用户体验。不同框架在性能优化上采取了不同的策略和设计思路，最终都是为了更好地满足开发者和用户的需求。</p>
 ]]></content>
       <categories>
         <category>react</category>
@@ -6918,5 +6922,31 @@ dt.getDay()     //星期几（0-6）
       <tags>
         <tag>计算机网络</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>杂记</title>
+    <url>/2024/03/26/%E6%9D%82%E8%AE%B0/</url>
+    <content><![CDATA[<p>前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题：</p>
+<ol>
+<li>请解释什么是Event Loop（事件循环）？它在JavaScript中的作用是什么？</li>
+</ol>
+<p> Event Loop（事件循环）是JavaScript中用来处理异步操作的机制。它负责监听调用栈和任务队列，将任务队列中的任务按照一定规则推入调用栈中执行，从而实现异步编程。</p>
+<ol start="2">
+<li>请描述JavaScript中的任务队列（Task Queue）和微任务队列（Microtask Queue）之间的区别，并举例说明它们的执行顺序。</li>
+</ol>
+<p> 任务队列（Task Queue）是存放宏任务（Macro Task）的队列，而微任务队列（Microtask Queue）是存放微任务（Micro Task）的队列。它们之间的区别在于微任务队列的优先级高于任务队列，微任务会在当前宏任务执行完毕后立即执行。</p>
+<ol start="3">
+<li>什么是宏任务（Macro Task）和微任务（Micro Task）？它们在事件循环中是如何被处理的？</li>
+</ol>
+<p> 宏任务（Macro Task）是指由浏览器发起的任务，如setTimeout、setInterval等；而微任务（Micro Task）是指由JavaScript引擎发起的任务，如Promise、process.nextTick等。在事件循环中，每个宏任务执行完毕后会先清空微任务队列，然后再执行下一个宏任务。</p>
+<ol start="4">
+<li>请解释setTimeout和setImmediate之间的区别，它们在事件循环中的执行顺序是怎样的？</li>
+</ol>
+<p> setTimeout和setImmediate都用于在事件循环中添加宏任务，它们之间的主要区别在于执行时机。setTimeout会将回调函数推入任务队列，在下一个宏任务执行时被执行；而setImmediate会将回调函数推入检查阶段，在当前宏任务执行完毕后立即执行。</p>
+<ol start="5">
+<li>在一个包含Promise、setTimeout和DOM事件的代码片段中，这些任务的执行顺序是怎样的？请说明原因。</li>
+</ol>
+<p> 在一个包含Promise、setTimeout和DOM事件的代码片段中，Promise的回调函数会被放入微任务队列，DOM事件会被放入任务队列，而setTimeout中的回调函数会被放入任务队列。执行顺序为：首先执行微任务队列中的Promise回调函数，然后执行DOM事件，最后执行setTimeout中的回调函数。</p>
+]]></content>
   </entry>
 </search>
