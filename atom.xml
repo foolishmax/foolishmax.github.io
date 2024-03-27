@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2024-03-26T07:58:53.037Z</updated>
+  <updated>2024-03-26T09:30:13.805Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://github.com/foolishmax/2024/03/26/%E6%9D%82%E8%AE%B0/"/>
     <id>https://github.com/foolishmax/2024/03/26/%E6%9D%82%E8%AE%B0/</id>
     <published>2024-03-26T07:57:32.000Z</published>
-    <updated>2024-03-26T07:58:53.037Z</updated>
+    <updated>2024-03-26T09:30:13.805Z</updated>
     
-    <content type="html"><![CDATA[<p>前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题：</p><ol><li>请解释什么是Event Loop（事件循环）？它在JavaScript中的作用是什么？</li></ol><p> Event Loop（事件循环）是JavaScript中用来处理异步操作的机制。它负责监听调用栈和任务队列，将任务队列中的任务按照一定规则推入调用栈中执行，从而实现异步编程。</p><ol start="2"><li>请描述JavaScript中的任务队列（Task Queue）和微任务队列（Microtask Queue）之间的区别，并举例说明它们的执行顺序。</li></ol><p> 任务队列（Task Queue）是存放宏任务（Macro Task）的队列，而微任务队列（Microtask Queue）是存放微任务（Micro Task）的队列。它们之间的区别在于微任务队列的优先级高于任务队列，微任务会在当前宏任务执行完毕后立即执行。</p><ol start="3"><li>什么是宏任务（Macro Task）和微任务（Micro Task）？它们在事件循环中是如何被处理的？</li></ol><p> 宏任务（Macro Task）是指由浏览器发起的任务，如setTimeout、setInterval等；而微任务（Micro Task）是指由JavaScript引擎发起的任务，如Promise、process.nextTick等。在事件循环中，每个宏任务执行完毕后会先清空微任务队列，然后再执行下一个宏任务。</p><ol start="4"><li>请解释setTimeout和setImmediate之间的区别，它们在事件循环中的执行顺序是怎样的？</li></ol><p> setTimeout和setImmediate都用于在事件循环中添加宏任务，它们之间的主要区别在于执行时机。setTimeout会将回调函数推入任务队列，在下一个宏任务执行时被执行；而setImmediate会将回调函数推入检查阶段，在当前宏任务执行完毕后立即执行。</p><ol start="5"><li>在一个包含Promise、setTimeout和DOM事件的代码片段中，这些任务的执行顺序是怎样的？请说明原因。</li></ol><p> 在一个包含Promise、setTimeout和DOM事件的代码片段中，Promise的回调函数会被放入微任务队列，DOM事件会被放入任务队列，而setTimeout中的回调函数会被放入任务队列。执行顺序为：首先执行微任务队列中的Promise回调函数，然后执行DOM事件，最后执行setTimeout中的回调函数。</p>]]></content>
+    <content type="html"><![CDATA[<p>前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题：</p><ol><li>请解释什么是Event Loop（事件循环）？它在JavaScript中的作用是什么？</li></ol><p> Event Loop（事件循环）是JavaScript中用来处理异步操作的机制。它负责监听调用栈和任务队列，将任务队列中的任务按照一定规则推入调用栈中执行，从而实现异步编程。</p><ol start="2"><li>请描述JavaScript中的任务队列（Task Queue）和微任务队列（Microtask Queue）之间的区别，并举例说明它们的执行顺序。</li></ol><p> 任务队列（Task Queue）是存放宏任务（Macro Task）的队列，而微任务队列（Microtask Queue）是存放微任务（Micro Task）的队列。它们之间的区别在于微任务队列的优先级高于任务队列，微任务会在当前宏任务执行完毕后立即执行。</p><ol start="3"><li>什么是宏任务（Macro Task）和微任务（Micro Task）？它们在事件循环中是如何被处理的？</li></ol><p> 宏任务（Macro Task）是指由浏览器发起的任务，如setTimeout、setInterval等；而微任务（Micro Task）是指由JavaScript引擎发起的任务，如Promise、process.nextTick等。在事件循环中，每个宏任务执行完毕后会先清空微任务队列，然后再执行下一个宏任务。</p><ol start="4"><li>请解释setTimeout和setImmediate之间的区别，它们在事件循环中的执行顺序是怎样的？</li></ol><p> setTimeout和setImmediate都用于在事件循环中添加宏任务，它们之间的主要区别在于执行时机。setTimeout会将回调函数推入任务队列，在下一个宏任务执行时被执行；而setImmediate会将回调函数推入检查阶段，在当前宏任务执行完毕后立即执行。</p><ol start="5"><li>在一个包含Promise、setTimeout和DOM事件的代码片段中，这些任务的执行顺序是怎样的？请说明原因。</li></ol><p> 在一个包含Promise、setTimeout和DOM事件的代码片段中，Promise的回调函数会被放入微任务队列，DOM事件会被放入任务队列，而setTimeout中的回调函数会被放入任务队列。执行顺序为：首先执行微任务队列中的Promise回调函数，然后执行DOM事件，最后执行setTimeout中的回调函数。</p><h2 id="webpack热更新原理"><a href="#webpack热更新原理" class="headerlink" title="webpack热更新原理"></a>webpack热更新原理</h2><p> 通过webpack-dev-server创建两个服务器：提供静态资源的服务（express）负责提供打包后的资源给浏览器请求和解析和Socket服务提供websocket长连接，socket server监听到对应的模块发生变化生成manifest.json和chunk.js，通过长连接主动发送给客户端浏览器，浏览器拿到文件通过HMR runtime机制加载这两个文件并针对修改的模块进行更新。</p><h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><ol><li><p>进程和线程都是操作系统进行任务管理和调度的基本单位</p></li><li><p>一个进程可包含多个线程，多个线程可以共享同一个进程的资源，如内存空间、文件等</p></li><li><p>线程间的切换比进程间的切换开销更小，因为线程共享相同的地址空间</p></li></ol>]]></content>
     
     
       
