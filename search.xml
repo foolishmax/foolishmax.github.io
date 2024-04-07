@@ -1395,7 +1395,7 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
     <content><![CDATA[<h2 id="react-渲染流程？"><a href="#react-渲染流程？" class="headerlink" title="react 渲染流程？"></a>react 渲染流程？</h2><span id="more"></span>
 
 <p><img src="/images/md_img/react-render.png" alt="react-render"></p>
-<p>React16 以前 React 的组件更新创建虚拟 DOM 和 Diff 的过程是不可中断，如果需要更新组件树层级非常深的话,diff 过程会占用浏览器线程，阻塞 js 执行以及 dom 渲染，基于以上原因 react 团队调整架构将原来数据结构的虚拟 dom 改为 fiber 数据结构，实现由原来不可中断的更新过程变成异步可中断的更新（双缓存机制）吗，</p>
+<p>React16 以前 React 的组件更新创建虚拟 DOM 和 Diff 的过程是不可中断，如果需要更新组件树层级非常深的话,diff 过程会占用浏览器线程，阻塞 js 执行以及 dom 渲染，基于以上原因 react 团队调整架构将原来数据结构的虚拟 dom 改为 fiber 数据结构，实现由原来不可中断的更新过程变成异步可中断的更新（双缓存机制），</p>
 <p>React Filber 架构分为三层:</p>
 <ul>
 <li><p>Scheduler（调度器，调度任务优先级，高优先级任务进入 Reconciler）</p>
@@ -1440,7 +1440,7 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <li>多节点 diff，分为三种情况新增、删除和更新，但是更新操作的优先级要更高，因为在日常开发中，更新组件发生的频率更高，所以 diff 会优先判断当前节点是否属于更新操作，而且在 diff 的时候 react 针对同级的 fiber 节点是通过 oldFiber.sibling 指针链接形成的单链表，所以无法使用双指针（从数组头和尾同时遍历提高效率）优化。基于这个原因，react 的 diff 算法的整体逻辑会经历两轮遍历：第一轮处理更新的节点，第二轮处理剩下的不属于更新的节点</li>
 </ol>
 <h2 id="当-shouldYield-为-true，以至于-performUnitOfWork-被中断后如何重新启动？"><a href="#当-shouldYield-为-true，以至于-performUnitOfWork-被中断后如何重新启动？" class="headerlink" title="当 shouldYield 为 true，以至于 performUnitOfWork 被中断后如何重新启动？"></a>当 shouldYield 为 true，以至于 performUnitOfWork 被中断后如何重新启动？</h2><blockquote>
-<p>React 架构中的 Scheduler 调度器包含两个功能时间切片、优先级调度</p>
+<p>React 架构中的 Scheduler 调度器包含两个功能：时间切片、优先级调度</p>
 </blockquote>
 <ul>
 <li>时间切片采用执行时机更靠前的 MessageChannel，如果当前宿主环境不支持 MessageChannel 则使用 setTimeout，而且在 Scheduler 中为任务分配的初始剩余时间为 5ms，随着应用运行会根据 fps 动态调整任务的可执行时间</li>
@@ -6698,6 +6698,8 @@ dt.getDay()     //星期几（0-6）
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = &#123;[<span class="title class_">Symbol</span>()]: <span class="string">&#x27;a&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">const</span> b = &#123;<span class="attr">a</span>: <span class="string">&#x27;a&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">const</span> c = &#123;&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(a).<span class="property">length</span> === <span class="number">0</span>) <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(b).<span class="property">length</span> === <span class="number">0</span>) <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(c).<span class="property">length</span> === <span class="number">0</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="babel的转换流程是什么样的"><a href="#babel的转换流程是什么样的" class="headerlink" title="babel的转换流程是什么样的"></a>babel的转换流程是什么样的</h2><p>首先读取代码字符串，然后通过babel-parse将字符串代码转换成抽象语法树AST，之后对该AST进行节点遍历和转换，生成新的AST，<br>之后通过babel-generator将新的AST再转换成新的代码字符串</p>
+<h2 id="AST及其应用"><a href="#AST及其应用" class="headerlink" title="AST及其应用"></a>AST及其应用</h2><p>源代码经过此法分析转化为<strong>Token</strong>流，维护一个Token的数组，可以利用Token流做一些代码检查、语法高亮、模版语法相关的操作，然后经过语法分析转化为有结构化ATS抽象语法树，方便操作。</p>
+<p><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">参考一个最简编译器的实现</a></p>
 ]]></content>
       <categories>
         <category>面经</category>
@@ -6914,7 +6916,224 @@ dt.getDay()     //星期几（0-6）
 </ul>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">WebSocketServer</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;ws&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> wsServer = <span class="keyword">new</span> <span class="title class_">WebSocketServer</span>(&#123; <span class="attr">port</span>: <span class="number">3000</span> &#125;);</span><br><span class="line"></span><br><span class="line">wsServer.<span class="title function_">on</span>(<span class="string">&#x27;connection&#x27;</span>, <span class="function">(<span class="params">ws</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;connection&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  ws.<span class="title function_">on</span>(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">msg</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;收到了信息&#x27;</span>, msg.<span class="title function_">toString</span>());</span><br><span class="line"></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      ws.<span class="title function_">send</span>(<span class="string">&#x27;服务端已经收到了信息&#x27;</span> + msg.<span class="title function_">toString</span>());</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- server</span><br><span class="line"></span><br><span class="line">```typescript</span><br><span class="line">const ws = new WebSocket(&#x27;ws://127.0.0.1:3000&#x27;);</span><br><span class="line">ws.onopen = () =&gt; &#123;</span><br><span class="line">  console.log(&#x27;opened&#x27;);</span><br><span class="line">  ws.send(&#x27;client opened&#x27;);</span><br><span class="line">&#125;;</span><br><span class="line">ws.onmessage = (event) =&gt; &#123;</span><br><span class="line">  console.log(&#x27;收到了信息&#x27;, event.data);</span><br><span class="line">&#125;;</span><br><span class="line">const btn = document.getElementById(&#x27;btn&#x27;);</span><br><span class="line">btn.addEventListener(&#x27;click&#x27;, () =&gt; &#123;</span><br><span class="line">  console.log(&#x27;clicked&#x27;);</span><br><span class="line"></span><br><span class="line">  ws.send(&#x27;当前时间&#x27; + Date.now());</span><br><span class="line">&#125;);</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">- WebSocket 连接过程</span><br><span class="line"></span><br><span class="line">  - 先发起一个 http 请求</span><br><span class="line">  - 成功之后再升级到 WebSocket 协议，再通讯</span><br><span class="line"></span><br><span class="line">- WebSocket 和 HTTP 区别？</span><br><span class="line"></span><br><span class="line">  - WebSocket 协议名是 ws://,可双端发起请求</span><br><span class="line">  - WebSocket 没有跨域限制</span><br><span class="line">  - 通过 send 和 onmessage 通讯（HTTP 通过 req 和 res）</span><br><span class="line"></span><br><span class="line">- ws 可升级为 wss（like https）</span><br><span class="line"></span><br><span class="line">  ```typescript</span><br><span class="line">  import &#123; createServer &#125; from &#x27;https&#x27;;</span><br><span class="line">  import &#123; readFileSync &#125; from &#x27;fs&#x27;;</span><br><span class="line">  import &#123; WebSocketServer &#125; from &#x27;ws&#x27;;</span><br><span class="line"></span><br><span class="line">  const server = createServer(&#123;</span><br><span class="line">    cert: readFileSync(&#x27;/path/to/cert.pem&#x27;),</span><br><span class="line">    key: readFileSync(&#x27;/path/to/key.pem&#x27;),</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  const wss = new WebSocketServer(&#123; server &#125;);</span><br><span class="line">  ```</span><br><span class="line"></span><br><span class="line">- 实际项目推荐 socket.io,API 更简洁</span><br><span class="line"></span><br><span class="line">## WebSocket 和 HTTP 长轮询的区别？</span><br><span class="line"></span><br><span class="line">- 区别</span><br><span class="line"></span><br><span class="line">  - HTTP 长轮询：客户端发起请求，服务端阻塞，不会立即返回</span><br><span class="line">  - WebSocket：客户端可发起请求，服务端也可发起请求</span><br><span class="line"></span><br><span class="line">- 注意</span><br><span class="line">  - HTTP 长轮询，需处理 timeout，即 timeout 之后重新发请求</span><br><span class="line"></span><br><span class="line">## ajax</span><br><span class="line"></span><br><span class="line">- xhr.readyState</span><br><span class="line"></span><br><span class="line">  - 0 (未初始化)还没有调用 send()方法</span><br><span class="line">  - 1 (载入)已调用 send()方法，正在发送请求</span><br><span class="line">  - 2 (载入完成) send()方法执行完成，已经接收到全部响应内容</span><br><span class="line">  - 3 (交互) 正在解析响应内容</span><br><span class="line">  - 4 (完成) 响应内容解析完成，可以在客户端调用</span><br><span class="line"></span><br><span class="line">- xhr.status</span><br><span class="line">  - 2xx 表示成功处理请求，如 200</span><br><span class="line">  - 3xx 需要重定向，浏览器直接跳转，如 301、302、304</span><br><span class="line">  - 4xx 客户端请求错误，如 404、403</span><br><span class="line">  - 5xx 服务端错误</span><br><span class="line"></span><br><span class="line">## 常见状态码？</span><br><span class="line"></span><br><span class="line">信息响应</span><br><span class="line"></span><br><span class="line">- 101 协议切换</span><br><span class="line"></span><br><span class="line">成功响应</span><br><span class="line"></span><br><span class="line">- 200 成功</span><br><span class="line">- 204 请求成功，不返回任何内容</span><br><span class="line">- 206 分块请求成功</span><br><span class="line"></span><br><span class="line">重定向</span><br><span class="line"></span><br><span class="line">- 301 永久重定向（配合 location，浏览器自动处理）</span><br><span class="line">- 302 临时重定向（配合 location，浏览器自动处理）</span><br><span class="line">- 304 资源未被修改（协商缓存 ）</span><br><span class="line"></span><br><span class="line">客户端响应</span><br><span class="line"></span><br><span class="line">- 400 无法被服务器理解</span><br><span class="line">- 401 未授权</span><br><span class="line">- 403 禁止访问</span><br><span class="line">- 404 资源未找到</span><br><span class="line">- 405 没有权限,请求方法(get/post 等)错误</span><br><span class="line"></span><br><span class="line">服务端响应</span><br><span class="line"></span><br><span class="line">- 500 服务器错误</span><br><span class="line">- 503 服务不可达</span><br><span class="line">- 504 网关超时</span><br><span class="line"></span><br><span class="line">- 本身状态码就是一种约定，一种协议和规范，不要尝试违反规范，例如 IE 浏览器</span><br><span class="line"></span><br><span class="line">## http 常见 methods？</span><br><span class="line"></span><br><span class="line">- 传统 methods</span><br><span class="line"></span><br><span class="line">  - get 获取服务器的数据</span><br><span class="line">  - post 向服务器提交数据</span><br><span class="line"></span><br><span class="line">- 新的 methods</span><br><span class="line">  - get 获取数据</span><br><span class="line">  - post 新建数据</span><br><span class="line">  - patch/put 更新数据</span><br><span class="line">  - delete 删除数据</span><br><span class="line"></span><br><span class="line">## Restful API</span><br><span class="line"></span><br><span class="line">- 一种新的 API 设计方法</span><br><span class="line">- 传统 API 设计：把每个 url 当作一个功能</span><br><span class="line">- Restful API 设计：把每个 url 当作一个唯一的资源</span><br><span class="line"></span><br><span class="line">- 原则</span><br><span class="line">  - 不使用 url 参数</span><br><span class="line">    - 传统 API 设计：/api/list?pageIndex=2</span><br><span class="line">    - Restful API 设计：/api/list/2</span><br><span class="line">  - 用 method 表示操作类型</span><br><span class="line">    - 传统 API 设计</span><br><span class="line">      - post 请求 /api/create-blog</span><br><span class="line">      - post 请求 /api/update-blog?id=100</span><br><span class="line">      - get 请求 /api/get-blog?id=100</span><br><span class="line">    - Restful API 请求</span><br><span class="line">      - post 请求 /api/blog</span><br><span class="line">      - patch 请求 /api/blog/100</span><br><span class="line">      - get 请求 /api/blog/100</span><br><span class="line"></span><br><span class="line">## 常见 http headers？</span><br><span class="line"></span><br><span class="line">- Request Headers</span><br><span class="line"></span><br><span class="line">  - Accept 浏览器可接收的数据格式</span><br><span class="line">  - Accept-Encoding 浏览器可接收的压缩算法，如 gzip</span><br><span class="line">  - Accept-Languange 浏览器可接收的语言，如 zh-CN</span><br><span class="line">  - Connection: keep-alive 一次 TCP 连接重复使用</span><br><span class="line">  - cookie</span><br><span class="line">  - Host 如：www.baidu.com</span><br><span class="line">  - Cache-Control</span><br><span class="line">  - User-Agent （简称 UA）浏览器信息</span><br><span class="line">  - Content-type 发送数据的格式，如 application/json</span><br><span class="line"></span><br><span class="line">- Response Headers</span><br><span class="line"></span><br><span class="line">  - Content-type 返回数据的格式，如 application/json</span><br><span class="line">  - Content-length 返回数据的大小，多少字节</span><br><span class="line">  - Content-Encoding 返回数据的压缩算法，如 gzip</span><br><span class="line">  - Set-Cookie</span><br><span class="line">  - Expires</span><br><span class="line">  - Etag</span><br><span class="line">  - date</span><br><span class="line"></span><br><span class="line">- 自定义 header</span><br><span class="line"></span><br><span class="line">- 缓存相关的 headers</span><br><span class="line">  - Cache-Control Expires</span><br><span class="line">  - Last-Modified If-Modified-Since</span><br><span class="line">  - Etag If-None-Match</span><br><span class="line"></span><br><span class="line">## TCP 协议如何保证传输的可靠性</span><br><span class="line"></span><br><span class="line">- 校验和</span><br><span class="line">- 确认应答 + 序列号</span><br><span class="line">- 超时重传</span><br><span class="line">- 流浪控制</span><br><span class="line">- 拥塞控制</span><br><span class="line">- TCP 的连接管理</span><br><span class="line">- 滑动窗口</span><br><span class="line"></span><br><span class="line">## http 和 https 的区别</span><br><span class="line"></span><br><span class="line">- http 是一种一种广泛使用的网络协议，是一个客户端和服务器请求和应答的标准。</span><br><span class="line">- http 工作在 TCP 协议的 80 端口，https 工作在 TCP 协议的 443 端口</span><br><span class="line">- http 协议运行在 TCP 协议之上，所有的传输内容都是明文，https 运行在 SSL/TLS 之上，</span><br><span class="line">  SSL/TLS 运行在 TCP 之上，所有的传输内容都是经过加密的。</span><br><span class="line">- https 是以安全为目标的 http 通道，是 http 的安全版。是 http 加上 SSL 层对传输的信息和 url 做了一些加密处理，更加安全</span><br><span class="line"></span><br><span class="line">## 为什么 https 不会被截取信息</span><br><span class="line"></span><br><span class="line">- 完成 TCP 三次同步握手</span><br><span class="line">- 客户端验证服务器数字证书，通过，进入步骤 3</span><br><span class="line">- DH 算法协商对称加密算法的密钥、hash 算法的密钥</span><br><span class="line">- SSL 安全加密隧道协商完成</span><br><span class="line">- 网页以加密的方式传输，用协商的对称加密算法和密钥加密，保证数据机密性；</span><br><span class="line">  用协商的 hash 算法进行数据完整性保护，保证数据不被篡改</span><br><span class="line"></span><br><span class="line">## 如何处理 TCP 的粘包?</span><br><span class="line"></span><br><span class="line">发生 TCP 粘包或拆包有很多原因，现列出常见的几点：</span><br><span class="line"></span><br><span class="line">要发送的数据大于 TCP 发送缓冲区剩余空间大小，将会发生拆包。</span><br><span class="line">待发送数据大于 MSS（最大报文长度），TCP 在传输前将进行拆包。</span><br><span class="line">要发送的数据小于 TCP 发送缓冲区的大小，TCP 将多次写入缓冲区的数据一次发送出去，将会发生粘包。</span><br><span class="line">接收数据端的应用层没有及时读取接收缓冲区中的数据，将发生粘包。</span><br><span class="line"></span><br><span class="line">关键点：如何给每个数据包添加边界信息</span><br><span class="line"></span><br><span class="line">发送端给每个数据包添加包首部，首部中应该至少包含数据包的长度，这样接收端在接收到数据后，通过读取包首部的长度字段，便知道每一个数据包的实际长度了。</span><br><span class="line"></span><br><span class="line">发送端将每个数据包封装为固定长度（不够的可以通过补 0 填充），这样接收端每次从接收缓冲区中读取固定长度的数据就自然而然的把每个数据包拆分开来。</span><br><span class="line"></span><br><span class="line">可以在数据包之间设置边界，如添加特殊符号，这样，接收端通过这个边界就可以将不同的数据包拆分开。</span><br><span class="line"></span><br><span class="line">## 请说说 HTTPS 的握手过程？</span><br><span class="line"></span><br><span class="line">HTTPS 的握手过程主要包括以下步骤：</span><br><span class="line"></span><br><span class="line">客户端向服务端发送一个加密过的客户端随机数和客户端支持的加密算法列表，同时请求建立 SSL/TLS 连接。</span><br><span class="line"></span><br><span class="line">服务端在接收到请求后，向客户端发送一个包含服务端随机数、服务器支持的加密算法列表以及服务器的数字证书的报文。</span><br><span class="line"></span><br><span class="line">客户端在接收到服务器的响应后，会对证书进行校验。如果证书被认为是合法的，那么客户端将使用证书中包含的公钥对一个随机数进行加密，并将加密后的随机数发送给服务端。</span><br><span class="line"></span><br><span class="line">服务端在接收到客户端的响应后，使用私钥对加密的随机数进行解密，得到客户端生成的随机数。同时，服务端也会生成一个加密的会话密钥，并使用客户端和服务端的随机数以及协商出的加密算法对该密钥进行加密，最后将加密后的密钥发送给客户端。</span><br><span class="line"></span><br><span class="line">客户端接收到服务端发送的加密的会话密钥后，使用服务端公布的公钥进行解密，得到原始的会话密钥。</span><br><span class="line"></span><br><span class="line">客户端和服务端都会使用会话密钥进行加密和解密，从而实现安全的通信。</span><br><span class="line"></span><br><span class="line">这个过程中，客户端和服务端会进行多次来回的通信，以建立安全的 SSL/TLS 连接。其中数字证书的校验和会话密钥的生成都是关键步骤，它们保证了通信的安全性。</span><br><span class="line"></span><br><span class="line">## 请说说什么是数字证书？它有什么作用?</span><br><span class="line"></span><br><span class="line">- 数字证书是一种加密技术，用于验证在线交互中的身份和信息安全性。它是由可信任的第三方机构（例如数字证书颁发机构）颁发的一份电子文档，其中包含了一些加密信息，如公钥、数字签名等。数字证书的作用是确保通信双方的身份和数据的完整性和保密性。</span><br><span class="line"></span><br><span class="line">- 在使用数字证书进行加密通信时，服务端会向证书颁发机构申请一份数字证书。数字证书包含了服务端的公钥，以及一些描述服务端身份的信息，例如域名、组织名称等。客户端在与服务端建立连接时，会向服务端请求数字证书，并验证证书的真实性和合法性。如果验证成功，客户端就可以使用服务端的公钥加密数据并发送给服务端了。同时，服务端也可以使用客户端的公钥进行数据的加密和验证。这样就可以确保通信过程中的数据不被窃听或篡改。</span><br><span class="line"></span><br><span class="line">- 数字证书的使用广泛，特别是在网站安全和电子商务领域。它可以用来验证网站的真实性和合法性，确保网站访问过程中的信息安全。此外，数字证书还可以用于文件签名、电子邮件加密等其他领域。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>server</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> <span class="title class_">WebSocket</span>(<span class="string">&#x27;ws://127.0.0.1:3000&#x27;</span>);</span><br><span class="line">ws.<span class="property">onopen</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;opened&#x27;</span>);</span><br><span class="line">  ws.<span class="title function_">send</span>(<span class="string">&#x27;client opened&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">ws.<span class="property">onmessage</span> = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;收到了信息&#x27;</span>, event.<span class="property">data</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>);</span><br><span class="line">btn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;clicked&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  ws.<span class="title function_">send</span>(<span class="string">&#x27;当前时间&#x27;</span> + <span class="title class_">Date</span>.<span class="title function_">now</span>());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>WebSocket 连接过程</p>
+<ul>
+<li>先发起一个 http 请求</li>
+<li>成功之后再升级到 WebSocket 协议，再通讯</li>
+</ul>
+</li>
+<li><p>WebSocket 和 HTTP 区别？</p>
+<ul>
+<li>WebSocket 协议名是 ws://,可双端发起请求</li>
+<li>WebSocket 没有跨域限制</li>
+<li>通过 send 和 onmessage 通讯（HTTP 通过 req 和 res）</li>
+</ul>
+</li>
+<li><p>ws 可升级为 wss（like https）</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createServer &#125; <span class="keyword">from</span> <span class="string">&#x27;https&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; readFileSync &#125; <span class="keyword">from</span> <span class="string">&#x27;fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">WebSocketServer</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;ws&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = <span class="title function_">createServer</span>(&#123;</span><br><span class="line">  <span class="attr">cert</span>: <span class="title function_">readFileSync</span>(<span class="string">&#x27;/path/to/cert.pem&#x27;</span>),</span><br><span class="line">  <span class="attr">key</span>: <span class="title function_">readFileSync</span>(<span class="string">&#x27;/path/to/key.pem&#x27;</span>),</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wss = <span class="keyword">new</span> <span class="title class_">WebSocketServer</span>(&#123; server &#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>实际项目推荐 socket.io,API 更简洁</p>
+</li>
+</ul>
+<h2 id="WebSocket-和-HTTP-长轮询的区别？"><a href="#WebSocket-和-HTTP-长轮询的区别？" class="headerlink" title="WebSocket 和 HTTP 长轮询的区别？"></a>WebSocket 和 HTTP 长轮询的区别？</h2><ul>
+<li><p>区别</p>
+<ul>
+<li>HTTP 长轮询：客户端发起请求，服务端阻塞，不会立即返回</li>
+<li>WebSocket：客户端可发起请求，服务端也可发起请求</li>
+</ul>
+</li>
+<li><p>注意</p>
+<ul>
+<li>HTTP 长轮询，需处理 timeout，即 timeout 之后重新发请求</li>
+</ul>
+</li>
+</ul>
+<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><ul>
+<li><p>xhr.readyState</p>
+<ul>
+<li>0 (未初始化)还没有调用 send()方法</li>
+<li>1 (载入)已调用 send()方法，正在发送请求</li>
+<li>2 (载入完成) send()方法执行完成，已经接收到全部响应内容</li>
+<li>3 (交互) 正在解析响应内容</li>
+<li>4 (完成) 响应内容解析完成，可以在客户端调用</li>
+</ul>
+</li>
+<li><p>xhr.status</p>
+<ul>
+<li>2xx 表示成功处理请求，如 200</li>
+<li>3xx 需要重定向，浏览器直接跳转，如 301、302、304</li>
+<li>4xx 客户端请求错误，如 404、403</li>
+<li>5xx 服务端错误</li>
+</ul>
+</li>
+</ul>
+<h2 id="常见状态码？"><a href="#常见状态码？" class="headerlink" title="常见状态码？"></a>常见状态码？</h2><p>信息响应</p>
+<ul>
+<li>101 协议切换</li>
+</ul>
+<p>成功响应</p>
+<ul>
+<li>200 成功</li>
+<li>204 请求成功，不返回任何内容</li>
+<li>206 分块请求成功</li>
+</ul>
+<p>重定向</p>
+<ul>
+<li>301 永久重定向（配合 location，浏览器自动处理）</li>
+<li>302 临时重定向（配合 location，浏览器自动处理）</li>
+<li>304 资源未被修改（协商缓存 ）</li>
+</ul>
+<p>客户端响应</p>
+<ul>
+<li>400 无法被服务器理解</li>
+<li>401 未授权</li>
+<li>403 禁止访问</li>
+<li>404 资源未找到</li>
+<li>405 没有权限,请求方法(get/post 等)错误</li>
+</ul>
+<p>服务端响应</p>
+<ul>
+<li><p>500 服务器错误</p>
+</li>
+<li><p>503 服务不可达</p>
+</li>
+<li><p>504 网关超时</p>
+</li>
+<li><p>本身状态码就是一种约定，一种协议和规范，不要尝试违反规范，例如 IE 浏览器</p>
+</li>
+</ul>
+<h2 id="http-常见-methods？"><a href="#http-常见-methods？" class="headerlink" title="http 常见 methods？"></a>http 常见 methods？</h2><ul>
+<li><p>传统 methods</p>
+<ul>
+<li>get 获取服务器的数据</li>
+<li>post 向服务器提交数据</li>
+</ul>
+</li>
+<li><p>新的 methods</p>
+<ul>
+<li>get 获取数据</li>
+<li>post 新建数据</li>
+<li>patch/put 更新数据</li>
+<li>delete 删除数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a>Restful API</h2><ul>
+<li><p>一种新的 API 设计方法</p>
+</li>
+<li><p>传统 API 设计：把每个 url 当作一个功能</p>
+</li>
+<li><p>Restful API 设计：把每个 url 当作一个唯一的资源</p>
+</li>
+<li><p>原则</p>
+<ul>
+<li>不使用 url 参数<ul>
+<li>传统 API 设计：/api/list?pageIndex=2</li>
+<li>Restful API 设计：/api/list/2</li>
+</ul>
+</li>
+<li>用 method 表示操作类型<ul>
+<li>传统 API 设计<ul>
+<li>post 请求 /api/create-blog</li>
+<li>post 请求 /api/update-blog?id=100</li>
+<li>get 请求 /api/get-blog?id=100</li>
+</ul>
+</li>
+<li>Restful API 请求<ul>
+<li>post 请求 /api/blog</li>
+<li>patch 请求 /api/blog/100</li>
+<li>get 请求 /api/blog/100</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="常见-http-headers？"><a href="#常见-http-headers？" class="headerlink" title="常见 http headers？"></a>常见 http headers？</h2><ul>
+<li><p>Request Headers</p>
+<ul>
+<li>Accept 浏览器可接收的数据格式</li>
+<li>Accept-Encoding 浏览器可接收的压缩算法，如 gzip</li>
+<li>Accept-Languange 浏览器可接收的语言，如 zh-CN</li>
+<li>Connection: keep-alive 一次 TCP 连接重复使用</li>
+<li>cookie</li>
+<li>Host 如：<a href="http://www.baidu.com/">www.baidu.com</a></li>
+<li>Cache-Control</li>
+<li>User-Agent （简称 UA）浏览器信息</li>
+<li>Content-type 发送数据的格式，如 application/json</li>
+</ul>
+</li>
+<li><p>Response Headers</p>
+<ul>
+<li>Content-type 返回数据的格式，如 application/json</li>
+<li>Content-length 返回数据的大小，多少字节</li>
+<li>Content-Encoding 返回数据的压缩算法，如 gzip</li>
+<li>Set-Cookie</li>
+<li>Expires</li>
+<li>Etag</li>
+<li>date</li>
+</ul>
+</li>
+<li><p>自定义 header</p>
+</li>
+<li><p>缓存相关的 headers</p>
+<ul>
+<li>Cache-Control Expires</li>
+<li>Last-Modified If-Modified-Since</li>
+<li>Etag If-None-Match</li>
+</ul>
+</li>
+</ul>
+<h2 id="TCP-协议如何保证传输的可靠性"><a href="#TCP-协议如何保证传输的可靠性" class="headerlink" title="TCP 协议如何保证传输的可靠性"></a>TCP 协议如何保证传输的可靠性</h2><ul>
+<li>校验和</li>
+<li>确认应答 + 序列号</li>
+<li>超时重传</li>
+<li>流浪控制</li>
+<li>拥塞控制</li>
+<li>TCP 的连接管理</li>
+<li>滑动窗口</li>
+</ul>
+<h2 id="http-和-https-的区别-1"><a href="#http-和-https-的区别-1" class="headerlink" title="http 和 https 的区别"></a>http 和 https 的区别</h2><ul>
+<li>http 是一种一种广泛使用的网络协议，是一个客户端和服务器请求和应答的标准。</li>
+<li>http 工作在 TCP 协议的 80 端口，https 工作在 TCP 协议的 443 端口</li>
+<li>http 协议运行在 TCP 协议之上，所有的传输内容都是明文，https 运行在 SSL/TLS 之上，<br>SSL/TLS 运行在 TCP 之上，所有的传输内容都是经过加密的。</li>
+<li>https 是以安全为目标的 http 通道，是 http 的安全版。是 http 加上 SSL 层对传输的信息和 url 做了一些加密处理，更加安全</li>
+</ul>
+<h2 id="为什么-https-不会被截取信息"><a href="#为什么-https-不会被截取信息" class="headerlink" title="为什么 https 不会被截取信息"></a>为什么 https 不会被截取信息</h2><ul>
+<li>完成 TCP 三次同步握手</li>
+<li>客户端验证服务器数字证书，通过，进入步骤 3</li>
+<li>DH 算法协商对称加密算法的密钥、hash 算法的密钥</li>
+<li>SSL 安全加密隧道协商完成</li>
+<li>网页以加密的方式传输，用协商的对称加密算法和密钥加密，保证数据机密性；<br>用协商的 hash 算法进行数据完整性保护，保证数据不被篡改</li>
+</ul>
+<h2 id="如何处理-TCP-的粘包"><a href="#如何处理-TCP-的粘包" class="headerlink" title="如何处理 TCP 的粘包?"></a>如何处理 TCP 的粘包?</h2><p>发生 TCP 粘包或拆包有很多原因，现列出常见的几点：</p>
+<p>要发送的数据大于 TCP 发送缓冲区剩余空间大小，将会发生拆包。<br>待发送数据大于 MSS（最大报文长度），TCP 在传输前将进行拆包。<br>要发送的数据小于 TCP 发送缓冲区的大小，TCP 将多次写入缓冲区的数据一次发送出去，将会发生粘包。<br>接收数据端的应用层没有及时读取接收缓冲区中的数据，将发生粘包。</p>
+<p>关键点：如何给每个数据包添加边界信息</p>
+<p>发送端给每个数据包添加包首部，首部中应该至少包含数据包的长度，这样接收端在接收到数据后，通过读取包首部的长度字段，便知道每一个数据包的实际长度了。</p>
+<p>发送端将每个数据包封装为固定长度（不够的可以通过补 0 填充），这样接收端每次从接收缓冲区中读取固定长度的数据就自然而然的把每个数据包拆分开来。</p>
+<p>可以在数据包之间设置边界，如添加特殊符号，这样，接收端通过这个边界就可以将不同的数据包拆分开。</p>
+<h2 id="请说说-HTTPS-的握手过程？"><a href="#请说说-HTTPS-的握手过程？" class="headerlink" title="请说说 HTTPS 的握手过程？"></a>请说说 HTTPS 的握手过程？</h2><p>HTTPS 的握手过程主要包括以下步骤：</p>
+<p>客户端向服务端发送一个加密过的客户端随机数和客户端支持的加密算法列表，同时请求建立 SSL/TLS 连接。</p>
+<p>服务端在接收到请求后，向客户端发送一个包含服务端随机数、服务器支持的加密算法列表以及服务器的数字证书的报文。</p>
+<p>客户端在接收到服务器的响应后，会对证书进行校验。如果证书被认为是合法的，那么客户端将使用证书中包含的公钥对一个随机数进行加密，并将加密后的随机数发送给服务端。</p>
+<p>服务端在接收到客户端的响应后，使用私钥对加密的随机数进行解密，得到客户端生成的随机数。同时，服务端也会生成一个加密的会话密钥，并使用客户端和服务端的随机数以及协商出的加密算法对该密钥进行加密，最后将加密后的密钥发送给客户端。</p>
+<p>客户端接收到服务端发送的加密的会话密钥后，使用服务端公布的公钥进行解密，得到原始的会话密钥。</p>
+<p>客户端和服务端都会使用会话密钥进行加密和解密，从而实现安全的通信。</p>
+<p>这个过程中，客户端和服务端会进行多次来回的通信，以建立安全的 SSL/TLS 连接。其中数字证书的校验和会话密钥的生成都是关键步骤，它们保证了通信的安全性。</p>
+<h2 id="请说说什么是数字证书？它有什么作用"><a href="#请说说什么是数字证书？它有什么作用" class="headerlink" title="请说说什么是数字证书？它有什么作用?"></a>请说说什么是数字证书？它有什么作用?</h2><ul>
+<li><p>数字证书是一种加密技术，用于验证在线交互中的身份和信息安全性。它是由可信任的第三方机构（例如数字证书颁发机构）颁发的一份电子文档，其中包含了一些加密信息，如公钥、数字签名等。数字证书的作用是确保通信双方的身份和数据的完整性和保密性。</p>
+</li>
+<li><p>在使用数字证书进行加密通信时，服务端会向证书颁发机构申请一份数字证书。数字证书包含了服务端的公钥，以及一些描述服务端身份的信息，例如域名、组织名称等。客户端在与服务端建立连接时，会向服务端请求数字证书，并验证证书的真实性和合法性。如果验证成功，客户端就可以使用服务端的公钥加密数据并发送给服务端了。同时，服务端也可以使用客户端的公钥进行数据的加密和验证。这样就可以确保通信过程中的数据不被窃听或篡改。</p>
+</li>
+<li><p>数字证书的使用广泛，特别是在网站安全和电子商务领域。它可以用来验证网站的真实性和合法性，确保网站访问过程中的信息安全。此外，数字证书还可以用于文件签名、电子邮件加密等其他领域。<br>````</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>计算机网络</category>
