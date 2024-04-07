@@ -6696,10 +6696,6 @@ dt.getDay()     //星期几（0-6）
 <li>Reflect.ownKeys()</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = &#123;[<span class="title class_">Symbol</span>()]: <span class="string">&#x27;a&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">const</span> b = &#123;<span class="attr">a</span>: <span class="string">&#x27;a&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">const</span> c = &#123;&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(a).<span class="property">length</span> === <span class="number">0</span>) <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(b).<span class="property">length</span> === <span class="number">0</span>) <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(c).<span class="property">length</span> === <span class="number">0</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="babel的转换流程是什么样的"><a href="#babel的转换流程是什么样的" class="headerlink" title="babel的转换流程是什么样的"></a>babel的转换流程是什么样的</h2><p>首先读取代码字符串，然后通过babel-parse将字符串代码转换成抽象语法树AST，之后对该AST进行节点遍历和转换，生成新的AST，<br>之后通过babel-generator将新的AST再转换成新的代码字符串</p>
-<h2 id="AST及其应用"><a href="#AST及其应用" class="headerlink" title="AST及其应用"></a>AST及其应用</h2><p>源代码经过此法分析转化为<strong>Token</strong>流，维护一个Token的数组，可以利用Token流做一些代码检查、语法高亮、模版语法相关的操作，然后经过语法分析转化为有结构化ATS抽象语法树，方便操作。</p>
-<p><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">参考一个最简编译器的实现</a></p>
 ]]></content>
       <categories>
         <category>面经</category>
@@ -7175,6 +7171,27 @@ dt.getDay()     //星期几（0-6）
 <li><p>线程间的切换比进程间的切换开销更小，因为线程共享相同的地址空间</p>
 </li>
 </ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>前端工程化</title>
+    <url>/2024/04/07/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="一、打包资源处理"><a href="#一、打包资源处理" class="headerlink" title="一、打包资源处理"></a>一、打包资源处理</h1><h2 id="AST及其应用"><a href="#AST及其应用" class="headerlink" title="AST及其应用"></a>AST及其应用</h2><p>源代码经过此法分析转化为<strong>Token</strong>流，维护一个Token的数组，可以利用Token流做一些代码检查、语法高亮、模版语法相关的操作，然后经过语法分析转化为有结构化ATS抽象语法树，方便操作。</p>
+<p><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">参考一个最简编译器的实现</a></p>
+<h2 id="webpack的runtime做了什么事情？"><a href="#webpack的runtime做了什么事情？" class="headerlink" title="webpack的runtime做了什么事情？"></a>webpack的runtime做了什么事情？</h2><ol>
+<li><p><code>__webpack_modules__</code>一个维护所有模块的数组，通过入口模块解析AST，根据AST深度优先搜索所有模块构建这个模块数组，每个模块通过一个函数 <strong>(module, module.exports, <strong>webpack_require</strong>)</strong> 进行包裹构成。</p>
+</li>
+<li><p><code>__webpack_require__(moduleId)</code>一个加载模块，通过模块id执行<code>__webpack_modules__</code>对应的模块包裹函数，之后会对已加载模块进行缓存。</p>
+</li>
+<li><p><code>__webpack_require__(0)</code>运行第一个模块，即运行入口模块。</p>
+</li>
+</ol>
+<p>当涉及到多个chunk的大包方式中,比如import、code spliting中，webpack会通过jsonp方式创建script标签动态加载模块</p>
+<p>精简代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> __webpack_modules__ = [<span class="function">() =&gt;</span> &#123;&#125;];</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">__webpack_require__</span> = (<span class="params">id</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable language_">module</span> = &#123; <span class="attr">exports</span>: &#123;&#125; &#125;;</span><br><span class="line">  <span class="keyword">const</span> m = __webpack_modules__[id](<span class="variable language_">module</span>, __webpack_require__);</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">__webpack_require__</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+
+<p>补充：rollup不存在modules模块数组，而是将所有模块铺平展开，如果两个模块变量重名冲突的话，会直接重新命名如：name-&gt;name$1</p>
 ]]></content>
   </entry>
 </search>
