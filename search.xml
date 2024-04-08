@@ -7142,6 +7142,8 @@ dt.getDay()     //星期几（0-6）
     <title>杂记</title>
     <url>/2024/03/26/%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<p>前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题：</p>
+<span id="more"></span>
+
 <ol>
 <li>请解释什么是Event Loop（事件循环）？它在JavaScript中的作用是什么？</li>
 </ol>
@@ -7178,6 +7180,8 @@ dt.getDay()     //星期几（0-6）
     <url>/2024/04/07/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</url>
     <content><![CDATA[<h1 id="一、打包资源处理"><a href="#一、打包资源处理" class="headerlink" title="一、打包资源处理"></a>一、打包资源处理</h1><h2 id="AST及其应用"><a href="#AST及其应用" class="headerlink" title="AST及其应用"></a>AST及其应用</h2><p>源代码经过此法分析转化为<strong>Token</strong>流，维护一个Token的数组，可以利用Token流做一些代码检查、语法高亮、模版语法相关的操作，然后经过语法分析转化为有结构化ATS抽象语法树，方便操作。</p>
 <p><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">参考一个最简编译器的实现</a></p>
+<span id="more"></span>
+
 <h2 id="webpack的runtime做了什么事情？"><a href="#webpack的runtime做了什么事情？" class="headerlink" title="webpack的runtime做了什么事情？"></a>webpack的runtime做了什么事情？</h2><ol>
 <li><p><code>__webpack_modules__</code>一个维护所有模块的数组，通过入口模块解析AST，根据AST深度优先搜索所有模块构建这个模块数组，每个模块通过一个函数 <strong>(module, module.exports, <strong>webpack_require</strong>)</strong> 进行包裹构成。</p>
 </li>
