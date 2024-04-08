@@ -7192,6 +7192,23 @@ dt.getDay()     //星期几（0-6）
 
 
 <p>补充：rollup不存在modules模块数组，而是将所有模块铺平展开，如果两个模块变量重名冲突的话，会直接重新命名如：name-&gt;name$1</p>
+<h2 id="webpack-rollup如何加载style样式资源"><a href="#webpack-rollup如何加载style样式资源" class="headerlink" title="webpack/rollup如何加载style样式资源"></a>webpack/rollup如何加载style样式资源</h2><p>在webpack中，需要借助loader将非JS资源转化为可识别为javascript的module。</p>
+<p>处理css需要两个loader：css-loader、style-loader</p>
+<ol>
+<li><p>css-loader的原理就是postcss，借助postcss-value-parse解析css为ast，处理css中的url()和@import语法</p>
+</li>
+<li><p>style-loader原理是使用dom api手动创建style标签，将css内容注入到style中</p>
+</li>
+</ol>
+<p>因为dom api加载css资源的性能原因，生产环境一般通过mini-css-extract-plugin将css单独抽离出来。</p>
+<h1 id="二、打包体积优化"><a href="#二、打包体积优化" class="headerlink" title="二、打包体积优化"></a>二、打包体积优化</h1><h2 id="如何提升webpack构建资源的速度？"><a href="#如何提升webpack构建资源的速度？" class="headerlink" title="如何提升webpack构建资源的速度？"></a>如何提升webpack构建资源的速度？</h2><ol>
+<li><p>更换AST转换工具SWC：webpack中耗时最久的就是负责AST转换的loader，javascript性能低下，可以将babel替换为由高性能语言rust编写的swc。</p>
+</li>
+<li><p>持久化缓存cache，webpack5内置了插件，通过<a href="https://webpack.js.org/configuration/cache/">cache字段</a>开启.</p>
+</li>
+<li><p>开启多进程<a href="https://github.com/webpack-contrib/thread-loader">thread-loader</a>,提升编译速度。</p>
+</li>
+</ol>
 ]]></content>
   </entry>
 </search>

@@ -28,7 +28,7 @@
       window.addEventListener('hashchange', switchTab, false);
   })();
   </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="foolishmax" type="application/atom+xml">
-</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-04-07T03:04:32.000Z" title="4/7/2024, 11:04:32 AM">2024-04-07</time>发表</span><span class="level-item"><time dateTime="2024-04-07T04:32:12.501Z" title="4/7/2024, 12:32:12 PM">2024-04-07</time>更新</span><span class="level-item">2 分钟读完 (大约371个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/04/07/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/">前端工程化</a></h1><div class="content"><h1 id="一、打包资源处理"><a href="#一、打包资源处理" class="headerlink" title="一、打包资源处理"></a>一、打包资源处理</h1><h2 id="AST及其应用"><a href="#AST及其应用" class="headerlink" title="AST及其应用"></a>AST及其应用</h2><p>源代码经过此法分析转化为<strong>Token</strong>流，维护一个Token的数组，可以利用Token流做一些代码检查、语法高亮、模版语法相关的操作，然后经过语法分析转化为有结构化ATS抽象语法树，方便操作。</p>
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/favicon.svg" alt="foolishmax" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">首页</a><a class="navbar-item" href="/archives">档案</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/foolishmax"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-04-07T03:04:32.000Z" title="4/7/2024, 11:04:32 AM">2024-04-07</time>发表</span><span class="level-item"><time dateTime="2024-04-08T03:47:51.238Z" title="4/8/2024, 11:47:51 AM">2024-04-08</time>更新</span><span class="level-item">4 分钟读完 (大约633个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/04/07/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/">前端工程化</a></h1><div class="content"><h1 id="一、打包资源处理"><a href="#一、打包资源处理" class="headerlink" title="一、打包资源处理"></a>一、打包资源处理</h1><h2 id="AST及其应用"><a href="#AST及其应用" class="headerlink" title="AST及其应用"></a>AST及其应用</h2><p>源代码经过此法分析转化为<strong>Token</strong>流，维护一个Token的数组，可以利用Token流做一些代码检查、语法高亮、模版语法相关的操作，然后经过语法分析转化为有结构化ATS抽象语法树，方便操作。</p>
 <p><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">参考一个最简编译器的实现</a></p>
 <h2 id="webpack的runtime做了什么事情？"><a href="#webpack的runtime做了什么事情？" class="headerlink" title="webpack的runtime做了什么事情？"></a>webpack的runtime做了什么事情？</h2><ol>
 <li><p><code>__webpack_modules__</code>一个维护所有模块的数组，通过入口模块解析AST，根据AST深度优先搜索所有模块构建这个模块数组，每个模块通过一个函数 <strong>(module, module.exports, <strong>webpack_require</strong>)</strong> 进行包裹构成。</p>
@@ -44,6 +44,23 @@
 
 
 <p>补充：rollup不存在modules模块数组，而是将所有模块铺平展开，如果两个模块变量重名冲突的话，会直接重新命名如：name-&gt;name$1</p>
+<h2 id="webpack-rollup如何加载style样式资源"><a href="#webpack-rollup如何加载style样式资源" class="headerlink" title="webpack/rollup如何加载style样式资源"></a>webpack/rollup如何加载style样式资源</h2><p>在webpack中，需要借助loader将非JS资源转化为可识别为javascript的module。</p>
+<p>处理css需要两个loader：css-loader、style-loader</p>
+<ol>
+<li><p>css-loader的原理就是postcss，借助postcss-value-parse解析css为ast，处理css中的url()和@import语法</p>
+</li>
+<li><p>style-loader原理是使用dom api手动创建style标签，将css内容注入到style中</p>
+</li>
+</ol>
+<p>因为dom api加载css资源的性能原因，生产环境一般通过mini-css-extract-plugin将css单独抽离出来。</p>
+<h1 id="二、打包体积优化"><a href="#二、打包体积优化" class="headerlink" title="二、打包体积优化"></a>二、打包体积优化</h1><h2 id="如何提升webpack构建资源的速度？"><a href="#如何提升webpack构建资源的速度？" class="headerlink" title="如何提升webpack构建资源的速度？"></a>如何提升webpack构建资源的速度？</h2><ol>
+<li><p>更换AST转换工具SWC：webpack中耗时最久的就是负责AST转换的loader，javascript性能低下，可以将babel替换为由高性能语言rust编写的swc。</p>
+</li>
+<li><p>持久化缓存cache，webpack5内置了插件，通过<a target="_blank" rel="noopener" href="https://webpack.js.org/configuration/cache/">cache字段</a>开启.</p>
+</li>
+<li><p>开启多进程<a href="https://github.com/webpack-contrib/thread-loader">thread-loader</a>,提升编译速度。</p>
+</li>
+</ol>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-03-26T07:57:32.000Z" title="3/26/2024, 3:57:32 PM">2024-03-26</time>发表</span><span class="level-item"><time dateTime="2024-03-26T09:30:13.805Z" title="3/26/2024, 5:30:13 PM">2024-03-26</time>更新</span><span class="level-item">6 分钟读完 (大约919个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/03/26/%E6%9D%82%E8%AE%B0/">杂记</a></h1><div class="content"><p>前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题：</p>
 <ol>
 <li>请解释什么是Event Loop（事件循环）？它在JavaScript中的作用是什么？</li>
