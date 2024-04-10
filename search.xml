@@ -7235,4 +7235,19 @@ dt.getDay()     //星期几（0-6）
 </code></pre>
 ]]></content>
   </entry>
+  <entry>
+    <title>vite揭秘</title>
+    <url>/2024/04/10/vite%E6%8F%AD%E7%A7%98/</url>
+    <content><![CDATA[<h2 id="vite的底层原理是什么？"><a href="#vite的底层原理是什么？" class="headerlink" title="vite的底层原理是什么？"></a>vite的底层原理是什么？</h2><pre><code>vite的底层原理是基于ESM（ECMAScript Module）的，利用现代浏览器对ES模块的原生支持，通过将代码拆分为较小的模块，在浏览器需要时按需动态加载，从而实现快速的开发启动和热更新。
+
+vite还利用了浏览器的原生模块解析能力，避免了传统打包工具的繁重构建过程，使得开发过程更加高效。
+</code></pre>
+<blockquote>
+<p>vite 借助了浏览器对 ESM 规范的支持，采取了和 webpack 不同的 unbundle 机制，unbundle 机制中模块之间的依赖关系的解析是由浏览器实现的（浏览器本身支持 ESM 的规范），不会对源文件做合并捆绑操作</p>
+</blockquote>
+<blockquote>
+<p>webpack 工作机制：构建模块依赖图，然后再将模块依赖图分解为最终供浏览器使用的几个输出文件。所以 webpack 在这些阶段也做了一些优化，loader 的缓存功能，webpack5 的持久化缓存等</p>
+</blockquote>
+]]></content>
+  </entry>
 </search>
