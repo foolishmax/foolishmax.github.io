@@ -6,7 +6,7 @@
   <link href="https://github.com/foolishmax/atom.xml" rel="self"/>
   
   <link href="https://github.com/foolishmax/"/>
-  <updated>2024-04-10T02:17:46.780Z</updated>
+  <updated>2024-04-10T03:10:21.708Z</updated>
   <id>https://github.com/foolishmax/</id>
   
   <author>
@@ -21,14 +21,14 @@
     <link href="https://github.com/foolishmax/2024/04/10/vite%E6%8F%AD%E7%A7%98/"/>
     <id>https://github.com/foolishmax/2024/04/10/vite%E6%8F%AD%E7%A7%98/</id>
     <published>2024-04-10T02:13:29.000Z</published>
-    <updated>2024-04-10T02:17:46.780Z</updated>
+    <updated>2024-04-10T03:10:21.708Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="vite的底层原理是什么？"><a href="#vite的底层原理是什么？" class="headerlink" title="vite的底层原理是什么？"></a>vite的底层原理是什么？</h2><pre><code>vite的底层原理是基于ESM（ECMAScript Module）的，利用现代浏览器对ES模块的原生支持，通过将代码拆分为较小的模块，在浏览器需要时按需动态加载，从而实现快速的开发启动和热更新。vite还利用了浏览器的原生模块解析能力，避免了传统打包工具的繁重构建过程，使得开发过程更加高效。</code></pre><blockquote><p>vite 借助了浏览器对 ESM 规范的支持，采取了和 webpack 不同的 unbundle 机制，unbundle 机制中模块之间的依赖关系的解析是由浏览器实现的（浏览器本身支持 ESM 的规范），不会对源文件做合并捆绑操作</p></blockquote><blockquote><p>webpack 工作机制：构建模块依赖图，然后再将模块依赖图分解为最终供浏览器使用的几个输出文件。所以 webpack 在这些阶段也做了一些优化，loader 的缓存功能，webpack5 的持久化缓存等</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h2 id="vite的底层原理是什么？"><a href="#vite的底层原理是什么？" class="headerlink" title="vite的底层原理是什么？"></a>vite的底层原理是什么？</h2><p>vite核心原理就是利用了现在浏览器原生支持ES6的import，碰见一个import就发送一个http请求去加载文件，vite启动一个koa服务器拦截这些请求，在后端经过相应处理后再将文件ESM格式返回浏览器，整个过程没有对文件打包编译，实现了按需加载以及更快的运行速度。</p><ol><li><p>基于浏览器ESM的支持，实现真正的按需加载</p></li><li><p>高效的热更新：基于ESM实现，利用HTTP头来加速整个页面的重新加载，同时利用浏览器缓存策略提升速度</p></li><li><p>快速的冷启动：采用No Bundle和esbuild预构建，速度远快webpack</p></li></ol><h2 id="为什么需要esbuild预构建？"><a href="#为什么需要esbuild预构建？" class="headerlink" title="为什么需要esbuild预构建？"></a>为什么需要esbuild预构建？</h2><ol><li><p>支持commonJS依赖，因为vite是基于浏览器原生支持的ESM的实现的，这就要求代码模块必须是ESM模块，所以需要将commonJS文件提前处理转化为ESM模块并缓存如node_modules/.vite</p></li><li><p>减少模块和请求数量，比如将<code>lodash-es</code>这种包含很多个子模块的工具库合并为单个模块，提高页面加载性能</p></li></ol><h2 id="为什么使用esbuild？"><a href="#为什么使用esbuild？" class="headerlink" title="为什么使用esbuild？"></a>为什么使用esbuild？</h2><ol><li><p>大多数打包工具都是基于js实现的，但是js是解释型语言，边运行边解释，而esbuild选择的是go语言编写，可直接编译为原生代码，编译时直接将语言转换为机器语言，在启动的时候直接执行，在CPU密集场景下，go更具性能优势</p></li><li><p>js是单线程语言，也可以使用webworker进行多线程操作，但是go天生的多线程优势对构建流程进行了优化，可以更充分利用cpu资源</p></li></ol>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;vite的底层原理是什么？&quot;&gt;&lt;a href=&quot;#vite的底层原理是什么？&quot; class=&quot;headerlink&quot; title=&quot;vite的底层原理是什么？&quot;&gt;&lt;/a&gt;vite的底层原理是什么？&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;vite的底层原理是基于ESM（EC</summary>
+    <summary type="html">&lt;h2 id=&quot;vite的底层原理是什么？&quot;&gt;&lt;a href=&quot;#vite的底层原理是什么？&quot; class=&quot;headerlink&quot; title=&quot;vite的底层原理是什么？&quot;&gt;&lt;/a&gt;vite的底层原理是什么？&lt;/h2&gt;&lt;p&gt;vite核心原理就是利用了现在浏览器原生支持ES6的</summary>
       
     
     
