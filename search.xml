@@ -4610,9 +4610,8 @@ DoublyLinkedList.prototype.toString = function () &#123;
 <li>svg:表示以 XML 格式定义图像的可伸缩矢量图形。</li>
 <li>canvas：通过 js 来绘制 2D 图形</li>
 <li>Canvas 不支持事件处理器，SVG 支持事件处理器</li>
-<li>由于 Canvas 和 SVG 的工作机制不同，Canvas 是逐像素进行渲染的，一旦图形绘制完成，就不会继续被浏览器关注。而 SVG 是通过 DOM 操作来显示的。SVG 适合带有大型渲染区域的应用程序，比如地图。而 Canvas 适合有许多对象要被频繁重绘的图形密集型游戏。</li>
-<li>绘制的图片格式不同，canvas 位图，svg 矢量图</li>
-<li>svg 通过标签 fill 属性可以调整颜色</li>
+<li>canvas适合频繁更新、实时数据可视化、需要大量交互和动态变化的场景，如游戏。</li>
+<li>svg适合静态和少量交互的场景，如地图。</li>
 </ol>
 <h2 id="JS-如何设置获取盒子模型对应的宽和高？"><a href="#JS-如何设置获取盒子模型对应的宽和高？" class="headerlink" title="JS 如何设置获取盒子模型对应的宽和高？"></a>JS 如何设置获取盒子模型对应的宽和高？</h2><ul>
 <li><p>dom.style.width/height</p>
@@ -7179,7 +7178,7 @@ dt.getDay()     //星期几（0-6）
   <entry>
     <title>前端工程化</title>
     <url>/2024/04/07/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="一、打包资源处理"><a href="#一、打包资源处理" class="headerlink" title="一、打包资源处理"></a>一、打包资源处理</h1><h2 id="AST及其应用"><a href="#AST及其应用" class="headerlink" title="AST及其应用"></a>AST及其应用</h2><p>源代码经过此法分析转化为<strong>Token</strong>流，维护一个Token的数组，可以利用Token流做一些代码检查、语法高亮、模版语法相关的操作，然后经过语法分析转化为有结构化ATS抽象语法树，方便操作。</p>
+    <content><![CDATA[<h1 id="一、打包资源处理"><a href="#一、打包资源处理" class="headerlink" title="一、打包资源处理"></a>一、打包资源处理</h1><h2 id="AST及其应用"><a href="#AST及其应用" class="headerlink" title="AST及其应用"></a>AST及其应用</h2><p>源代码经过词法分析转化为<strong>Token</strong>流，维护一个Token的数组，可以利用Token流做一些代码检查、语法高亮、模版语法相关的操作，然后经过语法分析转化为有结构化ATS抽象语法树，方便操作。</p>
 <p><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">参考一个最简编译器的实现</a></p>
 <span id="more"></span>
 
@@ -7191,7 +7190,7 @@ dt.getDay()     //星期几（0-6）
 <li><p><code>__webpack_require__(0)</code>运行第一个模块，即运行入口模块。</p>
 </li>
 </ol>
-<p>当涉及到多个chunk的大包方式中,比如import、code spliting中，webpack会通过jsonp方式创建script标签动态加载模块</p>
+<p>当涉及到多个chunk的打包方式中,比如import、code spliting中，webpack会通过jsonp方式创建script标签动态加载模块</p>
 <p>精简代码：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> __webpack_modules__ = [<span class="function">() =&gt;</span> &#123;&#125;];</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">__webpack_require__</span> = (<span class="params">id</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable language_">module</span> = &#123; <span class="attr">exports</span>: &#123;&#125; &#125;;</span><br><span class="line">  <span class="keyword">const</span> m = __webpack_modules__[id](<span class="variable language_">module</span>, __webpack_require__);</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">module</span>.<span class="property">exports</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">__webpack_require__</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 
