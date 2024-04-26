@@ -4791,7 +4791,29 @@ DoublyLinkedList.prototype.toString = function () &#123;
 </ul>
 </li>
 <li>多路复用，一次 TCP 连接中可以多个 HTTP 并行请求</li>
-<li>服务端推送</li>
+</ul>
+</li>
+<li><p>HTTP 3</p>
+<ul>
+<li>TCP连接问题<ul>
+<li>http/2使用TCP协议，tcp存在三次握手建立连接的延迟问题</li>
+<li>http/3采用QUIC协议，quic基于UDP，可以实现0-RTT的快速连接</li>
+</ul>
+</li>
+<li>对头阻塞问题<ul>
+<li>http/2中，多路复用时一个请求阻塞，会导致后续所有请求被阻塞</li>
+<li>http/3采用QUIC的流控机制，每个请求都有独立的流，一个流不会影响其他流</li>
+</ul>
+</li>
+<li>安全性问题<ul>
+<li>http/3完全基于TLS加密，提供更好的安全性</li>
+<li>QUIC集成了加密机制，不需要TCP+TLS那样叠加两个协议</li>
+</ul>
+</li>
+<li>网络环境适应性<ul>
+<li>QUIC可以适应更复杂的网络环境，包括wifi、移动网络等，抗丢包和重传能力更强</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
