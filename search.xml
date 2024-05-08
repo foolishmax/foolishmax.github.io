@@ -2637,6 +2637,12 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
     <url>/2019/10/10/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/</url>
     <content><![CDATA[<h2 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h2><span id="more"></span>
 
+<h2 id="为什么会跨域？"><a href="#为什么会跨域？" class="headerlink" title="为什么会跨域？"></a>为什么会跨域？</h2><p>跨域问题是浏览器的同源策略导致的，同源策略是浏览器的一种安全机制，即进行资源请求时需要保证协议、域名、端口号都相同，否则就产生了跨域，是为了防止恶意的跨站脚本攻击。</p>
+<h2 id="如何解决跨域问题？"><a href="#如何解决跨域问题？" class="headerlink" title="如何解决跨域问题？"></a>如何解决跨域问题？</h2><p>CORS(跨域资源共享)：在服务端设置Access-Control-Allow-Origin等header，以允许跨域请求</p>
+<p>JSONP：利用动态创建script标签实现跨域请求</p>
+<p>Nginx反向代理：配置Nginx反向代理，将跨域请求转发到服务器</p>
+<p>window.postMessage()：HTML5提供的跨域通信API，允许窗口间的消息传递</p>
+<p>websocket：websocket协议支持跨域通信</p>
 <h2 id="你知道哪些前端攻击？该如何预防？"><a href="#你知道哪些前端攻击？该如何预防？" class="headerlink" title="你知道哪些前端攻击？该如何预防？"></a>你知道哪些前端攻击？该如何预防？</h2><ul>
 <li><p>xss</p>
 <ul>
@@ -2695,46 +2701,6 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <ul>
 <li>手段：提交内容时写入 SQL 语句，破环数据库</li>
 <li>预防：处理输入的内容，替换特殊字符</li>
-</ul>
-</li>
-</ul>
-<h2 id="什么是跨域？解决跨域的方法有哪些"><a href="#什么是跨域？解决跨域的方法有哪些" class="headerlink" title="什么是跨域？解决跨域的方法有哪些?"></a>什么是跨域？解决跨域的方法有哪些?</h2><ul>
-<li><p>同源策略</p>
-<ul>
-<li>是一种浏览器的安全策略</li>
-<li>协议、域名、端口号必须完全一致</li>
-<li>不同源的客户端脚本在没有明确的授权的情况下，不能读取对方的资源</li>
-</ul>
-</li>
-<li><p>跨域</p>
-<ul>
-<li>指一个域下的文档或脚本尝试去请求另一个域下的资源。</li>
-</ul>
-</li>
-</ul>
-<!-- more -->
-
-<ul>
-<li><p>解决跨域</p>
-<ul>
-<li><p>jsonp</p>
-</li>
-<li><p>postMessage 跨域</p>
-</li>
-<li><p>WebSocket 协议跨域</p>
-</li>
-<li><p>CORS（跨域资源共享，服务端设置 Access-Control-Allow-Origin，前端无需设置，<br>若要带 cookie 请求，前后端都要设置）</p>
-</li>
-<li><p>nginx 反向代理接口跨域</p>
-</li>
-<li><p>document.domain(两个页面通过 js 强制设置 document.domain 为基础主域，针对基础域名相同的情况)</p>
-</li>
-<li><p>window.name + iframe</p>
-</li>
-<li><p>location.hash + iframe</p>
-</li>
-<li><p>…</p>
-</li>
 </ul>
 </li>
 </ul>
