@@ -2639,7 +2639,7 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 
 <h2 id="为什么会跨域？"><a href="#为什么会跨域？" class="headerlink" title="为什么会跨域？"></a>为什么会跨域？</h2><p>跨域问题是浏览器的同源策略导致的，同源策略是浏览器的一种安全机制，即进行资源请求时需要保证协议、域名、端口号都相同，否则就产生了跨域，是为了防止恶意的跨站脚本攻击。</p>
 <h2 id="如何解决跨域问题？"><a href="#如何解决跨域问题？" class="headerlink" title="如何解决跨域问题？"></a>如何解决跨域问题？</h2><p>CORS(跨域资源共享)：在服务端设置Access-Control-Allow-Origin等header，以允许跨域请求</p>
-<p>JSONP：利用动态创建script标签实现跨域请求</p>
+<p>JSONP：利用动态创建script标签,通过script.src实现跨域请求</p>
 <p>Nginx反向代理：配置Nginx反向代理，将跨域请求转发到服务器</p>
 <p>window.postMessage()：HTML5提供的跨域通信API，允许窗口间的消息传递</p>
 <p>websocket：websocket协议支持跨域通信</p>
@@ -3934,6 +3934,18 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <li>线程间的切换比进程间的切换开销更小，因为线程共享相同的地址空间</li>
 </ol>
 <h2 id="如何避免前端请求明文传输，提高数据传输的安全性"><a href="#如何避免前端请求明文传输，提高数据传输的安全性" class="headerlink" title="如何避免前端请求明文传输，提高数据传输的安全性"></a>如何避免前端请求明文传输，提高数据传输的安全性</h2><p>1.使用https协议：通过https协议，可以对前后端通信进行加密，确保数据在传输过程中是加密的而不是明文形式传输<br>2.对敏感数据进行加密：前端将敏感数据传输到后端之前对数据进行加密处理，即使在传输过程中被截获也无法轻易被解读内容<br>3.使用安全的认证和授权机制：确保客户端的身份验证和授权，只允许经过授权的用户获取敏感绝书，避免敏感数据被未授权的用户访问</p>
+<h2 id="performance计算白屏和首屏时间"><a href="#performance计算白屏和首屏时间" class="headerlink" title="performance计算白屏和首屏时间"></a>performance计算白屏和首屏时间</h2><p>使用performance的timing对象</p>
+<p>白屏时间：whiteScreenTime = performance.timing.responseStart - performance.timing.navigationStart</p>
+<p>首屏渲染时间： firstScreenTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart</p>
+<p>其他：</p>
+<p>重定向耗时 = redirectEnd - redirectStart;</p>
+<p>DNS查询耗时 = domainLookupEnd - domainLookupStart;</p>
+<p>TCP链接耗时 = connectEnd - connectStart;</p>
+<p>HTTP请求耗时 = responseEnd - responseStart;</p>
+<p>解析dom树耗时 = domComplete - domInteractive;</p>
+<p>白屏时间 = responseStart - navigationStart; </p>
+<p>DOMready时间/首屏渲染时间 = domContentLoadedEventEnd - navigationStart;</p>
+<p>onload时间 = loadEventEnd - navigationStart;</p>
 ]]></content>
   </entry>
   <entry>
