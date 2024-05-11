@@ -3915,7 +3915,7 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
   <entry>
     <title>杂记</title>
     <url>/2024/03/26/%E6%9D%82%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题："><a href="#前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题：" class="headerlink" title="前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题："></a>前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题：</h2><span id="more"></span>
+    <content><![CDATA[<h2 id="前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题"><a href="#前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题" class="headerlink" title="前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题"></a>前端事件循环机制是前端开发中一个重要的概念，也是面试中经常会涉及的话题。以下是一些与前端事件循环机制相关的常见面试题</h2><span id="more"></span>
 
 <p>1.请解释什么是Event Loop（事件循环）？它在JavaScript中的作用是什么？</p>
 <p> Event Loop（事件循环）是JavaScript中用来处理异步操作的机制。它负责监听调用栈和任务队列，将任务队列中的任务按照一定规则推入调用栈中执行，从而实现异步编程。</p>
@@ -3943,9 +3943,59 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <p>TCP链接耗时 = connectEnd - connectStart;</p>
 <p>HTTP请求耗时 = responseEnd - responseStart;</p>
 <p>解析dom树耗时 = domComplete - domInteractive;</p>
-<p>白屏时间 = responseStart - navigationStart; </p>
+<p>白屏时间 = responseStart - navigationStart;</p>
 <p>DOMready时间/首屏渲染时间 = domContentLoadedEventEnd - navigationStart;</p>
 <p>onload时间 = loadEventEnd - navigationStart;</p>
+<h2 id="了解-React-中的-ErrorBoundary-吗，它有那些使用场景？"><a href="#了解-React-中的-ErrorBoundary-吗，它有那些使用场景？" class="headerlink" title="了解 React 中的 ErrorBoundary 吗，它有那些使用场景？"></a>了解 React 中的 ErrorBoundary 吗，它有那些使用场景？</h2><ol>
+<li>捕获子组件中的错误</li>
+</ol>
+<ul>
+<li>ErrorBoundary可以包裹组件树中的特定部分，以捕获子组件抛出的错误，防止错误影响到整个程序</li>
+</ul>
+<ol start="2">
+<li>展示备用UI</li>
+</ol>
+<ul>
+<li>当ErrorBoundary捕获到错误时，可以渲染备用的UI，如错误消息、回退组件活自定义的错误页面，提供更好的用户体验</li>
+</ul>
+<ol start="3">
+<li>记录和报告错误</li>
+</ol>
+<ul>
+<li>ErrorBoundary可以再捕获到错误时，将错误信息记录到日志系统或者上报到错误监控平台，方便开发人员进行调试</li>
+</ul>
+<ol start="4">
+<li>处理组件异步加载的错误</li>
+</ol>
+<ul>
+<li>当使用动态导入或者代码分割时，如果异步加载的组件抛出错误可以被ErrorBoundary捕获并处理这些错误</li>
+</ul>
+<ol start="5">
+<li>捕获第三方库的错误</li>
+</ol>
+<p><strong>ErrorBoundary不能捕获哪些错误？</strong></p>
+<ol>
+<li>异步代码中的错误</li>
+</ol>
+<ul>
+<li>ErrorBoundary只能捕获同步代码的javascript错误，无法捕获在异步代码如Promise、setTimeout等抛出的错误</li>
+</ul>
+<ol start="2">
+<li>事件处理程序中的错误</li>
+</ol>
+<ul>
+<li>无法捕获如onClick、onChange中的错误</li>
+</ul>
+<ol start="3">
+<li><p>服务端渲染SSR中的错误</p>
+</li>
+<li><p>错误发生在ErrorBoundary自身中的错误，需要使用全局错误处理机制</p>
+</li>
+<li><p>初始渲染期间的错误，因为此时尚未挂在ErrorBoundary</p>
+</li>
+<li><p>hook中发生的错误，需要通过try…catch或全局错误处理程序</p>
+</li>
+</ol>
 ]]></content>
   </entry>
   <entry>
