@@ -1423,6 +1423,13 @@ console.clear()  //用于清除当前控制台的所有输出，将光标回置�
 <p>Fiber 架构的引入使得 React 能够实现增量渲染和优先级调度，使得在处理更新时可以灵活地中断、终止和恢复任务，从而更好地控制渲染过程，提高页面的流畅度和响应速度。而并发模式则允许 React 在浏览器空闲时执行任务，进一步提升性能表现。</p>
 <p>相比之下，Vue 在设计上采用了不同的响应式系统和渲染优化策略，使得在大型应用中依然能够保持良好的性能表现，且相对于 React 的 Fiber 架构而言更加简洁直观。因此，虽然 Vue 不需要类似于 Fiber 的复杂架构，但仍然能够提供出色的性能。</p>
 <p>总的来说，React 引入 Fiber 架构并非故意为难自己，而是为了不断优化框架性能，提升用户体验。不同框架在性能优化上采取了不同的策略和设计思路，最终都是为了更好地满足开发者和用户的需求。</p>
+<h2 id="setState执行机制？"><a href="#setState执行机制？" class="headerlink" title="setState执行机制？"></a>setState执行机制？</h2><p>在<em>react</em>类组件中的状态需要通过<strong>setState</strong>进行更改，不同场景下对应不同的执行顺序：</p>
+<ul>
+<li>在组件生命周期或React合成事件中，setState是异步的</li>
+<li>在setTimeout或者原声dom事件中，setState是同步的</li>
+</ul>
+<p>当批量更改<em>state</em>的值的时候，<em>react</em>内部会将其值覆盖，只取最后一次的执行结果</p>
+<p>当下一个<em>state</em>需要依赖当前<em>state</em>的时候，可以在<strong>setState</strong>中传递一个回调函数进行数据更新</p>
 ]]></content>
       <categories>
         <category>react</category>
@@ -7313,5 +7320,46 @@ dt.getDay()     //星期几（0-6）
       <tags>
         <tag>面经</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>面试之亮点</title>
+    <url>/2024/05/14/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BA%AE%E7%82%B9/</url>
+    <content><![CDATA[<h2 id="亮点之组件库"><a href="#亮点之组件库" class="headerlink" title="亮点之组件库"></a>亮点之组件库</h2><span id="more"></span>
+
+<ul>
+<li><strong>为什么需要二次封装组件库?</strong></li>
+</ul>
+<ol>
+<li><p>统一风格，保持界面风格和交互方式的一致性。</p>
+</li>
+<li><p>降低维护成本，当底层组件库更新时，我们只需要在封装组件的地方更新即可。</p>
+</li>
+<li><p>增加定制功能，在原有组件库的基础上增加特定的业务功能，如数据验证、错误处理、表单验证、全局提示等。</p>
+</li>
+<li><p>提高开发效率，如多处复用。</p>
+</li>
+</ol>
+<ul>
+<li><strong>组件库的设计过程</strong></li>
+</ul>
+<ol>
+<li><p>使用lerna进行多包管理：通过lerna来管理多个包（组件），实现组件级别的结偶、独立版本控制、按需加载等。</p>
+</li>
+<li><p>代码规范化：通过eslint、prettier等工具进行代码规范和格式化。</p>
+</li>
+<li><p>提交规范化：通过commiztizen、commitlint等工具规范代码提交。</p>
+</li>
+<li><p>文档站点：可以dumi搭建文档站点，实现CDN加速、增量发布等。</p>
+</li>
+<li><p>单元测试：jest等工具，生成测试覆盖率报告。</p>
+</li>
+<li><p>组件设计：考虑组件的响应式、主题、国际化、typescript支持等问题，保证组件的灵活性和可扩展性。</p>
+</li>
+<li><p>按需加载：配合babel-plugin-import实现按需加载。</p>
+</li>
+<li><p>制定贡献（contributing）文档：降低社区贡献的门槛。</p>
+</li>
+</ol>
+]]></content>
   </entry>
 </search>
