@@ -1430,6 +1430,10 @@ console.clear()  //用于清除当前控制台的所有输出，将光标回置�
 </ul>
 <p>当批量更改<em>state</em>的值的时候，<em>react</em>内部会将其值覆盖，只取最后一次的执行结果</p>
 <p>当下一个<em>state</em>需要依赖当前<em>state</em>的时候，可以在<strong>setState</strong>中传递一个回调函数进行数据更新</p>
+<h2 id="react为何要自己实现调度器，而不是直接使用requestIdleCallback"><a href="#react为何要自己实现调度器，而不是直接使用requestIdleCallback" class="headerlink" title="react为何要自己实现调度器，而不是直接使用requestIdleCallback?"></a>react为何要自己实现调度器，而不是直接使用requestIdleCallback?</h2><p>react需要更加细粒度的精度控制，react使用一种称为“时间切片”的技术，允许复杂组件分布在多个帧中渲染避免页面渲染卡顿，所以react调度器需要根据组件的优先级、任务更新的紧急程度等信息，更精确的安排渲染工作。而requestIdleCallback是基于浏览器的空闲时间进行调度的。</p>
+<p>react调度器提供了更丰富的特性和更加详细的调度策略，更加契合fiber架构。</p>
+<p>跨浏览器兼容性，requestIdleCallback是2018年后才普遍支持的api。</p>
+<p>未来兼容性，react团队可以更好的自己控制调度器实现未来的优化和特性，而不受浏览器api变更的影响</p>
 ]]></content>
       <categories>
         <category>react</category>
