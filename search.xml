@@ -1674,6 +1674,16 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <li><p>js是单线程语言，也可以使用webworker进行多线程操作，但是go天生的多线程优势对构建流程进行了优化，可以更充分利用cpu资源</p>
 </li>
 </ol>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+<li><p>基于浏览器es module import实现编译服务</p>
+</li>
+<li><p>基于esbuild做依赖预构建</p>
+</li>
+<li><p>基于hash query做强缓存和缓存更新</p>
+</li>
+<li><p>兼容rollup的vite插件可以在开发服务和rollup中同时跑</p>
+</li>
+</ol>
 ]]></content>
   </entry>
   <entry>
