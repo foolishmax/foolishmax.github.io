@@ -1434,6 +1434,9 @@ console.clear()  //用于清除当前控制台的所有输出，将光标回置�
 <p>react调度器提供了更丰富的特性和更加详细的调度策略，更加契合fiber架构。</p>
 <p>跨浏览器兼容性，requestIdleCallback是2018年后才普遍支持的api。</p>
 <p>未来兼容性，react团队可以更好的自己控制调度器实现未来的优化和特性，而不受浏览器api变更的影响</p>
+<h2 id="聊聊vue或react的数据响应"><a href="#聊聊vue或react的数据响应" class="headerlink" title="聊聊vue或react的数据响应"></a>聊聊vue或react的数据响应</h2><p>  vue2响应式的特点就是依赖收集、数据可变、自动派发更新，初始化时通过<strong>Object.defineProperty</strong>递归劫持<strong>data</strong>所有属性添加<strong>getter/setter</strong>，触发getter时进行依赖收集，修改触发setter自动派发更新找到对应组件重新渲染。</p>
+<p>  vue3使用原生的proxy重构了响应式，一是proxy不存在vue2的响应式缺陷，二是性能更好，不仅支持更多的数据结构，而且不在需要递归劫持，而是代理第一层对象本身，运行时才递归，运行才代理。</p>
+<p>  react是单向数据流，数据不可变，通过setState触发更新。而且当数据改变会以组建根开始重新渲染整个组建树，可以根据pureComponent/shouldCompnentUpdate/useMemo/useCallback方法进行控制，更新粒度更粗一些。</p>
 ]]></content>
       <categories>
         <category>react</category>
@@ -4027,6 +4030,36 @@ fs.writeFile(&#39;./data/hello.txt&#39;,msg,&#39;utf-8&#39;,function(err)&#123;
 <li><p>hook中发生的错误，需要通过try…catch或全局错误处理程序</p>
 </li>
 </ol>
+<h2 id="网页各种距离"><a href="#网页各种距离" class="headerlink" title="网页各种距离"></a>网页各种距离</h2><ul>
+<li><p>e.pageY: 鼠标距离文档顶部的距离</p>
+</li>
+<li><p>e.clientY: 鼠标距离可是区域顶部的距离</p>
+</li>
+<li><p>e.offsetY: 鼠标距离出发事件元素顶部的距离</p>
+</li>
+<li><p>e.screenY: 鼠标距离屏幕顶部的距离</p>
+</li>
+<li><p>window.scrollY: 页面滚动的距离，也叫window.pageYOffset，等同于document.documentElement.scrollTop</p>
+</li>
+<li><p>element.scrollTop: 元素滚动距离</p>
+</li>
+<li><p>element.clientTop: 上边框高度</p>
+</li>
+<li><p>element.offsetTop: 相对有position的父元素的内容顶部距离</p>
+</li>
+<li><p>clientHeight: 内容高度，不包括边框</p>
+</li>
+<li><p>offsetHeight: 包含边框的高度</p>
+</li>
+<li><p>scrollHeight: 滚动区域的高度，不包括边框</p>
+</li>
+<li><p>window.innerHeight: 窗口的高度</p>
+</li>
+<li><p>element.getBoundingClientRect：拿到 width、height、top、left 属性，其中 top、left 是元素距离可视区域的距离，width、height 绝大多数情况下等同 offsetHeight、offsetWidth，但旋转之后就不一样了，拿到的是包围盒的宽高</p>
+</li>
+<li><p>react的合成事件没有offsetY属性，可以通过pageY - clientY - top计算</p>
+</li>
+</ul>
 ]]></content>
   </entry>
   <entry>
